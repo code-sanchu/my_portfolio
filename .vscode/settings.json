@@ -1,0 +1,9 @@
+{
+	"window.title": "my portfolio",
+	"css.lint.unknownAtRules": "ignore",
+	"editor.quickSuggestions": {
+		"other": true,
+		"comments": false,
+		"strings": true
+	}
+}

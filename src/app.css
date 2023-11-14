@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+	font-family: 'Helvetica';
+	font-style: normal;
+	font-weight: 500;
+	src: url('/fonts/HelveticaNeue-Light.otf');
+	font-display: swap;
+}
+
+html {
+	@apply overflow-hidden  outline-none active:outline-none focus:outline-none;
+}
+
+* {
+	@apply outline-none active:outline-none focus:outline-none font-thin;
+
+	-webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+	@apply bg-gray-500 text-white;
+}
+
+div {
+	@apply md:scrollbar-thin md:scrollbar-track-gray-50/50 md:scrollbar-thumb-gray-100 md:hover:scrollbar-thumb-gray-200;
+}
