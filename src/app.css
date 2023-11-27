@@ -5,8 +5,16 @@
 @font-face {
 	font-family: 'Helvetica';
 	font-style: normal;
-	font-weight: 500;
-	src: url('/fonts/HelveticaNeue-Light.otf');
+	font-weight: 400;
+	src: url('/fonts/FreeSans.otf');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Helvetica';
+	font-style: normal;
+	font-weight: 700;
+	src: url('/fonts/FreeSansBold.otf');
 	font-display: swap;
 }
 

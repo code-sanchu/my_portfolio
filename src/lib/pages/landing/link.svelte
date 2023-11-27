@@ -10,7 +10,7 @@
 
 		setTimeout(() => {
 			pulsing = false;
-		}, 1200);
+		}, 800);
 
 		onClick();
 	};
@@ -51,6 +51,6 @@
 	}
 
 	.pulse {
-		animation: pulse 0.6s ease-in 2;
+		animation: pulse 0.4s ease-in 2;
 	}
 </style>

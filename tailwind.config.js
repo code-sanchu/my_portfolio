@@ -1,14 +1,32 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { createPlugin } = require('windy-radix-palette');
+
+const colors = createPlugin();
+
 /** @type {import('tailwindcss').Config} */
 export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
 		extend: {
 			fontFamily: {
-				// sans: ['Helvetica', 'sans-serif']
+				sans: ['Helvetica', 'sans-serif']
 			},
 
 			colors: {
 				'my-light-blue': 'rgb(68,194,255)'
+				/* 				gray: {
+					DEFAULT: '#202020',
+					50: '#CBCBCB',
+					100: '#C1C1C1',
+					200: '#ACACAC',
+					300: '#989898',
+					400: '#848484',
+					500: '#6F6F6F',
+					600: '#5B5B5B',
+					700: '#464646',
+					800: '#646464',
+					900: '#202020'
+				} */
 			},
 
 			screens: {
@@ -45,5 +63,5 @@ export default {
 			}
 		}
 	},
-	plugins: [require('tailwind-scrollbar')]
+	plugins: [require('tailwind-scrollbar'), colors.plugin]
 };
