@@ -37,5 +37,8 @@
 		"vite-imagetools": "5.0.8",
 		"windy-radix-palette": "2.0.0-beta.7"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"uid": "^2.0.2"
+	}
 }

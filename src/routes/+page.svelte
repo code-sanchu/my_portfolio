@@ -1,4 +1,6 @@
 <script context="module" lang="ts">
+	import { uid } from 'uid/single';
+
 	import { Link, LinkText } from '^pages/landing';
 	import type { ProjectId } from '^types';
 	import { MainCard, Info } from '$lib/components/projects';
@@ -13,8 +15,10 @@
 	let lineIn = false;
 	let textIn = false;
 
-	let shownProjects: ({ type: 'info'; id: ProjectId } | { type: 'main-card'; id: ProjectId })[] =
-		[];
+	let shownProjects: (
+		| { type: 'info'; key: string; id: ProjectId }
+		| { type: 'main-card'; key: string; id: ProjectId }
+	)[] = [];
 
 	$: console.log('shownProjects:', shownProjects);
 </script>
@@ -68,7 +72,8 @@
 				<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 				<h4
 					class="font-medium uppercase tracking-wider text-2xl text-gray-800 underline decoration-2 underline-offset-4 cursor-pointer"
-					on:click={() => (shownProjects = [...shownProjects, { id: 'raie', type: 'main-card' }])}
+					on:click={() =>
+						(shownProjects = [{ id: 'raie', type: 'main-card', key: uid() }, ...shownProjects])}
 				>
 					Raie Music
 				</h4>
@@ -90,14 +95,17 @@
 			</div>
 		</div>
 
-		{#each shownProjects as shownProject}
+		{#each shownProjects as shownProject, i (shownProject.key)}
 			{@const projectData = projects[shownProject.id]}
 			{#if shownProject.type === 'main-card'}
 				<MainCard
 					data={{
 						title: projectData.title,
 						onClickInfo: () =>
-							(shownProjects = [...shownProjects, { type: 'info', id: shownProject.id }]),
+							(shownProjects = [
+								{ type: 'info', id: shownProject.id, key: uid() },
+								...shownProjects
+							]),
 						picture: projectData.mainPicture,
 						siteUrl: projectData.url
 					}}

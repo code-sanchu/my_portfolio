@@ -1,6 +1,6 @@
 import type { Picture } from './picture';
 
-export type ProjectId = 'raie';
+export type ProjectId = 'raie' | 'birch';
 
 export type Project = {
 	id: ProjectId;
