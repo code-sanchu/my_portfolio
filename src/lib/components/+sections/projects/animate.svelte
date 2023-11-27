@@ -1,10 +1,9 @@
-<script lang="ts">
+<script lang="ts" context="module">
 	import { onMount } from 'svelte';
+</script>
 
-	export let data: {
-		title: string;
-		text: string;
-	};
+<script lang="ts">
+	export let containerWidth: number;
 
 	let show = false;
 	let showLine = false;
@@ -25,7 +24,6 @@
 				}, 200);
 			}, 250);
 		}, 200);
-		return;
 	};
 
 	onMount(() => {
@@ -35,17 +33,20 @@
 	});
 </script>
 
+<div />
+
 <div
-	class={`relative shrink-0 transition-all ease-in duration-200 ${!show ? 'w-0 ' : 'w-[500px]'}`}
+	class={`relative shrink-0 transition-all ease-in duration-200 `}
+	style:width={show ? `${containerWidth}px` : '0px'}
 >
 	<div
-		class={`z-10 absolute left-0 top-0 transition-all ease-in duration-300 h-[3px] bg-blue-11 ${
-			showLine ? 'w-[500px]' : 'w-0 opacity-0'
-		} ${hideLine ? 'opacity-0' : ''}`}
+		class={`z-10 absolute left-0 top-0 transition-all ease-in duration-300 h-[3px] bg-blue-9 ${
+			hideLine ? 'opacity-0' : ''
+		}`}
+		style:width={showLine ? `${containerWidth - 24}px` : '0px'}
 	/>
 
 	<div class={`relative transition-all ease-in duration-300 ${showContent ? '' : 'opacity-0'}`}>
-		<span class="text-blue-11 uppercase text-sm tracking-wider">{data.title}</span>
-		<span>{data.text}</span>
+		<slot />
 	</div>
 </div>

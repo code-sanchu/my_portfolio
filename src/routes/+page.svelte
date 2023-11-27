@@ -1,10 +1,7 @@
 <script context="module" lang="ts">
-	import { uid } from 'uid/single';
-
+	import { Projects } from '^components/+sections';
 	import { Link, LinkText } from '^pages/landing';
 	import type { ProjectId } from '^types';
-	import { MainCard, Info } from '$lib/components/projects';
-	import { projects } from '^data';
 </script>
 
 <script lang="ts">
@@ -30,7 +27,7 @@
 
 <Link
 	position="left"
-	bgColorClass="bg-[#0090FF]"
+	bgColorClass="bg-blue-9"
 	onClick={() => {
 		currentSection = 'projects';
 
@@ -59,43 +56,11 @@
 	</div>
 </div>
 
-<div class="fixed left-[160px] top-[160px]">
-	<div class={`absolute bg-blue-9 h-[4px] ${lineIn ? 'line-in' : 'w-0 opacity-0'}`} />
+{#if currentSection === 'projects'}
+	<Projects />
+{/if}
 
-	<div class={`flex ${textIn ? 'text-in' : 'h-0 w-0 opacity-0 '}`}>
-		<div class="mr-xl">
-			<h2 class="text-blue-11 font-medium uppercase tracking-wider text-2xl whitespace-nowrap">
-				Projects
-			</h2>
-			<div class="mt-xxs flex flex-col gap-xxs whitespace-nowrap">
-				<!-- svelte-ignore a11y-click-events-have-key-events -->
-				<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-				<h4
-					class="font-medium uppercase tracking-wider text-2xl text-gray-800 underline decoration-2 underline-offset-4 cursor-pointer"
-					on:click={() =>
-						(shownProjects = [{ id: 'raie', type: 'main-card', key: uid() }, ...shownProjects])}
-				>
-					Raie Music
-				</h4>
-				<h4
-					class="font-medium uppercase tracking-wider text-2xl text-gray-800 underline decoration-2 underline-offset-4"
-				>
-					Birch Collective
-				</h4>
-				<h4
-					class="font-medium uppercase tracking-wider text-2xl text-gray-800 underline decoration-2 underline-offset-4"
-				>
-					Piros Photography
-				</h4>
-				<h4
-					class="font-medium uppercase tracking-wider text-2xl text-gray-800 underline decoration-2 underline-offset-4"
-				>
-					Alesh Compton
-				</h4>
-			</div>
-		</div>
-
-		{#each shownProjects as shownProject, i (shownProject.key)}
+<!-- 		{#each shownProjects as shownProject, i (shownProject.key)}
 			{@const projectData = projects[shownProject.id]}
 			{#if shownProject.type === 'main-card'}
 				<MainCard
@@ -113,9 +78,7 @@
 			{:else}
 				<Info data={{ text: projectData.infoText, title: projectData.title }} />
 			{/if}
-		{/each}
-	</div>
-</div>
+		{/each} -->
 
 <style>
 	@keyframes leave {
