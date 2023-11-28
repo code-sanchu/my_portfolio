@@ -22,8 +22,8 @@
 				setTimeout(() => {
 					showContent = true;
 				}, 300);
-			}, 250);
-		}, 200);
+			}, 200);
+		}, 300);
 	};
 
 	onMount(() => {
@@ -36,7 +36,7 @@
 <div />
 
 <div
-	class={`relative shrink-0 transition-all ease-[cubic-bezier(1,.19,.9,.45)] duration-200`}
+	class={`relative shrink-0 transition-all ease-[cubic-bezier(.79,.18,.36,.92)] duration-300`}
 	style:width={show ? `${containerWidth}px` : '0px'}
 >
 	<div
