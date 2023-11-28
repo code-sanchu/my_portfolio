@@ -83,7 +83,7 @@
 </div>
 
 {#if currentSection === 'projects'}
-	<div class="fixed left-[160px] top-[160px]" out:fly={{ y: '-500px', duration: 500 }}>
+	<div class="fixed left-[120px] top-[120px]" out:fly={{ y: '-500px', duration: 500 }}>
 		<Projects />
 	</div>
 {/if}

@@ -22,31 +22,22 @@
 			<h2 class="text-blue-10 font-medium uppercase tracking-wider text-2xl whitespace-nowrap">
 				Projects
 			</h2>
+
 			<div class="mt-xxs flex flex-col gap-xxs whitespace-nowrap">
-				<!-- svelte-ignore a11y-click-events-have-key-events -->
-				<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-				<h4
-					class="font-medium uppercase tracking-wider text-2xl text-gray-800 underline decoration-2 underline-offset-4 cursor-pointer"
-					on:click={() =>
-						(shownProjects = [{ id: 'raie', type: 'main-card', key: uid() }, ...shownProjects])}
-				>
-					Raie Music
-				</h4>
-				<h4
-					class="font-medium uppercase tracking-wider text-2xl text-gray-800 underline decoration-2 underline-offset-4"
-				>
-					Birch Collective
-				</h4>
-				<h4
-					class="font-medium uppercase tracking-wider text-2xl text-gray-800 underline decoration-2 underline-offset-4"
-				>
-					Piros Photography
-				</h4>
-				<h4
-					class="font-medium uppercase tracking-wider text-2xl text-gray-800 underline decoration-2 underline-offset-4"
-				>
-					Alesh Compton
-				</h4>
+				{#each Object.values(projects) as project}
+					<!-- svelte-ignore a11y-click-events-have-key-events -->
+					<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+					<h4
+						class="project-title"
+						on:click={() =>
+							(shownProjects = [
+								{ id: project.id, type: 'main-card', key: uid() },
+								...shownProjects
+							])}
+					>
+						{project.title}
+					</h4>
+				{/each}
 			</div>
 		</div>
 	</Animate>
@@ -78,3 +69,12 @@
 		{/if}
 	{/each}
 </div>
+
+<style>
+	.project-title {
+		@apply font-medium uppercase transition-colors ease-in-out duration-100 tracking-wider text-2xl text-gray-12 underline decoration-2 underline-offset-4 cursor-pointer;
+	}
+	.project-title:hover {
+		@apply text-blue-11;
+	}
+</style>
