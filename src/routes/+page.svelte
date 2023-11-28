@@ -1,7 +1,8 @@
 <script context="module" lang="ts">
 	import { Projects } from '^components/+pages/projects';
+	import { About } from '^components/+pages/about';
 	import { SectionLink, SectionLinkText } from '^sections/nav';
-	import { fade, fly, slide } from 'svelte/transition';
+	import { fade, fly } from 'svelte/transition';
 
 	type Section = 'initial' | 'projects' | 'about' | 'tech-info';
 </script>
@@ -85,5 +86,11 @@
 {#if currentSection === 'projects'}
 	<div class="fixed left-[120px] top-[120px]" out:fly={{ y: '-500px', duration: 500 }}>
 		<Projects />
+	</div>
+{/if}
+
+{#if currentSection === 'about'}
+	<div class="fixed left-[120px] top-[120px]" out:fly={{ y: '-500px', duration: 500 }}>
+		<About />
 	</div>
 {/if}

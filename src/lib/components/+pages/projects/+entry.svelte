@@ -3,7 +3,7 @@
 
 	import type { ProjectId } from '^types';
 
-	import Animate from './animate.svelte';
+	import { AnimateSectionIn } from '^components';
 	import MainCard from './main-card.svelte';
 	import Info from './info.svelte';
 	import { projects } from '^data';
@@ -17,7 +17,7 @@
 </script>
 
 <div class="flex">
-	<Animate containerWidth={320}>
+	<AnimateSectionIn containerWidth={320} color="blue">
 		<div>
 			<h2 class="text-blue-10 font-medium uppercase tracking-wider text-2xl whitespace-nowrap">
 				Projects
@@ -40,13 +40,13 @@
 				{/each}
 			</div>
 		</div>
-	</Animate>
+	</AnimateSectionIn>
 
 	{#each shownProjects as shownProject, i (shownProject.key)}
 		{@const projectData = projects[shownProject.id]}
 
 		{#if shownProject.type === 'main-card'}
-			<Animate containerWidth={600}>
+			<AnimateSectionIn containerWidth={600} color="blue">
 				<MainCard
 					data={{
 						title: projectData.title,
@@ -59,13 +59,13 @@
 						siteUrl: projectData.url
 					}}
 				/>
-			</Animate>
+			</AnimateSectionIn>
 		{:else}
-			<Animate containerWidth={500}>
+			<AnimateSectionIn containerWidth={500} color="blue">
 				<Info
 					data={{ text: projectData.infoText, title: projectData.title, siteUrl: projectData.url }}
 				/>
-			</Animate>
+			</AnimateSectionIn>
 		{/if}
 	{/each}
 </div>
