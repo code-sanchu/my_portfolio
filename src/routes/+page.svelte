@@ -1,26 +1,43 @@
 <script context="module" lang="ts">
 	import { Projects } from '^components/+pages/projects';
 	import { SectionLink, SectionLinkText } from '^sections/nav';
-	import { cubicIn } from 'svelte/easing';
+	import { fade, fly, slide } from 'svelte/transition';
 
 	type Section = 'initial' | 'projects' | 'about' | 'tech-info';
 </script>
 
 <script lang="ts">
 	let currentSection: Section = 'initial';
-	let leaveSectionStatus: 'idle' | 'leaving' | 'complete' = 'idle';
+
+	let titleStatus: 'initial' | 'transition-out' | 'place-before-transition-in' = 'initial';
 
 	const handleShowSection = (show: Section) => {
-		leaveSectionStatus = 'leaving';
+		if (currentSection === show) {
+			return;
+		}
 
-		setTimeout(() => {
-			leaveSectionStatus = 'complete';
-		}, 1000);
-
-		if (currentSection === 'initial') {
+		if (show !== 'initial') {
 			setTimeout(() => {
 				currentSection = show;
 			}, 500);
+		}
+
+		if (currentSection === 'initial') {
+			setTimeout(() => {
+				titleStatus = 'transition-out';
+
+				setTimeout(() => {
+					titleStatus = 'place-before-transition-in';
+				}, 800);
+			}, 500);
+		}
+
+		if (currentSection !== 'initial' && show === 'initial') {
+			currentSection = show;
+
+			setTimeout(() => {
+				titleStatus = 'initial';
+			}, 300);
 		}
 	};
 </script>
@@ -40,9 +57,23 @@
 	<SectionLinkText>out</SectionLinkText>
 </SectionLink>
 
+{#if currentSection !== 'initial'}
+	<div class="fixed z-10 bottom-sm left-1/2 -translate-x-1/2" transition:fade>
+		<button
+			class="uppercase tracking-wide text-xs underline"
+			on:click={() => handleShowSection('initial')}
+			type="button">Tech-poiesis</button
+		>
+	</div>
+{/if}
+
 <div
-	class={`fixed inset-0 grid place-items-center transition-transform ease-[cubic-bezier(.64,.26,.13,.2)] duration-300 delay-[500ms] ${
-		currentSection === 'initial' && leaveSectionStatus === 'idle' ? '' : 'translate-x-full'
+	class={`fixed inset-0 grid place-items-center transition-all ease-[cubic-bezier(.64,.26,.13,.2)] duration-300 ${
+		titleStatus === 'transition-out'
+			? 'translate-x-full opacity-0 pointer-events-none'
+			: titleStatus === 'place-before-transition-in'
+			? 'opacity-0 translate-y-lg pointer-events-none'
+			: 'ease-in-out duration-500'
 	}`}
 >
 	<div>
@@ -52,5 +83,7 @@
 </div>
 
 {#if currentSection === 'projects'}
-	<Projects />
+	<div class="fixed left-[160px] top-[160px]" out:fly={{ y: '-500px', duration: 500 }}>
+		<Projects />
+	</div>
 {/if}

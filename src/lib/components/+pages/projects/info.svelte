@@ -17,7 +17,7 @@
 
 	<div class="mt-xs">
 		<a
-			class="flex items-center text-gray-10 gap-xxs hover:text-blue-10 transition-colors ease-in-out duration-150 cursor-pointer"
+			class="inline-flex items-center text-gray-10 gap-xxs hover:text-blue-10 transition-colors ease-in-out duration-150 cursor-pointer"
 			href={data.siteUrl}
 			target="_blank"
 		>
