@@ -21,7 +21,7 @@
 
 				setTimeout(() => {
 					showContent = true;
-				}, 200);
+				}, 300);
 			}, 250);
 		}, 200);
 	};
@@ -36,11 +36,11 @@
 <div />
 
 <div
-	class={`relative shrink-0 transition-all ease-in duration-200 `}
+	class={`relative shrink-0 transition-all ease-[cubic-bezier(1,.19,.9,.45)] duration-200`}
 	style:width={show ? `${containerWidth}px` : '0px'}
 >
 	<div
-		class={`z-10 absolute left-0 top-0 transition-all ease-in duration-300 h-[3px] bg-blue-9 ${
+		class={`z-10 absolute left-0 top-0 transition-all ease-[cubic-bezier(1,.19,.9,.45)] duration-[400ms] h-[3px] bg-blue-9 ${
 			hideLine ? 'opacity-0' : ''
 		}`}
 		style:width={showLine ? `${containerWidth - 24}px` : '0px'}

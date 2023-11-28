@@ -58,6 +58,7 @@ export default {
 			},
 
 			fontSize: {
+				xxs: '0.6rem',
 				'1.5lg': '1.1875rem',
 				'1.5xl': '1.375rem'
 			}

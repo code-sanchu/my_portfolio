@@ -26,7 +26,7 @@
 		<div class="flex gap-xs items-end">
 			<div class="flex items-center gap-xxs">
 				<div class="flex items-center gap-xxs">
-					<span class="block h-[12px] w-[2px] bg-gray-11 shrink-0" />
+					<span class=" h-[12px] w-[2px] border-l-2 border-gray-11 shrink-0" />
 
 					<button
 						class="flex items-center gap-xxs text-gray-12 hover:text-blue-10"
@@ -45,7 +45,7 @@
 			</div>
 
 			<div class="flex items-center gap-xxs">
-				<span class="block h-[12px] w-[2px] bg-gray-11" />
+				<span class=" h-[12px] w-[2px] border-l-2 border-gray-11 shrink-0" />
 
 				<a
 					class="flex items-center text-gray-12 gap-xxs hover:text-blue-10 transition-colors ease-in-out duration-150"

@@ -17,7 +17,7 @@
 </script>
 
 <div class="fixed left-[160px] top-[160px] flex">
-	<Animate containerWidth={300}>
+	<Animate containerWidth={320}>
 		<div>
 			<h2 class="text-blue-10 font-medium uppercase tracking-wider text-2xl whitespace-nowrap">
 				Projects
@@ -71,7 +71,9 @@
 			</Animate>
 		{:else}
 			<Animate containerWidth={500}>
-				<Info data={{ text: projectData.infoText, title: projectData.title }} />
+				<Info
+					data={{ text: projectData.infoText, title: projectData.title, siteUrl: projectData.url }}
+				/>
 			</Animate>
 		{/if}
 	{/each}
