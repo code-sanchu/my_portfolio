@@ -51,11 +51,38 @@ const amy: Project = {
 	infoText: 'Site and custom CMS designed, built and developed in 2021.'
 };
 
+const murat: Project = {
+	id: 'murat',
+	title: 'Murat Gökmen',
+	url: 'https://www.muratgokmen.com/',
+	mainPicture: image.project.murat.site,
+	infoText: 'Custom css and js work done on this Squarespace site.'
+};
+
+const kindred_yoga: Project = {
+	id: 'kindred_yoga',
+	title: 'Kindred Yoga',
+	url: 'https://www.kindredyogalife.com/',
+	mainPicture: image.project.kindred_yoga.site,
+	infoText: 'Custom css and js work done on this Squarespace site.'
+};
+
+const blackheath_yoga: Project = {
+	id: 'blackheath_yoga',
+	title: 'Blackheath Yoga',
+	url: 'https://www.blackheathyoga.co.uk/',
+	mainPicture: image.project.blackheath_yoga.site,
+	infoText: 'Custom css and js work done on this Wix site.'
+};
+
 export const projects: { [k in ProjectId]: Project } = {
 	raie,
 	birch,
 	amy,
 	alesh,
 	piros,
-	asatic
+	asatic,
+	murat,
+	kindred_yoga,
+	blackheath_yoga
 };

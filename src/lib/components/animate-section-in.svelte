@@ -5,6 +5,8 @@
 <script lang="ts">
 	export let containerWidth: number;
 	export let color: 'green' | 'red' | 'blue';
+	export let skipWidthAnimation = false;
+	$: console.log('skipWidthAnimation:', skipWidthAnimation);
 
 	let show = false;
 	let showLine = false;
@@ -37,8 +39,9 @@
 <div />
 
 <div
-	class={`relative shrink-0 transition-all ease-[cubic-bezier(.79,.18,.36,.92)] duration-300`}
+	class={`relative shrink-0 transition-all ease-[cubic-bezier(.79,.18,.36,.92)]`}
 	style:width={show ? `${containerWidth}px` : '0px'}
+	style:transition-duration={skipWidthAnimation ? '0ms' : '300ms'}
 >
 	<div
 		class={`z-10 absolute left-0 top-0 transition-all ease-[cubic-bezier(1,.19,.9,.45)] duration-[400ms] h-[3px]  ${

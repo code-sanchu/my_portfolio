@@ -19,7 +19,7 @@
 }
 
 html {
-	@apply overflow-hidden  outline-none active:outline-none focus:outline-none;
+	@apply overflow-hidden  outline-none active:outline-none focus:outline-none text-gray-12;
 }
 
 * {
