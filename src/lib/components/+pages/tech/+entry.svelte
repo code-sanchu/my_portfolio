@@ -88,13 +88,24 @@
 				<div class="box border-y" />
 
 				<div class="box uppercase text-xs tracking-wide underline decoration-dashed text-gray-12">
+					api
+				</div>
+				<div class="box border-l border-gray-11">react query</div>
+				<div class="box border-l">rtk query</div>
+				<div class="box border-l">trpc</div>
+				<div class="box border-l">qraphql</div>
+				<div class="box border-l" />
+
+				<div
+					class="box border-y uppercase text-xs tracking-wide underline decoration-dashed text-gray-12"
+				>
 					platforms
 				</div>
-				<div class="box border-l border-gray-11">squarespace</div>
-				<div class="box border-l">wix</div>
-				<div class="box border-l">shopify</div>
-				<div class="box border-l">stripe</div>
-				<div class="box border-l" />
+				<div class="box border-y border-l border-gray-11">squarespace</div>
+				<div class="box border-y border-l">wix</div>
+				<div class="box border-y border-l">shopify</div>
+				<div class="box border-y border-l">stripe</div>
+				<div class="box border-y border-l" />
 			</div>
 		</div>
 	</div>

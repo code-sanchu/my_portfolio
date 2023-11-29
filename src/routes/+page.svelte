@@ -10,6 +10,8 @@
 </script>
 
 <script lang="ts">
+	// projects: add tooltip for perf.
+
 	let currentSection: Section = 'initial';
 
 	let titleStatus: 'initial' | 'transition-out' | 'place-before-transition-in' = 'initial';

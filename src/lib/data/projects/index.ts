@@ -7,7 +7,10 @@ const raie: Project = {
 	url: 'https://www.raiemusic.com/',
 	mainPicture: image.project.raie.landing,
 	infoText:
-		'Designed and built in 2023 for Raie Music. Designed asthetically to suit the musicality of Raie and functionally to have an easy to use in-site music player...'
+		'Designed and built in 2023 for Raie Music. Designed asthetically to suit the musicality of Raie; functionally to have an easy to use in-site music player, optimised image gallery as well as other features.',
+	performanceUrl:
+		'https://pagespeed.web.dev/analysis/https-www-raiemusic-com/uvai5c049i?form_factor=mobile'
+	// tech: ['Framework: sveltekit.', 'Script: javascript, typescript.', 'Styling: tailwind.']
 };
 
 const birch: Project = {
@@ -77,9 +80,9 @@ const blackheath_yoga: Project = {
 
 export const projects: { [k in ProjectId]: Project } = {
 	raie,
+	alesh,
 	birch,
 	amy,
-	alesh,
 	piros,
 	asatic,
 	murat,

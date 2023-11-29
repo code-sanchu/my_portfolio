@@ -17,4 +17,6 @@ export type Project = {
 	url: string;
 	mainPicture: Picture;
 	infoText: string;
+	performanceUrl?: string;
+	tech?: string[];
 };

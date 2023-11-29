@@ -67,7 +67,12 @@
 		{:else}
 			<AnimateSectionIn containerWidth={500} color="blue">
 				<Info
-					data={{ text: projectData.infoText, title: projectData.title, siteUrl: projectData.url }}
+					data={{
+						text: projectData.infoText,
+						title: projectData.title,
+						siteUrl: projectData.url,
+						performanceUrl: projectData.performanceUrl
+					}}
 				/>
 			</AnimateSectionIn>
 		{/if}
