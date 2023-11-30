@@ -10,21 +10,13 @@
 </script>
 
 <script lang="ts">
-	// projects: add tooltip for perf.
-
 	let currentSection: Section = 'initial';
 
 	let titleStatus: 'initial' | 'transition-out' | 'place-before-transition-in' = 'initial';
 
-	const handleShowSection = (show: Section) => {
-		if (currentSection === show) {
+	const handleClickSectionLink = (clickedSection: Section) => {
+		if (currentSection === clickedSection) {
 			return;
-		}
-
-		if (show !== 'initial') {
-			setTimeout(() => {
-				currentSection = show;
-			}, 500);
 		}
 
 		if (currentSection === 'initial') {
@@ -34,30 +26,45 @@
 				setTimeout(() => {
 					titleStatus = 'place-before-transition-in';
 				}, 800);
-			}, 500);
-		}
+			}, 350);
 
-		if (currentSection !== 'initial' && show === 'initial') {
-			currentSection = show;
+			currentSection = clickedSection;
+			setTimeout(() => {}, 100);
+		} else {
+			currentSection = clickedSection;
 
-			setTimeout(() => {
-				titleStatus = 'initial';
-			}, 300);
+			if (clickedSection === 'initial') {
+				setTimeout(() => {
+					titleStatus = 'initial';
+				}, 300);
+			}
 		}
 	};
 </script>
 
-<SectionLink position="top" bgColorClass="bg-red-9" onClick={() => handleShowSection('tech-info')}>
+<SectionLink
+	position="top"
+	bgColorClass="bg-red-9"
+	onClick={() => handleClickSectionLink('tech-info')}
+>
 	<SectionLinkText>Tech</SectionLinkText>
 	<SectionLinkText>info</SectionLinkText>
 </SectionLink>
 
-<SectionLink position="left" bgColorClass="bg-blue-9" onClick={() => handleShowSection('projects')}>
+<SectionLink
+	position="left"
+	bgColorClass="bg-blue-9"
+	onClick={() => handleClickSectionLink('projects')}
+>
 	<SectionLinkText>Pro</SectionLinkText>
 	<SectionLinkText>jects</SectionLinkText>
 </SectionLink>
 
-<SectionLink position="right" bgColorClass="bg-green-9" onClick={() => handleShowSection('about')}>
+<SectionLink
+	position="right"
+	bgColorClass="bg-green-9"
+	onClick={() => handleClickSectionLink('about')}
+>
 	<SectionLinkText>Ab</SectionLinkText>
 	<SectionLinkText>out</SectionLinkText>
 </SectionLink>
@@ -66,7 +73,7 @@
 	<div class="fixed z-10 bottom-sm left-1/2 -translate-x-1/2" transition:fade>
 		<button
 			class="uppercase tracking-wide text-xs underline"
-			on:click={() => handleShowSection('initial')}
+			on:click={() => handleClickSectionLink('initial')}
 			type="button">Tech-poiesis</button
 		>
 	</div>
@@ -82,7 +89,7 @@
 	}`}
 >
 	<div>
-		<h1 class="text-7xl tracking-[0.013em] text-gray-12">Tech-poiesis</h1>
+		<h1 class="text-7xl tracking-[0.013em] text-gray-12" title="hello">Tech-poiesis</h1>
 		<h3 class="mt-xs text-lg tracking-wide text-gray-8">Individually created sites.</h3>
 	</div>
 </div>

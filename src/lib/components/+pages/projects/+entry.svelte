@@ -5,7 +5,7 @@
 
 	import { AnimateSectionIn } from '^components';
 	import MainCard from './main-card.svelte';
-	import Info from './info.svelte';
+	import { Info } from './info';
 	import { projects } from '^data';
 </script>
 
@@ -17,7 +17,7 @@
 </script>
 
 <div class="flex">
-	<AnimateSectionIn containerWidth={320} color="blue">
+	<AnimateSectionIn containerWidth={320} color="blue" skipWidthAnimation>
 		<div>
 			<h2 class="text-blue-10 font-medium uppercase tracking-wider text-2xl whitespace-nowrap">
 				Projects
@@ -60,7 +60,7 @@
 								...shownProjects
 							]),
 						picture: projectData.mainPicture,
-						siteUrl: projectData.url
+						siteUrl: projectData.siteUrl
 					}}
 				/>
 			</AnimateSectionIn>
@@ -68,11 +68,13 @@
 			<AnimateSectionIn containerWidth={500} color="blue">
 				<Info
 					data={{
-						text: projectData.infoText,
+						infoText: projectData.infoText,
 						title: projectData.title,
-						siteUrl: projectData.url,
-						performanceUrl: projectData.performanceUrl
+						siteUrl: projectData.siteUrl,
+						performanceUrl: projectData.performanceUrl,
+						features: projectData.features
 					}}
+					componentKey={shownProject.key}
 				/>
 			</AnimateSectionIn>
 		{/if}

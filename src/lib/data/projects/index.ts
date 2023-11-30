@@ -4,78 +4,97 @@ import type { Project, ProjectId } from '^types';
 const raie: Project = {
 	id: 'raie',
 	title: 'Raie Music',
-	url: 'https://www.raiemusic.com/',
+	siteUrl: 'https://www.raiemusic.com/',
 	mainPicture: image.project.raie.landing,
-	infoText:
-		'Designed and built in 2023 for Raie Music. Designed asthetically to suit the musicality of Raie; functionally to have an easy to use in-site music player, optimised image gallery as well as other features.',
+	infoText: 'Designed and built in 2023. For Raie - a musician.',
 	performanceUrl:
-		'https://pagespeed.web.dev/analysis/https-www-raiemusic-com/uvai5c049i?form_factor=mobile'
-	// tech: ['Framework: sveltekit.', 'Script: javascript, typescript.', 'Styling: tailwind.']
+		'https://pagespeed.web.dev/analysis/https-www-raiemusic-com/uvai5c049i?form_factor=mobile',
+	features: ['music-player', 'image-gallery']
 };
 
 const birch: Project = {
 	id: 'birch',
 	title: 'The Birch Collective',
-	url: 'https://www.thebirchcollective.co.uk/',
+	siteUrl: 'https://www.thebirchcollective.co.uk/',
 	mainPicture: image.project.birch.cms_programmes,
 	infoText:
-		'Site and custom CMS designed, built and developed; beginning in 2022 with work done in 2023.'
+		'Site and custom CMS; design and build. 2022 - 2023. The Birch Collective is a Bristol based charity.',
+	features: ['custom-cms', 'donation', 'image-gallery', 'sign-up-form'],
+	performanceUrl: null
 };
 
 const alesh: Project = {
 	id: 'alesh',
 	title: 'Alesh Compton',
-	url: 'https://aleshcompton.com/',
+	siteUrl: 'https://aleshcompton.com/',
 	mainPicture: image.project.alesh.site,
-	infoText: 'Shop and portfolio built in 2023.'
+	infoText:
+		'Shop and portfolio built 2022 - 2023. For Alesh Compton - an artist and clothes maker.',
+	performanceUrl:
+		'https://pagespeed.web.dev/analysis/https-aleshcompton-com-squatumentary/zuf3i9gg4c?form_factor=mobile',
+	features: ['shop', 'image-gallery', 'youtube']
 };
 
 const piros: Project = {
 	id: 'piros',
 	title: 'Piros Photography',
-	url: 'https://www.piros.photography/',
+	siteUrl: 'https://www.piros.photography/',
 	mainPicture: image.project.piros.cms,
-	infoText: 'Site and custom CMS designed, built and developed; beginning in 2023.'
+	infoText: 'Site and custom CMS; design and build 2023. For Piroska Markus - a photographer.',
+	features: ['custom-cms', 'comment-system', 'image-gallery', 'youtube'],
+	performanceUrl: null
 };
 
 const asatic: Project = {
 	id: 'asatic',
 	title: 'Asatic',
-	url: 'https://www.asatic.org/',
+	siteUrl: 'https://www.asatic.org/',
 	mainPicture: image.project.asatic.cms,
-	infoText: 'Site and custom CMS designed, built and developed in 2022.'
+	infoText:
+		'Site and custom CMS designed and built in 2022. The site is a news forum focusing on Sri Lankan politics.',
+	features: ['custom-cms', 'text-editor', 'multi-language', 'youtube'],
+	performanceUrl: null
 };
 
 const amy: Project = {
 	id: 'amy',
 	title: 'Amy Jewellery',
-	url: 'https://www.amyrodriguez.art/portfolio/1',
+	siteUrl: 'https://www.amyrodriguez.art/portfolio/1',
 	mainPicture: image.project.amy.cms,
-	infoText: 'Site and custom CMS designed, built and developed in 2021.'
+	infoText:
+		'Site and custom CMS designed and built in 2021. The site is a portfolio and shop for Amy Rodriguez - a jewellery maker specialising in metals.',
+	features: ['custom-cms', 'shop', 'image-gallery'],
+	performanceUrl: null
 };
 
 const murat: Project = {
 	id: 'murat',
 	title: 'Murat Gökmen',
-	url: 'https://www.muratgokmen.com/',
+	siteUrl: 'https://www.muratgokmen.com/',
 	mainPicture: image.project.murat.site,
-	infoText: 'Custom css and js work done on this Squarespace site.'
+	infoText: 'Custom css and js work done on this Squarespace site.',
+	features: null,
+	performanceUrl: null
 };
 
 const kindred_yoga: Project = {
 	id: 'kindred_yoga',
 	title: 'Kindred Yoga',
-	url: 'https://www.kindredyogalife.com/',
+	siteUrl: 'https://www.kindredyogalife.com/',
 	mainPicture: image.project.kindred_yoga.site,
-	infoText: 'Custom css and js work done on this Squarespace site.'
+	infoText: 'Custom css and js work done on this Squarespace site.',
+	features: null,
+	performanceUrl: null
 };
 
 const blackheath_yoga: Project = {
 	id: 'blackheath_yoga',
 	title: 'Blackheath Yoga',
-	url: 'https://www.blackheathyoga.co.uk/',
+	siteUrl: 'https://www.blackheathyoga.co.uk/',
 	mainPicture: image.project.blackheath_yoga.site,
-	infoText: 'Custom css and js work done on this Wix site.'
+	infoText: 'Custom css and js work done on this Wix site.',
+	features: null,
+	performanceUrl: null
 };
 
 export const projects: { [k in ProjectId]: Project } = {

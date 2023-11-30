@@ -6,7 +6,7 @@
 	import { AnimateSectionIn } from '^components';
 </script>
 
-<AnimateSectionIn containerWidth={1000} color="red">
+<AnimateSectionIn containerWidth={1000} color="red" skipWidthAnimation>
 	<div class="">
 		<h2 class="text-red-11 uppercase underline tracking-wide decoration-2">Tech Stuff</h2>
 

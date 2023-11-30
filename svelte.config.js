@@ -15,6 +15,7 @@ const config = {
 			'^types': 'src/lib/types',
 			'^data': 'src/lib/data',
 			'^components': 'src/lib/components',
+			'^actions': 'src/lib/actions',
 			'^sections/*': 'src/lib/components/sections/*',
 			'^pages/*': 'src/lib/components/+pages/*'
 		}

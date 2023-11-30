@@ -6,7 +6,6 @@
 	export let containerWidth: number;
 	export let color: 'green' | 'red' | 'blue';
 	export let skipWidthAnimation = false;
-	$: console.log('skipWidthAnimation:', skipWidthAnimation);
 
 	let show = false;
 	let showLine = false;
