@@ -15,11 +15,11 @@
 	export let componentKey: string;
 </script>
 
-<div class="pr-md flex flex-col gap-sm">
+<div class="pr-md flex flex-col gap-xs xs:gap-sm">
 	<div>
 		<span class="text-blue-11 uppercase text-xs sm:text-sm tracking-wider">{data.title}</span>
 
-		<span class="text-sm sm:text-base">{data.infoText}</span>
+		<span class="text-sm sm:text-base leading-snug">{data.infoText}</span>
 	</div>
 
 	{#if data.features}

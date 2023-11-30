@@ -105,7 +105,7 @@
 
 {#if currentSection === 'projects'}
 	<div
-		class="fixed left-[75px] xs/sm:left-[80px] md:left-[100px] md/lg:left-[120px] right-[75px] xs/sm:right-[80px] md:right-[100px] md/lg:right-[120px] top-[85px] xs/sm:top-[100px] md:top-[120px] bottom-[85px] xs/sm:bottom-[100px] md:bottom-[120px]"
+		class="fixed left-[75px] xs/sm:left-[80px] md:left-[100px] md/lg:left-[120px] right-[75px] xs/sm:right-[80px] md:right-[100px] md/lg:right-[120px] top-[85px] xs/sm:top-[100px] md:top-[120px] bottom-[85px] xs/sm:bottom-[100px] md:bottom-[120px] overflow-y-auto"
 		out:fly={{ y: '-500px', duration: 500 }}
 	>
 		<Projects />
@@ -114,7 +114,7 @@
 
 {#if currentSection === 'about'}
 	<div
-		class="fixed left-[75px] xs/sm:left-[80px] md:left-[100px] md/lg:left-[120px] right-[75px] xs/sm:right-[80px] md:right-[100px] md/lg:right-[120px] top-[85px] xs/sm:top-[100px] md:top-[120px] bottom-[85px] xs/sm:bottom-[100px] md:bottom-[120px]"
+		class="fixed left-[75px] xs/sm:left-[80px] md:left-[100px] md/lg:left-[120px] right-[75px] xs/sm:right-[80px] md:right-[100px] md/lg:right-[120px] top-[85px] xs/sm:top-[100px] md:top-[120px] bottom-[85px] xs/sm:bottom-[100px] md:bottom-[120px] overflow-y-auto"
 		out:fly={{ y: '-500px', duration: 500 }}
 	>
 		<About />
@@ -123,7 +123,7 @@
 
 {#if currentSection === 'tech-info'}
 	<div
-		class="fixed left-[75px] xs/sm:left-[80px] md:left-[100px] md/lg:left-[120px] right-[75px] xs/sm:right-[80px] md:right-[100px] md/lg:right-[120px] top-[85px] xs/sm:top-[100px] md:top-[120px] bottom-[85px] xs/sm:bottom-[100px] md:bottom-[120px]"
+		class="fixed left-[75px] xs/sm:left-[80px] md:left-[100px] md/lg:left-[120px] right-[75px] xs/sm:right-[80px] md:right-[100px] md/lg:right-[120px] top-[85px] xs/sm:top-[100px] md:top-[120px] bottom-[85px] xs/sm:bottom-[100px] md:bottom-[120px] overflow-y-auto"
 		out:fly={{ y: '-500px', duration: 500 }}
 	>
 		<Tech />

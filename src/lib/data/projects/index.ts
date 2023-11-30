@@ -14,7 +14,7 @@ const raie: Project = {
 
 const birch: Project = {
 	id: 'birch',
-	title: 'The Birch Collective',
+	title: 'Birch Collective',
 	siteUrl: 'https://www.thebirchcollective.co.uk/',
 	mainPicture: image.project.birch.cms_programmes,
 	infoText:
