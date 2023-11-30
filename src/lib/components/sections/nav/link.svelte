@@ -19,7 +19,7 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
-	class={`z-10 w-[56px] aspect-square fixed cursor-pointer ${
+	class={`z-10 w-[41px] xs/sm:w-[47px] md:w-[56px] aspect-square fixed cursor-pointer ${
 		position === 'left'
 			? 'left-sm top-1/2 -translate-y-1/2'
 			: position === 'right'

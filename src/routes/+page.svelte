@@ -80,7 +80,7 @@
 {/if}
 
 <div
-	class={`fixed inset-0 grid place-items-center transition-all ease-[cubic-bezier(.64,.26,.13,.2)] duration-300 ${
+	class={`fixed inset-0 grid place-items-center transition-all ease-[cubic-bezier(.64,.26,.13,.2)] duration-[400ms] ${
 		titleStatus === 'transition-out'
 			? 'translate-x-full opacity-0 pointer-events-none'
 			: titleStatus === 'place-before-transition-in'
@@ -89,25 +89,43 @@
 	}`}
 >
 	<div>
-		<h1 class="text-7xl tracking-[0.013em] text-gray-12" title="hello">Tech-poiesis</h1>
-		<h3 class="mt-xs text-lg tracking-wide text-gray-8">Individually created sites.</h3>
+		<h1
+			class="text-4xl xs/sm:text-[2.625rem] sm:text-6xl md:text-7xl xl:text-8xl tracking-[0.013em] text-gray-12"
+			title="hello"
+		>
+			Tech-poiesis
+		</h1>
+		<h3
+			class="mt-xxs text-sm xs/sm:text-base sm:mt-xs md:text-lg xl:text-xl tracking-wide text-gray-8"
+		>
+			Individually created sites.
+		</h3>
 	</div>
 </div>
 
 {#if currentSection === 'projects'}
-	<div class="fixed left-[120px] top-[120px]" out:fly={{ y: '-500px', duration: 500 }}>
+	<div
+		class="fixed left-[75px] xs/sm:left-[80px] md:left-[100px] md/lg:left-[120px] right-[75px] xs/sm:right-[80px] md:right-[100px] md/lg:right-[120px] top-[85px] xs/sm:top-[100px] md:top-[120px] bottom-[85px] xs/sm:bottom-[100px] md:bottom-[120px]"
+		out:fly={{ y: '-500px', duration: 500 }}
+	>
 		<Projects />
 	</div>
 {/if}
 
 {#if currentSection === 'about'}
-	<div class="fixed left-[120px] top-[120px]" out:fly={{ y: '-500px', duration: 500 }}>
+	<div
+		class="fixed left-[75px] xs/sm:left-[80px] md:left-[100px] md/lg:left-[120px] right-[75px] xs/sm:right-[80px] md:right-[100px] md/lg:right-[120px] top-[85px] xs/sm:top-[100px] md:top-[120px] bottom-[85px] xs/sm:bottom-[100px] md:bottom-[120px]"
+		out:fly={{ y: '-500px', duration: 500 }}
+	>
 		<About />
 	</div>
 {/if}
 
 {#if currentSection === 'tech-info'}
-	<div class="fixed left-[120px] top-[120px]" out:fly={{ y: '-500px', duration: 500 }}>
+	<div
+		class="fixed left-[75px] xs/sm:left-[80px] md:left-[100px] md/lg:left-[120px] right-[75px] xs/sm:right-[80px] md:right-[100px] md/lg:right-[120px] top-[85px] xs/sm:top-[100px] md:top-[120px] bottom-[85px] xs/sm:bottom-[100px] md:bottom-[120px]"
+		out:fly={{ y: '-500px', duration: 500 }}
+	>
 		<Tech />
 	</div>
 {/if}

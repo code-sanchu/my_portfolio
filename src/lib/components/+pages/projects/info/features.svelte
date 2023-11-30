@@ -1,16 +1,15 @@
 <script lang="ts" context="module">
 	import {
-		ArrowUpRight,
-		Images,
-		Equalizer,
-		Wrench,
-		Pen,
-		HandCoins,
-		YoutubeLogo,
-		ShoppingCart,
 		Chats,
+		Equalizer,
+		HandCoins,
+		Images,
+		Pen,
 		PencilCircle,
-		Translate
+		ShoppingCart,
+		Translate,
+		Wrench,
+		YoutubeLogo
 	} from 'phosphor-svelte';
 
 	import type { Feature } from '^types';
@@ -24,7 +23,7 @@
 </script>
 
 <div class="flex gap-xs items-center">
-	<h6 class="uppercase text-xs underline decoration-gray-11">Features</h6>
+	<h6 class="uppercase text-xxs sm:text-xs underline decoration-gray-11">Features</h6>
 
 	<div class="flex gap-xs items-center text-gray-11 text-xs">
 		{#each features as feature}

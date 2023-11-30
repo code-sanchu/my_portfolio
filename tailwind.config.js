@@ -15,23 +15,6 @@ export default {
 				sans: ['Helvetica', 'sans-serif']
 			},
 
-			colors: {
-				'my-light-blue': 'rgb(68,194,255)'
-				/* 				gray: {
-					DEFAULT: '#202020',
-					50: '#CBCBCB',
-					100: '#C1C1C1',
-					200: '#ACACAC',
-					300: '#989898',
-					400: '#848484',
-					500: '#6F6F6F',
-					600: '#5B5B5B',
-					700: '#464646',
-					800: '#646464',
-					900: '#202020'
-				} */
-			},
-
 			screens: {
 				xxs: '360px',
 				xs: '410px',
@@ -67,5 +50,5 @@ export default {
 			}
 		}
 	},
-	plugins: [require('tailwind-scrollbar'), colors.plugin]
+	plugins: [require('tailwind-scrollbar'), require('tailwind-scrollbar-hide'), colors.plugin]
 };

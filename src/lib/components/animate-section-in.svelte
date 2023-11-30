@@ -35,15 +35,13 @@
 	});
 </script>
 
-<div />
-
 <div
-	class={`relative shrink-0 transition-all ease-[cubic-bezier(.79,.18,.36,.92)]`}
+	class={`relative max-w-full shrink-0 transition-all ease-[cubic-bezier(.79,.18,.36,.92)]`}
 	style:width={show ? `${containerWidth}px` : '0px'}
 	style:transition-duration={skipWidthAnimation ? '0ms' : '300ms'}
 >
 	<div
-		class={`z-10 absolute left-0 top-0 transition-all ease-[cubic-bezier(1,.19,.9,.45)] duration-[400ms] h-[3px]  ${
+		class={`z-10 absolute left-0 top-0 transition-all ease-[cubic-bezier(1,.19,.9,.45)] duration-[400ms] h-[3px] max-w-full ${
 			hideLine ? 'opacity-0' : ''
 		} ${color === 'green' ? 'bg-green-9' : color === 'red' ? 'bg-red-9' : 'bg-blue-9'}`}
 		style:width={showLine ? `${containerWidth - 24}px` : '0px'}
