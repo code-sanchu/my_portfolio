@@ -24,18 +24,6 @@
 	let showProjectTitles = true;
 </script>
 
-<!-- <div
-	class={`invisible inline-flex items-start flex-col gap-xxxs sm:gap-xxs`}
-	bind:clientWidth={projectTitlesWidth}
-	bind:clientHeight={projectTitlesHeight}
->
-	{#each Object.values(projects) as project}
-		<h4 class="title project-title text-sm xs:text-base sm:text-lg md:text-2xl">
-			{project.title}
-		</h4>
-	{/each}
-</div> -->
-
 <div class="fixed inset-[80px]">
 	<div class="flex flex-col gap-md md:flex-row md:gap-0 max-h-full pb-md">
 		<AnimateSectionIn containerWidth={projectTitlesWidth + 24} color="blue" skipWidthAnimation>
@@ -43,7 +31,7 @@
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 				<h2
-					class="mb-xxs title text-blue-10 text-sm xs:text-base sm:text-lg md:text-2xl cursor-pointer sm/md:cursor-auto"
+					class="mb-xxs font-medium uppercase tracking-wider text-blue-10 text-sm xs:text-base sm:text-lg md:text-2xl cursor-pointer sm/md:cursor-auto"
 					on:click={() => {
 						if (!enableProjectTitlesCollapse || !shownProjects.length) {
 							return;
@@ -75,35 +63,6 @@
 						);
 					}}
 				/>
-
-				<!-- <div
-						class={`mt-xxs flex flex-col gap-xxs sm:gap-xxs transition-all overflow-hidden ease-[cubic-bezier(.79,.18,.36,.92)] duration-300`}
-						style:opacity={showProjectTitles ? 1 : 0}
-						style:height={showProjectTitles ? `${projectTitlesHeight}px` : '0px'}
-					>
-						{#each Object.values(projects) as project}
-							<h4
-								class="title project-title text-sm xs:text-base sm:text-lg md:text-2xl"
-								on:click={() => {
-									if (enableProjectTitlesCollapse) {
-										showProjectTitles = false;
-									}
-
-									setTimeout(
-										() => {
-											shownProjects = [
-												{ id: project.id, type: 'main-card', key: uid() },
-												...shownProjects
-											];
-										},
-										enableProjectTitlesCollapse ? 300 : 0
-									);
-								}}
-							>
-								{project.title}
-							</h4>
-						{/each}
-					</div> -->
 			</div>
 		</AnimateSectionIn>
 
@@ -158,9 +117,3 @@
 		</div>
 	</div>
 </div>
-
-<style>
-	.title {
-		@apply font-medium uppercase tracking-wider;
-	}
-</style>

@@ -11,11 +11,6 @@
 	export let showProjectTitles: boolean;
 	export let enableProjectTitlesCollapse: boolean;
 
-	const transition: { isEnabled: boolean; status: 'open' | 'closed' } = {
-		isEnabled: false,
-		status: 'open'
-	};
-
 	let projectTitlesHeight: number;
 
 	let windowHeight: number;
@@ -42,7 +37,7 @@
 </div>
 
 <div
-	class={`flex flex-col gap-xxs sm:gap-xxs transition-all overflow-hidden ease-[cubic-bezier(.79,.18,.36,.92)] duration-300`}
+	class="flex flex-col gap-xxs sm:gap-xxs transition-all overflow-hidden ease-[cubic-bezier(.79,.18,.36,.92)] duration-300"
 	style:opacity={showProjectTitles ? 1 : 0}
 	style:height={showProjectTitles ? `${projectTitlesHeight}px` : '0px'}
 >
