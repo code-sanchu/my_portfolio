@@ -13,6 +13,7 @@
 	export let transitionStatus: 'open' | 'closed';
 
 	let projectTitlesHeight: number;
+	$: console.log('projectTitlesHeight:', projectTitlesHeight);
 
 	let windowHeight: number;
 
@@ -26,7 +27,7 @@
 <svelte:window bind:innerHeight={windowHeight} />
 
 <div
-	class={`invisible fixed inline-flex items-start flex-col gap-xxxs sm:gap-xxs`}
+	class="invisible fixed flex flex-col gap-xxs border border-blue-8"
 	bind:clientWidth={containerWidth}
 	bind:clientHeight={projectTitlesHeight}
 >
@@ -39,7 +40,7 @@
 
 {#if projectTitlesHeight}
 	<div
-		class="flex flex-col gap-xxs sm:gap-xxs transition-all overflow-hidden ease-[cubic-bezier(.79,.18,.36,.92)] duration-300"
+		class="inline-flex flex-col gap-xxs transition-all overflow-hidden ease-[cubic-bezier(.79,.18,.36,.92)] duration-300"
 		style:opacity={!transitionIsEnabled ? 1 : transitionStatus === 'open' ? 1 : 0}
 		style:height={!transitionIsEnabled
 			? `${projectTitlesHeight}px`

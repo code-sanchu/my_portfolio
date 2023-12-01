@@ -30,11 +30,11 @@
 			</h2>
 
 			<span class="text-sm xs:text-base md:text-lg xl:text-xl font-medium">
-				I'm a developer who creates unique sites made to your specifications. The prototyping and
-				design stages are 2 way processes between us; followed by a build stage in which I use the
-				most performant tools for your site. Optional features include: shop, custom content
-				management system, domain management with email and much more. I also work with content
-				management systems such as Squarespace. Get in touch to find out what's possible.
+				I'm a developer who creates unique websites tailored to your specifications. The prototyping
+				and design stages involve a two-way collaboration, followed by a build stage where I use the
+				most performant tools for your site. Optional features include a shop, custom content
+				management system, domain management with email, and much more. I also work with content
+				management systems like Squarespace. Get in touch to explore the possibilities.
 			</span>
 			<p class="mt-sm flex items-center gap-xs">
 				<span class="text-xs md:text-base">

@@ -23,10 +23,10 @@
 	export let componentKey: string;
 </script>
 
-<div class="flex gap-xs items-center">
+<div class="flex gap-xs mt-xs sm:mt-0">
 	<h6 class="uppercase text-xxs sm:text-xs underline decoration-gray-11">Features</h6>
 
-	<div class="flex gap-xs items-center text-gray-11 text-xs">
+	<div class="flex gap-xs items-center flex-wrap text-gray-11 text-xs">
 		{#each features as feature}
 			{#if feature === 'music-player'}
 				<span

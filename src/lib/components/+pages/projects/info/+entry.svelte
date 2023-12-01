@@ -26,7 +26,7 @@
 		<Features features={data.features} {componentKey} />
 	{/if}
 
-	<div class="flex gap-xs">
+	<div class="flex gap-xs mt-xs sm:mt-0">
 		<div class="flex items-center gap-xxs">
 			<span class=" h-[10px] border-l-2 border-gray-9 shrink-0" />
 
