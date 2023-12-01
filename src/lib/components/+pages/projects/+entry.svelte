@@ -5,22 +5,22 @@
 	import type { ProjectId } from '^types';
 
 	import { AnimateSectionIn } from '^components';
-	import { Info } from '^components/+pages/projects/info';
-	import MainCard from '^components/+pages/projects/main-card.svelte';
-	import { ProjectTitles } from '^components/+pages/projects/project-titles';
+	import { ProjectTitles } from './project-titles';
+	import { Info } from './info';
+	import MainCard from './main-card.svelte';
 
-	type ShownProjectCardType = 'info' | 'main-card';
+	type ProjectCardType = 'info' | 'main-card';
 </script>
 
 <script lang="ts">
-	let shownProjectCards: { type: ShownProjectCardType; key: string; id: ProjectId }[] = [];
+	let shownProjectCards: { type: ProjectCardType; key: string; id: ProjectId }[] = [];
 
 	let projectTitlesWidth: number;
 
 	let projectTitlesTransitionIsEnabled: boolean = true;
 	let projectTitlesTransitionStatus: 'open' | 'closed' = 'open';
 
-	const handleShowProject = (projectId: ProjectId, type: ShownProjectCardType) => {
+	const handleShowProject = (projectId: ProjectId, type: ProjectCardType) => {
 		const delay =
 			!projectTitlesTransitionIsEnabled || projectTitlesTransitionStatus === 'closed' ? 0 : 300;
 
