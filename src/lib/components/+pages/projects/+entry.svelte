@@ -1,71 +1,82 @@
 <script context="module" lang="ts">
 	import { uid } from 'uid/single';
 
+	import { projects } from '^data';
 	import type { ProjectId } from '^types';
 
 	import { AnimateSectionIn } from '^components';
-	import { projects } from '^data';
-	import { Info } from './info';
-	import MainCard from './main-card.svelte';
+	import { Info } from '^components/+pages/projects/info';
+	import MainCard from '^components/+pages/projects/main-card.svelte';
+	import { ProjectTitles } from '^components/+pages/projects/project-titles';
+
+	type ShownProjectCardType = 'info' | 'main-card';
 </script>
 
 <script lang="ts">
-	// collapse titles; overflow-x-hidden
+	let shownProjectCards: { type: ShownProjectCardType; key: string; id: ProjectId }[] = [];
 
-	let windowWidth: number;
+	let projectTitlesWidth: number;
 
-	let shownProjects: (
-		| { type: 'info'; key: string; id: ProjectId }
-		| { type: 'main-card'; key: string; id: ProjectId }
-	)[] = [];
+	let projectTitlesTransitionIsEnabled: boolean = true;
+	let projectTitlesTransitionStatus: 'open' | 'closed' = 'open';
+
+	const handleShowProject = (projectId: ProjectId, type: ShownProjectCardType) => {
+		const delay =
+			!projectTitlesTransitionIsEnabled || projectTitlesTransitionStatus === 'closed' ? 0 : 300;
+
+		if (projectTitlesTransitionIsEnabled) {
+			projectTitlesTransitionStatus = 'closed';
+		}
+
+		setTimeout(() => {
+			shownProjectCards = [{ id: projectId, type, key: uid() }, ...shownProjectCards];
+		}, delay);
+	};
 </script>
 
-<svelte:window bind:innerWidth={windowWidth} />
-
-{#if windowWidth}
-	<div class="flex flex-col gap-md md:flex-row md:gap-0 max-h-full pb-md">
-		<AnimateSectionIn containerWidth={320} color="blue" skipWidthAnimation>
+<div class="fixed inset-[75px]">
+	<div class="flex flex-col gap-lg md:flex-row md:gap-0 h-full pb-md">
+		<AnimateSectionIn containerWidth={projectTitlesWidth + 24} color="blue" skipWidthAnimation>
 			<div>
-				<h2 class="title text-blue-10 text-sm xs:text-base sm:text-lg md:text-2xl">Projects</h2>
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+				<h2
+					class="mb-xxs font-medium uppercase tracking-wider text-blue-10 text-sm xs:text-base sm:text-lg md:text-2xl cursor-pointer sm/md:cursor-auto"
+					on:click={() => {
+						if (!projectTitlesTransitionIsEnabled || !shownProjectCards.length) {
+							return;
+						}
 
-				<div class="mt-xxs flex flex-col gap-xxxs sm:gap-xxs">
-					{#each Object.values(projects) as project}
-						<!-- svelte-ignore a11y-click-events-have-key-events -->
-						<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-						<h4
-							class="title project-title text-sm xs:text-base sm:text-lg md:text-2xl"
-							on:click={() =>
-								(shownProjects = [
-									{ id: project.id, type: 'main-card', key: uid() },
-									...shownProjects
-								])}
-						>
-							{project.title}
-							<!-- {windowWidth > 410 ? project.title : getFirstWord(project.title)} -->
-						</h4>
-					{/each}
-				</div>
+						projectTitlesTransitionStatus =
+							projectTitlesTransitionStatus === 'open' ? 'closed' : 'open';
+					}}
+				>
+					Projects
+				</h2>
+
+				<ProjectTitles
+					bind:containerWidth={projectTitlesWidth}
+					bind:transitionIsEnabled={projectTitlesTransitionIsEnabled}
+					bind:transitionStatus={projectTitlesTransitionStatus}
+					onClickTitle={(projectId) => handleShowProject(projectId, 'main-card')}
+				/>
 			</div>
 		</AnimateSectionIn>
 
-		<div class="flex scrollbar-none">
-			{#each shownProjects as shownProject, i (shownProject.key)}
+		<div class="flex">
+			{#each shownProjectCards as shownProject (shownProject.key)}
 				{@const projectData = projects[shownProject.id]}
 
 				{#if shownProject.type === 'main-card'}
 					<AnimateSectionIn
 						containerWidth={600}
 						color="blue"
-						skipWidthAnimation={shownProjects.length === 1}
+						skipWidthAnimation={shownProjectCards.length === 1}
 					>
 						<MainCard
 							data={{
 								title: projectData.title,
-								onClickInfo: () =>
-									(shownProjects = [
-										{ type: 'info', id: shownProject.id, key: uid() },
-										...shownProjects
-									]),
+								onClickInfo: () => handleShowProject(shownProject.id, 'info'),
 								picture: projectData.mainPicture,
 								siteUrl: projectData.siteUrl
 							}}
@@ -88,16 +99,4 @@
 			{/each}
 		</div>
 	</div>
-{/if}
-
-<style>
-	.title {
-		@apply font-medium uppercase tracking-wider;
-	}
-	.project-title {
-		@apply transition-colors ease-in-out duration-100 text-gray-12  cursor-pointer;
-	}
-	.project-title:hover {
-		@apply text-blue-11;
-	}
-</style>
+</div>

@@ -39,7 +39,7 @@
 
 {#if projectTitlesHeight}
 	<div
-		class="flex flex-col gap-xxs sm:gap-xxs transition-all overflow-hidden ease-[cubic-bezier(.79,.18,.36,.92)] duration-200"
+		class="flex flex-col gap-xxs sm:gap-xxs transition-all overflow-hidden ease-[cubic-bezier(.79,.18,.36,.92)] duration-300"
 		style:opacity={!transitionIsEnabled ? 1 : transitionStatus === 'open' ? 1 : 0}
 		style:height={!transitionIsEnabled
 			? `${projectTitlesHeight}px`

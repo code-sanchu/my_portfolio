@@ -13,13 +13,11 @@
 </script>
 
 <script lang="ts">
-	// collapse titles; overflow-x-hidden
-
 	let shownProjectCards: { type: ShownProjectCardType; key: string; id: ProjectId }[] = [];
 
 	let projectTitlesWidth: number;
 
-	let projectTitlesTransitionIsEnabled: boolean;
+	let projectTitlesTransitionIsEnabled: boolean = true;
 	let projectTitlesTransitionStatus: 'open' | 'closed' = 'open';
 
 	const handleShowProject = (projectId: ProjectId, type: ShownProjectCardType) => {
@@ -36,8 +34,8 @@
 	};
 </script>
 
-<div class="fixed inset-[80px]">
-	<div class="flex flex-col gap-md md:flex-row md:gap-0 max-h-full pb-md">
+<div class="fixed inset-[75px]">
+	<div class="flex flex-col gap-lg md:flex-row md:gap-0 h-full pb-md">
 		<AnimateSectionIn containerWidth={projectTitlesWidth + 24} color="blue" skipWidthAnimation>
 			<div>
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -65,8 +63,8 @@
 			</div>
 		</AnimateSectionIn>
 
-		<div class="flex scrollbar-none">
-			{#each shownProjectCards as shownProject, i (shownProject.key)}
+		<div class="flex">
+			{#each shownProjectCards as shownProject (shownProject.key)}
 				{@const projectData = projects[shownProject.id]}
 
 				{#if shownProject.type === 'main-card'}
