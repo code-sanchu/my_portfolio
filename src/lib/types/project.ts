@@ -21,6 +21,7 @@ export type Feature =
 	| 'shop'
 	| 'sign-up-form'
 	| 'text-editor'
+	| 'google-spreadsheet'
 	| 'multi-language';
 
 export type Project = {

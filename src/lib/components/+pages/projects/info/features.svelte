@@ -9,7 +9,8 @@
 		ShoppingCart,
 		Translate,
 		Wrench,
-		YoutubeLogo
+		YoutubeLogo,
+		Table
 	} from 'phosphor-svelte';
 
 	import type { Feature } from '^types';
@@ -107,6 +108,17 @@
 					<Translate />
 				</span>
 				<Tooltip text="multiple languages" triggeredBy={`${componentKey}-multi-language`} />
+			{:else if feature === 'google-spreadsheet'}
+				<span
+					class="border border-gray-11 border-dashed rounded-full p-xxs"
+					id={`${componentKey}-google-spreadsheet`}
+				>
+					<Table />
+				</span>
+				<Tooltip
+					text="google spreadsheet integration"
+					triggeredBy={`${componentKey}-google-spreadsheet`}
+				/>
 			{/if}
 		{/each}
 	</div>

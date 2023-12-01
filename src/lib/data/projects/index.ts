@@ -6,7 +6,7 @@ const raie: Project = {
 	title: 'Raie Music',
 	siteUrl: 'https://www.raiemusic.com/',
 	mainPicture: image.project.raie.landing,
-	infoText: 'Designed and built in 2023. For Raie - a musician.',
+	infoText: 'Designed and built in 2023. For Raie - a singer/songwriter.',
 	performanceUrl:
 		'https://pagespeed.web.dev/analysis/https-www-raiemusic-com/uvai5c049i?form_factor=mobile',
 	features: ['music-player', 'image-gallery']
@@ -19,7 +19,7 @@ const birch: Project = {
 	mainPicture: image.project.birch.cms_programmes,
 	infoText:
 		'Site and custom CMS; design and build. 2022 - 2023. The Birch Collective is a Bristol based charity.',
-	features: ['custom-cms', 'donation', 'image-gallery', 'sign-up-form'],
+	features: ['custom-cms', 'donation', 'image-gallery', 'sign-up-form', 'google-spreadsheet'],
 	performanceUrl: null
 };
 
