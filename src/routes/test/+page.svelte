@@ -8,20 +8,32 @@
 	import { Info } from '^components/+pages/projects/info';
 	import MainCard from '^components/+pages/projects/main-card.svelte';
 	import { ProjectTitles } from '^components/+pages/projects/project-titles';
+
+	type ShownProjectCardType = 'info' | 'main-card';
 </script>
 
 <script lang="ts">
 	// collapse titles; overflow-x-hidden
 
-	let shownProjects: (
-		| { type: 'info'; key: string; id: ProjectId }
-		| { type: 'main-card'; key: string; id: ProjectId }
-	)[] = [];
+	let shownProjectCards: { type: ShownProjectCardType; key: string; id: ProjectId }[] = [];
 
 	let projectTitlesWidth: number;
 
-	let enableProjectTitlesCollapse: boolean;
-	let showProjectTitles = true;
+	let projectTitlesTransitionIsEnabled: boolean;
+	let projectTitlesTransitionStatus: 'open' | 'closed' = 'open';
+
+	const handleShowProject = (projectId: ProjectId, type: ShownProjectCardType) => {
+		const delay =
+			!projectTitlesTransitionIsEnabled || projectTitlesTransitionStatus === 'closed' ? 0 : 200;
+
+		if (projectTitlesTransitionIsEnabled) {
+			projectTitlesTransitionStatus = 'closed';
+		}
+
+		setTimeout(() => {
+			shownProjectCards = [{ id: projectId, type, key: uid() }, ...shownProjectCards];
+		}, delay);
+	};
 </script>
 
 <div class="fixed inset-[80px]">
@@ -33,67 +45,40 @@
 				<h2
 					class="mb-xxs font-medium uppercase tracking-wider text-blue-10 text-sm xs:text-base sm:text-lg md:text-2xl cursor-pointer sm/md:cursor-auto"
 					on:click={() => {
-						if (!enableProjectTitlesCollapse || !shownProjects.length) {
+						if (!projectTitlesTransitionIsEnabled || !shownProjectCards.length) {
 							return;
 						}
 
-						showProjectTitles = !showProjectTitles;
+						projectTitlesTransitionStatus =
+							projectTitlesTransitionStatus === 'open' ? 'closed' : 'open';
 					}}
 				>
 					Projects
 				</h2>
 
 				<ProjectTitles
-					bind:projectTitlesWidth
-					bind:enableProjectTitlesCollapse
-					bind:showProjectTitles
-					showProject={(projectId) => {
-						if (enableProjectTitlesCollapse) {
-							showProjectTitles = false;
-						}
-
-						setTimeout(
-							() => {
-								shownProjects = [
-									{ id: projectId, type: 'main-card', key: uid() },
-									...shownProjects
-								];
-							},
-							enableProjectTitlesCollapse ? 300 : 0
-						);
-					}}
+					bind:containerWidth={projectTitlesWidth}
+					bind:transitionIsEnabled={projectTitlesTransitionIsEnabled}
+					bind:transitionStatus={projectTitlesTransitionStatus}
+					onClickTitle={(projectId) => handleShowProject(projectId, 'main-card')}
 				/>
 			</div>
 		</AnimateSectionIn>
 
 		<div class="flex scrollbar-none">
-			{#each shownProjects as shownProject, i (shownProject.key)}
+			{#each shownProjectCards as shownProject, i (shownProject.key)}
 				{@const projectData = projects[shownProject.id]}
 
 				{#if shownProject.type === 'main-card'}
 					<AnimateSectionIn
 						containerWidth={600}
 						color="blue"
-						skipWidthAnimation={shownProjects.length === 1}
+						skipWidthAnimation={shownProjectCards.length === 1}
 					>
 						<MainCard
 							data={{
 								title: projectData.title,
-								onClickInfo: () => {
-									if (enableProjectTitlesCollapse) {
-										showProjectTitles = false;
-									}
-
-									setTimeout(
-										() => {
-											shownProjects = [
-												{ type: 'info', id: shownProject.id, key: uid() },
-												...shownProjects
-											];
-										},
-										enableProjectTitlesCollapse ? 300 : 0
-									);
-								},
+								onClickInfo: () => handleShowProject(shownProject.id, 'info'),
 								picture: projectData.mainPicture,
 								siteUrl: projectData.siteUrl
 							}}
