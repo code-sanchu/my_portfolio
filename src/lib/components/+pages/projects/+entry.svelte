@@ -4,13 +4,14 @@
 	import type { ProjectId } from '^types';
 
 	import { AnimateSectionIn } from '^components';
-	import MainCard from './main-card.svelte';
-	import { Info } from './info';
 	import { projects } from '^data';
-	import { getFirstWord } from '^helpers';
+	import { Info } from './info';
+	import MainCard from './main-card.svelte';
 </script>
 
 <script lang="ts">
+	// collapse titles; overflow-x-hidden
+
 	let windowWidth: number;
 
 	let shownProjects: (
@@ -27,7 +28,7 @@
 			<div>
 				<h2 class="title text-blue-10 text-sm xs:text-base sm:text-lg md:text-2xl">Projects</h2>
 
-				<div class="mt-xxs flex flex-wrap gap-x-sm gap-y-xxxs xs:flex-col xs:gap-xxxs sm:gap-xxs">
+				<div class="mt-xxs flex flex-col gap-xxxs sm:gap-xxs">
 					{#each Object.values(projects) as project}
 						<!-- svelte-ignore a11y-click-events-have-key-events -->
 						<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
