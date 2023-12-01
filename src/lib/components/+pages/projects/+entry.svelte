@@ -68,7 +68,7 @@
 
 			{#if shownProject.type === 'main-card'}
 				<AnimateSectionIn
-					containerWidth={600}
+					containerWidth={700}
 					color="blue"
 					skipWidthAnimation={shownProjectCards.length === 1}
 				>

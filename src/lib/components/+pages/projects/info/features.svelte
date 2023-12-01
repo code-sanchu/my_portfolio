@@ -35,7 +35,10 @@
 				>
 					<Equalizer />
 				</span>
-				<Tooltip text="custom music player" triggeredBy={`${componentKey}-music-player-icon`} />
+				<Tooltip
+					text="in-site custom music player"
+					triggeredBy={`${componentKey}-music-player-icon`}
+				/>
 			{:else if feature === 'image-gallery'}
 				<span
 					class="border border-gray-11 border-dashed rounded-full p-xxs"
