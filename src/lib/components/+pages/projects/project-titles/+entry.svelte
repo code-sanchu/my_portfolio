@@ -52,7 +52,7 @@
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 			<h4
-				class="font-medium uppercase tracking-wider hover:text-blue-11 transition-colors ease-in-out duration-100 text-gray-12 cursor-pointer text-sm xs:text-base sm:text-lg md:text-2xl"
+				class="font-medium uppercase tracking-wider hover:text-blue-10 transition-colors ease-in-out duration-100 text-gray-12 cursor-pointer text-sm xs:text-base sm:text-lg md:text-2xl"
 				on:click={() => onClickTitle(project.id)}
 			>
 				{project.title}

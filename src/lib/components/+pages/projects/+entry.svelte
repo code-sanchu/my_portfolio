@@ -5,9 +5,9 @@
 	import type { ProjectId } from '^types';
 
 	import { AnimateSectionIn } from '^components';
-	import { ProjectTitles } from './project-titles';
 	import { Info } from './info';
-	import MainCard from './main-card.svelte';
+	import MainCard from './main-card';
+	import { ProjectTitles } from './project-titles';
 
 	type ProjectCardType = 'info' | 'main-card';
 </script>
@@ -34,7 +34,7 @@
 	};
 </script>
 
-<div class="flex flex-col gap-lg md:flex-row md:gap-0 h-full pb-md">
+<div class="flex flex-col sm:gap-lg md:flex-row md:gap-0 h-full sm:pb-md">
 	<AnimateSectionIn containerWidth={projectTitlesWidth + 24} color="blue" skipWidthAnimation>
 		<div>
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -76,8 +76,10 @@
 						data={{
 							title: projectData.title,
 							onClickInfo: () => handleShowProject(shownProject.id, 'info'),
-							picture: projectData.mainPicture,
-							siteUrl: projectData.siteUrl
+							mainPicture: projectData.mainPicture,
+							siteUrl: projectData.siteUrl,
+							descriptionShort: projectData.descriptionShort,
+							year: projectData.year
 						}}
 					/>
 				</AnimateSectionIn>
@@ -85,7 +87,7 @@
 				<AnimateSectionIn containerWidth={500} color="blue">
 					<Info
 						data={{
-							infoText: projectData.infoText,
+							descriptionLong: projectData.descriptionLong,
 							title: projectData.title,
 							siteUrl: projectData.siteUrl,
 							performanceUrl: projectData.performanceUrl,

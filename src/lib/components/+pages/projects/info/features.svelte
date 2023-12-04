@@ -23,7 +23,7 @@
 	export let componentKey: string;
 </script>
 
-<div class="flex gap-xs mt-xs sm:mt-0">
+<div class="flex gap-xs sm:items-center mt-xs sm:mt-0">
 	<h6 class="uppercase text-xxs sm:text-xs underline decoration-gray-11">Features</h6>
 
 	<div class="flex gap-xs items-center flex-wrap text-gray-11 text-xs">
@@ -35,10 +35,7 @@
 				>
 					<Equalizer />
 				</span>
-				<Tooltip
-					text="in-site custom music player"
-					triggeredBy={`${componentKey}-music-player-icon`}
-				/>
+				<Tooltip text="custom music player" triggeredBy={`${componentKey}-music-player-icon`} />
 			{:else if feature === 'image-gallery'}
 				<span
 					class="border border-gray-11 border-dashed rounded-full p-xxs"

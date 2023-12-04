@@ -29,7 +29,6 @@
 			}, 350);
 
 			currentSection = clickedSection;
-			setTimeout(() => {}, 100);
 		} else {
 			currentSection = clickedSection;
 

@@ -10,7 +10,7 @@
 <script lang="ts">
 	export let data: MyPick<
 		Project,
-		'title' | 'infoText' | 'siteUrl' | 'performanceUrl' | 'features'
+		'title' | 'descriptionLong' | 'siteUrl' | 'performanceUrl' | 'features'
 	>;
 	export let componentKey: string;
 </script>
@@ -19,7 +19,7 @@
 	<div>
 		<span class="text-blue-11 uppercase text-xs sm:text-sm tracking-wider">{data.title}</span>
 
-		<span class="text-sm sm:text-base leading-snug">{data.infoText}</span>
+		<span class="text-sm sm:text-base leading-snug">{data.descriptionLong}</span>
 	</div>
 
 	{#if data.features}
