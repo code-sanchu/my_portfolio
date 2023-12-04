@@ -71,7 +71,7 @@
 {#if currentSection !== 'initial'}
 	<div class="fixed z-10 bottom-sm left-1/2 -translate-x-1/2" transition:fade>
 		<button
-			class="uppercase tracking-wide text-xs underline"
+			class="uppercase tracking-wide text-xs md:text-sm underline font-medium"
 			on:click={() => handleClickSectionLink('initial')}
 			type="button">Tech-poiesis</button
 		>

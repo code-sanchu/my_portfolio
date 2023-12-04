@@ -6,15 +6,15 @@
 	font-family: 'Helvetica';
 	font-style: normal;
 	font-weight: 400;
-	src: url('/fonts/FreeSans.otf');
+	src: url('/fonts/Swiss721BT-Roman.otf');
 	font-display: swap;
 }
 
 @font-face {
 	font-family: 'Helvetica';
 	font-style: normal;
-	font-weight: 700;
-	src: url('/fonts/FreeSansBold.otf');
+	font-weight: 500;
+	src: url('/fonts/Swiss721BT-Medium.otf');
 	font-display: swap;
 }
 
@@ -29,7 +29,7 @@ html {
 }
 
 ::selection {
-	@apply bg-gray-500 text-white;
+	@apply bg-gray-10 text-white;
 }
 
 div {

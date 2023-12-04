@@ -40,7 +40,7 @@
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 			<h2
-				class="mb-xxs font-medium uppercase tracking-wider text-blue-10 text-sm xs:text-base sm:text-lg md:text-2xl cursor-pointer sm/md:cursor-auto"
+				class="mb-xxs uppercase tracking-wider text-blue-10 text-sm xs:text-base sm:text-lg md:text-2xl cursor-pointer sm/md:cursor-auto"
 				on:click={() => {
 					if (!projectTitlesTransitionIsEnabled || !shownProjectCards.length) {
 						return;
