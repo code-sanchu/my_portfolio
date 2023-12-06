@@ -1,130 +1,93 @@
-<script context="module" lang="ts">
-	import { fade, fly } from 'svelte/transition';
+<script context="module" lang="ts"></script>
 
-	import { SectionLink, SectionLinkText } from '^sections/nav';
-	import { Projects } from '^components/+pages/projects';
-	import { About } from '^components/+pages/about';
-	import { Tech } from '^components/+pages/tech';
+<script lang="ts"></script>
 
-	type Section = 'initial' | 'projects' | 'about' | 'tech-info';
-</script>
+<div class="min-h-screen grid place-items-center">
+	<div class="relative">
+		<h1 class="text-gray-12 text-5xl uppercase tracking-wide leading-none">Tech-poiesis</h1>
+		<p class="leading-none tracking-wider mt-xxs flex">
+			<span class="text-my-olive">B</span>
+			<span class="text-my-olive">e</span>
+			<span class="text-my-light-blue">s</span>
+			<span class="text-my-dark-red">p</span>
+			<span class="text-my-sea-green">o</span>
+			<span class="text-my-dark-olive">k</span>
+			<span class="mr-xxs text-my-orange">e</span>
 
-<script lang="ts">
-	let currentSection: Section = 'initial';
+			<span class="text-my-rosy-brown">w</span>
+			<span class="text-my-dark-slate-gray">e</span>
+			<span class="text-my-plum">b</span>
+			<span class="text-my-dark-olive">s</span>
+			<span class="text-my-dark-olive">i</span>
+			<span class="text-my-steel-blue">t</span>
+			<span class="mr-xxs text-my-royal-blue">e</span>
 
-	let titleStatus: 'initial' | 'transition-out' | 'place-before-transition-in' = 'initial';
+			<span class="text-my-golden-rod">c</span>
+			<span class="text-my-dark-olive">r</span>
+			<span class="text-my-navy-blue">e</span>
+			<span class="text-my-navy-blue">a</span>
+			<span class="text-my-plum">t</span>
+			<span class="text-my-plum">i</span>
+			<span class="text-my-dark-red">o</span>
+			<span class="text-my-golden-rod">n</span>
+		</p>
 
-	const handleClickSectionLink = (clickedSection: Section) => {
-		if (currentSection === clickedSection) {
-			return;
-		}
-
-		if (currentSection === 'initial') {
-			setTimeout(() => {
-				titleStatus = 'transition-out';
-
-				setTimeout(() => {
-					titleStatus = 'place-before-transition-in';
-				}, 800);
-			}, 350);
-
-			currentSection = clickedSection;
-		} else {
-			currentSection = clickedSection;
-
-			if (clickedSection === 'initial') {
-				setTimeout(() => {
-					titleStatus = 'initial';
-				}, 300);
-			}
-		}
-	};
-</script>
-
-<SectionLink
-	position="top"
-	bgColorClass="bg-red-9"
-	onClick={() => handleClickSectionLink('tech-info')}
->
-	<SectionLinkText>Tech</SectionLinkText>
-	<SectionLinkText>info</SectionLinkText>
-</SectionLink>
-
-<SectionLink
-	position="left"
-	bgColorClass="bg-blue-9"
-	onClick={() => handleClickSectionLink('projects')}
->
-	<SectionLinkText>Pro</SectionLinkText>
-	<SectionLinkText>jects</SectionLinkText>
-</SectionLink>
-
-<SectionLink
-	position="right"
-	bgColorClass="bg-green-9"
-	onClick={() => handleClickSectionLink('about')}
->
-	<SectionLinkText>Ab</SectionLinkText>
-	<SectionLinkText>out</SectionLinkText>
-</SectionLink>
-
-{#if currentSection !== 'initial'}
-	<div class="fixed z-10 bottom-sm left-1/2 -translate-x-1/2" transition:fade>
-		<button
-			class="uppercase tracking-wide text-xs md:text-sm underline font-medium"
-			on:click={() => handleClickSectionLink('initial')}
-			type="button">Tech-poiesis</button
-		>
-	</div>
-{/if}
-
-<div
-	class={`fixed inset-0 grid place-items-center transition-all ease-[cubic-bezier(.64,.26,.13,.2)] duration-[400ms] ${
-		titleStatus === 'transition-out'
-			? 'translate-x-full opacity-0 pointer-events-none'
-			: titleStatus === 'place-before-transition-in'
-			? 'opacity-0 translate-y-lg pointer-events-none'
-			: 'ease-in-out duration-500'
-	}`}
->
-	<div>
-		<h1
-			class="text-4xl xs/sm:text-[2.625rem] sm:text-6xl md:text-7xl xl:text-8xl tracking-[0.013em] text-gray-12"
-			title="hello"
-		>
-			Tech-poiesis
-		</h1>
-		<h3
-			class="mt-xxs text-sm xs/sm:text-base sm:mt-xs md:text-lg xl:text-xl tracking-wide text-gray-8"
-		>
-			Individually created sites.
-		</h3>
+		<div class="shimmer" />
 	</div>
 </div>
 
-{#if currentSection === 'projects'}
-	<div
-		class="fixed inset-[75px] xs/sm:inset-[80px] md:inset-[100px] md/lg:inset-[120px]"
-		out:fly={{ y: '-500px', duration: 500 }}
+<div class="fixed left-sm top-1/2 -translate-y-1/2">
+	<button
+		class="flex flex-col items-start uppercase text-xs tracking-wider text-my-light-blue"
+		type="button"
 	>
-		<Projects />
-	</div>
-{/if}
+		<span class="pl-xxs pr-sm">Proj</span>
+		<span class="w-full h-[1px] bg-gradient-to-r from-my-light-blue to-white" />
+		<span class="mt-xxxs pl-xxs pr-sm">ects</span>
+		<span class="w-full h-[1px] bg-gradient-to-r from-my-light-blue to-white" />
+	</button>
 
-{#if currentSection === 'about'}
-	<div
-		class="fixed inset-[75px] xs/sm:inset-[80px] md:inset-[100px] md/lg:inset-[120px]"
-		out:fly={{ y: '-500px', duration: 500 }}
-	>
-		<About />
-	</div>
-{/if}
+	<span
+		class="absolute left-0 top-0 h-[160%] w-[1px] bg-gradient-to-b from-my-light-blue to-white"
+	/>
+</div>
 
-{#if currentSection === 'tech-info'}
-	<div
-		class="fixed inset-[75px] xs/sm:inset-[80px] md:inset-[100px] md/lg:inset-[120px]"
-		out:fly={{ y: '-500px', duration: 500 }}
+<div class="fixed right-sm top-1/2 -translate-y-1/2">
+	<button
+		class="flex flex-col items-start uppercase text-xs tracking-wider text-my-light-blue"
+		type="button"
 	>
-		<Tech />
-	</div>
-{/if}
+		<span class="pr-xxs pl-sm">Serv</span>
+		<span class="w-full h-[1px] bg-gradient-to-l from-my-light-blue to-white" />
+		<span class="mt-xxxs pr-xxs pl-sm">ices</span>
+		<span class="w-full h-[1px] bg-gradient-to-l from-my-light-blue to-white" />
+	</button>
+
+	<span
+		class="absolute right-0 top-0 h-[160%] w-[1px] bg-gradient-to-b from-my-light-blue to-white"
+	/>
+</div>
+
+<style>
+	@keyframes shimmer {
+		0% {
+			transform: translateX(-300%);
+		}
+		13%,
+		100% {
+			transform: translateX(300%);
+		}
+	}
+
+	.shimmer {
+		@apply absolute left-0 top-0 w-1/2 h-full;
+
+		background: linear-gradient(
+			100deg,
+			rgba(255, 255, 255, 0) 20%,
+			rgba(255, 255, 255, 0.5) 50%,
+			rgba(255, 255, 255, 0) 80%
+		);
+		animation: shimmer 16s infinite linear forwards;
+	}
+</style>

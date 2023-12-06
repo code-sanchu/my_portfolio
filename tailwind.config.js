@@ -12,7 +12,28 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ['Helvetica', 'sans-serif']
+				sans: ['Helvetica', 'sans-serif'],
+				mono: ['Skyhook', 'monospace']
+			},
+
+			colors: {
+				'my-olive': 'rgb(128,128,0)',
+				'my-light-blue': 'rgb(100, 149, 237)',
+				'my-dark-red': 'rgb(139, 0, 0)',
+				'my-sea-green': 'rgb(46, 139, 87)',
+				'my-dark-olive': 'rgb(85, 107, 47)',
+				'my-orange': 'rgb(255, 165, 0)',
+				'my-dark-slate-gray': 'rgb(47, 79, 79)',
+				'my-plum': 'rgb(221, 160, 221)',
+				'my-steel-blue': 'rgb(70, 130, 180)',
+				'my-royal-blue': 'rgb(65, 105, 225)',
+				'my-golden-rod': 'rgb(218, 165, 32)',
+				'my-navy-blue': 'rgb(0, 0, 128)',
+				'my-red-fire': 'rgb(178, 34, 34)',
+				'my-forest-green': 'rgb(34, 139, 34)',
+				'my-tomato': 'rgb(255, 99, 71)',
+				'my-rosy-brown': 'rgb(188, 143, 143)',
+				'my-black': 'rgb(26, 26, 26)'
 			},
 
 			screens: {

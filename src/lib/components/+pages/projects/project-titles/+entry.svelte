@@ -13,7 +13,6 @@
 	export let transitionStatus: 'open' | 'closed';
 
 	let projectTitlesHeight: number;
-	$: console.log('projectTitlesHeight:', projectTitlesHeight);
 
 	let windowHeight: number;
 
@@ -40,7 +39,7 @@
 
 {#if projectTitlesHeight}
 	<div
-		class="inline-flex flex-col gap-xxs transition-all overflow-hidden ease-[cubic-bezier(.79,.18,.36,.92)] duration-300"
+		class="inline-flex flex-col gap-xxxs xs/sm:gap-xxs transition-all overflow-hidden ease-[cubic-bezier(.79,.18,.36,.92)] duration-300"
 		style:opacity={!transitionIsEnabled ? 1 : transitionStatus === 'open' ? 1 : 0}
 		style:height={!transitionIsEnabled
 			? `${projectTitlesHeight}px`

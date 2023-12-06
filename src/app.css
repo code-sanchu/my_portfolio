@@ -18,8 +18,16 @@
 	font-display: swap;
 }
 
+@font-face {
+	font-family: 'Skyhook';
+	font-style: normal;
+	font-weight: 400;
+	src: url('/fonts/SkyhookMono.ttf');
+	font-display: swap;
+}
+
 html {
-	@apply overflow-hidden  outline-none active:outline-none focus:outline-none text-gray-12;
+	@apply overflow-hidden outline-none active:outline-none focus:outline-none text-gray-12;
 }
 
 * {

@@ -2,6 +2,7 @@
 	export let position: 'left' | 'right' | 'top';
 	export let bgColorClass: string;
 	export let onClick: () => void;
+	export let text: string[];
 
 	let pulsing = false;
 
@@ -18,22 +19,29 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<div
-	class={`z-10 w-[41px] xs/sm:w-[47px] md:w-[56px] aspect-square fixed cursor-pointer ${
+<button
+	class={`z-10 fixed w-[38px] xs/sm:w-[47px] md:w-[56px] aspect-square ${
 		position === 'left'
-			? 'left-sm top-1/2 -translate-y-1/2'
+			? 'left-xs xs:left-sm sm:left-md top-1/2 -translate-y-1/2'
 			: position === 'right'
-			? 'right-sm top-1/2 -translate-y-1/2'
-			: 'top-sm left-1/2 -translate-x-1/2'
+			? 'right-xs xs:right-sm sm:right-md top-1/2 -translate-y-1/2'
+			: 'top-xs xs:top-sm sm:top-md left-1/2 -translate-x-1/2'
 	}`}
 	on:click={handleClick}
+	type="button"
 >
-	<div class={`absolute w-full h-full rounded-full ${pulsing ? 'pulse' : ''} ${bgColorClass}`}>
-		<h4 class={`h-full flex flex-col items-center justify-center`}>
-			<slot />
-		</h4>
-	</div>
-</div>
+	<span
+		class={`absolute inset-0 w-full h-full rounded-full ${pulsing ? 'pulse' : ''} ${bgColorClass}`}
+	>
+		<span class="h-full flex flex-col items-center justify-center">
+			{#each text as line}
+				<span class="text-white text-[0.5rem] xs/sm:text-xxs md:text-xs uppercase">
+					{line}
+				</span>
+			{/each}
+		</span>
+	</span>
+</button>
 
 <style>
 	@keyframes pulse {

@@ -8,6 +8,10 @@
 </script>
 
 <script lang="ts">
+	// gap between titles and cards.
+	// year. visit larger. title size on small
+	// font weight of tech-poiesis on mobile.
+
 	export let data: MyPick<
 		Project,
 		'title' | 'descriptionLong' | 'siteUrl' | 'performanceUrl' | 'features'
@@ -19,7 +23,7 @@
 	<div>
 		<span class="text-blue-11 uppercase text-xs sm:text-sm tracking-wider">{data.title}</span>
 
-		<span class="text-sm sm:text-base leading-snug">{data.descriptionLong}</span>
+		<span class="text-xs xs/sm:text-sm md:text-base leading-snug">{data.descriptionLong}</span>
 	</div>
 
 	{#if data.features}
