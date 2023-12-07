@@ -1,12 +1,12 @@
 <script lang="ts" context="module">
+	import { fade } from 'svelte/transition';
+	import { cubicOut } from 'svelte/easing';
 	import { ArrowLineRight, ArrowLineUpRight } from 'phosphor-svelte';
 
 	import type { MyPick, Project } from '^types';
+	import { randomIntFromInterval } from '^helpers';
 
 	import { Picture } from '^components';
-	import { randomIntFromInterval } from '^helpers';
-	import { fade } from 'svelte/transition';
-	import { cubicIn, cubicOut } from 'svelte/easing';
 </script>
 
 <script lang="ts">

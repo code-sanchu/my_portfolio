@@ -9,7 +9,7 @@
 	import Titles from './titles.svelte';
 	import AnimateSectionIn from '^components/animate-section-in.svelte';
 	import MainCard from './main-card';
-	import { Info } from '^components/+pages-old/projects/info';
+	import Info from './info';
 
 	type VisibilityStatus = 'closed' | 'opening' | 'open' | 'closing';
 
@@ -193,14 +193,15 @@
 							/>
 						</AnimateSectionIn>
 					{:else}
-						<AnimateSectionIn containerWidth={500} bgColor={projectToColor[shownProject.id]}>
+						<AnimateSectionIn containerWidth={500} bgColor="bg-gray-3">
 							<Info
 								data={{
 									descriptionLong: projectData.descriptionLong,
 									title: projectData.title,
 									siteUrl: projectData.siteUrl,
 									performanceUrl: projectData.performanceUrl,
-									features: projectData.features
+									features: projectData.features,
+									year: projectData.year
 								}}
 								componentKey={shownProject.key}
 							/>
