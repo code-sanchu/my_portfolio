@@ -11,7 +11,7 @@ const raie: Project = {
 	year: '2023',
 	performanceUrl:
 		'https://pagespeed.web.dev/analysis/https-www-raiemusic-com/uvai5c049i?form_factor=mobile',
-	features: ['music-player', 'image-gallery']
+	features: ['music-player', 'image-gallery', 'youtube']
 };
 
 const birch: Project = {
@@ -22,7 +22,7 @@ const birch: Project = {
 	descriptionLong:
 		'Site and custom CMS; design and build. 2022 - 2023. The Birch Collective is a Bristol based charity.',
 	descriptionShort: '',
-	year: '2021 – 2023',
+	year: '2021 - 2023',
 	features: ['custom-cms', 'donation', 'image-gallery', 'sign-up-form', 'google-spreadsheet'],
 	performanceUrl: null
 };
@@ -35,7 +35,7 @@ const alesh: Project = {
 	descriptionLong:
 		'Shop and portfolio built 2022 — 2023. For Alesh Compton - an artist and clothes maker.',
 	descriptionShort: 'Complete design and build.',
-	year: '2022 – 2023',
+	year: '2022 - 2023',
 	performanceUrl:
 		'https://pagespeed.web.dev/analysis/https-aleshcompton-com-squatumentary/zuf3i9gg4c?form_factor=mobile',
 	features: ['shop', 'image-gallery', 'youtube']
@@ -49,7 +49,7 @@ const piros: Project = {
 	descriptionLong:
 		'Site and custom CMS; design and build 2023. For Piroska Markus - a photographer.',
 	descriptionShort: 'Website and cms. Complete design and build.',
-	year: '2022 – 2023',
+	year: '2022 - 2023',
 	features: ['custom-cms', 'comment-system', 'image-gallery', 'youtube'],
 	performanceUrl: null
 };
@@ -62,7 +62,7 @@ const asatic: Project = {
 	descriptionLong:
 		'Site and custom CMS designed and built in 2022. The site is a news forum focusing on Sri Lankan politics.',
 	descriptionShort: 'Website and cms. Complete design and build.',
-	year: '2022 – 2023',
+	year: '2022 - 2023',
 	features: ['custom-cms', 'text-editor', 'multi-language', 'youtube'],
 	performanceUrl: null
 };
@@ -75,7 +75,7 @@ const amy: Project = {
 	descriptionLong:
 		'Site and custom CMS designed and built in 2021. The site is a portfolio and shop for Amy Rodriguez - a jewellery maker specialising in metals.',
 	descriptionShort: 'Website and cms. Complete design and build.',
-	year: '2020 – 2023',
+	year: '2020 - 2023',
 	features: ['custom-cms', 'shop', 'image-gallery'],
 	performanceUrl: null
 };
@@ -99,7 +99,7 @@ const kindred_yoga: Project = {
 	mainPicture: image.project.kindred_yoga.site,
 	descriptionLong: 'Custom css and js work done on this Squarespace site.',
 	descriptionShort: 'Custom css and js on Squarespace.',
-	year: '2021 – 2023',
+	year: '2021 - 2023',
 	features: null,
 	performanceUrl: null
 };

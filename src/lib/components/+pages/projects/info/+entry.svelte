@@ -10,8 +10,7 @@
 </script>
 
 <script lang="ts">
-	// title, year, nature of work done, site description, features, links.
-	// the brief?
+	// todo: change animation. line comes in with width. update long description for each project.
 
 	import { ArrowLineUpRight, Globe, PersonSimpleRun } from 'phosphor-svelte';
 
@@ -89,19 +88,19 @@
 
 		<div class="flex items-center gap-sm">
 			<a
-				class="inline-flex items-center gap-xxs text-gray-8 hover:text-blue-10 transition-colors ease-in-out duration-150 cursor-pointer"
+				class="inline-flex items-center gap-xxs text-gray-8 hover:text-my-light-blue transition-colors ease-in-out duration-150 cursor-pointer"
 				href={data.siteUrl}
 				target="_blank"
 			>
 				<Globe />
-				<span class="uppercase font-mono text-xs text-gray-10 tracking-wide">site</span>
+				<span class="uppercase font-mono text-xs text-gray-10 tracking-wide">visit</span>
 			</a>
 		</div>
 
 		{#if data.performanceUrl}
 			<div class="flex items-center gap-xxs text-gray-10">
 				<a
-					class="inline-flex items-center gap-xxs text-gray-8 hover:text-blue-10 transition-colors ease-in-out duration-150 cursor-pointer"
+					class="inline-flex items-center gap-xxs text-gray-8 hover:text-my-light-blue transition-colors ease-in-out duration-150 cursor-pointer"
 					href={data.performanceUrl}
 					target="_blank"
 					id={`${componentKey}-perf`}
