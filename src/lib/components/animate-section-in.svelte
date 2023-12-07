@@ -36,7 +36,7 @@
 </script>
 
 <div
-	class={`relative max-w-full shrink-0 transition-all ease-[cubic-bezier(.79,.18,.36,.92)]`}
+	class={`relative max-w-full shrink-0 transition-all ease-in`}
 	style:width={show ? `${containerWidth}px` : '0px'}
 	style:transition-duration={skipWidthAnimation ? '0ms' : '300ms'}
 >
@@ -47,7 +47,7 @@
 		style:width={showLine ? `${containerWidth - 24}px` : '0px'}
 	/>
 
-	<div class={`relative transition-all ease-in duration-300 ${showContent ? '' : 'opacity-0'}`}>
+	{#if showContent}
 		<slot />
-	</div>
+	{/if}
 </div>

@@ -7,7 +7,7 @@ const raie: Project = {
 	siteUrl: 'https://www.raiemusic.com/',
 	mainPicture: image.project.raie.landing,
 	descriptionLong: 'Designed and built in 2023. For Raie - a singer/songwriter.',
-	descriptionShort: 'Complete design and build.',
+	descriptionShort: 'complete design and build',
 	year: '2023',
 	performanceUrl:
 		'https://pagespeed.web.dev/analysis/https-www-raiemusic-com/uvai5c049i?form_factor=mobile',

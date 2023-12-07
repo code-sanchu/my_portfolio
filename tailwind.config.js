@@ -33,7 +33,8 @@ export default {
 				'my-forest-green': 'rgb(34, 139, 34)',
 				'my-tomato': 'rgb(255, 99, 71)',
 				'my-rosy-brown': 'rgb(188, 143, 143)',
-				'my-black': 'rgb(26, 26, 26)'
+				'my-black': 'rgb(26, 26, 26)',
+				'my-light-gray': '#aeaeae'
 			},
 
 			screens: {

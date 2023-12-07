@@ -178,18 +178,18 @@
 					{#if shownProject.type === 'main-card'}
 						<AnimateSectionIn
 							containerWidth={700}
-							bgColor={projectToColor[shownProject.id]}
+							bgColor={'bg-gray-3'}
 							skipWidthAnimation={shownProjectCards.length === 1}
 						>
 							<MainCard
 								data={{
 									title: projectData.title,
-									onClickInfo: () => handleShowProject(shownProject.id, 'info'),
 									mainPicture: projectData.mainPicture,
 									siteUrl: projectData.siteUrl,
 									descriptionShort: projectData.descriptionShort,
 									year: projectData.year
 								}}
+								onClickInfo={() => handleShowProject(shownProject.id, 'info')}
 							/>
 						</AnimateSectionIn>
 					{:else}
