@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-	<title>Tech-poiesis. Individually created sites.</title>
+	<title>Tech-poiesis. Bespoke website creation.</title>
 	<meta name="description" content="Technopoeisis" />
 </svelte:head>
 

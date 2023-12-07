@@ -1,31 +1,56 @@
 <script context="module" lang="ts">
 	import { uid } from 'uid/single';
+	import { quintOut } from 'svelte/easing';
+	import { crossfade, fade } from 'svelte/transition';
 
-	import { projects } from '^data';
 	import type { ProjectId } from '^types';
+	import { projects } from '^data';
 
-	import { AnimateSectionIn } from '^components';
-	import { Info } from './info';
-	import MainCard from './main-card';
-	import { ProjectTitles } from './project-titles';
+	import Titles from './titles.svelte';
+	import AnimateSectionIn from '^components/animate-section-in.svelte';
+	import MainCard from '^components/+pages-old/projects/main-card';
+	import { Info } from '^components/+pages-old/projects/info';
+
+	type VisibilityStatus = 'closed' | 'opening' | 'open' | 'closing';
 
 	type ProjectCardType = 'info' | 'main-card';
 </script>
 
 <script lang="ts">
+	export let sectionStatus: VisibilityStatus;
+
 	let shownProjectCards: { type: ProjectCardType; key: string; id: ProjectId }[] = [];
 
+	const [send, receive] = crossfade({
+		duration: 1200,
+		easing: quintOut,
+		delay: 0
+	});
+
+	$: showLines = sectionStatus === 'closed';
+
+	let line1Node: HTMLSpanElement;
+	$: line1Top = line1Node?.offsetTop;
+	let line2Node: HTMLSpanElement;
+	$: line2Top = line2Node?.offsetTop;
+
+	let showTitles = false;
+
+	$: {
+		if (sectionStatus === 'open') {
+			showTitles = true;
+		}
+	}
+
+	let titlesTransitionIsEnabled: boolean = true;
+	let titlesTransitionStatus: 'open' | 'closed' = 'open';
 	let projectTitlesWidth: number;
 
-	let projectTitlesTransitionIsEnabled: boolean = true;
-	let projectTitlesTransitionStatus: 'open' | 'closed' = 'open';
-
 	const handleShowProject = (projectId: ProjectId, type: ProjectCardType) => {
-		const delay =
-			!projectTitlesTransitionIsEnabled || projectTitlesTransitionStatus === 'closed' ? 0 : 300;
+		const delay = !titlesTransitionIsEnabled || titlesTransitionStatus === 'closed' ? 0 : 300;
 
-		if (projectTitlesTransitionIsEnabled) {
-			projectTitlesTransitionStatus = 'closed';
+		if (titlesTransitionIsEnabled) {
+			titlesTransitionStatus = 'closed';
 		}
 
 		setTimeout(() => {
@@ -34,69 +59,143 @@
 	};
 </script>
 
-<div class="flex flex-col sm:gap-lg md:flex-row md:gap-0 h-full sm:pb-md">
-	<AnimateSectionIn containerWidth={projectTitlesWidth + 24} color="blue" skipWidthAnimation>
-		<div>
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-			<h2
-				class="mb-xxs uppercase tracking-wider text-blue-10 text-sm xs:text-base sm:text-lg md:text-2xl cursor-pointer sm/md:cursor-auto"
-				on:click={() => {
-					if (!projectTitlesTransitionIsEnabled || !shownProjectCards.length) {
-						return;
-					}
+{#if sectionStatus === 'closed' || sectionStatus === 'closing'}
+	<div class="group/button fixed left-sm top-1/2 -translate-y-1/2">
+		<button
+			class="flex flex-col items-start uppercase text-xs tracking-wider text-my-light-blue"
+			on:click={() => {
+				sectionStatus = 'opening';
+				setTimeout(() => {
+					sectionStatus = 'open';
+				}, 1200);
+			}}
+			in:receive={{ key: 'projects-title' }}
+			out:send={{ key: 'projects-title' }}
+			type="button"
+		>
+			<span class="pl-xxs pr-sm flex">
+				<span>P</span>
+				<span>r</span>
+				<span>o</span>
+				<span>j</span>
+			</span>
 
-					projectTitlesTransitionStatus =
-						projectTitlesTransitionStatus === 'open' ? 'closed' : 'open';
-				}}
+			<span class="w-full h-[1px] invisible" bind:this={line1Node} />
+
+			<span class="mt-xxxs pl-xxs pr-sm flex">
+				<span>e</span>
+				<span>c</span>
+				<span>t</span>
+				<span>s</span>
+			</span>
+
+			<span class="w-full h-[1px] invisible" bind:this={line2Node} />
+		</button>
+
+		{#if line1Top && line2Top && showLines}
+			<span
+				class="absolute left-0 w-full h-[1px] bg-gradient-to-r from-my-light-blue to-white group/line"
+				style:top="{line1Top}px"
+				transition:fade
 			>
-				Projects
-			</h2>
+				<span
+					class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-my-plum to-white opacity-0 group-hover/button:opacity-100 transition-opacity ease-in-out duration-700"
+				/>
+			</span>
 
-			<ProjectTitles
-				bind:containerWidth={projectTitlesWidth}
-				bind:transitionIsEnabled={projectTitlesTransitionIsEnabled}
-				bind:transitionStatus={projectTitlesTransitionStatus}
-				onClickTitle={(projectId) => handleShowProject(projectId, 'main-card')}
-			/>
-		</div>
-	</AnimateSectionIn>
+			<span
+				class="absolute left-0 w-full h-[1px] bg-gradient-to-r from-my-light-blue to-white"
+				style:top="{line2Top}px"
+				transition:fade
+			>
+				<span
+					class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-my-plum to-white opacity-0 group-hover/button:opacity-100 transition-opacity ease-in-out duration-700"
+				/>
+			</span>
 
-	<div class="flex">
-		{#each shownProjectCards as shownProject (shownProject.key)}
-			{@const projectData = projects[shownProject.id]}
-
-			{#if shownProject.type === 'main-card'}
-				<AnimateSectionIn
-					containerWidth={700}
-					color="blue"
-					skipWidthAnimation={shownProjectCards.length === 1}
-				>
-					<MainCard
-						data={{
-							title: projectData.title,
-							onClickInfo: () => handleShowProject(shownProject.id, 'info'),
-							mainPicture: projectData.mainPicture,
-							siteUrl: projectData.siteUrl,
-							descriptionShort: projectData.descriptionShort,
-							year: projectData.year
-						}}
-					/>
-				</AnimateSectionIn>
-			{:else}
-				<AnimateSectionIn containerWidth={500} color="blue">
-					<Info
-						data={{
-							descriptionLong: projectData.descriptionLong,
-							title: projectData.title,
-							siteUrl: projectData.siteUrl,
-							performanceUrl: projectData.performanceUrl,
-							features: projectData.features
-						}}
-						componentKey={shownProject.key}
-					/>
-				</AnimateSectionIn>
-			{/if}
-		{/each}
+			<span
+				class="absolute left-0 top-0 h-[160%] w-[1px] bg-gradient-to-b from-my-light-blue to-white"
+				transition:fade
+			>
+				<span
+					class="absolute left-0 top-0 h-[100%] w-[1px] bg-gradient-to-b from-my-plum to-white opacity-0 group-hover/button:opacity-100 transition-opacity ease-in-out duration-700"
+				/>
+			</span>
+		{/if}
 	</div>
-</div>
+{:else}
+	<div class={`fixed top-2xl left-2xl`}>
+		<div class="flex flex-col sm:gap-lg md:flex-row md:gap-lg h-full sm:pb-md">
+			<div class="shrink-0">
+				<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<h2
+					class="text-2xl tracking-wider flex"
+					on:click={() => {
+						sectionStatus = 'closing';
+						setTimeout(() => {
+							sectionStatus = 'closed';
+						}, 1200);
+					}}
+					in:receive={{ key: 'projects-title' }}
+					out:send={{ key: 'projects-title' }}
+				>
+					<span class="text-my-dark-olive">P</span>
+					<span class="text-my-orange">r</span>
+					<span class="text-my-rosy-brown">o</span>
+					<span class="text-my-dark-slate-gray">j</span>
+					<span class="text-my-plum">e</span>
+					<span class="text-my-dark-olive">c</span>
+					<span class="text-my-dark-olive">t</span>
+					<span class="text-my-steel-blue">s</span>
+				</h2>
+
+				{#if showTitles}
+					<Titles
+						transitionIsEnabled={titlesTransitionIsEnabled}
+						transitionStatus={titlesTransitionStatus}
+						onClickTitle={(projectId) => handleShowProject(projectId, 'main-card')}
+					/>
+				{/if}
+			</div>
+
+			<div class="flex">
+				{#each shownProjectCards as shownProject (shownProject.key)}
+					{@const projectData = projects[shownProject.id]}
+
+					{#if shownProject.type === 'main-card'}
+						<AnimateSectionIn
+							containerWidth={700}
+							color="blue"
+							skipWidthAnimation={shownProjectCards.length === 1}
+						>
+							<MainCard
+								data={{
+									title: projectData.title,
+									onClickInfo: () => handleShowProject(shownProject.id, 'info'),
+									mainPicture: projectData.mainPicture,
+									siteUrl: projectData.siteUrl,
+									descriptionShort: projectData.descriptionShort,
+									year: projectData.year
+								}}
+							/>
+						</AnimateSectionIn>
+					{:else}
+						<AnimateSectionIn containerWidth={500} color="blue">
+							<Info
+								data={{
+									descriptionLong: projectData.descriptionLong,
+									title: projectData.title,
+									siteUrl: projectData.siteUrl,
+									performanceUrl: projectData.performanceUrl,
+									features: projectData.features
+								}}
+								componentKey={shownProject.key}
+							/>
+						</AnimateSectionIn>
+					{/if}
+				{/each}
+			</div>
+		</div>
+	</div>
+{/if}

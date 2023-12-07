@@ -1,9 +1,9 @@
 <script context="module" lang="ts">
 	import { fade, fly } from 'svelte/transition';
 
-	import { About } from '^components/+pages/about';
-	import { Projects } from '^components/+pages/projects';
-	import { Tech } from '^components/+pages/tech';
+	import { About } from '^components/+pages-old/about';
+	import { Projects } from '^components/+pages-old/projects';
+	import { Tech } from '^components/+pages-old/tech';
 	import { SectionLink } from '^sections/nav';
 
 	type Section = 'initial' | 'projects' | 'about' | 'tech-info';
