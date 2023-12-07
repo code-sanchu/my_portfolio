@@ -8,7 +8,7 @@
 
 	import Titles from './titles.svelte';
 	import AnimateSectionIn from '^components/animate-section-in.svelte';
-	import MainCard from '^components/+pages-old/projects/main-card';
+	import MainCard from './main-card';
 	import { Info } from '^components/+pages-old/projects/info';
 
 	type VisibilityStatus = 'closed' | 'opening' | 'open' | 'closing';
@@ -56,6 +56,18 @@
 		setTimeout(() => {
 			shownProjectCards = [{ id: projectId, type, key: uid() }, ...shownProjectCards];
 		}, delay);
+	};
+
+	const projectToColor: { [k in ProjectId]: string } = {
+		raie: 'bg-my-olive',
+		alesh: 'bg-my-light-blue',
+		birch: 'bg-my-dark-red',
+		amy: 'bg-my-sea-green',
+		piros: 'bg-my-dark-olive',
+		asatic: 'bg-my-orange',
+		murat: 'bg-my-dark-slate-gray',
+		kindred_yoga: 'bg-my-plum',
+		blackheath_yoga: 'bg-my-steel-blue'
 	};
 </script>
 
@@ -166,7 +178,7 @@
 					{#if shownProject.type === 'main-card'}
 						<AnimateSectionIn
 							containerWidth={700}
-							color="blue"
+							bgColor={projectToColor[shownProject.id]}
 							skipWidthAnimation={shownProjectCards.length === 1}
 						>
 							<MainCard
@@ -181,7 +193,7 @@
 							/>
 						</AnimateSectionIn>
 					{:else}
-						<AnimateSectionIn containerWidth={500} color="blue">
+						<AnimateSectionIn containerWidth={500} bgColor={projectToColor[shownProject.id]}>
 							<Info
 								data={{
 									descriptionLong: projectData.descriptionLong,

@@ -21,7 +21,7 @@
 		showScrollbar ? 'overflow-y-auto' : 'overflow-y-hidden'
 	}`}
 >
-	<AnimateSectionIn containerWidth={768} color="green" skipWidthAnimation>
+	<AnimateSectionIn containerWidth={768} bgColor="green" skipWidthAnimation>
 		<div class="max-h-full">
 			<h2
 				class="mb-xxs uppercase tracking-wider text-green-10 text-sm xs:text-base sm:text-lg md:text-2xl cursor-pointer sm/md:cursor-auto"

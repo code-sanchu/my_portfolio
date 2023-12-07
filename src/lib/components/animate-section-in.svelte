@@ -4,7 +4,7 @@
 
 <script lang="ts">
 	export let containerWidth: number;
-	export let color: 'green' | 'red' | 'blue';
+	export let bgColor: string;
 	export let skipWidthAnimation = false;
 
 	let show = false;
@@ -43,7 +43,7 @@
 	<div
 		class={`z-10 absolute left-0 top-0 transition-all ease-[cubic-bezier(1,.19,.9,.45)] duration-[400ms] h-[3px] max-w-full ${
 			hideLine ? 'opacity-0' : ''
-		} ${color === 'green' ? 'bg-green-9' : color === 'red' ? 'bg-red-9' : 'bg-blue-9'}`}
+		} ${bgColor}`}
 		style:width={showLine ? `${containerWidth - 24}px` : '0px'}
 	/>
 

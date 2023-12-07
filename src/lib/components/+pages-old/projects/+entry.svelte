@@ -35,7 +35,7 @@
 </script>
 
 <div class="flex flex-col sm:gap-lg md:flex-row md:gap-0 h-full sm:pb-md">
-	<AnimateSectionIn containerWidth={projectTitlesWidth + 24} color="blue" skipWidthAnimation>
+	<AnimateSectionIn containerWidth={projectTitlesWidth + 24} bgColor="blue" skipWidthAnimation>
 		<div>
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
@@ -69,7 +69,7 @@
 			{#if shownProject.type === 'main-card'}
 				<AnimateSectionIn
 					containerWidth={700}
-					color="blue"
+					bgColor="blue"
 					skipWidthAnimation={shownProjectCards.length === 1}
 				>
 					<MainCard
@@ -84,7 +84,7 @@
 					/>
 				</AnimateSectionIn>
 			{:else}
-				<AnimateSectionIn containerWidth={500} color="blue">
+				<AnimateSectionIn containerWidth={500} bgColor="blue">
 					<Info
 						data={{
 							descriptionLong: projectData.descriptionLong,
