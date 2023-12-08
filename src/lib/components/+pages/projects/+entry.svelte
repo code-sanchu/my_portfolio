@@ -27,13 +27,6 @@
 		delay: 0
 	});
 
-	$: showLines = sectionStatus === 'closed';
-
-	let line1Node: HTMLSpanElement;
-	$: line1Top = line1Node?.offsetTop;
-	let line2Node: HTMLSpanElement;
-	$: line2Top = line2Node?.offsetTop;
-
 	let showTitles = false;
 
 	$: {
@@ -59,18 +52,6 @@
 			shownProjectCards = [{ id: projectId, type, key: uid() }, ...shownProjectCards];
 		}, delay);
 	};
-
-	const projectToColor: { [k in ProjectId]: string } = {
-		raie: 'bg-my-olive',
-		alesh: 'bg-my-light-blue',
-		birch: 'bg-my-dark-red',
-		amy: 'bg-my-sea-green',
-		piros: 'bg-my-dark-olive',
-		asatic: 'bg-my-orange',
-		murat: 'bg-my-dark-slate-gray',
-		kindred_yoga: 'bg-my-plum',
-		blackheath_yoga: 'bg-my-steel-blue'
-	};
 </script>
 
 {#if sectionStatus === 'closed' || sectionStatus === 'closing'}
@@ -94,7 +75,7 @@
 				<span>j</span>
 			</span>
 
-			<span class="w-full h-[1px] invisible" bind:this={line1Node} />
+			<span class="w-full h-[1px] bg-gradient-to-r from-my-light-blue to-white" />
 
 			<span class="mt-xxxs pl-xxs pr-sm flex">
 				<span>e</span>
@@ -103,39 +84,13 @@
 				<span>s</span>
 			</span>
 
-			<span class="w-full h-[1px] invisible" bind:this={line2Node} />
+			<span class="w-full h-[1px] bg-gradient-to-r from-my-light-blue to-white" />
 		</button>
 
-		{#if line1Top && line2Top && showLines}
-			<span
-				class="absolute left-0 w-full h-[1px] bg-gradient-to-r from-my-light-blue to-white group/line"
-				style:top="{line1Top}px"
-				transition:fade
-			>
-				<span
-					class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-my-plum to-white opacity-0 group-hover/button:opacity-100 transition-opacity ease-in-out duration-700"
-				/>
-			</span>
-
-			<span
-				class="absolute left-0 w-full h-[1px] bg-gradient-to-r from-my-light-blue to-white"
-				style:top="{line2Top}px"
-				transition:fade
-			>
-				<span
-					class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-my-plum to-white opacity-0 group-hover/button:opacity-100 transition-opacity ease-in-out duration-700"
-				/>
-			</span>
-
-			<span
-				class="absolute left-0 top-0 h-[160%] w-[1px] bg-gradient-to-b from-my-light-blue to-white"
-				transition:fade
-			>
-				<span
-					class="absolute left-0 top-0 h-[100%] w-[1px] bg-gradient-to-b from-my-plum to-white opacity-0 group-hover/button:opacity-100 transition-opacity ease-in-out duration-700"
-				/>
-			</span>
-		{/if}
+		<span
+			class="absolute left-0 top-0 h-[160%] w-[1px] bg-gradient-to-b from-my-light-blue to-white"
+			transition:fade
+		/>
 	</div>
 {:else}
 	<div class={`fixed top-2xl left-2xl`}>

@@ -49,7 +49,11 @@
 <div class="pr-md flex flex-col" transition:fade={{ duration: 400, easing: cubicOut }}>
 	<h2 class="flex uppercase text-sm sm:text-base tracking-wider">
 		{#each data.title.split('') as letter}
-			<span class={`${chooseRandomColor()} ${letter !== ' ' ? '' : 'mr-xxs'}`}>{letter}</span>
+			<span
+				class={`${chooseRandomColor()} ${
+					letter !== ' ' ? '' : 'mr-xxs'
+				} transition-colors ease-in-out duration-150`}>{letter}</span
+			>
 		{/each}
 	</h2>
 

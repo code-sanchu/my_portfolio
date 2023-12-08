@@ -52,7 +52,11 @@
 	<div class="relative mt-xs flex flex-wrap gap-y-xxs items-baseline">
 		<span class="flex uppercase text-sm tracking-wider">
 			{#each data.title.split('') as letter}
-				<span class={`${chooseRandomColor()} ${letter !== ' ' ? '' : 'mr-xxs'}`}>{letter}</span>
+				<span
+					class={`${chooseRandomColor()} ${
+						letter !== ' ' ? '' : 'mr-xxs'
+					} transition-colors ease-in-out duration-150`}>{letter}</span
+				>
 			{/each}
 		</span>
 		<span class="text-sm text-gray-12">, {@html data.year}</span>
@@ -63,7 +67,7 @@
 				<span class="text-my-light-blue self-center -translate-y-[1px]"><ArrowLineRight /></span>
 				<span
 					class="text-gray-12 text-xxs ml-[3px] uppercase underline decoration-transparent group-hover/link:text-my-light-blue transition-all ease-linear duration-200"
-					>more info</span
+					>info</span
 				>
 			</button>
 		</span>

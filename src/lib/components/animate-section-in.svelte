@@ -25,7 +25,7 @@
 					showContent = true;
 				}, 300);
 			}, 200);
-		}, 400);
+		}, 0);
 	};
 
 	onMount(() => {
@@ -41,7 +41,7 @@
 	style:transition-duration={skipWidthAnimation ? '0ms' : '300ms'}
 >
 	<div
-		class={`z-10 absolute left-0 top-0 transition-all ease-[cubic-bezier(1,.19,.9,.45)] duration-[400ms] h-[3px] max-w-full ${
+		class={`z-10 absolute left-0 top-0 transition-all ease-in duration-500 h-[3px] max-w-full ${
 			hideLine ? 'opacity-0' : ''
 		} ${bgColor}`}
 		style:width={showLine ? `${containerWidth - 24}px` : '0px'}
