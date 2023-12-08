@@ -37,8 +37,10 @@
 	let showTitles = false;
 
 	$: {
-		if (sectionStatus === 'open') {
-			showTitles = true;
+		if (sectionStatus === 'opening') {
+			setTimeout(() => {
+				showTitles = true;
+			}, 750);
 		}
 	}
 

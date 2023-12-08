@@ -1,10 +1,10 @@
 <script lang="ts" context="module">
-	import { fade } from 'svelte/transition';
-	import { cubicOut } from 'svelte/easing';
 	import { ArrowLineRight, ArrowLineUpRight } from 'phosphor-svelte';
+	import { cubicOut } from 'svelte/easing';
+	import { fade } from 'svelte/transition';
 
-	import type { MyPick, Project } from '^types';
 	import { randomIntFromInterval } from '^helpers';
+	import type { MyPick, Project } from '^types';
 
 	import { Picture } from '^components';
 </script>
@@ -49,26 +49,32 @@
 		<div class="z-10 absolute bottom-0 w-full h-sm bg-gray-2 rounded-b-sm" />
 	</div>
 
-	<div class="relative mt-xs flex flex-wrap items-baseline">
+	<div class="relative mt-xs flex flex-wrap gap-y-xxs items-baseline">
 		<span class="flex uppercase text-sm tracking-wider">
 			{#each data.title.split('') as letter}
 				<span class={`${chooseRandomColor()} ${letter !== ' ' ? '' : 'mr-xxs'}`}>{letter}</span>
 			{/each}
 		</span>
-		<span class="text-sm text-gray-12">, {data.year}</span>
-		<span class="text-gray-12 text-sm">&nbsp;·&nbsp;{data.descriptionShort}</span>
+		<span class="text-sm text-gray-12">, {@html data.year}</span>
+		<span class="text-gray-12 text-sm">&nbsp;·&nbsp;{@html data.descriptionShort}</span>
 		<span class="text-sm flex items-baseline"
 			>&nbsp;·&nbsp;
-			<button class="flex items-baseline" on:click={onClickInfo} type="button">
+			<button class="flex items-baseline group/link" on:click={onClickInfo} type="button">
 				<span class="text-my-light-blue self-center -translate-y-[1px]"><ArrowLineRight /></span>
-				<span class="text-gray-12 text-xxs ml-[3px] uppercase">info</span>
+				<span
+					class="text-gray-12 text-xxs ml-[3px] uppercase underline decoration-transparent group-hover/link:text-my-light-blue transition-all ease-linear duration-200"
+					>more info</span
+				>
 			</button>
 		</span>
 		<span class="flex items-baseline text-sm">
 			&nbsp;
-			<a class="flex items-baseline" href={data.siteUrl}>
+			<a class="flex items-baseline group/link" href={data.siteUrl}>
 				<span class="text-my-light-blue self-center -translate-y-[1px]"><ArrowLineUpRight /></span>
-				<span class="text-gray-12 text-xxs ml-[3px] uppercase">visit </span>
+				<span
+					class="text-gray-12 text-xxs ml-[3px] uppercase underline decoration-transparent group-hover/link:text-my-light-blue transition-all ease-linear duration-200"
+					>visit
+				</span>
 			</a>
 		</span>
 	</div>

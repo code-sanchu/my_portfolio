@@ -1,18 +1,18 @@
 <script lang="ts" context="module">
 	import { cubicOut } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
+	import { ArrowLineUpRight, Equalizer, Globe, PersonSimpleRun, Star } from 'phosphor-svelte';
 
 	import { randomIntFromInterval } from '^helpers';
 	import type { MyPick, Project } from '^types';
 
 	import { Tooltip } from '^components';
 	import Features from './features.svelte';
+	import ExternalLink from './external-link.svelte';
 </script>
 
 <script lang="ts">
 	// todo: change animation. line comes in with width. update long description for each project.
-
-	import { ArrowLineUpRight, Globe, PersonSimpleRun } from 'phosphor-svelte';
 
 	export let data: MyPick<
 		Project,
@@ -86,33 +86,16 @@
 			<ArrowLineUpRight />
 		</h4>
 
-		<div class="flex items-center gap-sm">
-			<a
-				class="inline-flex items-center gap-xxs text-gray-8 hover:text-my-light-blue transition-colors ease-in-out duration-150 cursor-pointer"
-				href={data.siteUrl}
-				target="_blank"
-			>
-				<Globe />
-				<span class="uppercase font-mono text-xs text-gray-10 tracking-wide">visit</span>
-			</a>
-		</div>
+		<ExternalLink text="visit" url={data.siteUrl}>
+			<Globe slot="icon" />
+		</ExternalLink>
 
 		{#if data.performanceUrl}
-			<div class="flex items-center gap-xxs text-gray-10">
-				<a
-					class="inline-flex items-center gap-xxs text-gray-8 hover:text-my-light-blue transition-colors ease-in-out duration-150 cursor-pointer"
-					href={data.performanceUrl}
-					target="_blank"
-					id={`${componentKey}-perf`}
-				>
-					<PersonSimpleRun />
-					<span class="uppercase font-mono text-xs text-gray-10 tracking-wide">performance</span>
-				</a>
-				<Tooltip
-					text="performance metrics on page speed, seo and others."
-					triggeredBy={`${componentKey}-perf`}
-				/>
-			</div>
+			<ExternalLink id={`${componentKey}-perf`} text="performance" url={data.performanceUrl}>
+				<PersonSimpleRun slot="icon" />
+			</ExternalLink>
+
+			<Tooltip text="metrics on page speed, seo and others." triggeredBy={`${componentKey}-perf`} />
 		{/if}
 	</div>
 </div>

@@ -90,6 +90,6 @@
 
 <style>
 	.icon {
-		@apply border border-gray-5 rounded-full p-[0.3rem] text-gray-9 text-sm;
+		@apply border border-gray-5 rounded-full p-[0.3rem] text-gray-10 text-sm;
 	}
 </style>

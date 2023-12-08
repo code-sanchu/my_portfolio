@@ -7,7 +7,7 @@ const raie: Project = {
 	siteUrl: 'https://www.raiemusic.com/',
 	mainPicture: image.project.raie.landing,
 	descriptionLong: 'Designed and built in 2023. For Raie - a singer/songwriter.',
-	descriptionShort: 'complete design and build',
+	descriptionShort: 'website &#8212; design and build',
 	year: '2023',
 	performanceUrl:
 		'https://pagespeed.web.dev/analysis/https-www-raiemusic-com/uvai5c049i?form_factor=mobile',
@@ -34,8 +34,8 @@ const alesh: Project = {
 	mainPicture: image.project.alesh.site,
 	descriptionLong:
 		'Shop and portfolio built 2022 — 2023. For Alesh Compton - an artist and clothes maker.',
-	descriptionShort: 'Complete design and build.',
-	year: '2022 - 2023',
+	descriptionShort: 'design and build',
+	year: '2022&ndash;2023',
 	performanceUrl:
 		'https://pagespeed.web.dev/analysis/https-aleshcompton-com-squatumentary/zuf3i9gg4c?form_factor=mobile',
 	features: ['shop', 'image-gallery', 'youtube']
@@ -48,7 +48,7 @@ const piros: Project = {
 	mainPicture: image.project.piros.cms,
 	descriptionLong:
 		'Site and custom CMS; design and build 2023. For Piroska Markus - a photographer.',
-	descriptionShort: 'Website and cms. Complete design and build.',
+	descriptionShort: 'Website and cms. Design and build.',
 	year: '2022 - 2023',
 	features: ['custom-cms', 'comment-system', 'image-gallery', 'youtube'],
 	performanceUrl: null
@@ -61,7 +61,7 @@ const asatic: Project = {
 	mainPicture: image.project.asatic.cms,
 	descriptionLong:
 		'Site and custom CMS designed and built in 2022. The site is a news forum focusing on Sri Lankan politics.',
-	descriptionShort: 'Website and cms. Complete design and build.',
+	descriptionShort: 'Website and cms. Design and build.',
 	year: '2022 - 2023',
 	features: ['custom-cms', 'text-editor', 'multi-language', 'youtube'],
 	performanceUrl: null
@@ -74,7 +74,7 @@ const amy: Project = {
 	mainPicture: image.project.amy.cms,
 	descriptionLong:
 		'Site and custom CMS designed and built in 2021. The site is a portfolio and shop for Amy Rodriguez - a jewellery maker specialising in metals.',
-	descriptionShort: 'Website and cms. Complete design and build.',
+	descriptionShort: 'Website and cms. Design and build.',
 	year: '2020 - 2023',
 	features: ['custom-cms', 'shop', 'image-gallery'],
 	performanceUrl: null
