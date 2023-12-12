@@ -12,9 +12,10 @@
 <script lang="ts">
 	export let shownProjectCards: { type: ProjectCardType; key: string; id: ProjectId }[];
 	export let onClickInfo: (projectId: ProjectId) => void;
+	export let sectionHeight: number;
 </script>
 
-<div class="flex">
+<div class="flex" bind:clientHeight={sectionHeight}>
 	{#each shownProjectCards as shownProject (shownProject.key)}
 		{@const projectData = projects[shownProject.id]}
 

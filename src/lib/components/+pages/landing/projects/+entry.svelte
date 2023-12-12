@@ -18,14 +18,17 @@
 	const handleShowProjectCard = (projectId: ProjectId, type: ProjectCardType) => {
 		shownProjectCards = [{ id: projectId, type, key: uid() }, ...shownProjectCards];
 	};
+
+	let sectionHeightInitial: number;
+	let projectCardsContainerHeight: number;
 </script>
 
 <div
-	class={`mt-3xl pt-3xl flex flex-col sm:gap-lg md:flex-row md:gap-xl h-full sm:pb-md border-t transition-colors ease-in-out duration-500 ${
+	class={`mt-3xl overflow-x-hidden pt-3xl flex flex-col sm:gap-lg md:flex-row md:gap-xl h-full sm:pb-md border-t transition-colors ease-in-out duration-500 ${
 		!inView ? 'border-gray-4' : 'border-gray-6'
 	}`}
 >
-	<div class="shrink-0">
+	<div class="shrink-0" bind:clientHeight={sectionHeightInitial}>
 		<h2
 			class={`text-xl uppercase tracking-wider  mb-lg ${!inView ? 'text-gray-7' : 'text-gray-12'}`}
 		>
@@ -48,10 +51,22 @@
 		</div>
 	</div>
 
-	<div class={`transition-opacity ease-in-out duration-500 ${!inView ? 'opacity-40' : ''}`}>
-		<Projects
-			{shownProjectCards}
-			onClickInfo={(projectId) => handleShowProjectCard(projectId, 'info')}
-		/>
-	</div>
+	{#if sectionHeightInitial}
+		<div
+			class={`relative flex-grow transition-all ease-out duration-500 ${
+				!inView ? 'opacity-40' : ''
+			}`}
+			style:height={projectCardsContainerHeight
+				? `${projectCardsContainerHeight}px`
+				: `${sectionHeightInitial}px`}
+		>
+			<div class="absolute inset-0">
+				<Projects
+					{shownProjectCards}
+					onClickInfo={(projectId) => handleShowProjectCard(projectId, 'info')}
+					bind:sectionHeight={projectCardsContainerHeight}
+				/>
+			</div>
+		</div>
+	{/if}
 </div>

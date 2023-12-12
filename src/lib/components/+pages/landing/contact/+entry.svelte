@@ -1,10 +1,10 @@
 <script context="module" lang="ts">
 	import { handleIntersection } from '^actions';
+
+	import Form from './form';
 </script>
 
 <script lang="ts">
-	import { PaperPlaneTilt } from 'phosphor-svelte';
-
 	let inView = false;
 </script>
 
@@ -28,20 +28,24 @@
 		</h2>
 	</div>
 
-	<p class="max-w-[500px] text-my-royal-blue mt-2xl">
+	<p class="max-w-[500px] mt-[4.5rem]">
 		I'd love to hear from you, whether for just an informal chat or if you're ready to build a site.
 	</p>
 
-	<div class="flex justify-end mt-2xl">
-		<div>
-			<h4 class="underline text-my-sea-green">Email me</h4>
-			<a class="mt-xs flex items-center gap-xs" href=".">
-				<span class="font-mono text-sm">hello@tech-poiesis.net</span></a
-			>
+	<div class="mt-xl">
+		<div class="flex gap-sm items-center">
+			<h4 class="text-gray-9 uppercase text-xs tracking-wider">Message Me</h4>
 		</div>
-	</div>
 
-	<div class="mt-2xl">
-		<h4 class="underline text-my-sea-green">Send me a message</h4>
+		<Form />
+
+		<div class="mt-xl">
+			<div class="flex gap-xs">
+				<p class="text-gray-9 text-xs uppercase">or email</p>
+				<a class="flex items-center gap-xs" href=".">
+					<span class="text-xs uppercase text-my-light-blue">hello@tech-poiesis.net</span></a
+				>
+			</div>
+		</div>
 	</div>
 </div>

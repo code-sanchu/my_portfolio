@@ -27,7 +27,7 @@
 		!inView ? 'text-gray-7 border-gray-7' : 'border-gray-12 text-gray-12'
 	}`}
 >
-	I'm a design-focused web engineer that provides consultancy and tech services with a focus on
+	I'm a design-focused web engineer who provides consultancy and tech services with a focus on
 	personalized and high-quality solutions. I work with individuals and small companies, hobbyists
 	and professionals, and find the right-sized approach for each.
 

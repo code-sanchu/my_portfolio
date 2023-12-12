@@ -3,10 +3,10 @@
 	import { cubicOut } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
 
-	import { randomIntFromInterval } from '^helpers';
 	import type { MyPick, Project } from '^types';
 
 	import { Picture } from '^components';
+	import { strToTextColoursArr } from '../_helpers';
 </script>
 
 <script lang="ts">
@@ -14,32 +14,10 @@
 		Project,
 		'mainPicture' | 'title' | 'siteUrl' | 'year' | 'descriptionShort'
 	>;
+
 	export let onClickInfo: () => void;
 
-	const textStrings = [
-		'text-my-olive',
-		'text-my-light-blue',
-		'text-my-dark-red',
-		'text-my-sea-green',
-		'text-my-dark-olive',
-		'text-my-orange',
-		'text-my-dark-slate-gray',
-		'text-my-plum',
-		'text-my-steel-blue',
-		'text-my-royal-blue',
-		'text-my-golden-rod',
-		'text-my-navy-blue',
-		'text-my-red-fire',
-		'text-my-forest-green',
-		'text-my-tomato',
-		'text-my-rosy-brown'
-	];
-
-	const chooseRandomColor = () => {
-		const num = randomIntFromInterval(0, textStrings.length - 1);
-
-		return textStrings[num];
-	};
+	const titleArr = strToTextColoursArr(data.title);
 </script>
 
 <div class="pr-sm md:pr-md" transition:fade={{ duration: 400, easing: cubicOut }}>
@@ -51,11 +29,9 @@
 
 	<div class="relative mt-xs flex flex-wrap gap-y-xxs items-baseline">
 		<span class="flex uppercase text-sm tracking-wider">
-			{#each data.title.split('') as letter}
-				<span
-					class={`${chooseRandomColor()} ${
-						letter !== ' ' ? '' : 'mr-xxs'
-					} transition-colors ease-in-out duration-150`}>{letter}</span
+			{#each titleArr as letter (letter.key)}
+				<span class={`${letter.colour} ${letter.letter !== ' ' ? '' : 'mr-xxs'}`}
+					>{letter.letter}</span
 				>
 			{/each}
 		</span>

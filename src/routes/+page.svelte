@@ -7,6 +7,11 @@
 </script>
 
 <script lang="ts">
+	// todo: thin scrollbar; smooth scroll; projects data;
+	// services - can also help with configuration. consultancy - give once over.
+	// todo: img loader.
+	// todo: projects height calculation will change for small devices.
+	// todo: hide raie logo on image.
 	let projectsStatus: SectionVisibilityStatus = 'closed';
 </script>
 
