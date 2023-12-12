@@ -16,7 +16,7 @@
 		class={`absolute z-10 left-0 w-full cursor-text bg-white transition-all ease-in-out duration-150 ${
 			!isFocused && !value.length
 				? 'top-1/2 -translate-y-1/2 text-[0.82rem] text-gray-11'
-				: 'top-xxs text-xs text-gray-9'
+				: 'top-0 pt-xxs pb-xxs text-xs text-gray-9'
 		}`}
 		for={label}>{label}</label
 	>

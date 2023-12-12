@@ -21,10 +21,12 @@
 </script>
 
 <div class="pr-sm md:pr-md" transition:fade={{ duration: 400, easing: cubicOut }}>
-	<div class="relative aspect-[4/3] overflow-hidden p-xs sm:p-sm bg-gray-2 rounded-sm">
+	<div
+		class="relative aspect-[4/3] overflow-hidden p-xs sm:p-sm bg-white shadow-lg border border-gray-3 rounded-sm"
+	>
 		<Picture data={data.mainPicture} imageClass="object-cover" />
 
-		<div class="z-10 absolute bottom-0 w-full h-sm bg-gray-2 rounded-b-sm" />
+		<div class="z-10 absolute bottom-0 w-full h-sm bg-white rounded-b-sm" />
 	</div>
 
 	<div class="relative mt-xs flex flex-wrap gap-y-xxs items-baseline">
