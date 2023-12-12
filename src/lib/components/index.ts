@@ -1,6 +1,5 @@
 import Picture from './picture.svelte';
-import AnimateSectionIn from './animate-section-in.svelte';
-import Tooltip from './tooltip.svelte';
-import RemPxVal from './rem-px-value.svelte';
+import Tooltip from './tooltip';
+import SectionInView from './section-in-view.svelte';
 
-export { Picture, AnimateSectionIn, Tooltip, RemPxVal };
+export { Picture, Tooltip, SectionInView };

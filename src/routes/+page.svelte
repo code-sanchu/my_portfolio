@@ -1,66 +1,18 @@
 <script context="module" lang="ts">
 	import { fade } from 'svelte/transition';
 
-	import { Intro, Services, Circles, Projects, Contact } from '^pages/landing';
-
-	type SectionVisibilityStatus = 'closed' | 'opening' | 'open' | 'closing';
+	import { Intro, Services, Circles, Projects, Contact, Heading } from '^pages/landing';
 </script>
 
 <script lang="ts">
-	// todo: thin scrollbar; smooth scroll; projects data;
+	// todo: thin scrollbar; smooth scroll; projects data; coloured circles sticky to top for mobile?
 	// services - can also help with configuration. consultancy - give once over.
-	// todo: img loader.
+	// todo: img loader widget.
 	// todo: projects height calculation will change for small devices.
 	// todo: hide raie logo on image.
-	let projectsStatus: SectionVisibilityStatus = 'closed';
+
+	// todo: sections opacity/black + white; smooth scrolling + snap sections? transition in on mount.
 </script>
-
-{#if projectsStatus === 'closed' || projectsStatus === 'closing'}
-	<div class="relative min-h-screen grid place-items-center" transition:fade>
-		<Circles />
-
-		<div class="relative">
-			<h1 class="text-gray-12 text-5xl uppercase tracking-wide leading-none">Tech-poiesis</h1>
-
-			<p class="leading-none tracking-wider mt-xxs flex font-mono">
-				<span class="text-my-olive">B</span>
-				<span class="text-my-olive">e</span>
-				<span class="text-my-light-blue">s</span>
-				<span class="text-my-dark-red">p</span>
-				<span class="text-my-sea-green">o</span>
-				<span class="text-my-dark-olive">k</span>
-				<span class="mr-xxs text-my-orange">e</span>
-
-				<span class="text-my-rosy-brown">w</span>
-				<span class="text-my-dark-slate-gray">e</span>
-				<span class="text-my-plum">b</span>
-				<span class="text-my-dark-olive">s</span>
-				<span class="text-my-dark-olive">i</span>
-				<span class="text-my-steel-blue">t</span>
-				<span class="mr-xxs text-my-royal-blue">e</span>
-
-				<span class="text-my-golden-rod">c</span>
-				<span class="text-my-dark-olive">r</span>
-				<span class="text-my-navy-blue">e</span>
-				<span class="text-my-navy-blue">a</span>
-				<span class="text-my-plum">t</span>
-				<span class="text-my-plum">i</span>
-				<span class="text-my-dark-red">o</span>
-				<span class="text-my-golden-rod">n</span>
-			</p>
-		</div>
-	</div>
-
-	<div class="mx-lg mb-xl">
-		<Intro />
-
-		<Projects />
-
-		<Services />
-
-		<Contact />
-	</div>
-{/if}
 
 <div class="fixed left-0 top-0 w-full p-sm flex justify-between">
 	<div class="flex gap-xs">
@@ -90,4 +42,20 @@
 	>
 		<span>say hi</span>
 	</button>
+</div>
+
+<Circles />
+
+<div class="relative min-h-screen grid place-items-center">
+	<Heading />
+</div>
+
+<div class="mx-lg mb-xl">
+	<Intro />
+
+	<Projects />
+
+	<Services />
+
+	<Contact />
 </div>

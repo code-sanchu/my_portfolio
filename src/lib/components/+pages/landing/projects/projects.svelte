@@ -2,8 +2,8 @@
 	import { projects } from '^data';
 	import type { ProjectId } from '^types';
 
-	import AnimateSectionIn from '^components/animate-section-in.svelte';
-	import Info from './info';
+	import AnimateCardIn from './animate-card-in.svelte';
+	import Info from './info-card';
 	import MainCard from './main-card';
 
 	type ProjectCardType = 'info' | 'main-card';
@@ -20,7 +20,7 @@
 		{@const projectData = projects[shownProject.id]}
 
 		{#if shownProject.type === 'main-card'}
-			<AnimateSectionIn
+			<AnimateCardIn
 				containerWidth={700}
 				bgColor={'bg-gray-6'}
 				skipWidthAnimation={shownProjectCards.length === 1}
@@ -35,9 +35,9 @@
 					}}
 					onClickInfo={() => onClickInfo(shownProject.id)}
 				/>
-			</AnimateSectionIn>
+			</AnimateCardIn>
 		{:else}
-			<AnimateSectionIn containerWidth={500} bgColor="bg-gray-6">
+			<AnimateCardIn containerWidth={500} bgColor="bg-gray-6">
 				<Info
 					data={{
 						descriptionLong: projectData.descriptionLong,
@@ -49,7 +49,7 @@
 					}}
 					componentKey={shownProject.key}
 				/>
-			</AnimateSectionIn>
+			</AnimateCardIn>
 		{/if}
 	{/each}
 </div>

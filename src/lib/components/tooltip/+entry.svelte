@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
 	import { Tooltip } from 'flowbite-svelte';
 
-	import TooltipInternal from './tooltip-internal.svelte';
+	import Internal from './internal.svelte';
 </script>
 
 <script lang="ts">
@@ -10,5 +10,5 @@
 </script>
 
 <Tooltip class="" type="custom" shadow={false} arrow={false} triggeredBy={`[id^='${triggeredBy}']`}
-	><TooltipInternal>{text}</TooltipInternal></Tooltip
+	><Internal>{text}</Internal></Tooltip
 >
