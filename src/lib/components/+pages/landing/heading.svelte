@@ -1,4 +1,5 @@
 <script context="module" lang="ts">
+	import { onMount } from 'svelte';
 </script>
 
 <script lang="ts">
@@ -8,37 +9,33 @@
 
 	let fadeOut: boolean;
 
-	$: {
-		if (document && node && windowHeight) {
-			if (fadeOut === undefined) {
-				const rect = node.getBoundingClientRect();
+	onMount(() => {
+		if (fadeOut === undefined) {
+			const rect = node.getBoundingClientRect();
 
-				const bottom = rect.bottom;
+			const bottom = rect.bottom;
 
-				const quarterScreenPx = windowHeight / 4;
+			const quarterScreenPx = windowHeight / 4;
 
-				fadeOut = bottom < quarterScreenPx;
-			}
-
-			document.addEventListener('scroll', () => {
-				const rect = node.getBoundingClientRect();
-
-				const bottom = rect.bottom;
-
-				const quarterScreenPx = windowHeight / 4;
-
-				fadeOut = bottom < quarterScreenPx;
-			});
+			fadeOut = bottom < quarterScreenPx;
 		}
-	}
+	});
 </script>
 
+<svelte:document
+	on:scroll={() => {
+		const rect = node.getBoundingClientRect();
+
+		const bottom = rect.bottom;
+
+		const quarterScreenPx = windowHeight / 4;
+
+		fadeOut = bottom < quarterScreenPx;
+	}}
+/>
 <svelte:window bind:innerHeight={windowHeight} />
 
-<div
-	class={`transition-opacity ease-out duration-500 ${fadeOut ? 'opacity-50' : ''}`}
-	bind:this={node}
->
+<div class={`transition-opacity ease-out duration-500 ${fadeOut ? '' : ''}`} bind:this={node}>
 	<h1
 		class="text-gray-12 text-5xl uppercase tracking-wide leading-none text-transition"
 		style:color={fadeOut ? '#CECECE' : ''}

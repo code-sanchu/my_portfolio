@@ -1,7 +1,5 @@
 <script context="module" lang="ts">
-	import { fade } from 'svelte/transition';
-
-	import { Intro, Services, Circles, Projects, Contact, Heading } from '^pages/landing';
+	import { Circles, Contact, Heading, Intro, Projects, Services } from '^pages/landing';
 </script>
 
 <script lang="ts">
@@ -17,19 +15,19 @@
 <div class="fixed z-20 left-0 top-0 w-full p-sm flex justify-between">
 	<div class="flex gap-xs">
 		<button
-			class="text-xs tracking-wider text-gray-6 underline decoration-gray-6 underline-offset-4"
+			class="text-xs tracking-wider text-gray-8 underline decoration-gray-8 underline-offset-4 hover:text-gray-12 hover:decoration-gray-12 ease-linear duration-200"
 			type="button"
 		>
 			<span>about</span>
 		</button>
 		<button
-			class="text-xs tracking-wider text-gray-6 underline decoration-gray-6 underline-offset-4"
+			class="text-xs tracking-wider text-gray-8 underline decoration-gray-8 underline-offset-4 hover:text-gray-12 hover:decoration-gray-12 ease-linear duration-200"
 			type="button"
 		>
 			<span>projects</span>
 		</button>
 		<button
-			class="text-xs tracking-wider text-gray-6 underline decoration-gray-6 underline-offset-4"
+			class="text-xs tracking-wider text-gray-8 underline decoration-gray-8 underline-offset-4 hover:text-gray-12 hover:decoration-gray-12 ease-linear duration-200"
 			type="button"
 		>
 			<span>services</span>
@@ -37,7 +35,7 @@
 	</div>
 
 	<button
-		class="text-xs tracking-wider text-gray-12 underline decoration-gray-12 underline-offset-4"
+		class="text-xs tracking-wider text-gray-12 underline decoration-gray-12 underline-offset-4 hover:text-my-dark-slate-gray hover:decoration-my-dark-slate-gray ease-linear duration-200"
 		type="button"
 	>
 		<span>say hi</span>

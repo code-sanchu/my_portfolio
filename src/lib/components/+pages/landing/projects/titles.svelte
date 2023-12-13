@@ -7,7 +7,7 @@
 
 <script lang="ts">
 	export let onClickTitle: (projectId: ProjectId) => void;
-	export let inView: boolean;
+	export let fadeOut: boolean;
 
 	const textColorStrings = [
 		'text-my-olive',
@@ -27,8 +27,8 @@
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 		<h4
-			class={`relative cursor-pointer text-lg transition-all ease-in-out duration-500 ${
-				!inView ? 'text-gray-7' : textColorStrings[i]
+			class={`relative cursor-pointer text-lg transition-all ease-out duration-500 ${
+				fadeOut ? 'text-gray-7' : textColorStrings[i]
 			} hover:text-gray-12 hover:translate-x-[2px]`}
 			on:click={() => onClickTitle(project.id)}
 		>

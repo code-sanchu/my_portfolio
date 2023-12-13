@@ -1,35 +1,53 @@
 <script context="module" lang="ts">
-	import { handleIntersection } from '^actions';
+	import { onMount } from 'svelte';
 
 	import Form from './form';
 </script>
 
 <script lang="ts">
-	let inView = false;
+	let node: HTMLDivElement;
+
+	let windowHeight: number;
+
+	let fadeOut: boolean;
+
+	onMount(() => {
+		if (fadeOut === undefined) {
+			const rect = node.getBoundingClientRect();
+
+			const bottom = rect.bottom;
+
+			const quarterScreenPx = windowHeight / 4;
+
+			fadeOut = bottom < quarterScreenPx || rect.bottom > windowHeight;
+		}
+	});
 </script>
 
+<svelte:document
+	on:scroll={() => {
+		const rect = node.getBoundingClientRect();
+
+		const quarterScreenPx = windowHeight / 4;
+
+		fadeOut = rect.bottom < quarterScreenPx || rect.bottom > windowHeight;
+	}}
+/>
+<svelte:window bind:innerHeight={windowHeight} />
+
 <div
-	class={`relative mt-3xl pt-3xl border-t transition-colors ease-in-out duration-500 ${
-		!inView ? 'border-gray-4' : 'border-gray-6'
+	class={`relative mt-3xl pt-3xl border-t transition-all ease-out duration-500 ${
+		fadeOut ? 'grayscale opacity-40' : ''
 	}`}
+	bind:this={node}
 >
-	<span
-		class="absolute top-[100px]"
-		use:handleIntersection={{
-			onIntersect: () => (inView = true),
-			onNonIntersect: () => (inView = false)
-		}}
-	/>
 	<div>
-		<h2
-			class={`text-xl uppercase tracking-wider mb-lg ${!inView ? 'text-gray-7' : 'text-gray-12'}`}
-		>
-			Contact.
-		</h2>
+		<h2 class={`text-xl uppercase tracking-wider mb-lg`}>Contact.</h2>
 	</div>
 
 	<p class="max-w-[500px] mt-[4.5rem]">
-		I'd love to hear from you, whether for just an informal chat or if you're ready to build a site.
+		I'd love to hear from you, whether for just an informal chat, if you're ready to build a site or
+		anything in-between.
 	</p>
 
 	<div class="mt-xl">
