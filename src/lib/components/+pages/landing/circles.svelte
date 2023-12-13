@@ -1,4 +1,17 @@
-<div class="fixed top-[30%] -left-lg opacity-70">
+<script context="module" lang="ts">
+	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
+</script>
+
+<script lang="ts">
+	let mounted = false;
+
+	onMount(() => {
+		mounted = true;
+	});
+</script>
+
+<div class="fixed top-[30%] -left-lg opacity-70" transition:fade>
 	<div class="relative h-[80px]">
 		<div
 			class="absolute -translate-x-1/2 top-1/2 -translate-y-1/2 w-[200px] aspect-square rounded-full border border-my-olive"

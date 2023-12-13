@@ -17,6 +17,7 @@ const config = {
 			'^components': 'src/lib/components',
 			'^actions': 'src/lib/actions',
 			'^helpers': 'src/lib/helpers',
+			'^stores': 'src/lib/stores',
 			'^sections/*': 'src/lib/components/sections/*',
 			'^pages/*': 'src/lib/components/+pages/*'
 		}

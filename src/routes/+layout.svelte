@@ -1,80 +1,94 @@
 <script lang="ts" context="module">
-	import { onMount } from 'svelte';
 	import '../app.css';
+
+	import { onMount } from 'svelte';
+
+	const speed = 120;
+	const smooth = 15;
 </script>
 
 <script>
+	let moving = false;
+	let pos = 0;
+
 	onMount(() => {
-		// @ts-ignore
-		new SmoothScroll(document, 120, 12);
-	});
+		// new SmoothScroll(document, 120, 12);
+		if (document) {
+			const target = document.scrollingElement;
+			// @ts-ignore
+			pos = target.scrollTop;
+			let frame =
+				target === document.body && document.documentElement ? document.documentElement : target; // safari is the new IE
 
-	// @ts-ignore
-	function SmoothScroll(target, speed, smooth) {
-		if (target === document)
-			target =
-				document.scrollingElement ||
-				document.documentElement ||
-				document.body.parentNode ||
-				document.body; // cross browser support for document scrolling
+			document.addEventListener('wheel', scrolled, { passive: false });
+			document.addEventListener('DOMMouseScroll', scrolled, { passive: false });
+			document.addEventListener('scrollend', () => {
+				// account for scroll position change from scrollIntoView or scrollbar
 
-		var moving = false;
-		var pos = target.scrollTop;
-		var frame =
-			target === document.body && document.documentElement ? document.documentElement : target; // safari is the new IE
+				const wheeling = moving;
 
-		target.addEventListener('mousewheel', scrolled, { passive: false });
-		target.addEventListener('DOMMouseScroll', scrolled, { passive: false });
-
-		// @ts-ignore
-		function scrolled(e) {
-			e.preventDefault(); // disable default scrolling
-
-			var delta = normalizeWheelDelta(e);
-
-			pos += -delta * speed;
-			pos = Math.max(0, Math.min(pos, target.scrollHeight - frame.clientHeight)); // limit scrolling
-
-			if (!moving) update();
-		}
-
-		// @ts-ignore
-		function normalizeWheelDelta(e) {
-			if (e.detail) {
-				if (e.wheelDelta) return (e.wheelDelta / e.detail / 40) * (e.detail > 0 ? 1 : -1); // Opera
-				else return -e.detail / 3; // Firefox
-			} else return e.wheelDelta / 120; // IE,Safari,Chrome
-		}
-
-		function update() {
-			moving = true;
-
-			var delta = (pos - target.scrollTop) / smooth;
-
-			target.scrollTop += delta;
-
-			if (Math.abs(delta) > 0.5) requestFrame(update);
-			else moving = false;
-		}
-
-		var requestFrame = (function () {
-			// requestAnimationFrame cross browser
-			return (
-				window.requestAnimationFrame ||
-				// @ts-ignore
-				window.webkitRequestAnimationFrame ||
-				// @ts-ignore
-				window.mozRequestAnimationFrame ||
-				// @ts-ignore
-				window.oRequestAnimationFrame ||
-				// @ts-ignore
-				window.msRequestAnimationFrame ||
-				function (func) {
-					window.setTimeout(func, 1000 / 50);
+				if (wheeling) {
+					return;
 				}
-			);
-		})();
-	}
+
+				// @ts-ignore
+				pos = target.scrollTop - 11;
+			});
+
+			// @ts-ignore
+			function scrolled(e) {
+				e.preventDefault(); // disable default scrolling
+
+				let delta = normalizeWheelDelta(e);
+
+				pos += -delta * speed;
+				// @ts-ignore
+				pos = Math.max(0, Math.min(pos, target.scrollHeight - frame.clientHeight)); // limit scrolling
+
+				if (!moving) update();
+			}
+
+			// @ts-ignore
+			function normalizeWheelDelta(e) {
+				if (e.detail) {
+					if (e.wheelDelta)
+						return (e.wheelDelta / e.detail / 40) * (e.detail > 0 ? 1 : -1); // Opera
+					else return -e.detail / 3; // Firefox
+				} else return e.wheelDelta / 120; // IE,Safari,Chrome
+			}
+
+			function update() {
+				moving = true;
+
+				// @ts-ignore
+				let delta = (pos - target.scrollTop) / smooth;
+
+				// @ts-ignore
+				target.scrollTop += delta;
+
+				if (Math.abs(delta) > 0.5) requestFrame(update);
+				else moving = false;
+			}
+
+			let requestFrame = (function () {
+				// requestAnimationFrame cross browser
+				return (
+					window.requestAnimationFrame ||
+					// @ts-ignore
+					window.webkitRequestAnimationFrame ||
+					// @ts-ignore
+					window.mozRequestAnimationFrame ||
+					// @ts-ignore
+					window.oRequestAnimationFrame ||
+					// @ts-ignore
+					window.msRequestAnimationFrame ||
+					function (func) {
+						window.setTimeout(func, 1000 / 50);
+					}
+				);
+			})();
+		}
+	});
 </script>
 
 <svelte:head>
