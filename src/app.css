@@ -27,7 +27,7 @@
 }
 
 html {
-	@apply outline-none active:outline-none focus:outline-none text-gray-12;
+	@apply outline-none active:outline-none focus:outline-none text-gray-12 overflow-x-hidden;
 }
 
 * {

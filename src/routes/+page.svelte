@@ -14,7 +14,7 @@
 	// todo: sections opacity/black + white; smooth scrolling + snap sections? transition in on mount.
 </script>
 
-<div class="fixed left-0 top-0 w-full p-sm flex justify-between">
+<div class="fixed z-20 left-0 top-0 w-full p-sm flex justify-between">
 	<div class="flex gap-xs">
 		<button
 			class="text-xs tracking-wider text-gray-6 underline decoration-gray-6 underline-offset-4"
