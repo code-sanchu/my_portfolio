@@ -29,7 +29,7 @@ export type Project = {
 	title: string;
 	siteUrl: string;
 	mainPicture: Picture;
-	descriptionLong: string;
+	descriptionLong: string[];
 	descriptionShort: string;
 	year: string;
 	performanceUrl: string | null;

@@ -53,11 +53,14 @@
 				const node = document.getElementById(sectionId);
 
 				scrollToPos =
-					// @ts-ignore
-					node.offsetTop -
-					window.innerHeight / 2 +
-					// @ts-ignore
-					node.getBoundingClientRect().height / 2;
+					sectionId === 'contact-section'
+						? // @ts-ignore
+						  target.scrollHeight - window.innerHeight
+						: // @ts-ignore
+						  node.offsetTop -
+						  window.innerHeight / 2 +
+						  // @ts-ignore
+						  node.getBoundingClientRect().height / 2;
 
 				if (moving) {
 					return;

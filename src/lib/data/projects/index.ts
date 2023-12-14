@@ -6,7 +6,10 @@ const raie: Project = {
 	title: 'Raie Music',
 	siteUrl: 'https://www.raiemusic.com/',
 	mainPicture: image.project.raie.landing,
-	descriptionLong: 'Designed and built in 2023. For Raie - a singer/songwriter.',
+	descriptionLong: [
+		"Raie is an up and coming singer/songwriter with years of experience in the music world. She's worked with industry heavyweights in the production of her 3 albums and recently launched a new one — Red Brick Angel.",
+		'Raie wanted a website to showcase her music and document her journey through images, film and text.'
+	],
 	descriptionShort: 'website &#8212; design and build',
 	year: '2023',
 	performanceUrl:
@@ -19,10 +22,12 @@ const birch: Project = {
 	title: 'Birch Collective',
 	siteUrl: 'https://www.thebirchcollective.co.uk/',
 	mainPicture: image.project.birch.cms_programmes,
-	descriptionLong:
-		'Site and custom CMS; design and build. 2022 - 2023. The Birch Collective is a Bristol based charity.',
+	descriptionLong: [
+		'The Birch Collective is a Bristol based charity that connects vulnerable young people to nature.',
+		'The brief was to create a site that appealed young people whilst also projecting professionalism.'
+	],
 	descriptionShort: 'website and cms &#8212; design and build',
-	year: '2021 - 2023',
+	year: '2021 &#8212; 2023',
 	features: ['custom-cms', 'donation', 'image-gallery', 'sign-up-form', 'google-spreadsheet'],
 	performanceUrl: null
 };
@@ -32,8 +37,7 @@ const alesh: Project = {
 	title: 'Alesh Compton',
 	siteUrl: 'https://aleshcompton.com/',
 	mainPicture: image.project.alesh.site,
-	descriptionLong:
-		'Shop and portfolio built 2022 — 2023. For Alesh Compton - an artist and clothes maker.',
+	descriptionLong: [],
 	descriptionShort: 'website with shop &#8212; design and build',
 	year: '2022&ndash;2023',
 	performanceUrl:
@@ -46,8 +50,7 @@ const piros: Project = {
 	title: 'Piros Photography',
 	siteUrl: 'https://www.piros.photography/',
 	mainPicture: image.project.piros.cms,
-	descriptionLong:
-		'Site and custom CMS; design and build 2023. For Piroska Markus - a photographer.',
+	descriptionLong: [],
 	descriptionShort: 'website and cms &#8212; design and build',
 	year: '2022 - 2023',
 	features: ['custom-cms', 'comment-system', 'image-gallery', 'youtube'],
@@ -59,8 +62,7 @@ const asatic: Project = {
 	title: 'Asatic',
 	siteUrl: 'https://www.asatic.org/',
 	mainPicture: image.project.asatic.cms,
-	descriptionLong:
-		'Site and custom CMS designed and built in 2022. The site is a news forum focusing on Sri Lankan politics.',
+	descriptionLong: [],
 	descriptionShort: 'website and cms &#8212; design and build',
 	year: '2022 - 2023',
 	features: ['custom-cms', 'text-editor', 'multi-language', 'youtube'],
@@ -72,8 +74,7 @@ const amy: Project = {
 	title: 'Amy Jewellery',
 	siteUrl: 'https://www.amyrodriguez.art/portfolio/1',
 	mainPicture: image.project.amy.cms,
-	descriptionLong:
-		'Site and custom CMS designed and built in 2021. The site is a portfolio and shop for Amy Rodriguez - a jewellery maker specialising in metals.',
+	descriptionLong: [],
 	descriptionShort: 'website and cms, with shop &#8212; design and build',
 	year: '2020 - 2023',
 	features: ['custom-cms', 'shop', 'image-gallery'],
@@ -85,7 +86,7 @@ const murat: Project = {
 	title: 'Murat Gökmen',
 	siteUrl: 'https://www.muratgokmen.com/',
 	mainPicture: image.project.murat.site,
-	descriptionLong: 'Custom css and js work done on this Squarespace site.',
+	descriptionLong: [],
 	descriptionShort: 'squarespace updates &#8212; styling and scripting',
 	year: '2021',
 	features: null,
@@ -97,7 +98,7 @@ const kindred_yoga: Project = {
 	title: 'Kindred Yoga',
 	siteUrl: 'https://www.kindredyogalife.com/',
 	mainPicture: image.project.kindred_yoga.site,
-	descriptionLong: 'Custom css and js work done on this Squarespace site.',
+	descriptionLong: [],
 	descriptionShort: 'squarespace updates &#8212; styling and scripting',
 	year: '2021 - 2023',
 	features: null,
@@ -109,7 +110,7 @@ const blackheath_yoga: Project = {
 	title: 'Blackheath Yoga',
 	siteUrl: 'https://www.blackheathyoga.co.uk/',
 	mainPicture: image.project.blackheath_yoga.site,
-	descriptionLong: 'Custom css and js work done on this Wix site.',
+	descriptionLong: [],
 	descriptionShort: 'wix updates &#8212; styling and scripting',
 	year: '2023',
 	features: null,

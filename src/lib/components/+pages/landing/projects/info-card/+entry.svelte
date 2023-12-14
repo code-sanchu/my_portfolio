@@ -40,16 +40,10 @@
 		<p class="">Design, build & maintenance.</p>
 	</div>
 
-	<div class="mt-md">
-		<p>
-			Raie is an up and coming singer/songwriter with years of experience in the music world. She's
-			worked with industry heavyweights in the production of her 3 albums and recently launched a
-			new one — Red Brick Angel.
-		</p>
-		<p class="mt-xs">
-			Raie wanted a website to showcase her music and document her journey through images, film and
-			text.
-		</p>
+	<div class="mt-md flex flex-col gap-xs">
+		{#each data.descriptionLong as sentence}
+			<p>{sentence}</p>
+		{/each}
 	</div>
 
 	{#if data.features?.length}

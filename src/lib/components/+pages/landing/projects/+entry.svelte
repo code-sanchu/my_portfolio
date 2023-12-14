@@ -24,7 +24,7 @@
 
 	let windowHeight: number;
 
-	let fadeOut: boolean;
+	export let fadeOut: boolean;
 
 	onMount(() => {
 		if (fadeOut === undefined) {
