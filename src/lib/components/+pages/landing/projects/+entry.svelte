@@ -4,7 +4,7 @@
 
 	import type { ProjectId } from '^types';
 
-	import Projects from './projects.svelte';
+	import Cards from './cards.svelte';
 	import Titles from './titles.svelte';
 
 	type ProjectCardType = 'info' | 'main-card';
@@ -51,26 +51,17 @@
 <svelte:window bind:innerHeight={windowHeight} />
 
 <div
-	class={`mt-3xl overflow-x-hidden pt-3xl flex flex-col sm:gap-lg md:flex-row md:gap-xl h-full sm:pb-md border-t transition-colors ease-out duration-500 ${
-		fadeOut ? 'border-gray-4' : 'border-gray-6'
+	class={`overflow-x-hidden pt-3xl flex flex-col sm:gap-lg md:flex-row md:gap-xl h-full sm:pb-md border-t transition-all ease-out duration-500 ${
+		fadeOut ? 'grayscale opacity-40 pointer-events-none' : ''
 	}`}
 	bind:this={node}
 >
 	<div class="shrink-0" bind:clientHeight={sectionHeightInitial}>
-		<h2
-			class={`text-xl uppercase tracking-wider mb-lg transition-colors ease-out duration-500 ${
-				fadeOut ? 'text-gray-7' : 'text-gray-12'
-			}`}
-		>
+		<h2 class={`text-xl uppercase tracking-wider mb-lg transition-colors ease-out duration-500`}>
 			Projects.
 		</h2>
 
-		<div class="relative">
-			<Titles
-				onClickTitle={(projectId) => handleShowProjectCard(projectId, 'main-card')}
-				bind:fadeOut
-			/>
-		</div>
+		<Titles onClickTitle={(projectId) => handleShowProjectCard(projectId, 'main-card')} />
 	</div>
 
 	{#if sectionHeightInitial}
@@ -81,11 +72,10 @@
 				: `${sectionHeightInitial}px`}
 		>
 			<div class="absolute inset-0">
-				<Projects
+				<Cards
 					{shownProjectCards}
 					onClickInfo={(projectId) => handleShowProjectCard(projectId, 'info')}
 					bind:sectionHeight={projectCardsContainerHeight}
-					bind:fadeOut
 				/>
 			</div>
 		</div>

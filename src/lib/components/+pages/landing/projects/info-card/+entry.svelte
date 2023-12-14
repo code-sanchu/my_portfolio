@@ -17,17 +17,11 @@
 		'title' | 'descriptionLong' | 'siteUrl' | 'performanceUrl' | 'features' | 'year'
 	>;
 	export let componentKey: string;
-	export let fadeOut: boolean;
 
 	const titleArr = strToTextColoursArr(data.title);
 </script>
 
-<div
-	class={`pr-md flex flex-col transition-all ease-out duration-500 ${
-		fadeOut ? 'opacity-40 grayscale' : ''
-	}`}
-	transition:fade={{ duration: 400, easing: cubicOut }}
->
+<div class={`pr-md flex flex-col`} transition:fade={{ duration: 400, easing: cubicOut }}>
 	<h2 class="flex uppercase text-sm sm:text-base tracking-wider">
 		{#each titleArr as letter (letter.key)}
 			<span class={`${letter.colour} ${letter.letter !== ' ' ? '' : 'mr-xxs'}`}

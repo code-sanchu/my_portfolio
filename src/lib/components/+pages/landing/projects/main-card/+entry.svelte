@@ -15,27 +15,20 @@
 		'mainPicture' | 'title' | 'siteUrl' | 'year' | 'descriptionShort'
 	>;
 	export let onClickInfo: () => void;
-	export let fadeOut: boolean;
 
 	const titleArr = strToTextColoursArr(data.title);
 </script>
 
 <div class="pr-sm md:pr-md" transition:fade={{ duration: 400, easing: cubicOut }}>
 	<div
-		class={`relative aspect-[4/3] overflow-hidden p-xs sm:p-sm bg-white shadow-lg border border-gray-3 rounded-sm transition-all ease-out duration-500 ${
-			fadeOut ? 'grayscale opacity-40' : ''
-		}`}
+		class={`relative aspect-[4/3] overflow-hidden p-xs sm:p-sm bg-white shadow-lg border border-gray-3 rounded-sm`}
 	>
 		<Picture data={data.mainPicture} imageClass="object-cover" />
 
-		<div class="z-10 absolute bottom-0 w-full h-sm bg-white rounded-b-sm" />
+		<div class="z-10 absolute left-0 right-0 bottom-0 w-full h-sm bg-white rounded-b-sm" />
 	</div>
 
-	<div
-		class={`relative mt-xs flex flex-wrap gap-y-xxs items-baseline transition-all ease-out duration-500 ${
-			fadeOut ? 'grayscale opacity-40' : ''
-		}`}
-	>
+	<div class={`relative mt-xs flex flex-wrap gap-y-xxs items-baseline`}>
 		<span class="flex uppercase text-sm tracking-wider">
 			{#each titleArr as letter (letter.key)}
 				<span class={`${letter.colour} ${letter.letter !== ' ' ? '' : 'mr-xxs'}`}

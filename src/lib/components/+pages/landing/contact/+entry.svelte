@@ -36,7 +36,7 @@
 <svelte:window bind:innerHeight={windowHeight} />
 
 <div
-	class={`relative mt-3xl pt-3xl border-t transition-all ease-out duration-500 ${
+	class={`relative pt-3xl border-t transition-all ease-out duration-500 ${
 		fadeOut ? 'grayscale opacity-40' : ''
 	}`}
 	bind:this={node}

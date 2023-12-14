@@ -6,11 +6,12 @@
 </script>
 
 <script lang="ts">
-	// todo: projects data; coloured circles sticky to top for mobile?
+	// todo: projects data; coloured circles sticky to top for mobile?; highlight active section link? nicer scroll into view animation?; scrollIntoView doesn't work form below?
 	// services - can also help with configuration. consultancy - give once over.
 	// todo: img loader widget.
 	// todo: projects height calculation will change for small devices.
 	// todo: hide raie logo on image.
+	// todo: projects titles section doesn't quite seem right when scoll down to it.
 	let mounted = false;
 
 	onMount(() => {
@@ -80,7 +81,7 @@
 		<Heading />
 	</div>
 
-	<div class="mx-lg mb-xl" transition:fade>
+	<div class="mx-lg mb-3xl flex flex-col gap-[270px]" transition:fade>
 		<div bind:this={about}>
 			<Intro />
 		</div>
