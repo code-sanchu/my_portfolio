@@ -52,15 +52,17 @@
 
 				const node = document.getElementById(sectionId);
 
-				scrollToPos =
-					sectionId === 'contact-section'
-						? // @ts-ignore
-						  target.scrollHeight - window.innerHeight
-						: // @ts-ignore
-						  node.offsetTop -
-						  window.innerHeight / 2 +
-						  // @ts-ignore
-						  node.getBoundingClientRect().height / 2;
+				const scrollMiddlePos =
+					// @ts-ignore
+					node.offsetTop -
+					window.innerHeight / 2 +
+					// @ts-ignore
+					node.getBoundingClientRect().height / 2;
+
+				// @ts-ignore
+				const maxBottomScrollPos = target.scrollHeight - window.innerHeight;
+
+				scrollToPos = scrollMiddlePos < maxBottomScrollPos ? scrollMiddlePos : maxBottomScrollPos;
 
 				if (moving) {
 					return;

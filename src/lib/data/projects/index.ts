@@ -23,8 +23,8 @@ const birch: Project = {
 	siteUrl: 'https://www.thebirchcollective.co.uk/',
 	mainPicture: image.project.birch.cms_programmes,
 	descriptionLong: [
-		'The Birch Collective is a Bristol based charity that connects vulnerable young people to nature.',
-		'The brief was to create a site that appealed young people whilst also projecting professionalism.'
+		'The Birch Collective is an innovative social enterprise aiming to tackle loneliness and mental health issues in young people by connecting them to nature.',
+		'The site is a showcase of the charity and its wonderful programmes, for both participants and potential partners and supporters.'
 	],
 	descriptionShort: 'website and cms &#8212; design and build',
 	year: '2021 &#8212; 2023',
@@ -37,7 +37,10 @@ const alesh: Project = {
 	title: 'Alesh Compton',
 	siteUrl: 'https://aleshcompton.com/',
 	mainPicture: image.project.alesh.site,
-	descriptionLong: [],
+	descriptionLong: [
+		'Alesh Compton is a creative, multi-disciplinary artist.',
+		'The site has a shop for his self-made clothes and portfolio for his art.'
+	],
 	descriptionShort: 'website with shop &#8212; design and build',
 	year: '2022&ndash;2023',
 	performanceUrl:
@@ -50,7 +53,10 @@ const piros: Project = {
 	title: 'Piros Photography',
 	siteUrl: 'https://www.piros.photography/',
 	mainPicture: image.project.piros.cms,
-	descriptionLong: [],
+	descriptionLong: [
+		'Piroska Markus is a socially and politically active photographer who tries to capture the vicissitudes of human life, as well as nature from her global travels.',
+		'The site is her photographic portfolio, and includes a custom cms for ease of updates.'
+	],
 	descriptionShort: 'website and cms &#8212; design and build',
 	year: '2022 - 2023',
 	features: ['custom-cms', 'comment-system', 'image-gallery', 'youtube'],
@@ -62,7 +68,10 @@ const asatic: Project = {
 	title: 'Asatic',
 	siteUrl: 'https://www.asatic.org/',
 	mainPicture: image.project.asatic.cms,
-	descriptionLong: [],
+	descriptionLong: [
+		"Asatic is a journal run by parts of the English Sri Lankan diaspora. It's global in scope but focuses on Sri Lankan issues.",
+		'The site presents news and video articles in a minimal way that reflects the seriousness of the subject matter. The cms has been built to allow for considerable customisation of the layout, articles and collections.'
+	],
 	descriptionShort: 'website and cms &#8212; design and build',
 	year: '2022 - 2023',
 	features: ['custom-cms', 'text-editor', 'multi-language', 'youtube'],
@@ -74,7 +83,10 @@ const amy: Project = {
 	title: 'Amy Jewellery',
 	siteUrl: 'https://www.amyrodriguez.art/portfolio/1',
 	mainPicture: image.project.amy.cms,
-	descriptionLong: [],
+	descriptionLong: [
+		'Amy Rodriguez is an unorthodox jewellery artist specialising in metals.',
+		'Her work is presented on this site via a custom cms, which is also integrated with a shop.'
+	],
 	descriptionShort: 'website and cms, with shop &#8212; design and build',
 	year: '2020 - 2023',
 	features: ['custom-cms', 'shop', 'image-gallery'],

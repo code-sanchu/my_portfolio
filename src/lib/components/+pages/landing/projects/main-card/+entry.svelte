@@ -36,8 +36,11 @@
 				>
 			{/each}
 		</span>
+
 		<span class="text-sm text-gray-12">, {@html data.year}</span>
+
 		<span class="text-gray-12 text-sm">&nbsp;·&nbsp;{@html data.descriptionShort}</span>
+
 		<span class="text-sm flex items-baseline"
 			>&nbsp;·&nbsp;
 			<button class="flex items-baseline group/link" on:click={onClickInfo} type="button">
@@ -48,9 +51,10 @@
 				>
 			</button>
 		</span>
+
 		<span class="flex items-baseline text-sm">
 			&nbsp;
-			<a class="flex items-baseline group/link" href={data.siteUrl}>
+			<a class="flex items-baseline group/link" href={data.siteUrl} target="_blank">
 				<span class="text-my-light-blue self-center -translate-y-[1px]"><ArrowLineUpRight /></span>
 				<span
 					class="text-gray-12 text-xxs ml-[3px] uppercase underline decoration-transparent group-hover/link:text-my-light-blue transition-all ease-linear duration-200"
