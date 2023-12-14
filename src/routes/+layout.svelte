@@ -9,21 +9,22 @@
 
 <script>
 	let moving = false;
-	let pos = 0;
+	$: console.log('moving:', moving);
+	let scrollToPos = 0;
 
 	onMount(() => {
 		// new SmoothScroll(document, 120, 12);
 		if (document) {
-			const target = document.scrollingElement;
+			const target = document.scrollingElement || document.body.parentNode || document.body;
 			// @ts-ignore
-			pos = target.scrollTop;
+			scrollToPos = target.scrollTop;
 			let frame =
 				target === document.body && document.documentElement ? document.documentElement : target; // safari is the new IE
 
 			document.addEventListener('wheel', scrolled, { passive: false });
 			document.addEventListener('DOMMouseScroll', scrolled, { passive: false });
 			document.addEventListener('scrollend', () => {
-				// account for scroll position change from scrollIntoView or scrollbar
+				// account for scroll position change from scrollIntoView or scrollbar; smooth scroll function properly after.
 
 				const wheeling = moving;
 
@@ -32,7 +33,34 @@
 				}
 
 				// @ts-ignore
-				pos = target.scrollTop - 11;
+				scrollToPos = target.scrollTop - 11;
+			});
+
+			document.addEventListener('click', (e) => {
+				// console.log('click > pos:', pos);
+				// console.log('click > target:', document.scrollingElement?.scrollTop);
+
+				//@ts-ignore
+				const id = e.target.id;
+
+				if (id !== 'about-link') {
+					return;
+				}
+
+				const aboutNode = document.getElementById('about-section');
+
+				scrollToPos =
+					// @ts-ignore
+					aboutNode.offsetTop -
+					window.innerHeight / 2 +
+					// @ts-ignore
+					aboutNode.getBoundingClientRect().height / 2;
+
+				if (moving) {
+					return;
+				}
+
+				update();
 			});
 
 			// @ts-ignore
@@ -41,9 +69,9 @@
 
 				let delta = normalizeWheelDelta(e);
 
-				pos += -delta * speed;
+				scrollToPos += -delta * speed;
 				// @ts-ignore
-				pos = Math.max(0, Math.min(pos, target.scrollHeight - frame.clientHeight)); // limit scrolling
+				scrollToPos = Math.max(0, Math.min(scrollToPos, target.scrollHeight - frame.clientHeight)); // limit scrolling
 
 				if (!moving) update();
 			}
@@ -61,12 +89,12 @@
 				moving = true;
 
 				// @ts-ignore
-				let delta = (pos - target.scrollTop) / smooth;
+				let delta = (scrollToPos - target.scrollTop) / smooth;
 
 				// @ts-ignore
 				target.scrollTop += delta;
 
-				if (Math.abs(delta) > 0.5) requestFrame(update);
+				if (Math.abs(delta) > 1) requestFrame(update);
 				else moving = false;
 			}
 
@@ -92,7 +120,7 @@
 </script>
 
 <svelte:head>
-	<title>Tech-poiesis. Bespoke website creation.</title>
+	<title>tech-poiesis · bespoke website creation.</title>
 	<meta name="description" content="Technopoeisis" />
 </svelte:head>
 
