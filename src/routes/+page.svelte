@@ -30,11 +30,6 @@
 		<div class="flex gap-xs">
 			<button
 				class="text-xs tracking-wider text-gray-8 underline decoration-gray-8 underline-offset-4 hover:text-gray-12 hover:decoration-gray-12 ease-linear duration-200"
-				on:click={() => {
-					if (about) {
-						// about.scrollIntoView({ behavior: 'smooth', block: 'center' });
-					}
-				}}
 				type="button"
 				id="about-link"
 			>
@@ -42,38 +37,26 @@
 			</button>
 			<button
 				class="text-xs tracking-wider text-gray-8 underline decoration-gray-8 underline-offset-4 hover:text-gray-12 hover:decoration-gray-12 ease-linear duration-200"
-				on:click={() => {
-					if (projects) {
-						projects.scrollIntoView({ behavior: 'smooth', block: 'center' });
-					}
-				}}
 				type="button"
+				id="projects-link"
 			>
-				<span>projects</span>
+				projects
 			</button>
 			<button
 				class="text-xs tracking-wider text-gray-8 underline decoration-gray-8 underline-offset-4 hover:text-gray-12 hover:decoration-gray-12 ease-linear duration-200"
-				on:click={() => {
-					if (services) {
-						services.scrollIntoView({ behavior: 'smooth', block: 'center' });
-					}
-				}}
 				type="button"
+				id="services-link"
 			>
-				<span>services</span>
+				services
 			</button>
 		</div>
 
 		<button
 			class="text-xs tracking-wider text-gray-12 underline decoration-gray-12 underline-offset-4 hover:text-my-dark-slate-gray hover:decoration-my-dark-slate-gray ease-linear duration-200"
-			on:click={() => {
-				if (contact) {
-					contact.scrollIntoView({ behavior: 'smooth', block: 'center' });
-				}
-			}}
 			type="button"
+			id="contact-link"
 		>
-			<span>say hi</span>
+			say hi
 		</button>
 	</div>
 
@@ -88,15 +71,15 @@
 			<Intro />
 		</div>
 
-		<div bind:this={projects}>
+		<div bind:this={projects} id="projects-section">
 			<Projects />
 		</div>
 
-		<div bind:this={services}>
+		<div bind:this={services} id="services-section">
 			<Services />
 		</div>
 
-		<div bind:this={contact}>
+		<div bind:this={contact} id="contact-section">
 			<Contact />
 		</div>
 	</div>

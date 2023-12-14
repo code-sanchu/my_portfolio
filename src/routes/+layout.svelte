@@ -9,7 +9,6 @@
 
 <script>
 	let moving = false;
-	$: console.log('moving:', moving);
 	let scrollToPos = 0;
 
 	onMount(() => {
@@ -37,24 +36,28 @@
 			});
 
 			document.addEventListener('click', (e) => {
-				// console.log('click > pos:', pos);
-				// console.log('click > target:', document.scrollingElement?.scrollTop);
-
 				//@ts-ignore
-				const id = e.target.id;
+				const buttonId = e.target.id;
 
-				if (id !== 'about-link') {
+				if (
+					buttonId !== 'about-link' &&
+					buttonId !== 'projects-link' &&
+					buttonId !== 'services-link' &&
+					buttonId !== 'contact-link'
+				) {
 					return;
 				}
 
-				const aboutNode = document.getElementById('about-section');
+				const sectionId = buttonId.split('-')[0] + '-section';
+
+				const node = document.getElementById(sectionId);
 
 				scrollToPos =
 					// @ts-ignore
-					aboutNode.offsetTop -
+					node.offsetTop -
 					window.innerHeight / 2 +
 					// @ts-ignore
-					aboutNode.getBoundingClientRect().height / 2;
+					node.getBoundingClientRect().height / 2;
 
 				if (moving) {
 					return;
