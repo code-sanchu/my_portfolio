@@ -9,6 +9,8 @@
 <script lang="ts">
 	export let onClickTitle: (projectId: ProjectId) => void;
 
+	export let topFadeOut: boolean;
+
 	let node: HTMLDivElement;
 	let windowHeight: number;
 
@@ -56,8 +58,8 @@
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 		<h4
-			class={`relative cursor-pointer font-mono text-lg transition-all ease-out duration-500 ${
-				textColorStrings[i]
+			class={`relative cursor-pointer font-mono text-lg transition-all ease-out duration-700 ${
+				topFadeOut ? 'text-gray-6' : textColorStrings[i]
 			} hover:text-gray-12 ${animateIn ? '' : 'translate-y-sm'}`}
 			on:click={() => onClickTitle(project.id)}
 			style:transition-delay="{i * 50}ms"

@@ -3,41 +3,47 @@
 </script>
 
 <script lang="ts">
-	let node: HTMLDivElement;
+	let containerNode: HTMLDivElement;
 
 	let windowHeight: number;
 
-	let initialShow = false;
+	let show = false;
+
+	let topfadeOut = false;
 
 	onMount(() => {
-		if (!initialShow) {
-			const rect = node.getBoundingClientRect();
+		const rect = containerNode.getBoundingClientRect();
 
-			const quarterScreenPx = windowHeight / 4;
-
-			initialShow = rect.bottom > quarterScreenPx && rect.bottom < windowHeight;
+		if (!show) {
+			show = rect.bottom < windowHeight;
 		}
+
+		const topPos = 200;
+
+		topfadeOut = rect.bottom < topPos;
 	});
 </script>
 
 <svelte:document
 	on:scroll={() => {
-		if (!initialShow) {
-			const rect = node.getBoundingClientRect();
+		const rect = containerNode.getBoundingClientRect();
 
-			const quarterScreenPx = windowHeight / 4;
-
-			initialShow = rect.bottom > quarterScreenPx && rect.bottom < windowHeight;
+		if (!show) {
+			show = rect.bottom < windowHeight;
 		}
+
+		const topPos = 200;
+
+		topfadeOut = rect.bottom < topPos;
 	}}
 />
 <svelte:window bind:innerHeight={windowHeight} />
 
 <p
-	class={`w-[580px] text-base pt-xl transition-opacity ease-out duration-1000 border-gray-12 text-gray-12 ${
-		initialShow ? '' : 'opacity-0'
-	}`}
-	bind:this={node}
+	class={`w-[580px] text-base pt-xl transition-all ease-out duration-700 border-gray-12 ${
+		show ? '' : 'opacity-0'
+	} ${topfadeOut ? 'text-gray-6' : 'text-gray-12'}`}
+	bind:this={containerNode}
 >
 	I'm a design-focused web engineer who provides consultancy and tech services with a focus on
 	personalized and high-quality solutions. I work with individuals and small companies, hobbyists

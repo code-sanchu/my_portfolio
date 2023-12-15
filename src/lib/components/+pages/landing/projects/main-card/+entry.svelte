@@ -15,13 +15,21 @@
 		'mainPicture' | 'title' | 'siteUrl' | 'year' | 'descriptionShort'
 	>;
 	export let onClickInfo: () => void;
+	export let topFadeOut: boolean;
 
 	const titleArr = strToTextColoursArr(data.title);
 </script>
 
-<div class="pr-sm md:pr-md" transition:fade={{ duration: 400, easing: cubicOut }}>
+<div
+	class={`pr-sm md:pr-md transition-colors ease-out duration-700 ${
+		topFadeOut ? 'text-gray-6 pointer-events-none' : 'text-gray-12'
+	}`}
+	transition:fade={{ duration: 400, easing: cubicOut }}
+>
 	<div
-		class={`relative aspect-[4/3] overflow-hidden p-xs sm:p-sm bg-white shadow-lg border border-gray-3 rounded-sm`}
+		class={`relative aspect-[4/3] overflow-hidden p-xs sm:p-sm bg-white shadow-lg border border-gray-3 rounded-sm transition-all ease-out duration-700 ${
+			topFadeOut ? 'grayscale opacity-20' : ''
+		}`}
 	>
 		<Picture data={data.mainPicture} imageClass="object-cover" />
 
@@ -31,22 +39,28 @@
 	<div class={`relative mt-xs flex flex-wrap gap-y-xxs items-baseline`}>
 		<span class="flex uppercase text-sm tracking-wider">
 			{#each titleArr as letter (letter.key)}
-				<span class={`${letter.colour} ${letter.letter !== ' ' ? '' : 'mr-xxs'}`}
-					>{letter.letter}</span
+				<span
+					class={`transition-colors ease-out duration-700 ${
+						topFadeOut ? 'text-gray-6' : letter.colour
+					} ${letter.letter !== ' ' ? '' : 'mr-xxs'}`}>{letter.letter}</span
 				>
 			{/each}
 		</span>
 
-		<span class="text-sm text-gray-12">, {@html data.year}</span>
+		<span class="text-sm">, {@html data.year}</span>
 
-		<span class="text-gray-12 text-sm">&nbsp;·&nbsp;{@html data.descriptionShort}</span>
+		<span class="text-sm">&nbsp;·&nbsp;{@html data.descriptionShort}</span>
 
 		<span class="text-sm flex items-baseline"
 			>&nbsp;·&nbsp;
 			<button class="flex items-baseline group/link" on:click={onClickInfo} type="button">
-				<span class="text-my-light-blue self-center -translate-y-[1px]"><ArrowLineRight /></span>
 				<span
-					class="text-gray-12 text-xxs ml-[3px] uppercase underline decoration-transparent group-hover/link:text-my-light-blue transition-all ease-linear duration-200"
+					class={`self-center -translate-y-[1px] ${
+						topFadeOut ? 'text-gray-6' : 'text-my-light-blue'
+					}`}><ArrowLineRight /></span
+				>
+				<span
+					class="text-xxs ml-[3px] uppercase underline decoration-transparent group-hover/link:text-my-light-blue transition-all ease-linear duration-200"
 					>info</span
 				>
 			</button>
@@ -55,9 +69,13 @@
 		<span class="flex items-baseline text-sm">
 			&nbsp;
 			<a class="flex items-baseline group/link" href={data.siteUrl} target="_blank">
-				<span class="text-my-light-blue self-center -translate-y-[1px]"><ArrowLineUpRight /></span>
 				<span
-					class="text-gray-12 text-xxs ml-[3px] uppercase underline decoration-transparent group-hover/link:text-my-light-blue transition-all ease-linear duration-200"
+					class={`self-center -translate-y-[1px] ${
+						topFadeOut ? 'text-gray-6' : 'text-my-light-blue'
+					}`}><ArrowLineRight /></span
+				>
+				<span
+					class="text-xxs ml-[3px] uppercase underline decoration-transparent group-hover/link:text-my-light-blue transition-all ease-linear duration-200"
 					>visit
 				</span>
 			</a>

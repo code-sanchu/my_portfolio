@@ -17,15 +17,23 @@
 		'title' | 'descriptionLong' | 'siteUrl' | 'performanceUrl' | 'features' | 'year'
 	>;
 	export let componentKey: string;
+	export let topFadeOut: boolean;
 
 	const titleArr = strToTextColoursArr(data.title);
 </script>
 
-<div class={`pr-md flex flex-col`} transition:fade={{ duration: 400, easing: cubicOut }}>
+<div
+	class={`pr-md flex flex-col transition-colors ease-out duration-700 ${
+		topFadeOut ? 'text-gray-6 pointer-events-none' : 'text-gray-12'
+	}`}
+	transition:fade={{ duration: 400, easing: cubicOut }}
+>
 	<h2 class="flex uppercase text-sm sm:text-base tracking-wider">
 		{#each titleArr as letter (letter.key)}
-			<span class={`${letter.colour} ${letter.letter !== ' ' ? '' : 'mr-xxs'}`}
-				>{letter.letter}</span
+			<span
+				class={`transition-colors ease-out duration-700 ${
+					topFadeOut ? 'text-gray-6' : letter.colour
+				} ${letter.letter !== ' ' ? '' : 'mr-xxs'}`}>{letter.letter}</span
 			>
 		{/each}
 	</h2>
@@ -48,7 +56,7 @@
 
 	{#if data.features?.length}
 		<div class="mt-md">
-			<Features features={data.features} {componentKey} />
+			<Features bind:topFadeOut features={data.features} {componentKey} />
 		</div>
 	{/if}
 
@@ -57,12 +65,17 @@
 			<ArrowLineUpRight />
 		</h4>
 
-		<ExternalLink text="visit" url={data.siteUrl}>
+		<ExternalLink bind:topFadeOut text="visit" url={data.siteUrl}>
 			<Globe slot="icon" />
 		</ExternalLink>
 
 		{#if data.performanceUrl}
-			<ExternalLink id={`${componentKey}-perf`} text="performance" url={data.performanceUrl}>
+			<ExternalLink
+				bind:topFadeOut
+				id={`${componentKey}-perf`}
+				text="performance"
+				url={data.performanceUrl}
+			>
 				<PersonSimpleRun slot="icon" />
 			</ExternalLink>
 

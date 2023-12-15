@@ -14,12 +14,8 @@
 	// todo: projects titles section doesn't quite seem right when scoll down to it.
 
 	// NEED TO DO
-	// x (1) data.
 	// (2) responsive.
 	// (3) more decoration for big screens?
-	// (4) section animations.
-
-	// sections animation: (i) if opacity from 0 in, it's from 0 only on initial mount. (ii) maybe use intersection observer. (iii) plastic.design site fades in section title first then rest. (iv) such animations may look out of place with rest of the design. Look for others.
 
 	let mounted = false;
 
@@ -29,7 +25,7 @@
 </script>
 
 {#if mounted}
-	<div class="fixed z-20 left-0 top-0 w-full p-sm flex justify-between bg-white" transition:fade>
+	<div class="fixed z-20 left-0 top-0 w-full p-sm flex justify-between" transition:fade>
 		<div class="flex gap-xs">
 			<button
 				class={`text-xs tracking-wider underline underline-offset-4 text-gray-8 decoration-gray-8 hover:text-gray-12 hover:decoration-gray-12 ease-linear duration-200 transition-colors`}

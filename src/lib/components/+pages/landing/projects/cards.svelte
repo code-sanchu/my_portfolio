@@ -13,6 +13,8 @@
 	export let shownProjectCards: { type: ProjectCardType; key: string; id: ProjectId }[];
 	export let onClickInfo: (projectId: ProjectId) => void;
 	export let sectionHeight: number;
+
+	export let topFadeOut: boolean;
 </script>
 
 <div class="flex" bind:clientHeight={sectionHeight}>
@@ -34,6 +36,7 @@
 						year: projectData.year
 					}}
 					onClickInfo={() => onClickInfo(shownProject.id)}
+					bind:topFadeOut
 				/>
 			</AnimateCardIn>
 		{:else}
@@ -48,6 +51,7 @@
 						year: projectData.year
 					}}
 					componentKey={shownProject.key}
+					bind:topFadeOut
 				/>
 			</AnimateCardIn>
 		{/if}

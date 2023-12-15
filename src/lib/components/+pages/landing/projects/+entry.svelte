@@ -27,22 +27,36 @@
 
 	let animateIn = false;
 
+	let topFadeOut = false;
+
 	onMount(() => {
 		if (!animateIn) {
-			const rect = headingNode.getBoundingClientRect();
+			const headingRect = headingNode.getBoundingClientRect();
 
-			animateIn = rect.bottom < windowHeight;
+			animateIn = headingRect.bottom < windowHeight;
 		}
+
+		const containerRect = containerNode.getBoundingClientRect();
+
+		const topPos = 300;
+
+		topFadeOut = containerRect.bottom < topPos;
 	});
 </script>
 
 <svelte:document
 	on:scroll={() => {
 		if (!animateIn) {
-			const rect = headingNode.getBoundingClientRect();
+			const headingRect = headingNode.getBoundingClientRect();
 
-			animateIn = rect.bottom < windowHeight;
+			animateIn = headingRect.bottom < windowHeight;
 		}
+
+		const containerRect = containerNode.getBoundingClientRect();
+
+		const topPos = 300;
+
+		topFadeOut = containerRect.bottom < topPos;
 	}}
 />
 <svelte:window bind:innerHeight={windowHeight} />
@@ -50,7 +64,9 @@
 <div class={`relative pt-2xl`} bind:this={containerNode}>
 	{#if containerNode}
 		<div
-			class="absolute top-0 left-0 transition-all ease-out duration-700 border-t border-gray-6"
+			class={`absolute top-0 left-0 transition-all ease-out duration-700 border-t ${
+				topFadeOut ? 'border-gray-3' : 'border-gray-6'
+			}`}
 			style:width={!animateIn ? '0px' : `${containerNode.getBoundingClientRect().width}px`}
 		/>
 	{/if}
@@ -59,19 +75,22 @@
 		<div class="shrink-0" bind:clientHeight={sectionHeightInitial}>
 			<h2
 				class={`text-xl uppercase tracking-wider mb-lg transition-colors ease-out duration-700 ${
-					!animateIn ? 'text-gray-6' : 'text-gray-12'
+					!animateIn || topFadeOut ? 'text-gray-6' : 'text-gray-12'
 				}`}
 				bind:this={headingNode}
 			>
 				Projects.
 			</h2>
 
-			<Titles onClickTitle={(projectId) => handleShowProjectCard(projectId, 'main-card')} />
+			<Titles
+				bind:topFadeOut
+				onClickTitle={(projectId) => handleShowProjectCard(projectId, 'main-card')}
+			/>
 		</div>
 
 		{#if sectionHeightInitial}
 			<div
-				class={`relative flex-grow transition-all ease-out duration-500`}
+				class={`relative flex-grow`}
 				style:height={projectCardsContainerHeight
 					? `${projectCardsContainerHeight}px`
 					: `${sectionHeightInitial}px`}
@@ -81,6 +100,7 @@
 						{shownProjectCards}
 						onClickInfo={(projectId) => handleShowProjectCard(projectId, 'info')}
 						bind:sectionHeight={projectCardsContainerHeight}
+						bind:topFadeOut
 					/>
 				</div>
 			</div>

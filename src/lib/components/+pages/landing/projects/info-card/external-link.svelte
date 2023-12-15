@@ -2,10 +2,14 @@
 	export let id: string = '';
 	export let text: string;
 	export let url: string;
+
+	export let topFadeOut: boolean;
 </script>
 
 <a
-	class="inline-flex items-center gap-xxs underline decoration-transparent text-gray-8 hover:decoration-gray-10 hover:text-gray-12 transition-all ease-linear duration-200 cursor-pointer"
+	class={`inline-flex items-center gap-xxs underline decoration-transparent hover:decoration-gray-10 hover:text-gray-12 transition-all ease-linear duration-200 cursor-pointer ${
+		topFadeOut ? 'text-gray-6' : 'text-gray-8'
+	}`}
 	href={url}
 	target="_blank"
 	{id}
