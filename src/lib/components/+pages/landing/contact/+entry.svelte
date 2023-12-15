@@ -5,45 +5,39 @@
 </script>
 
 <script lang="ts">
-	let node: HTMLDivElement;
+	let containerNode: HTMLDivElement;
 
 	let windowHeight: number;
 
-	let fadeOut: boolean;
+	let animateIn = false;
 
 	onMount(() => {
-		if (fadeOut === undefined) {
-			const rect = node.getBoundingClientRect();
+		if (!animateIn) {
+			const rect = containerNode.getBoundingClientRect();
 
-			const bottom = rect.bottom;
-
-			const quarterScreenPx = windowHeight / 4;
-
-			fadeOut = bottom < quarterScreenPx || rect.bottom > windowHeight;
+			animateIn = rect.bottom - rect.height / 2 < windowHeight;
 		}
 	});
 </script>
 
 <svelte:document
 	on:scroll={() => {
-		const rect = node.getBoundingClientRect();
+		if (!animateIn) {
+			const rect = containerNode.getBoundingClientRect();
 
-		const quarterScreenPx = windowHeight / 4;
-
-		fadeOut = rect.bottom < quarterScreenPx || rect.bottom > windowHeight;
+			animateIn = rect.bottom - rect.height / 2 < windowHeight;
+		}
 	}}
 />
 <svelte:window bind:innerHeight={windowHeight} />
 
 <div
-	class={`relative pt-3xl border-t transition-all ease-out duration-500 ${
-		fadeOut ? 'grayscale opacity-40' : ''
+	class={`pt-2xl border-t border-gray-6 transition-all ease-out duration-500 ${
+		!animateIn ? 'text-gray-6' : 'text-gray-12'
 	}`}
-	bind:this={node}
+	bind:this={containerNode}
 >
-	<div>
-		<h2 class={`text-xl uppercase tracking-wider mb-lg`}>Contact.</h2>
-	</div>
+	<h2 class={`text-xl uppercase tracking-wider mb-lg`}>Contact.</h2>
 
 	<p class="max-w-[500px] mt-[4.5rem]">
 		It'd be great to hear from you if for just an informal chat, you're ready to build a site or

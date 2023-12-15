@@ -25,39 +25,23 @@
 
 	let windowHeight: number;
 
-	let animateLineIn = false;
-	$: console.log('animateLineIn:', animateLineIn);
-	let animateHeadingIn = false;
-	$: console.log('animateHeadingIn:', animateHeadingIn);
-	let animateProjectTitlesIn = false;
-
-	/* 	$: {
-		if (animateLineIn) {
-			setTimeout(() => {
-				animateProjectTitlesIn = true;
-			}, 700);
-		} else {
-			animateProjectTitlesIn = false;
-		}
-	} */
+	let animateIn = false;
 
 	onMount(() => {
-		if (!animateLineIn) {
+		if (!animateIn) {
 			const rect = headingNode.getBoundingClientRect();
 
-			animateLineIn = rect.bottom < windowHeight;
-			animateHeadingIn = rect.bottom < windowHeight;
+			animateIn = rect.bottom < windowHeight;
 		}
 	});
 </script>
 
 <svelte:document
 	on:scroll={() => {
-		if (!animateLineIn) {
+		if (!animateIn) {
 			const rect = headingNode.getBoundingClientRect();
 
-			animateLineIn = rect.bottom < windowHeight;
-			animateHeadingIn = rect.bottom < windowHeight;
+			animateIn = rect.bottom < windowHeight;
 		}
 	}}
 />
@@ -67,8 +51,7 @@
 	{#if containerNode}
 		<div
 			class="absolute top-0 left-0 transition-all ease-out duration-700 border-t border-gray-6"
-			style:width={!animateLineIn ? '0px' : `${containerNode.getBoundingClientRect().width}px`}
-			style:opacity={!animateLineIn ? 0 : 1}
+			style:width={!animateIn ? '0px' : `${containerNode.getBoundingClientRect().width}px`}
 		/>
 	{/if}
 
@@ -76,16 +59,14 @@
 		<div class="shrink-0" bind:clientHeight={sectionHeightInitial}>
 			<h2
 				class={`text-xl uppercase tracking-wider mb-lg transition-colors ease-out duration-700 ${
-					!animateHeadingIn ? 'text-gray-7' : 'text-gray-12'
+					!animateIn ? 'text-gray-6' : 'text-gray-12'
 				}`}
 				bind:this={headingNode}
 			>
 				Projects.
 			</h2>
 
-			<div class={`transition-opacity ease-out duration-500 ${!animateProjectTitlesIn ? '' : ''}`}>
-				<Titles onClickTitle={(projectId) => handleShowProjectCard(projectId, 'main-card')} />
-			</div>
+			<Titles onClickTitle={(projectId) => handleShowProjectCard(projectId, 'main-card')} />
 		</div>
 
 		{#if sectionHeightInitial}
