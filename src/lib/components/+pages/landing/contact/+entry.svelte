@@ -46,7 +46,7 @@
 	</div>
 
 	<p class="max-w-[500px] mt-[4.5rem]">
-		I'd love to hear from you, whether for just an informal chat, if you're ready to build a site or
+		It'd be great to hear from you if for just an informal chat, you're ready to build a site or
 		anything in-between.
 	</p>
 

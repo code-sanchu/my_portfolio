@@ -20,64 +20,89 @@
 	let sectionHeightInitial: number;
 	let projectCardsContainerHeight: number;
 
-	let node: HTMLDivElement;
+	let containerNode: HTMLDivElement;
+	let headingNode: HTMLDivElement;
 
 	let windowHeight: number;
 
-	export let fadeOut: boolean;
+	let animateLineIn = false;
+	$: console.log('animateLineIn:', animateLineIn);
+	let animateHeadingIn = false;
+	$: console.log('animateHeadingIn:', animateHeadingIn);
+	let animateProjectTitlesIn = false;
+
+	/* 	$: {
+		if (animateLineIn) {
+			setTimeout(() => {
+				animateProjectTitlesIn = true;
+			}, 700);
+		} else {
+			animateProjectTitlesIn = false;
+		}
+	} */
 
 	onMount(() => {
-		if (fadeOut === undefined) {
-			const rect = node.getBoundingClientRect();
+		if (!animateLineIn) {
+			const rect = headingNode.getBoundingClientRect();
 
-			const bottom = rect.bottom;
-
-			const quarterScreenPx = windowHeight / 4;
-
-			fadeOut = bottom < quarterScreenPx || rect.bottom > windowHeight;
+			animateLineIn = rect.bottom < windowHeight;
+			animateHeadingIn = rect.bottom < windowHeight;
 		}
 	});
 </script>
 
 <svelte:document
 	on:scroll={() => {
-		const rect = node.getBoundingClientRect();
+		if (!animateLineIn) {
+			const rect = headingNode.getBoundingClientRect();
 
-		const quarterScreenPx = windowHeight / 4;
-
-		fadeOut = rect.bottom < quarterScreenPx || rect.bottom > windowHeight;
+			animateLineIn = rect.bottom < windowHeight;
+			animateHeadingIn = rect.bottom < windowHeight;
+		}
 	}}
 />
 <svelte:window bind:innerHeight={windowHeight} />
 
-<div
-	class={`overflow-x-hidden pt-3xl flex flex-col sm:gap-lg md:flex-row md:gap-xl h-full sm:pb-md border-t transition-all ease-out duration-500 ${
-		fadeOut ? 'grayscale opacity-40 pointer-events-none' : ''
-	}`}
-	bind:this={node}
->
-	<div class="shrink-0" bind:clientHeight={sectionHeightInitial}>
-		<h2 class={`text-xl uppercase tracking-wider mb-lg transition-colors ease-out duration-500`}>
-			Projects.
-		</h2>
-
-		<Titles onClickTitle={(projectId) => handleShowProjectCard(projectId, 'main-card')} />
-	</div>
-
-	{#if sectionHeightInitial}
+<div class={`relative pt-2xl`} bind:this={containerNode}>
+	{#if containerNode}
 		<div
-			class={`relative flex-grow transition-all ease-out duration-500`}
-			style:height={projectCardsContainerHeight
-				? `${projectCardsContainerHeight}px`
-				: `${sectionHeightInitial}px`}
-		>
-			<div class="absolute inset-0">
-				<Cards
-					{shownProjectCards}
-					onClickInfo={(projectId) => handleShowProjectCard(projectId, 'info')}
-					bind:sectionHeight={projectCardsContainerHeight}
-				/>
+			class="absolute top-0 left-0 transition-all ease-out duration-700 border-t border-gray-6"
+			style:width={!animateLineIn ? '0px' : `${containerNode.getBoundingClientRect().width}px`}
+			style:opacity={!animateLineIn ? 0 : 1}
+		/>
+	{/if}
+
+	<div class={`overflow-x-hidden flex gap-xl`}>
+		<div class="shrink-0" bind:clientHeight={sectionHeightInitial}>
+			<h2
+				class={`text-xl uppercase tracking-wider mb-lg transition-colors ease-out duration-700 ${
+					!animateHeadingIn ? 'text-gray-7' : 'text-gray-12'
+				}`}
+				bind:this={headingNode}
+			>
+				Projects.
+			</h2>
+
+			<div class={`transition-opacity ease-out duration-500 ${!animateProjectTitlesIn ? '' : ''}`}>
+				<Titles onClickTitle={(projectId) => handleShowProjectCard(projectId, 'main-card')} />
 			</div>
 		</div>
-	{/if}
+
+		{#if sectionHeightInitial}
+			<div
+				class={`relative flex-grow transition-all ease-out duration-500`}
+				style:height={projectCardsContainerHeight
+					? `${projectCardsContainerHeight}px`
+					: `${sectionHeightInitial}px`}
+			>
+				<div class="absolute inset-0">
+					<Cards
+						{shownProjectCards}
+						onClickInfo={(projectId) => handleShowProjectCard(projectId, 'info')}
+						bind:sectionHeight={projectCardsContainerHeight}
+					/>
+				</div>
+			</div>
+		{/if}
+	</div>
 </div>

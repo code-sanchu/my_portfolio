@@ -7,7 +7,7 @@ const raie: Project = {
 	siteUrl: 'https://www.raiemusic.com/',
 	mainPicture: image.project.raie.landing,
 	descriptionLong: [
-		"Raie is an up and coming singer/songwriter with years of experience in the music world. She's worked with industry heavyweights in the production of her 3 albums and recently launched a new one — Red Brick Angel.",
+		"Raie is a singer/songwriter with years of experience in the music world. She's worked with industry heavyweights in the production of her 3 albums and recently launched a new one — Red Brick Angel.",
 		'Raie wanted a website to showcase her music and document her journey through images, film and text.'
 	],
 	descriptionShort: 'website &#8212; design and build',
@@ -24,7 +24,7 @@ const birch: Project = {
 	mainPicture: image.project.birch.cms_programmes,
 	descriptionLong: [
 		'The Birch Collective is an innovative social enterprise aiming to tackle loneliness and mental health issues in young people by connecting them to nature.',
-		'The site is a showcase of the charity and its wonderful programmes, for both participants and potential partners and supporters.'
+		"The site is a showcase of the charity and its programmes. It's editable via a highly customisable and easy to use custom cms."
 	],
 	descriptionShort: 'website and cms &#8212; design and build',
 	year: '2021 &#8212; 2023',
@@ -98,7 +98,10 @@ const murat: Project = {
 	title: 'Murat Gökmen',
 	siteUrl: 'https://www.muratgokmen.com/',
 	mainPicture: image.project.murat.site,
-	descriptionLong: [],
+	descriptionLong: [
+		'Murat wanted his Squarespace site to be a design not included in the provided layouts.',
+		'I did some custom styling and scripting to make this happen, and provided instructions for him to easily update the site himself.'
+	],
 	descriptionShort: 'squarespace updates &#8212; styling and scripting',
 	year: '2021',
 	features: null,
@@ -110,7 +113,10 @@ const kindred_yoga: Project = {
 	title: 'Kindred Yoga',
 	siteUrl: 'https://www.kindredyogalife.com/',
 	mainPicture: image.project.kindred_yoga.site,
-	descriptionLong: [],
+	descriptionLong: [
+		'Kindred Yoga is a successful yoga studio.',
+		'My role involved custom styling and updates.'
+	],
 	descriptionShort: 'squarespace updates &#8212; styling and scripting',
 	year: '2021 - 2023',
 	features: null,
@@ -122,7 +128,10 @@ const blackheath_yoga: Project = {
 	title: 'Blackheath Yoga',
 	siteUrl: 'https://www.blackheathyoga.co.uk/',
 	mainPicture: image.project.blackheath_yoga.site,
-	descriptionLong: [],
+	descriptionLong: [
+		'Blackheath yoga needed considerable custom scripting to get the site working as intended. This involved integrating a payment and booking platform.',
+		'I also designed and created re-usable pop-ups for promotions.'
+	],
 	descriptionShort: 'wix updates &#8212; styling and scripting',
 	year: '2023',
 	features: null,
@@ -130,9 +139,9 @@ const blackheath_yoga: Project = {
 };
 
 export const projects: { [k in ProjectId]: Project } = {
+	birch,
 	raie,
 	alesh,
-	birch,
 	amy,
 	piros,
 	asatic,

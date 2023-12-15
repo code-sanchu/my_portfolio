@@ -15,7 +15,7 @@
 
 			const bottom = rect.bottom;
 
-			const quarterScreenPx = windowHeight / 4;
+			const quarterScreenPx = windowHeight / 6;
 
 			fadeOut = bottom < quarterScreenPx;
 		}
@@ -26,56 +26,47 @@
 	on:scroll={() => {
 		const rect = node.getBoundingClientRect();
 
-		const bottom = rect.bottom;
+		const fadeOutPos = windowHeight / 6;
 
-		const quarterScreenPx = windowHeight / 4;
-
-		fadeOut = bottom < quarterScreenPx;
+		fadeOut = rect.bottom < fadeOutPos;
 	}}
 />
 <svelte:window bind:innerHeight={windowHeight} />
 
-<div class={`transition-opacity ease-out duration-500 ${fadeOut ? '' : ''}`} bind:this={node}>
+<div
+	class={`transition-all ease-out duration-1000 ${fadeOut ? 'opacity-40 grayscale' : ''}`}
+	bind:this={node}
+>
 	<h1
-		class="text-gray-12 text-5xl uppercase tracking-wide leading-none text-transition"
-		style:color={fadeOut ? '#CECECE' : ''}
+		class={`text-gray-12 text-5xl uppercase tracking-wide leading-none transition-opacity ease-out duration-1000`}
 	>
 		Tech-poiesis
 	</h1>
 
 	<p class="leading-none tracking-wider mt-xxs flex font-mono">
-		<span
-			class="text-my-olive transition-colors ease-out duration-500"
-			style:color={fadeOut ? '#CECECE' : ''}>B</span
-		>
-		<span class="text-my-olive" style:color={fadeOut ? '#CECECE' : ''}>e</span>
-		<span class="text-my-light-blue" style:color={fadeOut ? '#CECECE' : ''}>s</span>
-		<span class="text-my-dark-red" style:color={fadeOut ? '#CECECE' : ''}>p</span>
-		<span class="text-my-sea-green" style:color={fadeOut ? '#CECECE' : ''}>o</span>
-		<span class="text-my-dark-olive" style:color={fadeOut ? '#CECECE' : ''}>k</span>
-		<span class="mr-xxs text-my-orange" style:color={fadeOut ? '#CECECE' : ''}>e</span>
+		<span class="text-my-olive transition-colors ease-out duration-500">B</span>
+		<span class="text-my-olive">e</span>
+		<span class="text-my-light-blue">s</span>
+		<span class="text-my-dark-red">p</span>
+		<span class="text-my-sea-green">o</span>
+		<span class="text-my-dark-olive">k</span>
+		<span class="mr-xxs text-my-orange">e</span>
 
-		<span class="text-my-rosy-brown" style:color={fadeOut ? '#CECECE' : ''}>w</span>
-		<span class="text-my-dark-slate-gray" style:color={fadeOut ? '#CECECE' : ''}>e</span>
-		<span class="text-my-plum" style:color={fadeOut ? '#CECECE' : ''}>b</span>
-		<span class="text-my-dark-olive" style:color={fadeOut ? '#CECECE' : ''}>s</span>
-		<span class="text-my-dark-olive" style:color={fadeOut ? '#CECECE' : ''}>i</span>
-		<span class="text-my-steel-blue" style:color={fadeOut ? '#CECECE' : ''}>t</span>
-		<span class="mr-xxs text-my-royal-blue" style:color={fadeOut ? '#CECECE' : ''}>e</span>
+		<span class="text-my-rosy-brown">w</span>
+		<span class="text-my-dark-slate-gray">e</span>
+		<span class="text-my-plum">b</span>
+		<span class="text-my-dark-olive">s</span>
+		<span class="text-my-dark-olive">i</span>
+		<span class="text-my-steel-blue">t</span>
+		<span class="mr-xxs text-my-royal-blue">e</span>
 
-		<span class="text-my-golden-rod" style:color={fadeOut ? '#CECECE' : ''}>c</span>
-		<span class="text-my-dark-olive" style:color={fadeOut ? '#CECECE' : ''}>r</span>
-		<span class="text-my-navy-blue" style:color={fadeOut ? '#CECECE' : ''}>e</span>
-		<span class="text-my-navy-blue" style:color={fadeOut ? '#CECECE' : ''}>a</span>
-		<span class="text-my-plum" style:color={fadeOut ? '#CECECE' : ''}>t</span>
-		<span class="text-my-plum" style:color={fadeOut ? '#CECECE' : ''}>i</span>
-		<span class="text-my-dark-red" style:color={fadeOut ? '#CECECE' : ''}>o</span>
-		<span class="text-my-golden-rod" style:color={fadeOut ? '#CECECE' : ''}>n</span>
+		<span class="text-my-golden-rod">c</span>
+		<span class="text-my-dark-olive">r</span>
+		<span class="text-my-navy-blue">e</span>
+		<span class="text-my-navy-blue">a</span>
+		<span class="text-my-plum">t</span>
+		<span class="text-my-plum">i</span>
+		<span class="text-my-dark-red">o</span>
+		<span class="text-my-golden-rod">n</span>
 	</p>
 </div>
-
-<style>
-	.text-transition {
-		@apply transition-colors ease-out duration-500;
-	}
-</style>

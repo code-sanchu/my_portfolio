@@ -7,35 +7,35 @@
 
 	let windowHeight: number;
 
-	export let fadeOut: boolean;
+	let initialShow = false;
 
 	onMount(() => {
-		if (fadeOut === undefined) {
+		if (!initialShow) {
 			const rect = node.getBoundingClientRect();
-
-			const bottom = rect.bottom;
 
 			const quarterScreenPx = windowHeight / 4;
 
-			fadeOut = bottom < quarterScreenPx || rect.bottom > windowHeight;
+			initialShow = rect.bottom > quarterScreenPx && rect.bottom < windowHeight;
 		}
 	});
 </script>
 
 <svelte:document
 	on:scroll={() => {
-		const rect = node.getBoundingClientRect();
+		if (!initialShow) {
+			const rect = node.getBoundingClientRect();
 
-		const quarterScreenPx = windowHeight / 4;
+			const quarterScreenPx = windowHeight / 4;
 
-		fadeOut = rect.bottom < quarterScreenPx || rect.bottom > windowHeight - 100;
+			initialShow = rect.bottom > quarterScreenPx && rect.bottom < windowHeight;
+		}
 	}}
 />
 <svelte:window bind:innerHeight={windowHeight} />
 
 <p
-	class={`w-[580px] text-base pt-xl transition-colors ease-out duration-500 ${
-		fadeOut ? 'text-gray-7 border-gray-7' : 'border-gray-12 text-gray-12'
+	class={`w-[580px] text-base pt-xl transition-opacity ease-out duration-1000 border-gray-12 text-gray-12 ${
+		initialShow ? '' : 'opacity-0'
 	}`}
 	bind:this={node}
 >
