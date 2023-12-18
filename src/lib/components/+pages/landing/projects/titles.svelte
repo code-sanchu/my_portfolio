@@ -64,10 +64,15 @@
 			on:click={() => onClickTitle(project.id)}
 			style:transition-delay="{i * 50}ms"
 		>
-			<span class={`${textColorStrings[i]} text-sm`}>+.</span>
 			<span
-				class="text-gray-12 underline-offset-2 tracking-wide uppercase text-sm underline hover:text-gray-10 transition-colors ease-linear duration-200"
-				>{project.title}</span
+				class={`text-sm transition-colors ease-out duration-700 ${
+					topFadeOut ? 'text-gray-6' : textColorStrings[i]
+				}`}>+.</span
+			>
+			<span
+				class={`underline-offset-2 tracking-wide uppercase text-sm underline hover:text-gray-10 transition-colors ease-linear duration-200 ${
+					topFadeOut ? 'text-gray-6' : 'text-gray-12'
+				}`}>{project.title}</span
 			>
 		</h4>
 	{/each}

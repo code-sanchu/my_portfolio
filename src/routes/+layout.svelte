@@ -128,7 +128,7 @@
 </script>
 
 <svelte:head>
-	<title>tech-poiesis · bespoke website creation.</title>
+	<title>Tech-poiesis</title>
 	<meta name="description" content="Technopoeisis" />
 </svelte:head>
 

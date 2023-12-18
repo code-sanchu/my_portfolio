@@ -31,15 +31,27 @@
 />
 <svelte:window bind:innerHeight={windowHeight} />
 
-<div
-	class={`pt-2xl border-t border-gray-6 transition-all ease-out duration-500 ${
-		!animateIn ? 'text-gray-6' : 'text-gray-12'
-	}`}
-	bind:this={containerNode}
->
-	<h2 class={`text-xl uppercase tracking-wider mb-lg`}>Contact.</h2>
+<div class="relative pt-2xl" bind:this={containerNode}>
+	{#if containerNode}
+		<div
+			class={`absolute top-0 left-0 transition-all ease-out duration-700 border-t border-gray-6`}
+			style:width={!animateIn ? '0px' : `${containerNode.getBoundingClientRect().width}px`}
+		/>
+	{/if}
 
-	<p class="max-w-[500px] mt-[4.5rem]">
+	<h2
+		class={`text-xl uppercase tracking-wider mb-xl transition-colors ease-out duration-700 ${
+			!animateIn ? 'text-gray-6' : 'text-gray-12'
+		}`}
+	>
+		Projects.
+	</h2>
+
+	<p
+		class={`max-w-[500px] mt-[4.5rem] transition-colors ease-out duration-700  ${
+			!animateIn ? 'text-gray-6' : 'text-gray-12'
+		}`}
+	>
 		It'd be great to hear from you if for just an informal chat, you're ready to build a site or
 		anything in-between.
 	</p>
