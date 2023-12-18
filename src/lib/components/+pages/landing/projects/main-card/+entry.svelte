@@ -7,6 +7,7 @@
 
 	import { Picture } from '^components';
 	import { strToTextColoursArr } from '../_helpers';
+	import { onMount } from 'svelte';
 </script>
 
 <script lang="ts">
@@ -18,17 +19,30 @@
 	export let topFadeOut: boolean;
 
 	const titleArr = strToTextColoursArr(data.title);
+
+	let animateIn1 = false;
+
+	let animateIn2 = false;
+
+	onMount(() => {
+		setTimeout(() => {
+			animateIn1 = true;
+		}, 50);
+
+		setTimeout(() => {
+			animateIn2 = true;
+		}, 300);
+	});
 </script>
 
 <div
 	class={`pr-sm md:pr-md transition-colors ease-out duration-700 ${
 		topFadeOut ? 'text-gray-6 pointer-events-none' : 'text-gray-12'
 	}`}
-	transition:fade={{ duration: 400, easing: cubicOut }}
 >
 	<div
 		class={`relative aspect-[4/3] overflow-hidden p-xs sm:p-sm bg-white shadow-lg border border-gray-3 rounded-sm transition-all ease-out duration-700 ${
-			topFadeOut ? 'grayscale opacity-20' : ''
+			!animateIn1 ? 'opacity-0' : topFadeOut ? 'grayscale opacity-20' : ''
 		}`}
 	>
 		<Picture data={data.mainPicture} imageClass="object-cover" />
@@ -36,7 +50,11 @@
 		<div class="z-10 absolute left-0 right-0 bottom-0 w-full h-sm bg-white rounded-b-sm" />
 	</div>
 
-	<div class={`relative mt-xs flex flex-wrap gap-y-xxs items-baseline`}>
+	<div
+		class={`relative mt-xs flex flex-wrap gap-y-xxs items-baseline transition-all duration-[300ms] ease-linear  ${
+			animateIn2 ? '' : 'opacity-0 translate-y-xs'
+		}`}
+	>
 		<span class="flex uppercase text-sm tracking-wider">
 			{#each titleArr as letter (letter.key)}
 				<span
@@ -72,7 +90,7 @@
 				<span
 					class={`self-center -translate-y-[1px] ${
 						topFadeOut ? 'text-gray-6' : 'text-my-light-blue'
-					}`}><ArrowLineRight /></span
+					}`}><ArrowLineUpRight /></span
 				>
 				<span
 					class="text-xxs ml-[3px] uppercase underline decoration-transparent group-hover/link:text-my-light-blue transition-all ease-linear duration-200"
