@@ -28,7 +28,7 @@
 	}`}
 	transition:fade={{ duration: 400, easing: cubicOut }}
 >
-	<h2 class="flex uppercase text-sm sm:text-base tracking-wider">
+	<h2 class="flex items-end uppercase text-sm sm:text-base tracking-wider">
 		{#each titleArr as letter (letter.key)}
 			<span
 				class={`transition-colors ease-out duration-700 ${
@@ -36,11 +36,12 @@
 				} ${letter.letter !== ' ' ? '' : 'mr-xxs'}`}>{letter.letter}</span
 			>
 		{/each}
+		<span class="text-gray-6 text-xs ml-md">info</span>
 	</h2>
 
 	<div class="mt-sm flex font-mono text-sm">
 		<p class="">Date&nbsp;—&nbsp;</p>
-		<p class="">{data.year}.</p>
+		<p class="">{@html data.year}.</p>
 	</div>
 
 	<div class="mt-xs flex font-mono text-sm">
@@ -48,7 +49,7 @@
 		<p class="">Design, build & maintenance.</p>
 	</div>
 
-	<div class="mt-md flex flex-col gap-xs">
+	<div class="mt-md flex flex-col gap-xs text-sm">
 		{#each data.descriptionLong as sentence}
 			<p>{sentence}</p>
 		{/each}

@@ -11,6 +11,8 @@
 </script>
 
 <script lang="ts">
+	let windowHeight: number;
+
 	let shownProjectCards: { type: ProjectCardType; key: string; id: ProjectId }[] = [];
 
 	const handleShowProjectCard = (projectId: ProjectId, type: ProjectCardType) => {
@@ -22,8 +24,6 @@
 
 	let containerNode: HTMLDivElement;
 	let headingNode: HTMLDivElement;
-
-	let windowHeight: number;
 
 	let animateIn = false;
 
@@ -61,7 +61,7 @@
 />
 <svelte:window bind:innerHeight={windowHeight} />
 
-<div class={`relative pt-2xl`} bind:this={containerNode}>
+<div class={`relative pt-2xl overflow-hidden`} bind:this={containerNode}>
 	{#if containerNode}
 		<div
 			class={`absolute top-0 left-0 transition-all ease-out duration-700 border-t ${
@@ -71,7 +71,7 @@
 		/>
 	{/if}
 
-	<div class={`overflow-x-hidden flex gap-xl`}>
+	<div class={`overflow-hidden`}>
 		<div class="shrink-0" bind:clientHeight={sectionHeightInitial}>
 			<h2
 				class={`text-xl uppercase tracking-wider mb-xl transition-colors ease-out duration-700 ${
@@ -81,29 +81,33 @@
 			>
 				Projects.
 			</h2>
-
-			<Titles
-				bind:topFadeOut
-				onClickTitle={(projectId) => handleShowProjectCard(projectId, 'main-card')}
-			/>
 		</div>
 
-		{#if sectionHeightInitial}
-			<div
-				class={`relative flex-grow transition-all ease-linear duration-500`}
-				style:height={projectCardsContainerHeight
-					? `${projectCardsContainerHeight}px`
-					: `${sectionHeightInitial}px`}
-			>
-				<div class="absolute inset-0">
-					<Cards
-						{shownProjectCards}
-						onClickInfo={(projectId) => handleShowProjectCard(projectId, 'info')}
-						bind:sectionHeight={projectCardsContainerHeight}
-						bind:topFadeOut
-					/>
+		<div class="flex flex-col gap-lg overflow-hidden">
+			<Titles
+				bind:topFadeOut
+				handleShowProjectCard={(projectId) => {
+					handleShowProjectCard(projectId, 'main-card');
+				}}
+			/>
+
+			{#if sectionHeightInitial}
+				<div
+					class={`relative flex-grow transition-all ease-linear duration-500`}
+					style:height={projectCardsContainerHeight
+						? `${projectCardsContainerHeight}px`
+						: `${sectionHeightInitial}px`}
+				>
+					<div class="absolute inset-0">
+						<Cards
+							{shownProjectCards}
+							onClickInfo={(projectId) => handleShowProjectCard(projectId, 'info')}
+							bind:sectionHeight={projectCardsContainerHeight}
+							bind:topFadeOut
+						/>
+					</div>
 				</div>
-			</div>
-		{/if}
+			{/if}
+		</div>
 	</div>
 </div>

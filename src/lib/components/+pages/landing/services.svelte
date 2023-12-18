@@ -73,7 +73,7 @@
 		/>
 	{/if}
 
-	<div class={`flex items-start gap-xl justify-between `}>
+	<div class={`flex flex-col gap-sm md:flex-row items-start md:gap-xl justify-between`}>
 		<h2
 			class={`text-xl uppercase tracking-wider mb-xl transition-colors ease-out duration-700 ${
 				!animateIn1 || topFadeOut ? 'text-gray-6' : 'text-gray-12'
@@ -90,7 +90,7 @@
 			bind:this={sectionsNode}
 		>
 			<div
-				class={`flex gap-xl justify-between transition-transform ease-out duration-500${
+				class={`flex flex-col sm:flex-row gap-sm md:gap-xl justify-between transition-transform ease-out duration-500${
 					animateIn2 ? '' : 'translate-y-sm'
 				}`}
 			>
@@ -99,7 +99,7 @@
 						topFadeOut ? 'text-gray-6' : 'text-gray-10'
 					}`}
 				>
-					<span class="text-gray-10">01.</span> Consultancy
+					01. Consultancy
 				</h3>
 				<p class="text-sm max-w-[400px] leading-relaxed">
 					I share my expertise and talk through your options about all things web.
@@ -107,7 +107,7 @@
 			</div>
 
 			<div
-				class={`flex gap-xl justify-between transition-transform ease-out duration-500 delay-[50ms] border-t pt-xl border-gray-6 ${
+				class={`flex flex-col sm:flex-row gap-sm md:gap-xl justify-between transition-transform ease-out duration-500${
 					animateIn2 ? '' : 'translate-y-sm'
 				}`}
 			>
@@ -116,7 +116,7 @@
 						topFadeOut ? 'text-gray-6' : 'text-gray-10'
 					}`}
 				>
-					<span class="text-gray-10">02.</span> Site creation
+					02. Site creation
 				</h3>
 				<p class="text-sm max-w-[400px] leading-relaxed">
 					A collaborative design process followed by the build, in which I use optimal tech.
@@ -124,16 +124,16 @@
 			</div>
 
 			<div
-				class={`flex gap-xl justify-between transition-transform ease-out duration-500 delay-[50ms] border-t pt-xl border-gray-6 ${
+				class={`flex flex-col sm:flex-row gap-sm md:gap-xl justify-between transition-transform ease-out duration-500${
 					animateIn2 ? '' : 'translate-y-sm'
 				}`}
 			>
 				<h3
-					class={`service-title transition-all ease-out duration-700 ${
+					class={` service-title transition-all ease-out duration-700 ${
 						topFadeOut ? 'text-gray-6' : 'text-gray-10'
 					}`}
 				>
-					<span class="text-gray-10">03.</span> Platforms
+					03. Platforms
 				</h3>
 				<p class="text-sm max-w-[400px] leading-relaxed">
 					Site builds and updates on cms platforms such as Squarespace, Cargo and Wordpress.
@@ -145,6 +145,6 @@
 
 <style>
 	.service-title {
-		@apply uppercase text-sm tracking-wide leading-relaxed font-light;
+		@apply uppercase text-sm tracking-wide leading-relaxed font-light shrink-0;
 	}
 </style>

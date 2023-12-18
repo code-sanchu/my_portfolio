@@ -63,7 +63,7 @@
 	</h2>
 
 	<p
-		class={`max-w-[500px] mt-[4.5rem] transition-colors ease-out duration-700  ${
+		class={`max-w-[500px] mt-xl md:mt-[4.5rem] transition-colors ease-out duration-700  ${
 			!animateIn2 ? 'text-gray-6' : 'text-gray-12'
 		}`}
 	>

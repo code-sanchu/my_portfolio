@@ -31,7 +31,7 @@
 
 <div bind:this={containerNode}>
 	<h1
-		class={`text-[3rem] uppercase tracking-wide leading-none transition-colors ease-out duration-700 ${
+		class={`text-[2.5rem] uppercase tracking-wide leading-none transition-colors ease-out duration-700 ${
 			topfadeOut ? 'text-gray-6' : 'text-gray-12'
 		}`}
 	>
@@ -41,7 +41,7 @@
 	<!-- <p class="leading-none tracking-wider mt-xxs flex font-light text-gray-9">
 		Bespoke website creation
 	</p> -->
-	<p class="leading-none tracking-widest mt-xs flex font-light text-lg">
+	<p class="leading-none tracking-widest mt-xxs flex font-light text-base">
 		<span
 			class={`transition-colors ease-out duration-500 ${
 				topfadeOut ? 'text-gray-6' : 'text-my-olive'

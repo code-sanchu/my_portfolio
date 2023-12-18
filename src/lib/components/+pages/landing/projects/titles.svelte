@@ -1,5 +1,6 @@
 <script context="module" lang="ts">
 	import { projects } from '^data';
+	import { getFirstLetters } from '^helpers';
 	import type { ProjectId } from '^types';
 	import { onMount } from 'svelte';
 
@@ -7,14 +8,17 @@
 </script>
 
 <script lang="ts">
-	export let onClickTitle: (projectId: ProjectId) => void;
+	export let handleShowProjectCard: (projectId: ProjectId) => void;
 
 	export let topFadeOut: boolean;
 
 	let node: HTMLDivElement;
+	let windowWidth: number;
 	let windowHeight: number;
 
 	let animateIn: boolean;
+
+	let collapseTitles = false;
 
 	const textColorStrings = [
 		'text-my-olive',
@@ -46,11 +50,11 @@
 		}
 	}}
 />
-<svelte:window bind:innerHeight={windowHeight} />
+<svelte:window bind:innerHeight={windowHeight} bind:innerWidth={windowWidth} />
 
 <div
-	class={`inline-flex flex-col gap-xs transition-opacity ease-in duration-300 ${
-		animateIn ? '' : 'opacity-0'
+	class={`flex gap-xs transition-all ease-in duration-300 ${animateIn ? '' : 'opacity-0'} ${
+		collapseTitles ? 'flex-row flex-wrap gap-md' : 'flex-col'
 	}`}
 	bind:this={node}
 >
@@ -60,8 +64,19 @@
 		<h4
 			class={`relative cursor-pointer font-light text-lg transition-all ease-out duration-700 ${
 				topFadeOut ? 'text-gray-6' : 'text-gray-9'
-			} hover:text-gray-12 ${animateIn ? '' : 'translate-y-xs'}`}
-			on:click={() => onClickTitle(project.id)}
+			} hover:text-gray-12 ${animateIn ? '' : 'translate-y-xs'} ${
+				collapseTitles ? 'flex flex-col' : ''
+			}`}
+			on:click={() => {
+				if (windowWidth <= 640) {
+					collapseTitles = true;
+					setTimeout(() => {
+						handleShowProjectCard(project.id);
+					}, 200);
+				} else {
+					handleShowProjectCard(project.id);
+				}
+			}}
 			style:transition-delay="{i * 50}ms"
 		>
 			<span
@@ -70,9 +85,9 @@
 				}`}>+.</span
 			>
 			<span
-				class={`underline-offset-2 tracking-wide uppercase text-sm underline hover:text-gray-10 transition-colors ease-linear duration-200 ${
+				class={`underline-offset-2 tracking-wide uppercase text-sm underline hover:text-gray-10 transition-all ease-linear duration-200 ${
 					topFadeOut ? 'text-gray-6' : 'text-gray-12'
-				}`}>{project.title}</span
+				}`}>{!collapseTitles ? project.title : getFirstLetters(project.title)}</span
 			>
 		</h4>
 	{/each}

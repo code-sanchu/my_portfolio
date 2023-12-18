@@ -1,68 +1,56 @@
 <script context="module" lang="ts">
-	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 </script>
 
 <script lang="ts">
-	let mounted = false;
+	let windowWidth: number;
 
-	onMount(() => {
-		mounted = true;
-	});
+	$: baseWidth = windowWidth < 700 ? 120 : 200;
+	$: increment = windowWidth < 700 ? 10 : 12;
+
+	const firstSet = [
+		'border-my-olive',
+		'border-my-light-blue',
+		'border-my-dark-red',
+		'border-my-sea-green',
+		'border-my-dark-olive',
+		'border-my-orange',
+		'border-my-dark-slate-gray',
+		'border-my-plum'
+	];
+
+	const secondSet = [
+		'border-my-steel-blue',
+		'border-my-royal-blue',
+		'border-my-golden-rod',
+		'border-my-navy-blue',
+		'border-my-red-fire',
+		'border-my-forest-green',
+		'border-my-tomato',
+		'border-my-rosy-brown'
+	];
 </script>
 
-<div class="fixed top-[30%] -left-lg opacity-70" transition:fade>
-	<div class="relative h-[80px]">
-		<div
-			class="absolute -translate-x-1/2 top-1/2 -translate-y-1/2 w-[200px] aspect-square rounded-full border border-my-olive"
-		/>
-		<div
-			class="absolute -translate-x-1/2 top-1/2 -translate-y-1/2 w-[210px] aspect-square rounded-full border border-my-light-blue"
-		/>
-		<div
-			class="absolute -translate-x-1/2 top-1/2 -translate-y-1/2 w-[220px] aspect-square rounded-full border border-my-dark-red"
-		/>
-		<div
-			class="absolute -translate-x-1/2 top-1/2 -translate-y-1/2 w-[230px] aspect-square rounded-full border border-my-sea-green"
-		/>
-		<div
-			class="absolute -translate-x-1/2 top-1/2 -translate-y-1/2 w-[240px] aspect-square rounded-full border border-my-dark-olive"
-		/>
-		<div
-			class="absolute -translate-x-1/2 top-1/2 -translate-y-1/2 w-[250px] aspect-square rounded-full border border-my-orange"
-		/>
-		<div
-			class="absolute -translate-x-1/2 top-1/2 -translate-y-1/2 w-[260px] aspect-square rounded-full border border-my-dark-slate-gray"
-		/>
-		<div
-			class="absolute -translate-x-1/2 top-1/2 -translate-y-1/2 w-[270px] aspect-square rounded-full border border-my-plum"
-		/>
-	</div>
+<svelte:window bind:innerWidth={windowWidth} />
 
-	<div class="relative ml-sm">
-		<div
-			class="absolute -translate-x-1/2 top-1/2 -translate-y-1/2 w-[200px] aspect-square rounded-full border border-my-steel-blue"
-		/>
-		<div
-			class="absolute -translate-x-1/2 top-1/2 -translate-y-1/2 w-[210px] aspect-square rounded-full border border-my-royal-blue"
-		/>
-		<div
-			class="absolute -translate-x-1/2 top-1/2 -translate-y-1/2 w-[220px] aspect-square rounded-full border border-my-golden-rod"
-		/>
-		<div
-			class="absolute -translate-x-1/2 top-1/2 -translate-y-1/2 w-[230px] aspect-square rounded-full border border-my-navy-blue"
-		/>
-		<div
-			class="absolute -translate-x-1/2 top-1/2 -translate-y-1/2 w-[240px] aspect-square rounded-full border border-my-red-fire"
-		/>
-		<div
-			class="absolute -translate-x-1/2 top-1/2 -translate-y-1/2 w-[250px] aspect-square rounded-full border border-my-forest-green"
-		/>
-		<div
-			class="absolute -translate-x-1/2 top-1/2 -translate-y-1/2 w-[260px] aspect-square rounded-full border border-my-tomato"
-		/>
-		<div
-			class="absolute -translate-x-1/2 top-1/2 -translate-y-1/2 w-[270px] aspect-square rounded-full border border-my-rosy-brown"
-		/>
+{#if baseWidth && increment}
+	<div class="fixed top-[22%] sm:top-[30%] -left-lg opacity-70" transition:fade>
+		<div class="relative h-[80px]">
+			{#each firstSet as border, i}
+				<div class={`line border ${border}`} style:width="{baseWidth + increment * i}px" />
+			{/each}
+		</div>
+
+		<div class="relative ml-sm">
+			{#each secondSet as border, i}
+				<div class={`line border ${border}`} style:width="{baseWidth + increment * i}px" />
+			{/each}
+		</div>
 	</div>
-</div>
+{/if}
+
+<style>
+	.line {
+		@apply absolute -translate-x-1/2 top-1/2 -translate-y-1/2 aspect-square rounded-full;
+	}
+</style>
