@@ -1,13 +1,11 @@
 <script lang="ts" context="module">
 	import { ArrowLineRight, ArrowLineUpRight } from 'phosphor-svelte';
-	import { cubicOut } from 'svelte/easing';
-	import { fade } from 'svelte/transition';
 
 	import type { MyPick, Project } from '^types';
 
 	import { Picture } from '^components';
-	import { strToTextColoursArr } from '../_helpers';
 	import { onMount } from 'svelte';
+	import { strToTextColoursArr } from '../_helpers';
 </script>
 
 <script lang="ts">
@@ -51,7 +49,7 @@
 	</div>
 
 	<div
-		class={`relative mt-xs flex flex-wrap gap-y-xxs items-baseline transition-all duration-[300ms] ease-linear  ${
+		class={`relative mt-sm flex flex-wrap gap-y-xxs items-baseline transition-all duration-[300ms] ease-linear  ${
 			animateIn2 ? '' : 'opacity-0 translate-y-xs'
 		}`}
 	>

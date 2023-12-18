@@ -18,7 +18,7 @@
 
 	let animateIn: boolean;
 
-	let collapseTitles = false;
+	let collapseTitles: 'idle' | 'collapsing' | 'collapsed' = 'idle';
 
 	const textColorStrings = [
 		'text-my-olive',
@@ -53,8 +53,8 @@
 <svelte:window bind:innerHeight={windowHeight} bind:innerWidth={windowWidth} />
 
 <div
-	class={`flex gap-xs transition-all ease-in duration-300 ${animateIn ? '' : 'opacity-0'} ${
-		collapseTitles ? 'flex-row flex-wrap gap-md' : 'flex-col'
+	class={`flex transition-all ease-in duration-300 ${!animateIn ? 'opacity-0' : ''} ${
+		collapseTitles === 'idle' ? 'flex-col gap-xs' : 'flex-row flex-wrap gap-md'
 	}`}
 	bind:this={node}
 >
@@ -65,11 +65,12 @@
 			class={`relative cursor-pointer font-light text-lg transition-all ease-out duration-700 ${
 				topFadeOut ? 'text-gray-6' : 'text-gray-9'
 			} hover:text-gray-12 ${animateIn ? '' : 'translate-y-xs'} ${
-				collapseTitles ? 'flex flex-col' : ''
+				collapseTitles === 'idle' ? '' : 'flex flex-col'
 			}`}
 			on:click={() => {
-				if (windowWidth <= 640) {
-					collapseTitles = true;
+				if (windowWidth <= 640 && collapseTitles === 'idle') {
+					collapseTitles = 'collapsed';
+
 					setTimeout(() => {
 						handleShowProjectCard(project.id);
 					}, 200);
@@ -87,7 +88,7 @@
 			<span
 				class={`underline-offset-2 tracking-wide uppercase text-sm underline hover:text-gray-10 transition-all ease-linear duration-200 ${
 					topFadeOut ? 'text-gray-6' : 'text-gray-12'
-				}`}>{!collapseTitles ? project.title : getFirstLetters(project.title)}</span
+				}`}>{collapseTitles === 'idle' ? project.title : getFirstLetters(project.title)}</span
 			>
 		</h4>
 	{/each}
