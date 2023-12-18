@@ -13,7 +13,9 @@ export default {
 		extend: {
 			fontFamily: {
 				sans: ['Helvetica', 'sans-serif'],
-				mono: ['Skyhook', 'monospace']
+				mono: ['Skyhook', 'monospace'],
+				mono2: ['KlartextMono', 'monospace'],
+				mono3: ['Telegrama', 'monospace']
 			},
 
 			colors: {

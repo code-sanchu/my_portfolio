@@ -42,6 +42,38 @@
 	font-display: swap;
 }
 
+@font-face {
+	font-family: 'KlartextMono';
+	font-style: normal;
+	font-weight: 400;
+	src: url('/fonts/KlartextMono.ttf');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'KlartextMono';
+	font-style: normal;
+	font-weight: 300;
+	src: url('/fonts/KlartextMonoLight.ttf');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'KlartextMono';
+	font-style: normal;
+	font-weight: 100;
+	src: url('/fonts/KlartextMonoThin.ttf');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Telegrama';
+	font-style: normal;
+	font-weight: 400;
+	src: url('/fonts/telegrama_raw.otf');
+	font-display: swap;
+}
+
 html {
 	@apply outline-none active:outline-none focus:outline-none text-gray-12 overflow-x-hidden md:scrollbar-thin md:scrollbar-track-gray-50/50 md:scrollbar-thumb-gray-100 md:hover:scrollbar-thumb-gray-200;
 }

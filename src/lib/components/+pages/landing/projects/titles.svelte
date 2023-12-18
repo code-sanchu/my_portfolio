@@ -32,7 +32,7 @@
 		if (!animateIn) {
 			const rect = node.getBoundingClientRect();
 
-			animateIn = rect.bottom < windowHeight;
+			animateIn = rect.bottom - rect.height / 2 < windowHeight;
 		}
 	});
 </script>
@@ -42,14 +42,14 @@
 		if (!animateIn) {
 			const rect = node.getBoundingClientRect();
 
-			animateIn = rect.bottom < windowHeight;
+			animateIn = rect.bottom - rect.height / 2 < windowHeight;
 		}
 	}}
 />
 <svelte:window bind:innerHeight={windowHeight} />
 
 <div
-	class={`inline-flex flex-col gap-xxs transition-opacity ease-in duration-300 ${
+	class={`inline-flex flex-col gap-xs transition-opacity ease-in duration-300 ${
 		animateIn ? '' : 'opacity-0'
 	}`}
 	bind:this={node}
@@ -58,15 +58,17 @@
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 		<h4
-			class={`relative cursor-pointer font-mono text-lg transition-all ease-out duration-700 ${
-				topFadeOut ? 'text-gray-6' : textColorStrings[i]
-			} hover:text-gray-12 ${animateIn ? '' : 'translate-y-sm'}`}
+			class={`relative cursor-pointer font-light text-lg transition-all ease-out duration-700 ${
+				topFadeOut ? 'text-gray-6' : 'text-gray-9'
+			} hover:text-gray-12 ${animateIn ? '' : 'translate-y-xs'}`}
 			on:click={() => onClickTitle(project.id)}
 			style:transition-delay="{i * 50}ms"
 		>
-			<span>
-				{project.title}
-			</span>
+			<span class={`${textColorStrings[i]} text-sm`}>+.</span>
+			<span
+				class="text-gray-12 underline-offset-2 tracking-wide uppercase text-sm underline hover:text-gray-10 transition-colors ease-linear duration-200"
+				>{project.title}</span
+			>
 		</h4>
 	{/each}
 </div>

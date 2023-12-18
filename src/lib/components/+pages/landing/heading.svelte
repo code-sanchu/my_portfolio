@@ -31,47 +31,50 @@
 
 <div bind:this={containerNode}>
 	<h1
-		class={`text-5xl uppercase tracking-wide leading-none transition-colors ease-out duration-700 ${
+		class={`text-[3rem] uppercase tracking-wide leading-none transition-colors ease-out duration-700 ${
 			topfadeOut ? 'text-gray-6' : 'text-gray-12'
 		}`}
 	>
 		Tech-poiesis
 	</h1>
 
-	<p class="leading-none tracking-wider mt-xxs flex font-mono">
+	<!-- <p class="leading-none tracking-wider mt-xxs flex font-light text-gray-9">
+		Bespoke website creation
+	</p> -->
+	<p class="leading-none tracking-widest mt-xs flex font-light text-lg">
 		<span
 			class={`transition-colors ease-out duration-500 ${
-				topfadeOut ? 'text-gray-6' : 'text-my-olive '
+				topfadeOut ? 'text-gray-6' : 'text-my-olive'
 			}`}>B</span
 		>
 		<span
 			class={`transition-colors ease-out duration-500 ${
-				topfadeOut ? 'text-gray-6' : 'text-my-olive '
+				topfadeOut ? 'text-gray-6' : 'text-my-olive'
 			}`}>e</span
 		>
 		<span
 			class={`transition-colors ease-out duration-500 ${
-				topfadeOut ? 'text-gray-6' : 'text-my-light-blue '
+				topfadeOut ? 'text-gray-6' : 'text-my-light-blue'
 			}`}>s</span
 		>
 		<span
 			class={`transition-colors ease-out duration-500 ${
-				topfadeOut ? 'text-gray-6' : 'text-my-dark-red '
+				topfadeOut ? 'text-gray-6' : 'text-my-dark-red'
 			}`}>p</span
 		>
 		<span
 			class={`transition-colors ease-out duration-500 ${
-				topfadeOut ? 'text-gray-6' : 'text-my-sea-green '
+				topfadeOut ? 'text-gray-6' : 'text-my-sea-green'
 			}`}>o</span
 		>
 		<span
 			class={`transition-colors ease-out duration-500 ${
-				topfadeOut ? 'text-gray-6' : 'text-my-dark-olive '
+				topfadeOut ? 'text-gray-6' : 'text-my-dark-olive'
 			}`}>k</span
 		>
 		<span
 			class={`mr-xxs transition-colors ease-out duration-500 ${
-				topfadeOut ? 'text-gray-6' : 'text-my-orange '
+				topfadeOut ? 'text-gray-6' : 'text-my-orange'
 			}`}>e</span
 		>
 

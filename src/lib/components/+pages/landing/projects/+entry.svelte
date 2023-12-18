@@ -74,7 +74,7 @@
 	<div class={`overflow-x-hidden flex gap-xl`}>
 		<div class="shrink-0" bind:clientHeight={sectionHeightInitial}>
 			<h2
-				class={`text-xl uppercase tracking-wider mb-lg transition-colors ease-out duration-700 ${
+				class={`text-xl uppercase tracking-wider mb-xl transition-colors ease-out duration-700 ${
 					!animateIn || topFadeOut ? 'text-gray-6' : 'text-gray-12'
 				}`}
 				bind:this={headingNode}
@@ -90,7 +90,7 @@
 
 		{#if sectionHeightInitial}
 			<div
-				class={`relative flex-grow`}
+				class={`relative flex-grow transition-all ease-linear duration-500`}
 				style:height={projectCardsContainerHeight
 					? `${projectCardsContainerHeight}px`
 					: `${sectionHeightInitial}px`}
