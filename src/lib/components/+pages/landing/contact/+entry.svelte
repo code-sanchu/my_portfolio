@@ -5,27 +5,41 @@
 </script>
 
 <script lang="ts">
+	let headingNode: HTMLDivElement;
 	let containerNode: HTMLDivElement;
 
 	let windowHeight: number;
 
-	let animateIn = false;
+	let animateIn1 = false;
+	let animateIn2 = false;
 
 	onMount(() => {
-		if (!animateIn) {
+		if (!animateIn1) {
+			const rect = headingNode.getBoundingClientRect();
+
+			animateIn1 = rect.bottom < windowHeight;
+		}
+
+		if (!animateIn2) {
 			const rect = containerNode.getBoundingClientRect();
 
-			animateIn = rect.bottom - rect.height / 2 < windowHeight;
+			animateIn2 = rect.bottom - rect.height / 2 < windowHeight;
 		}
 	});
 </script>
 
 <svelte:document
 	on:scroll={() => {
-		if (!animateIn) {
+		if (!animateIn1) {
+			const rect = headingNode.getBoundingClientRect();
+
+			animateIn1 = rect.bottom < windowHeight;
+		}
+
+		if (!animateIn2) {
 			const rect = containerNode.getBoundingClientRect();
 
-			animateIn = rect.bottom - rect.height / 2 < windowHeight;
+			animateIn2 = rect.bottom - rect.height / 2 < windowHeight;
 		}
 	}}
 />
@@ -35,25 +49,25 @@
 	{#if containerNode}
 		<div
 			class={`absolute top-0 left-0 transition-all ease-out duration-700 border-t border-gray-6`}
-			style:width={!animateIn ? '0px' : `${containerNode.getBoundingClientRect().width}px`}
+			style:width={!animateIn1 ? '0px' : `${containerNode.getBoundingClientRect().width}px`}
 		/>
 	{/if}
 
 	<h2
 		class={`text-xl uppercase tracking-wider mb-xl transition-colors ease-out duration-700 ${
-			!animateIn ? 'text-gray-6' : 'text-gray-12'
+			!animateIn1 ? 'text-gray-6' : 'text-gray-12'
 		}`}
+		bind:this={headingNode}
 	>
-		Projects.
+		Contact.
 	</h2>
 
 	<p
 		class={`max-w-[500px] mt-[4.5rem] transition-colors ease-out duration-700  ${
-			!animateIn ? 'text-gray-6' : 'text-gray-12'
+			!animateIn2 ? 'text-gray-6' : 'text-gray-12'
 		}`}
 	>
-		It'd be great to hear from you if for just an informal chat, you're ready to build a site or
-		anything in-between.
+		It'd be great to hear from you if just for an informal chat or if you're ready to get building.
 	</p>
 
 	<div class="mt-xl">

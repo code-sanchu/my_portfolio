@@ -95,11 +95,11 @@
 				}`}
 			>
 				<h3
-					class={`service-title transition-all ease-out duration-700 ${
-						topFadeOut ? 'text-gray-6' : 'text-my-light-blue'
+					class={`service-title transition-all ease-out duration-700 font-light ${
+						topFadeOut ? 'text-gray-6' : 'text-gray-10'
 					}`}
 				>
-					<span class="text-my-light-blue">01.</span> Consultancy
+					<span class="text-gray-10">01.</span> Consultancy
 				</h3>
 				<p class="text-sm max-w-[400px] leading-relaxed">
 					I share my expertise and talk through your options about all things web.
@@ -113,10 +113,10 @@
 			>
 				<h3
 					class={`service-title transition-all ease-out duration-700 ${
-						topFadeOut ? 'text-gray-6' : 'text-my-light-blue'
+						topFadeOut ? 'text-gray-6' : 'text-gray-10'
 					}`}
 				>
-					<span class="text-my-light-blue">02.</span> Site creation
+					<span class="text-gray-10">02.</span> Site creation
 				</h3>
 				<p class="text-sm max-w-[400px] leading-relaxed">
 					A collaborative design process followed by the build, in which I use optimal tech.
@@ -130,10 +130,10 @@
 			>
 				<h3
 					class={`service-title transition-all ease-out duration-700 ${
-						topFadeOut ? 'text-gray-6' : 'text-my-light-blue'
+						topFadeOut ? 'text-gray-6' : 'text-gray-10'
 					}`}
 				>
-					<span class="text-my-light-blue">03.</span> Platforms
+					<span class="text-gray-10">03.</span> Platforms
 				</h3>
 				<p class="text-sm max-w-[400px] leading-relaxed">
 					Site builds and updates on cms platforms such as Squarespace, Cargo and Wordpress.
@@ -145,6 +145,6 @@
 
 <style>
 	.service-title {
-		@apply font-light uppercase text-sm tracking-wide leading-relaxed;
+		@apply uppercase text-sm tracking-wide leading-relaxed font-light;
 	}
 </style>

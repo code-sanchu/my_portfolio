@@ -9,9 +9,8 @@
 	// todo: coloured circles sticky to top for mobile?;
 	// todo: img loader widget.
 	// todo: projects height calculation will change for small devices.
-	// todo: hide raie logo on image.
+	// todo: hide raie logo on image?
 	// todo: sticky header as on alesh, etc. probs don't need store.
-	// todo: projects titles section doesn't quite seem right when scoll down to it.
 
 	// NEED TO DO
 	// (2) responsive.
