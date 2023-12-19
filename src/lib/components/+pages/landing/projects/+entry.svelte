@@ -5,7 +5,7 @@
 	import type { ProjectId } from '^types';
 
 	import Cards from './cards.svelte';
-	import Titles from './titles.svelte';
+	import Titles from './titles';
 
 	type ProjectCardType = 'info' | 'main-card';
 </script>
