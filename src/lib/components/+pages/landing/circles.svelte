@@ -34,7 +34,10 @@
 <svelte:window bind:innerWidth={windowWidth} />
 
 {#if baseWidth && increment}
-	<div class="fixed top-[22%] sm:top-[30%] -left-lg opacity-70" transition:fade>
+	<div
+		class="fixed top-[22%] sm:top-[30%] -left-lg transition-transform ease-out duration-75"
+		transition:fade
+	>
 		<div class="relative h-[80px]">
 			{#each firstSet as border, i}
 				<div class={`line border ${border}`} style:width="{baseWidth + increment * i}px" />
@@ -51,6 +54,6 @@
 
 <style>
 	.line {
-		@apply absolute -translate-x-1/2 top-1/2 -translate-y-1/2 aspect-square rounded-full;
+		@apply absolute -translate-x-1/2 top-1/2 -translate-y-1/2 aspect-square rounded-full opacity-40;
 	}
 </style>

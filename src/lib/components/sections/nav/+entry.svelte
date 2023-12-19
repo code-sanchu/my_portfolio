@@ -24,7 +24,7 @@
 	</div>
 
 	<button
-		class="text-xs tracking-wider text-gray-12 underline decoration-gray-12 underline-offset-4 hover:text-my-dark-slate-gray hover:decoration-my-dark-slate-gray ease-linear duration-200"
+		class="text-xs tracking-wider text-gray-11 underline underline-offset-4 hover:text-gray-12 ease-linear duration-200"
 		type="button"
 		id="contact-link"
 	>

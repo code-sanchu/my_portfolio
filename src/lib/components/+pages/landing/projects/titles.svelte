@@ -1,24 +1,23 @@
 <script context="module" lang="ts">
 	import { projects } from '^data';
 	import { getFirstLetters } from '^helpers';
-	import type { ProjectId } from '^types';
-	import { onMount } from 'svelte';
+	import { flip } from 'svelte/animate';
+	import { crossfade } from 'svelte/transition';
 
 	const projectsArr = Object.values(projects);
 </script>
 
 <script lang="ts">
-	export let handleShowProjectCard: (projectId: ProjectId) => void;
+	let topFadeOut = false;
 
-	export let topFadeOut: boolean;
+	let titlesNodeUntransformed: HTMLDivElement;
 
-	let node: HTMLDivElement;
 	let windowWidth: number;
 	let windowHeight: number;
 
-	let animateIn: boolean;
+	let collapseTitles1 = false;
 
-	let collapseTitles: 'idle' | 'collapsing' | 'collapsed' = 'idle';
+	const [send, receive] = crossfade({ duration: 1000 });
 
 	const textColorStrings = [
 		'text-my-olive',
@@ -31,65 +30,69 @@
 		'text-my-plum',
 		'text-my-steel-blue'
 	];
-
-	onMount(() => {
-		if (!animateIn) {
-			const rect = node.getBoundingClientRect();
-
-			animateIn = rect.bottom - rect.height / 2 < windowHeight;
-		}
-	});
 </script>
 
-<svelte:document
-	on:scroll={() => {
-		if (!animateIn) {
-			const rect = node.getBoundingClientRect();
-
-			animateIn = rect.bottom - rect.height / 2 < windowHeight;
-		}
-	}}
-/>
 <svelte:window bind:innerHeight={windowHeight} bind:innerWidth={windowWidth} />
 
 <div
-	class={`flex transition-all ease-in duration-300 ${!animateIn ? 'opacity-0' : ''} ${
-		collapseTitles === 'idle' ? 'flex-col gap-xs' : 'flex-row flex-wrap gap-md'
-	}`}
-	bind:this={node}
+	class={`fixed top-1/2 flex items-start gap-x-md gap-y-xs flex-wrap`}
+	bind:this={titlesNodeUntransformed}
 >
-	{#each projectsArr as project, i}
+	{#each projectsArr.filter((_) => collapseTitles1) as project, i}
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 		<h4
-			class={`relative cursor-pointer font-light text-lg transition-all ease-out duration-700 ${
-				topFadeOut ? 'text-gray-6' : 'text-gray-9'
-			} hover:text-gray-12 ${animateIn ? '' : 'translate-y-xs'} ${
-				collapseTitles === 'idle' ? '' : 'flex flex-col'
-			}`}
+			class={`relative font-light text-lg flex flex-col gap-xs shrink-0`}
 			on:click={() => {
-				if (windowWidth <= 640 && collapseTitles === 'idle') {
-					collapseTitles = 'collapsed';
-
-					setTimeout(() => {
-						handleShowProjectCard(project.id);
-					}, 200);
-				} else {
-					handleShowProjectCard(project.id);
-				}
+				collapseTitles1 = !collapseTitles1;
 			}}
-			style:transition-delay="{i * 50}ms"
+			in:receive={{ key: `${project.id}` }}
+			out:send={{ key: `${project.id}` }}
 		>
 			<span
 				class={`text-sm transition-colors ease-out duration-700 ${
 					topFadeOut ? 'text-gray-6' : textColorStrings[i]
 				}`}>+.</span
 			>
-			<span
-				class={`underline-offset-2 tracking-wide uppercase text-sm underline hover:text-gray-10 transition-all ease-linear duration-200 ${
-					topFadeOut ? 'text-gray-6' : 'text-gray-12'
-				}`}>{collapseTitles === 'idle' ? project.title : getFirstLetters(project.title)}</span
+			<span class={`tracking-wider uppercase border-b text-sm`}
+				>{getFirstLetters(project.title)}</span
 			>
 		</h4>
+	{/each}
+</div>
+
+<div
+	class={`fixed top-1/2 left-sm right-sm flex items-start flex-col gap-sm`}
+	bind:this={titlesNodeUntransformed}
+>
+	{#each projectsArr.filter((_) => !collapseTitles1) as project, i}
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+		<h4
+			class={`relative font-light text-lg flex flex-row gap-xs`}
+			on:click={() => {
+				collapseTitles1 = !collapseTitles1;
+			}}
+			in:receive={{ key: project.id }}
+			out:send={{ key: project.id }}
+		>
+			<span
+				class={`text-sm transition-colors ease-out duration-700 ${
+					topFadeOut ? 'text-gray-6' : textColorStrings[i]
+				}`}>+.</span
+			>
+			<span class={`tracking-wider uppercase border-b text-sm`}>{project.title}</span>
+		</h4>
+		<!-- 			<h4
+				class={`absolute font-light text-lg flex flex-row gap-xs`}
+				on:click={() => {
+					collapseTitles = !collapseTitles;
+				}}
+				in:send={{ key: project.id }}
+				out:receive={{ key: project.id }}
+			>
+				<span class={`text-sm`}>+.</span>
+				<span class={`tracking-wider uppercase border-b text-sm`}>{project.title}</span>
+			</h4> -->
 	{/each}
 </div>

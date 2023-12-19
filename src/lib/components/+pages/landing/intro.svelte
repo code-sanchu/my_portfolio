@@ -40,9 +40,9 @@
 <svelte:window bind:innerHeight={windowHeight} />
 
 <p
-	class={`text-base pt-xl transition-all ease-out duration-700 ${show ? '' : 'opacity-0'} ${
-		topfadeOut ? 'text-gray-6' : 'text-gray-12'
-	}`}
+	class={`text-sm md:text-base pt-xl font-light transition-all ease-out duration-700 leading-[1.35rem] ${
+		show ? '' : 'opacity-0'
+	} ${topfadeOut ? 'text-gray-6' : 'text-gray-12'}`}
 	bind:this={containerNode}
 >
 	I'm a design-focused web engineer who provides consultancy and tech services with a focus on

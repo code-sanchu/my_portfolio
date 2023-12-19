@@ -39,7 +39,7 @@
 
 	<!-- <div class="mx-sm mb-2xl flex flex-col gap-[270px]" transition:fade> -->
 	<div class="mx-sm mb-2xl flex flex-col gap-3xl" transition:fade>
-		<div class="w-[580px] max-w-full pl-md pr-lg" id="about-section">
+		<div class="w-[580px] max-w-full pr-xl" id="about-section">
 			<Intro />
 		</div>
 
