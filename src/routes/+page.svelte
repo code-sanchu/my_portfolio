@@ -26,11 +26,11 @@
 
 {#if mounted}
 	<div class="fixed z-20 left-0 top-0 w-full" transition:fade>
-		<!-- <Nav /> -->
+		<Nav />
 	</div>
 
 	<div class="fixed top-[22%] sm:top-[30%] -left-lg">
-		<!-- <Circles /> -->
+		<Circles />
 	</div>
 
 	<div class="relative min-h-screen grid place-items-center translate-y-[10vh]" transition:fade>

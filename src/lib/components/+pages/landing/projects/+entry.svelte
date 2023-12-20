@@ -83,7 +83,7 @@
 			</h2>
 		</div>
 
-		<div class="flex flex-col gap-lg overflow-x-hidden scrollbar-none">
+		<div class="relative flex flex-col gap-lg overflow-x-hidden overflow-y-visible scrollbar-none">
 			<Titles
 				bind:topFadeOut
 				handleShowProjectCard={(projectId) => {
