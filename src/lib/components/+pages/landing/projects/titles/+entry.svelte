@@ -23,6 +23,9 @@
 
 	$: collapseEnabled = windowWidth && windowWidth <= 768;
 
+	let collapseTitlesStatus: 'idle' | 'transitioning-out' | 'transitioned' | 'transitioning-in' =
+		'idle';
+
 	const handleClickTitle = (projectId: ProjectId) => {
 		if (!collapseEnabled) {
 			handleShowProjectCard(projectId);
@@ -40,11 +43,12 @@
 					handleShowProjectCard(projectId);
 				}, 450);
 			}, collapseDuration);
-		}
-	};
 
-	let collapseTitlesStatus: 'idle' | 'transitioning-out' | 'transitioned' | 'transitioning-in' =
-		'idle';
+			return;
+		}
+
+		handleShowProjectCard(projectId);
+	};
 
 	const textColorStrings = [
 		'text-my-olive',
@@ -135,13 +139,25 @@
 
 <svelte:window bind:innerHeight={windowHeight} bind:innerWidth={windowWidth} />
 
+<button
+	class="absolute left-0 top-0"
+	on:click={() => {
+		collapseTitlesStatus = 'transitioning-in';
+
+		setTimeout(() => {
+			collapseTitlesStatus = 'idle';
+		}, collapseDuration);
+	}}
+	type="button">expand</button
+>
+
 <div
-	class="relative border transition-all duration-[500ms] ease-linear"
+	class="relative transition-all duration-[1850ms] delay-0 ease-in-out"
 	style:height={!fullHeight || !collapsedHeight
 		? 'auto'
 		: !collapseEnabled ||
 		  collapseTitlesStatus === 'idle' ||
-		  collapseTitlesStatus === 'transitioning-out'
+		  collapseTitlesStatus === 'transitioning-in'
 		? `${fullHeight}px`
 		: `${collapsedHeight}px`}
 >

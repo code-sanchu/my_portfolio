@@ -61,7 +61,7 @@
 />
 <svelte:window bind:innerHeight={windowHeight} />
 
-<div class={`relative pt-2xl overflow-hidden`} bind:this={containerNode}>
+<div class={`relative pt-2xl overflow-x-hidden scrollbar-none`} bind:this={containerNode}>
 	{#if containerNode}
 		<div
 			class={`absolute top-0 left-0 transition-all ease-out duration-700 border-t ${
@@ -71,7 +71,7 @@
 		/>
 	{/if}
 
-	<div class={`overflow-hidden`}>
+	<div class={`scrollbar-none overflow-x-hidden`}>
 		<div class="shrink-0" bind:clientHeight={sectionHeightInitial}>
 			<h2
 				class={`text-xl uppercase tracking-[0.075em]  mb-xl transition-colors ease-out duration-700 font-light ${
@@ -83,7 +83,7 @@
 			</h2>
 		</div>
 
-		<div class="flex flex-col gap-lg overflow-hidden">
+		<div class="flex flex-col gap-lg overflow-x-hidden scrollbar-none">
 			<Titles
 				bind:topFadeOut
 				handleShowProjectCard={(projectId) => {
