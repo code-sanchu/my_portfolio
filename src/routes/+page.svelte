@@ -33,15 +33,15 @@
 		<!-- <Circles /> -->
 	</div>
 
-	<div class="relative min-h-screen grid place-items-center translate-y-[10vh]" transition:fade>
+	<!-- <div class="relative min-h-screen grid place-items-center translate-y-[10vh]" transition:fade>
 		<Heading />
-	</div>
+	</div> -->
 
 	<!-- <div class="mx-sm mb-2xl flex flex-col gap-[270px]" transition:fade> -->
 	<div class="mx-sm mb-2xl flex flex-col gap-3xl" transition:fade>
-		<div class="w-[580px] max-w-full pr-xl" id="about-section">
+		<!-- <div class="w-[580px] max-w-full pr-xl" id="about-section">
 			<Intro />
-		</div>
+		</div> -->
 
 		<div id="projects-section">
 			<Projects />
