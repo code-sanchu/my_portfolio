@@ -5,7 +5,10 @@
 <script lang="ts">
 	// todo: is a bit janky.
 	export let letter: string;
-	export let collapse: boolean;
+	export let collapseStatus: 'idle' | 'transitioning-out' | 'transitioned' | 'transitioning-in' =
+		'idle';
+
+	$: collapse = collapseStatus === 'transitioning-out' || collapseStatus === 'transitioned';
 
 	let width: number;
 </script>
@@ -25,6 +28,6 @@
 <style>
 	.my-style {
 		transform-origin: top left;
-		transition: opacity 500ms linear, width 500ms ease-out, transform 700ms ease-out;
+		transition: opacity 800ms linear, width 800ms ease-out, transform 1000ms ease-out;
 	}
 </style>

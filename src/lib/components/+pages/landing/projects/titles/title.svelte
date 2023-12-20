@@ -115,7 +115,7 @@
 		on:click={() => (collapseTitles1 = !collapseTitles1)}
 	>
 		{#each projectsArr[0].title.split('') as letter}
-			<Letter bind:letter bind:collapse={collapseTitles1} />
+			<Letter bind:letter bind:collapseStatus={collapseTitles1} />
 		{/each}
 	</span>
 {/if}
