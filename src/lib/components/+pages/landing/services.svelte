@@ -59,7 +59,7 @@
 <svelte:window bind:innerHeight={windowHeight} />
 
 <div
-	class={`relative pt-2xl transition-colors ease-out duration-700 ${
+	class={`relative pt-2xl transition-colors ease-out duration-700 font-light ${
 		!animateIn1 || topFadeOut ? 'text-gray-6' : 'text-gray-12'
 	}`}
 	bind:this={containerNode}
@@ -75,7 +75,7 @@
 
 	<div class={`flex flex-col gap-sm md:flex-row items-start md:gap-xl justify-between`}>
 		<h2
-			class={`text-xl uppercase tracking-wider mb-xl transition-colors ease-out duration-700 ${
+			class={`text-xl uppercase tracking-[0.075em] mb-xl transition-colors ease-out duration-700 ${
 				!animateIn1 || topFadeOut ? 'text-gray-6' : 'text-gray-12'
 			}`}
 			bind:this={headingNode}
@@ -145,6 +145,6 @@
 
 <style>
 	.service-title {
-		@apply uppercase text-sm tracking-wide leading-relaxed font-light shrink-0;
+		@apply uppercase text-sm tracking-wider leading-relaxed font-light shrink-0;
 	}
 </style>

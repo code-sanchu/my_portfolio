@@ -22,11 +22,7 @@
 		{@const projectData = projects[shownProject.id]}
 
 		{#if shownProject.type === 'main-card'}
-			<AnimateCardIn
-				containerWidth={700}
-				bgColor={'bg-gray-6'}
-				skipWidthAnimation={shownProjectCards.length === 1}
-			>
+			<AnimateCardIn containerWidth={700} skipWidthAnimation={shownProjectCards.length === 1}>
 				<MainCard
 					data={{
 						title: projectData.title,
@@ -40,7 +36,7 @@
 				/>
 			</AnimateCardIn>
 		{:else}
-			<AnimateCardIn containerWidth={500} bgColor="bg-gray-6">
+			<AnimateCardIn containerWidth={500}>
 				<Info
 					data={{
 						descriptionLong: projectData.descriptionLong,

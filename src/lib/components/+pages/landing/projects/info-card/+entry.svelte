@@ -12,6 +12,8 @@
 </script>
 
 <script lang="ts">
+	import { Info } from 'phosphor-svelte';
+
 	export let data: MyPick<
 		Project,
 		'title' | 'descriptionLong' | 'siteUrl' | 'performanceUrl' | 'features' | 'year'
@@ -23,12 +25,12 @@
 </script>
 
 <div
-	class={`pr-md flex flex-col transition-colors ease-out duration-700 ${
+	class={`pr-md flex font-light flex-col transition-colors ease-out duration-700 ${
 		topFadeOut ? 'text-gray-6 pointer-events-none' : 'text-gray-12'
 	}`}
 	transition:fade={{ duration: 400, easing: cubicOut }}
 >
-	<h2 class="flex items-end uppercase text-sm sm:text-base tracking-wider">
+	<h2 class="flex items-center uppercase text-sm sm:text-base tracking-[0.06em]">
 		{#each titleArr as letter (letter.key)}
 			<span
 				class={`transition-colors ease-out duration-700 ${
@@ -36,15 +38,14 @@
 				} ${letter.letter !== ' ' ? '' : 'mr-xxs'}`}>{letter.letter}</span
 			>
 		{/each}
-		<span class="text-gray-6 text-xs ml-md">info</span>
 	</h2>
 
-	<div class="mt-sm flex font-mono text-sm">
+	<div class="mt-sm flex font-mono text-[0.8rem]">
 		<p class="">Date&nbsp;—&nbsp;</p>
 		<p class="">{@html data.year}.</p>
 	</div>
 
-	<div class="mt-xs flex font-mono text-sm">
+	<div class="mt-xs flex font-mono text-[0.8rem]">
 		<p class="">Work&nbsp;—&nbsp;</p>
 		<p class="">Design, build & maintenance.</p>
 	</div>

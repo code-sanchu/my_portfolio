@@ -4,7 +4,6 @@
 
 <script lang="ts">
 	export let containerWidth: number;
-	export let bgColor: string;
 	export let skipWidthAnimation = false;
 
 	let show = false;
@@ -15,17 +14,15 @@
 	const handleTransition = () => {
 		show = true;
 
+		showLine = true;
+
 		setTimeout(() => {
-			showLine = true;
+			hideLine = true;
 
 			setTimeout(() => {
-				hideLine = true;
-
-				setTimeout(() => {
-					showContent = true;
-				}, 300);
+				showContent = true;
 			}, 200);
-		}, 0);
+		}, 500);
 	};
 
 	onMount(() => {
@@ -36,14 +33,14 @@
 </script>
 
 <div
-	class={`relative max-w-full shrink-0 transition-all ease-in`}
+	class={`relative max-w-full shrink-0 transition-all ease-in-out`}
 	style:width={show ? `${containerWidth}px` : '0px'}
-	style:transition-duration={skipWidthAnimation ? '0ms' : '300ms'}
+	style:transition-duration={skipWidthAnimation ? '0ms' : '1000ms'}
 >
 	<div
-		class={`z-10 absolute left-0 top-0 transition-all ease-in duration-500 h-[3px] max-w-full ${
+		class={`z-10 absolute left-0 top-0 transition-all ease-in duration-[800ms] h-[3px] max-w-full bg-my-light-blue/20 ${
 			hideLine ? 'opacity-0' : ''
-		} ${bgColor}`}
+		}`}
 		style:width={showLine ? `${containerWidth - 24}px` : '0px'}
 	/>
 

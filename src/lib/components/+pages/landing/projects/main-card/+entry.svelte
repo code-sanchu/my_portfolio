@@ -49,11 +49,11 @@
 	</div>
 
 	<div
-		class={`relative mt-sm flex flex-wrap gap-y-xxs items-baseline transition-all duration-[300ms] ease-linear  ${
+		class={`relative mt-md inline-flex flex-wrap gap-y-xxs font-light items-baseline transition-all duration-[300ms] ease-linear  ${
 			animateIn2 ? '' : 'opacity-0 translate-y-xs'
 		}`}
 	>
-		<span class="flex uppercase text-sm tracking-wider">
+		<span class="inline-flex uppercase text-sm tracking-[0.06em]">
 			{#each titleArr as letter (letter.key)}
 				<span
 					class={`transition-colors ease-out duration-700 ${
@@ -63,9 +63,11 @@
 			{/each}
 		</span>
 
-		<span class="text-sm">, {@html data.year}</span>
+		<span class="flex flex-wrap">
+			<span class="text-sm tracking-[0.06em]">, {@html data.year}</span>
 
-		<span class="text-sm">&nbsp;·&nbsp;{@html data.descriptionShort}</span>
+			<span class="text-sm float-left">&nbsp;·&nbsp;{@html data.descriptionShort}</span>
+		</span>
 
 		<span class="text-sm flex items-baseline"
 			>&nbsp;·&nbsp;
@@ -76,7 +78,7 @@
 					}`}><ArrowLineRight /></span
 				>
 				<span
-					class="text-xxs ml-[3px] uppercase underline decoration-transparent group-hover/link:text-my-light-blue transition-all ease-linear duration-200"
+					class="text-xxs ml-[3px] uppercase tracking-[0.06em] group-hover/link:text-my-light-blue transition-all ease-linear duration-200"
 					>info</span
 				>
 			</button>
@@ -91,7 +93,7 @@
 					}`}><ArrowLineUpRight /></span
 				>
 				<span
-					class="text-xxs ml-[3px] uppercase underline decoration-transparent group-hover/link:text-my-light-blue transition-all ease-linear duration-200"
+					class="text-xxs ml-[3px] tracking-[0.06em] uppercase group-hover/link:text-my-light-blue transition-all ease-linear duration-200"
 					>visit
 				</span>
 			</a>

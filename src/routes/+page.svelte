@@ -12,6 +12,7 @@
 	// todo: projects height calculation will change for small devices.
 	// todo: hide raie logo on image?
 	// todo: sticky header as on alesh, etc. probs don't need store.
+	// todo: font light site icon
 
 	// NEED TO DO
 	// (2) responsive.

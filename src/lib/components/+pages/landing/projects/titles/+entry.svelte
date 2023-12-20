@@ -125,7 +125,17 @@
 	};
 
 	let containerNode: HTMLDivElement;
+
+	let useAnimateInTransition = true;
 	let animateIn: boolean;
+
+	$: {
+		if (animateIn) {
+			setTimeout(() => {
+				useAnimateInTransition = false;
+			}, 500);
+		}
+	}
 
 	onMount(() => {
 		if (!animateIn) {
@@ -151,10 +161,9 @@
 	let collapsedHeight: number;
 
 	// todo: maintain height of projects section on collapse;
+
 	// todo: different transition time for opacity on animate-in?
-	// todo: is jank between expand button and titles.
 	// todo: top fade out.
-	// todo: apply new styling to main card + info
 </script>
 
 <svelte:window bind:innerHeight={windowHeight} bind:innerWidth={windowWidth} />
@@ -173,9 +182,7 @@
 />
 
 <div
-	class={`relative transition-all duration-[1850ms] delay-0 ease-in-out ${
-		!animateIn ? 'opacity-0' : ''
-	}`}
+	class={`relative transition-all duration-[1850ms] delay-0 ease-in-out pointer-events-none`}
 	style:height={!fullHeight || !collapsedHeight
 		? 'auto'
 		: !collapseEnabled ||
@@ -186,97 +193,99 @@
 	bind:this={containerNode}
 >
 	<div
-		class="flex items-start flex-col gap-sm opacity-0"
+		class="flex items-start flex-col gap-sm pointer-events-none opacity-0"
 		bind:clientHeight={fullHeight}
 		id={titlesContainerId}
 	>
 		{#each projectsArr as project (project.id)}
-			<h4 class="font-light text-lg flex flex-row gap-xs">
+			<h4 class="font-light flex flex-row gap-xs items-center">
 				<span class="text-sm">+.</span>
-				<span class="tracking-wider uppercase border-b text-sm">{project.title}</span>
+				<span class="tracking-wider border-b text-sm">{project.title}</span>
 			</h4>
 		{/each}
 	</div>
 
-	<div class="absolute left-0 top-0 w-full" bind:clientHeight={collapsedHeight}>
-		{#if collapseTitlesStatus === 'transitioned'}
-			<button
-				on:click={() => {
-					collapseTitlesStatus = 'transitioning-in';
-
-					setTimeout(() => {
-						collapseTitlesStatus = 'idle';
-					}, collapseDuration);
-				}}
-				class="uppercase text-[0.6rem] text-gray-6 tracking-wide"
-				type="button"
-				transition:fade>Expand</button
-			>
-		{/if}
-		<div
-			class="flex items-start gap-x-md gap-y-xs flex-wrap mt-md opacity-0"
-			id={titlesContainerChangedId}
-		>
-			{#each projectsArr as project (project.id)}
-				<h4 class="font-light text-lg flex flex-col gap-xs shrink-0">
-					<span class="text-sm">+.</span>
-					<span class="tracking-wider uppercase border-b text-sm"
-						>{getFirstLetters(project.title)}</span
-					>
-				</h4>
-			{/each}
-		</div>
-	</div>
-
-	{#if titlesPosition && titlesChangedPosition}
-		{#each projectsArr as project, i (project.id)}
-			<span
-				class={`fixed font-light ${
-					collapseTitlesStatus === 'transitioning-out' ||
-					collapseTitlesStatus === 'transitioning-in'
-						? 'transition-all ease-in-out duration-[1000ms]'
-						: ''
-				} ${topFadeOut ? 'text-gray-6' : textColorStrings[i]} ${!animateIn ? 'opacity-0' : ''}`}
-				style:top="{collapseTitlesStatus === 'idle' || collapseTitlesStatus === 'transitioning-in'
-					? titlesPosition[i].plus.top
-					: titlesChangedPosition[i].plus.top}px"
-				style:left="{collapseTitlesStatus === 'idle' || collapseTitlesStatus === 'transitioning-in'
-					? titlesPosition[i].plus.left
-					: titlesChangedPosition[i].plus.left}px"
-				style:transition-delay="{collapseTitlesStatus === 'transitioning-out' ||
-				collapseTitlesStatus === 'transitioning-in'
-					? i * 50
-					: 0}ms"
-			>
-				+.
-			</span>
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<!-- svelte-ignore a11y-no-static-element-interactions -->
-			<span
-				class={`fixed font-light tracking-wider border-b text-sm flex shrink-0 ${
-					collapseTitlesStatus === 'transitioning-out' ||
-					collapseTitlesStatus === 'transitioning-in'
-						? 'transition-all ease-in-out duration-[1000ms]'
-						: ''
-				} `}
-				style:top="{collapseTitlesStatus === 'idle' || collapseTitlesStatus === 'transitioning-in'
-					? titlesPosition[i].text.top
-					: titlesChangedPosition[i].text.top}px"
-				style:left="{collapseTitlesStatus === 'idle' || collapseTitlesStatus === 'transitioning-in'
-					? titlesPosition[i].text.left
-					: titlesChangedPosition[i].text.left}px"
-				style:transition-delay="{collapseTitlesStatus === 'transitioning-out' ||
-				collapseTitlesStatus === 'transitioning-in'
-					? i * 50
-					: 0}ms"
-				on:click={() => {
-					handleClickTitle(project.id);
-				}}
-			>
-				{#each project.title.split('') as letter}
-					<Letter bind:letter bind:collapseStatus={collapseTitlesStatus} />
-				{/each}
-			</span>
+	<div
+		class="absolute left-0 top-0 w-full flex items-start gap-x-md gap-y-xs flex-wrap opacity-0 pointer-events-none"
+		bind:clientHeight={collapsedHeight}
+		id={titlesContainerChangedId}
+	>
+		{#each projectsArr as project (project.id)}
+			<h4 class="font-light text-lg flex flex-col items-center gap-xs shrink-0">
+				<span class="text-sm">+.</span>
+				<span class="tracking-wider uppercase border-b text-sm"
+					>{getFirstLetters(project.title)}</span
+				>
+			</h4>
 		{/each}
-	{/if}
+	</div>
 </div>
+
+{#if titlesPosition && titlesChangedPosition}
+	{#if collapseTitlesStatus === 'transitioned'}
+		<button
+			on:click={() => {
+				collapseTitlesStatus = 'transitioning-in';
+
+				setTimeout(() => {
+					collapseTitlesStatus = 'idle';
+				}, collapseDuration);
+			}}
+			class="fixed z-10 uppercase text-[0.6rem] text-gray-6 tracking-wide right-sm -translate-y-full flex items-center gap-xxs"
+			style:top="{titlesChangedPosition[0].plus.top - 13}px"
+			type="button"
+			transition:fade={{ delay: 300 }}
+		>
+			<span>+</span>
+			<span>Expand</span></button
+		>
+	{/if}
+
+	{#each projectsArr as project, i (project.id)}
+		<span
+			class={`fixed font-light ${
+				collapseTitlesStatus === 'transitioning-out' || collapseTitlesStatus === 'transitioning-in'
+					? 'transition-all ease-in-out duration-[1000ms]'
+					: ''
+			} ${topFadeOut ? 'text-gray-6' : textColorStrings[i]}`}
+			style:top="{collapseTitlesStatus === 'idle' || collapseTitlesStatus === 'transitioning-in'
+				? titlesPosition[i].plus.top - 2
+				: titlesChangedPosition[i].plus.top}px"
+			style:left="{collapseTitlesStatus === 'idle' || collapseTitlesStatus === 'transitioning-in'
+				? titlesPosition[i].plus.left
+				: titlesChangedPosition[i].plus.left}px"
+			style:transition-delay="{collapseTitlesStatus === 'transitioning-out' ||
+			collapseTitlesStatus === 'transitioning-in'
+				? i * 50
+				: 0}ms"
+		>
+			+.
+		</span>
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
+		<span
+			class={`fixed border-b font-light tracking-wider text-sm flex shrink-0 cursor-pointer ${
+				collapseTitlesStatus === 'transitioning-out' || collapseTitlesStatus === 'transitioning-in'
+					? 'transition-all ease-in-out duration-[1000ms]'
+					: ''
+			} ${collapseTitlesStatus === 'idle' ? '' : 'border-transparent'} `}
+			style:top="{collapseTitlesStatus === 'idle' || collapseTitlesStatus === 'transitioning-in'
+				? titlesPosition[i].text.top
+				: titlesChangedPosition[i].text.top}px"
+			style:left="{collapseTitlesStatus === 'idle' || collapseTitlesStatus === 'transitioning-in'
+				? titlesPosition[i].text.left
+				: titlesChangedPosition[i].text.left}px"
+			style:transition-delay="{collapseTitlesStatus === 'transitioning-out' ||
+			collapseTitlesStatus === 'transitioning-in'
+				? i * 50
+				: 0}ms"
+			on:click={() => {
+				handleClickTitle(project.id);
+			}}
+		>
+			{#each project.title.split('') as letter}
+				<Letter bind:letter bind:collapseStatus={collapseTitlesStatus} />
+			{/each}
+		</span>
+	{/each}
+{/if}
