@@ -1,28 +1,56 @@
 <script context="module" lang="ts">
+	import { onDestroy, onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
+
 	import { projects } from '^data';
 	import { getFirstLetters } from '^helpers';
 	import type { ProjectId } from '^types';
-	import { crossfade } from 'svelte/transition';
 
 	import Letter from './letter.svelte';
-	import { onDestroy, onMount } from 'svelte';
 
 	const projectsArr = Object.values(projects);
 
-	const isUppercase = (string: string) => /^[A-Z]*$/.test(string);
+	const titlesContainerId = 'titles-container';
+	const titlesContainerChangedId = 'titles-container-changed';
+
+	const collapseDuration = 1000;
 </script>
 
 <script lang="ts">
 	export let handleShowProjectCard: (projectId: ProjectId) => void;
-	export let topFadeOut = false;
+	export let topFadeOut: boolean;
 
 	let windowWidth: number;
 	let windowHeight: number;
 
+	$: collapseEnabled = windowWidth && windowWidth <= 768;
+
 	let collapseTitlesStatus: 'idle' | 'transitioning-out' | 'transitioned' | 'transitioning-in' =
 		'idle';
 
-	const [send, receive] = crossfade({ duration: 700 });
+	const handleClickTitle = (projectId: ProjectId) => {
+		if (!collapseEnabled) {
+			handleShowProjectCard(projectId);
+
+			return;
+		}
+
+		if (collapseTitlesStatus === 'idle') {
+			collapseTitlesStatus = 'transitioning-out';
+
+			setTimeout(() => {
+				collapseTitlesStatus = 'transitioned';
+
+				setTimeout(() => {
+					handleShowProjectCard(projectId);
+				}, 450);
+			}, collapseDuration);
+
+			return;
+		}
+
+		handleShowProjectCard(projectId);
+	};
 
 	const textColorStrings = [
 		'text-my-olive',
@@ -36,125 +64,229 @@
 		'text-my-steel-blue'
 	];
 
-	let title1UnchangedNodeText: HTMLSpanElement;
-	$: top1Text = title1UnchangedNodeText?.getBoundingClientRect().top;
-	$: left1Text = title1UnchangedNodeText?.getBoundingClientRect().left;
+	let titlesPosition: {
+		plus: { top: number; left: number };
+		text: { top: number; left: number };
+	}[];
 
-	let title1UnchangedNodePlus: HTMLSpanElement;
-	$: top1Plus = title1UnchangedNodePlus?.getBoundingClientRect().top;
-	$: left1Plus = title1UnchangedNodePlus?.getBoundingClientRect().left;
+	let titlesChangedPosition: {
+		plus: { top: number; left: number };
+		text: { top: number; left: number };
+	}[];
 
-	let title1ChangedNodeText: HTMLSpanElement;
-	$: top1TextChanged = title1ChangedNodeText?.getBoundingClientRect().top;
-	$: left1TextChanged = title1ChangedNodeText?.getBoundingClientRect().left;
+	const updateTitlesPosition = () => {
+		const titlesContainer = document.getElementById(titlesContainerId);
+		const titlesChangedContainer = document.getElementById(titlesContainerChangedId);
 
-	let title1ChangedNodePlus: HTMLSpanElement;
-	$: top1PlusChanged = title1ChangedNodePlus?.getBoundingClientRect().top;
-	$: left1PlusChanged = title1ChangedNodePlus?.getBoundingClientRect().left;
-
-	const handleScroll = () => {
-		if (!title1UnchangedNodeText || !title1UnchangedNodePlus) {
+		if (!titlesContainer || !titlesChangedContainer) {
 			return;
 		}
 
-		top1Text = title1UnchangedNodeText.getBoundingClientRect().top;
-		left1Text = title1UnchangedNodeText.getBoundingClientRect().left;
+		titlesPosition = Array.from(titlesContainer.children)
+			.filter((node) => node.tagName === 'H4')
+			.map((titleNode) => {
+				const plusNode = titleNode.children[0];
+				const textNode = titleNode.children[1];
 
-		top1Plus = title1UnchangedNodePlus.getBoundingClientRect().top;
-		left1Plus = title1UnchangedNodePlus.getBoundingClientRect().left;
+				const plusNodeRect = plusNode.getBoundingClientRect();
+				const textNodeRect = textNode.getBoundingClientRect();
 
-		top1TextChanged = title1ChangedNodeText.getBoundingClientRect().top;
-		left1TextChanged = title1ChangedNodeText.getBoundingClientRect().left;
+				return {
+					plus: {
+						top: plusNodeRect.top,
+						left: plusNodeRect.left
+					},
+					text: {
+						top: textNodeRect.top,
+						left: textNodeRect.left
+					}
+				};
+			});
 
-		top1PlusChanged = title1ChangedNodePlus.getBoundingClientRect().top;
-		left1PlusChanged = title1ChangedNodePlus.getBoundingClientRect().left;
+		titlesChangedPosition = Array.from(titlesChangedContainer.children)
+			.filter((node) => node.tagName === 'H4')
+			.map((titleNode) => {
+				const plusNode = titleNode.children[0];
+				const textNode = titleNode.children[1];
+
+				const plusNodeRect = plusNode.getBoundingClientRect();
+				const textNodeRect = textNode.getBoundingClientRect();
+
+				return {
+					plus: {
+						top: plusNodeRect.top,
+						left: plusNodeRect.left
+					},
+					text: {
+						top: textNodeRect.top,
+						left: textNodeRect.left
+					}
+				};
+			});
 	};
 
+	let containerNode: HTMLDivElement;
+
+	let useAnimateInTransition = true;
+	let animateIn: boolean;
+
+	$: {
+		if (animateIn) {
+			setTimeout(() => {
+				useAnimateInTransition = false;
+			}, 500);
+		}
+	}
+
 	onMount(() => {
-		window.addEventListener('scroll', handleScroll);
+		if (!animateIn) {
+			if (!containerNode) {
+				return;
+			}
+
+			const rect = containerNode.getBoundingClientRect();
+
+			animateIn = rect.bottom - rect.height / 2 < windowHeight;
+		}
+
+		updateTitlesPosition();
+
+		window.addEventListener('scroll', updateTitlesPosition, { passive: true });
 	});
 
 	onDestroy(() => {
-		window.removeEventListener('scroll', handleScroll);
+		window.removeEventListener('scroll', updateTitlesPosition);
 	});
+
+	let fullHeight: number;
+	let collapsedHeight: number;
+
+	// todo: maintain height of projects section on collapse;
+
+	// todo: different transition time for opacity on animate-in?
+	// todo: top fade out.
 </script>
 
 <svelte:window bind:innerHeight={windowHeight} bind:innerWidth={windowWidth} />
+<svelte:document
+	on:scroll={() => {
+		if (!animateIn) {
+			if (!containerNode) {
+				return;
+			}
 
-<div class="relative opacity-0">
-	<div class={`flex items-start flex-col gap-sm opacity-0`}>
-		<h4 class={` relative font-light text-lg flex flex-row gap-xs cursor-pointer`}>
-			<span class={`text-sm`} bind:this={title1UnchangedNodePlus}>+.</span>
-			<span class={`tracking-wider uppercase border-b text-sm`} bind:this={title1UnchangedNodeText}
-				>{projectsArr[0].title}</span
-			>
-		</h4>
+			const rect = containerNode.getBoundingClientRect();
+
+			animateIn = rect.bottom - rect.height / 2 < windowHeight;
+		}
+	}}
+/>
+
+<div
+	class={`relative transition-all duration-[1850ms] delay-0 ease-in-out pointer-events-none`}
+	style:height={!fullHeight || !collapsedHeight
+		? 'auto'
+		: !collapseEnabled ||
+		  collapseTitlesStatus === 'idle' ||
+		  collapseTitlesStatus === 'transitioning-in'
+		? `${fullHeight}px`
+		: `${collapsedHeight}px`}
+	bind:this={containerNode}
+>
+	<div
+		class="flex items-start flex-col gap-sm pointer-events-none opacity-0"
+		bind:clientHeight={fullHeight}
+		id={titlesContainerId}
+	>
+		{#each projectsArr as project (project.id)}
+			<h4 class="font-light flex flex-row gap-xs items-center">
+				<span class="text-sm">+.</span>
+				<span class="tracking-wider border-b text-sm">{project.title}</span>
+			</h4>
+		{/each}
 	</div>
 
-	<div class={`absolute left-0 top-0 w-full flex items-start gap-x-md gap-y-xs flex-wrap`}>
-		<h4 class={`red-8 relative font-light text-lg flex flex-col gap-xs shrink-0`}>
-			<span class={`text-sm`} bind:this={title1ChangedNodePlus}>+.</span>
-			<span class={`tracking-wider uppercase border-b text-sm`} bind:this={title1ChangedNodeText}
-				>{getFirstLetters(projectsArr[0].title)}</span
-			>
-		</h4>
+	<div
+		class="absolute left-0 top-0 w-full flex items-start gap-x-md gap-y-xs flex-wrap opacity-0 pointer-events-none"
+		bind:clientHeight={collapsedHeight}
+		id={titlesContainerChangedId}
+	>
+		{#each projectsArr as project (project.id)}
+			<h4 class="font-light text-lg flex flex-col items-center gap-xs shrink-0">
+				<span class="text-sm">+.</span>
+				<span class="tracking-wider uppercase border-b text-sm"
+					>{getFirstLetters(project.title)}</span
+				>
+			</h4>
+		{/each}
 	</div>
 </div>
 
-{#if collapseTitlesStatus === 'idle' || collapseTitlesStatus === 'transitioning-in'}
-	<span
-		class={`fixed text-sm transition-colors ease-out duration-700 left-sm ${
-			topFadeOut ? 'text-gray-6' : textColorStrings[0]
-		}`}
-		style:top="{top1Plus}px"
-		style:left="{left1Plus}px"
-		in:receive={{ key: 'title-1-plus' }}
-		out:send={{ key: 'title-1-plus' }}>+.</span
-	>
-{:else}
-	<span
-		class={`fixed text-sm transition-colors ease-out duration-700 ${
-			topFadeOut ? 'text-gray-6' : textColorStrings[0]
-		}`}
-		style:top="{top1PlusChanged}px"
-		style:left="{left1PlusChanged}px"
-		in:receive={{ key: 'title-1-plus' }}
-		out:send={{ key: 'title-1-plus' }}>+.</span
-	>
-{/if}
+{#if titlesPosition && titlesChangedPosition}
+	{#if collapseTitlesStatus === 'transitioned'}
+		<button
+			on:click={() => {
+				collapseTitlesStatus = 'transitioning-in';
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-<span
-	class={`fixed font-light tracking-wider border-b text-sm flex shrink-0 ${
-		collapseTitlesStatus === 'transitioning-out' || collapseTitlesStatus === 'transitioning-in'
-			? 'transition-all ease-in-out duration-500'
-			: ''
-	}`}
-	style:top="{collapseTitlesStatus === 'idle' || collapseTitlesStatus === 'transitioning-in'
-		? top1Text
-		: top1TextChanged}px"
-	style:left="{collapseTitlesStatus === 'idle' || collapseTitlesStatus === 'transitioning-in'
-		? left1Text
-		: left1TextChanged}px"
-	on:click={() => {
-		if (collapseTitlesStatus === 'idle') {
-			collapseTitlesStatus = 'transitioning-out';
+				setTimeout(() => {
+					collapseTitlesStatus = 'idle';
+				}, collapseDuration);
+			}}
+			class="fixed z-10 uppercase text-[0.6rem] text-gray-6 tracking-wide right-sm -translate-y-full flex items-center gap-xxs"
+			style:top="{titlesChangedPosition[0].plus.top - 13}px"
+			type="button"
+			transition:fade={{ delay: 300 }}
+		>
+			<span>+</span>
+			<span>Expand</span></button
+		>
+	{/if}
 
-			setTimeout(() => {
-				collapseTitlesStatus = 'transitioned';
-			}, 700);
-		}
-		if (collapseTitlesStatus === 'transitioned') {
-			collapseTitlesStatus = 'transitioning-in';
-
-			setTimeout(() => {
-				collapseTitlesStatus = 'idle';
-			}, 700);
-		}
-	}}
->
-	{#each projectsArr[0].title.split('') as letter}
-		<Letter bind:letter bind:collapseStatus={collapseTitlesStatus} />
+	{#each projectsArr as project, i (project.id)}
+		<span
+			class={`fixed font-light ${
+				collapseTitlesStatus === 'transitioning-out' || collapseTitlesStatus === 'transitioning-in'
+					? 'transition-all ease-in-out duration-[1000ms]'
+					: ''
+			} ${topFadeOut ? 'text-gray-6' : textColorStrings[i]}`}
+			style:top="{collapseTitlesStatus === 'idle' || collapseTitlesStatus === 'transitioning-in'
+				? titlesPosition[i].plus.top - 2
+				: titlesChangedPosition[i].plus.top}px"
+			style:left="{collapseTitlesStatus === 'idle' || collapseTitlesStatus === 'transitioning-in'
+				? titlesPosition[i].plus.left
+				: titlesChangedPosition[i].plus.left}px"
+			style:transition-delay="{collapseTitlesStatus === 'transitioning-out' ||
+			collapseTitlesStatus === 'transitioning-in'
+				? i * 50
+				: 0}ms"
+		>
+			+.
+		</span>
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
+		<span
+			class={`fixed border-b font-light tracking-wider text-sm flex shrink-0 cursor-pointer ${
+				collapseTitlesStatus === 'transitioning-out' || collapseTitlesStatus === 'transitioning-in'
+					? 'transition-all ease-in-out duration-[1000ms]'
+					: ''
+			} ${collapseTitlesStatus === 'idle' ? '' : 'border-transparent'} `}
+			style:top="{collapseTitlesStatus === 'idle' || collapseTitlesStatus === 'transitioning-in'
+				? titlesPosition[i].text.top
+				: titlesChangedPosition[i].text.top}px"
+			style:left="{collapseTitlesStatus === 'idle' || collapseTitlesStatus === 'transitioning-in'
+				? titlesPosition[i].text.left
+				: titlesChangedPosition[i].text.left}px"
+			style:transition-delay="{collapseTitlesStatus === 'transitioning-out' ||
+			collapseTitlesStatus === 'transitioning-in'
+				? i * 50
+				: 0}ms"
+			on:click={() => {
+				handleClickTitle(project.id);
+			}}
+		>
+			{#each project.title.split('') as letter}
+				<Letter bind:letter bind:transitionStatus={collapseTitlesStatus} />
+			{/each}
+		</span>
 	{/each}
-</span>
+{/if}
