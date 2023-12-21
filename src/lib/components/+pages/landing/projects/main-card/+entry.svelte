@@ -49,7 +49,7 @@
 	</div>
 
 	<div
-		class={`relative mt-md inline-flex flex-wrap leading-6 font-light items-baseline transition-all duration-[300ms] ease-linear  ${
+		class={`relative mt-md inline-flex gap-y-[2.5px] flex-wrap leading-6 font-light items-baseline transition-all duration-[300ms] ease-linear  ${
 			animateIn2 ? '' : 'opacity-0 translate-y-xs'
 		}`}
 	>

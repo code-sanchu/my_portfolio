@@ -9,14 +9,13 @@
 <script lang="ts">
 	// todo: coloured circles sticky to top for mobile?;
 	// todo: img loader widget.
-	// todo: projects height calculation will change for small devices.
 	// todo: hide raie logo on image?
-	// todo: sticky header as on alesh, etc. probs don't need store.
+	// todo: sticky header as on alesh, etc. probs don't need store?
+
 	// todo: font light site icon
 	// todo: projects titles moving with mobile.
 	// todo: contact form coloured lines shouldn't take up whole page on mobile?
 	// todo: go over leading of main card text for mobile
-	// todo: info card text spacing
 
 	// NEED TO DO
 	// (2) responsive.
@@ -30,34 +29,34 @@
 </script>
 
 {#if mounted}
-	<!-- <div class="fixed z-20 left-0 top-0 w-full" transition:fade>
+	<div class="fixed z-20 left-0 top-0 w-full" transition:fade>
 		<Nav />
-	</div> -->
+	</div>
 
-	<!-- <div class="fixed top-[22%] sm:top-[30%] -left-lg">
+	<div class="fixed top-[22%] sm:top-[30%] -left-lg">
 		<Circles />
-	</div> -->
+	</div>
 
-	<!-- <div class="relative min-h-screen grid place-items-center translate-y-[10vh]" transition:fade>
+	<div class="relative min-h-screen grid place-items-center translate-y-[10vh]" transition:fade>
 		<Heading />
-	</div> -->
+	</div>
 
 	<!-- <div class="mx-sm mb-2xl flex flex-col gap-[270px]" transition:fade> -->
 	<div class="mx-sm mb-2xl flex flex-col gap-3xl" transition:fade>
-		<!-- <div class="w-[580px] max-w-full pr-xl" id="about-section">
+		<div class="w-[580px] max-w-full pr-xl" id="about-section">
 			<Intro />
-		</div> -->
+		</div>
 
 		<div id="projects-section">
 			<Projects />
 		</div>
 
-		<!-- 		<div id="services-section">
+		<div id="services-section">
 			<Services />
 		</div>
 
 		<div id="contact-section">
 			<Contact />
-		</div> -->
+		</div>
 	</div>
 {/if}

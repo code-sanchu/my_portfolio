@@ -26,6 +26,7 @@
 	let headingNode: HTMLDivElement;
 
 	let animateIn = false;
+	$: console.log('animateIn:', animateIn);
 
 	let topFadeOut = false;
 
@@ -74,7 +75,7 @@
 	<div class={`scrollbar-none overflow-x-hidden`}>
 		<div class="shrink-0" bind:clientHeight={sectionHeightInitial}>
 			<h2
-				class={`text-xl uppercase tracking-[0.075em]  mb-xl transition-colors ease-out duration-700 font-light ${
+				class={`text-xl uppercase tracking-[0.075em] transition-colors ease-out duration-700 font-light ${
 					!animateIn || topFadeOut ? 'text-gray-6' : 'text-gray-12'
 				}`}
 				bind:this={headingNode}

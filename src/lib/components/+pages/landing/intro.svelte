@@ -7,15 +7,15 @@
 
 	let windowHeight: number;
 
-	let show = false;
+	let animateIn = false;
 
 	let topfadeOut = false;
 
 	onMount(() => {
 		const rect = containerNode.getBoundingClientRect();
 
-		if (!show) {
-			show = rect.bottom < windowHeight;
+		if (!animateIn) {
+			animateIn = rect.bottom < windowHeight;
 		}
 
 		const topPos = 200;
@@ -28,8 +28,8 @@
 	on:scroll={() => {
 		const rect = containerNode.getBoundingClientRect();
 
-		if (!show) {
-			show = rect.bottom < windowHeight;
+		if (!animateIn) {
+			animateIn = rect.bottom < windowHeight;
 		}
 
 		const topPos = 200;
@@ -41,7 +41,7 @@
 
 <p
 	class={`text-sm tracking-wide md:text-base pt-xl font-light transition-all ease-out duration-700 leading-[1.35rem] ${
-		show ? '' : 'opacity-0'
+		animateIn ? '' : 'opacity-0'
 	} ${topfadeOut ? 'text-gray-6' : 'text-gray-12'}`}
 	bind:this={containerNode}
 >

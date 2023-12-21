@@ -8,20 +8,20 @@ export const getTitlesPosition = (containerId: string) => {
 	const positions = Array.from(container.children)
 		.filter((node) => node.tagName === 'H4')
 		.map((titleNode) => {
-			const plusNode = titleNode.children[0];
-			const textNode = titleNode.children[1];
+			const plusNode = titleNode.children[0] as HTMLSpanElement;
+			const textNode = titleNode.children[1] as HTMLSpanElement;
 
-			const plusNodeRect = plusNode.getBoundingClientRect();
-			const textNodeRect = textNode.getBoundingClientRect();
+			// const plusNodeRect = plusNode.getBoundingClientRect();
+			// const textNodeRect = textNode.getBoundingClientRect();
 
 			return {
 				plus: {
-					top: plusNodeRect.top,
-					left: plusNodeRect.left
+					top: plusNode.offsetTop,
+					left: plusNode.offsetLeft
 				},
 				text: {
-					top: textNodeRect.top,
-					left: textNodeRect.left
+					top: textNode.offsetTop,
+					left: textNode.offsetLeft
 				}
 			};
 		});
