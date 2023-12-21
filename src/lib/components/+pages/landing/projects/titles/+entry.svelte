@@ -1,12 +1,14 @@
 <script context="module" lang="ts">
+	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
+
 	import { projects } from '^data';
 	import type { ProjectId } from '^types';
 
-	import { getTitlesPosition } from './_helpers';
 	import { getFirstLetters } from '^helpers';
+	import { getTitlesPosition } from './_helpers';
+
 	import Letter from './letter.svelte';
-	import { onDestroy, onMount } from 'svelte';
-	import { fade } from 'svelte/transition';
 
 	const projectsArr = Object.values(projects);
 
@@ -182,7 +184,7 @@
 					>
 					<span
 						class={`tracking-wider border-b text-sm flex gap-[0.05em] transition-colors ease-in-out duration-700 ${
-							topFadeOut ? 'text-gray-6' : ''
+							topFadeOut ? 'text-gray-6' : 'text-gray-11'
 						}`}
 					>
 						{#each project.title.split('') as letter}
@@ -214,7 +216,7 @@
 					>
 					<span
 						class={`tracking-wider border-b text-sm border-b-transparent transition-colors ease-in-out duration-700 ${
-							topFadeOut ? 'text-gray-6' : ''
+							topFadeOut ? 'text-gray-6' : 'text-gray-11'
 						}`}>{getFirstLetters(project.title)}</span
 					>
 				</h4>
@@ -236,7 +238,7 @@
 				</span>
 
 				<span
-					class={`absolute font-light border-b text-sm flex tracking-wider transition-all ease-in-out duration-1000`}
+					class={`absolute font-light border-b text-sm flex tracking-wider transition-all ease-in-out duration-1000 text-gray-11`}
 					style:top="{!transitionOut ? positions[i].text.top : transitionedPositions[i].text.top}px"
 					style:left="{!transitionOut
 						? positions[i].text.left

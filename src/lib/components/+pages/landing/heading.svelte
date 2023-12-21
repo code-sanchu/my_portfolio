@@ -38,10 +38,7 @@
 		Tech-poiesis
 	</h1>
 
-	<!-- <p class="leading-none tracking-wider mt-xxs flex font-light text-gray-9">
-		Bespoke website creation
-	</p> -->
-	<p class="leading-none tracking-widest mt-xxs flex font-thin text-base">
+	<p class="leading-none tracking-widest mt-xxs flex font-thin text-[15px]">
 		<span
 			class={`transition-colors ease-out duration-500 ${
 				topfadeOut ? 'text-gray-6' : 'text-my-olive'

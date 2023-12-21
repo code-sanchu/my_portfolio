@@ -67,7 +67,7 @@
 			!animateIn2 ? 'text-gray-6' : 'text-gray-12'
 		}`}
 	>
-		It'd be great to hear from you if just for an informal chat or if you're ready to get building.
+		It'd be great to hear from you if just for an informal chat or you're ready to get building.
 	</p>
 
 	<div class="mt-xl">
@@ -75,7 +75,9 @@
 			<h4 class="text-gray-9 uppercase text-xs tracking-[0.06em]">Message Me</h4>
 		</div>
 
-		<Form />
+		<div class="pr-xl">
+			<Form />
+		</div>
 
 		<div class="mt-xl">
 			<div class="flex gap-xs">

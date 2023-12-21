@@ -20,13 +20,14 @@
 	};
 
 	let sectionHeightInitial: number;
+	$: console.log('sectionHeightInitial:', sectionHeightInitial);
 	let projectCardsContainerHeight: number;
+	$: console.log('projectCardsContainerHeight:', projectCardsContainerHeight);
 
 	let containerNode: HTMLDivElement;
 	let headingNode: HTMLDivElement;
 
 	let animateIn = false;
-	$: console.log('animateIn:', animateIn);
 
 	let topFadeOut = false;
 
@@ -84,7 +85,9 @@
 			</h2>
 		</div>
 
-		<div class="relative flex flex-col gap-lg overflow-x-hidden overflow-y-visible scrollbar-none">
+		<div
+			class="relative flex flex-col gap-lg overflow-x-hidden overflow-y-visible scrollbar-none min-h-[300px]"
+		>
 			<Titles
 				bind:topFadeOut
 				handleShowProjectCard={(projectId) => {
@@ -92,23 +95,19 @@
 				}}
 			/>
 
-			{#if sectionHeightInitial}
-				<div
-					class={`relative flex-grow transition-all ease-linear duration-500`}
-					style:height={projectCardsContainerHeight
-						? `${projectCardsContainerHeight}px`
-						: `${sectionHeightInitial}px`}
-				>
-					<div class="absolute inset-0">
-						<Cards
-							{shownProjectCards}
-							onClickInfo={(projectId) => handleShowProjectCard(projectId, 'info')}
-							bind:sectionHeight={projectCardsContainerHeight}
-							bind:topFadeOut
-						/>
-					</div>
+			<div
+				class={`relative transition-all ease-linear duration-500`}
+				style:height={projectCardsContainerHeight ? `${projectCardsContainerHeight}px` : `${0}px`}
+			>
+				<div class="absolute inset-0">
+					<Cards
+						{shownProjectCards}
+						onClickInfo={(projectId) => handleShowProjectCard(projectId, 'info')}
+						bind:sectionHeight={projectCardsContainerHeight}
+						bind:topFadeOut
+					/>
 				</div>
-			{/if}
+			</div>
 		</div>
 	</div>
 </div>

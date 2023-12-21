@@ -15,13 +15,13 @@
 </script>
 
 <div class="mt-lg inline-flex flex-col w-[400px] max-w-full">
-	<div class="border-t border-t-my-olive border-b border-b-my-light-blue">
+	<div class="border-t border-t-my-olive/60 border-b border-b-my-light-blue/60">
 		<Input bind:value={name} label="Name" />
 	</div>
 
 	<Input bind:value={email} label="Email" />
 
-	<div class="border-t border-t-my-dark-red border-b border-b-my-sea-green">
+	<div class="border-t border-t-my-dark-red/60 border-b border-b-my-sea-green/60">
 		<TextArea bind:value={message} label="About your project" />
 	</div>
 

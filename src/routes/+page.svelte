@@ -13,9 +13,8 @@
 	// todo: sticky header as on alesh, etc. probs don't need store?
 
 	// todo: font light site icon
-	// todo: projects titles moving with mobile.
-	// todo: contact form coloured lines shouldn't take up whole page on mobile?
-	// todo: go over leading of main card text for mobile
+	// todo: on mobile, can't scroll on projects section for some reason (can on others)
+	// todo: project titles animate in could be nicer - e.g. animate line in and opacity seperately. Also could do for contact too.
 
 	// NEED TO DO
 	// (2) responsive.
@@ -37,7 +36,7 @@
 		<Circles />
 	</div>
 
-	<div class="relative min-h-screen grid place-items-center translate-y-[10vh]" transition:fade>
+	<div class="relative min-h-screen grid place-items-center" transition:fade>
 		<Heading />
 	</div>
 
