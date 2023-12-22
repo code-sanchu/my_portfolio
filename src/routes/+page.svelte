@@ -7,19 +7,15 @@
 </script>
 
 <script lang="ts">
-	// todo: coloured circles sticky to top for mobile?;
-	// todo: img loader widget.
-	// todo: hide raie logo on image?
-	// todo: sticky header as on alesh, etc. probs don't need store?
+	// check: on mobile, can't scroll on projects section for some reason (can on others) - fixed?
+	// check: check if thin scrollbar applied across browsers - wasn't on firefox windows
 
-	// todo: font light site icon
-	// todo: on mobile, can't scroll on projects section for some reason (can on others)
-	// todo: project titles animate in could be nicer - e.g. animate line in and opacity seperately. Also could do for contact too.
-	// todo: check if thin scrollbar applied across browsers - wasn't on firefox windows
+	// NICE TO HAVE
+	// - more decoration on landing for big screens?
+	// - better project titles animate in?
 
 	// NEED TO DO
-	// (2) responsive.
-	// (3) more decoration for big screens?
+	// - responsive.
 
 	let mounted = false;
 
@@ -41,7 +37,6 @@
 		<Heading />
 	</div>
 
-	<!-- <div class="mx-sm mb-2xl flex flex-col gap-[270px]" transition:fade> -->
 	<div class="mx-sm mb-2xl flex flex-col gap-3xl" transition:fade>
 		<div class="w-[580px] max-w-full pr-xl" id="about-section">
 			<Intro />

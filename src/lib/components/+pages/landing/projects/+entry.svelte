@@ -19,7 +19,6 @@
 		shownProjectCards = [{ id: projectId, type, key: uid() }, ...shownProjectCards];
 	};
 
-	let sectionHeightInitial: number;
 	let projectCardsContainerHeight: number;
 
 	let containerNode: HTMLDivElement;
@@ -72,7 +71,7 @@
 	{/if}
 
 	<div class={`scrollbar-none overflow-x-hidden`}>
-		<div class="shrink-0" bind:clientHeight={sectionHeightInitial}>
+		<div class="shrink-0">
 			<h2
 				class={`text-xl uppercase tracking-[0.075em] transition-colors ease-out duration-700 font-light ${
 					!animateIn || topFadeOut ? 'text-gray-6' : 'text-gray-12'
@@ -94,17 +93,15 @@
 			/>
 
 			<div
-				class={`relative transition-all ease-linear duration-500`}
+				class={`relative transition-all ease-linear duration-500 scrollbar-none`}
 				style:height={projectCardsContainerHeight ? `${projectCardsContainerHeight}px` : `${0}px`}
 			>
-				<div class="absolute inset-0">
-					<Cards
-						{shownProjectCards}
-						onClickInfo={(projectId) => handleShowProjectCard(projectId, 'info')}
-						bind:sectionHeight={projectCardsContainerHeight}
-						bind:topFadeOut
-					/>
-				</div>
+				<Cards
+					{shownProjectCards}
+					onClickInfo={(projectId) => handleShowProjectCard(projectId, 'info')}
+					bind:sectionHeight={projectCardsContainerHeight}
+					bind:topFadeOut
+				/>
 			</div>
 		</div>
 	</div>

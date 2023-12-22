@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-	import { ArrowLineRight, ArrowLineUpRight } from 'phosphor-svelte';
+	import { ArrowLineRight, ArrowLineUpRight, SpinnerGap } from 'phosphor-svelte';
 
 	import type { MyPick, Project } from '^types';
 
@@ -44,6 +44,15 @@
 		}`}
 	>
 		<Picture data={data.mainPicture} imageClass="object-cover" />
+
+		<div
+			class="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 text-lg text-gray-8 flex gap-xs items-center"
+		>
+			<span>
+				<SpinnerGap />
+			</span>
+			<p class="text-xxs tracking-wide text-gray-5 uppercase">loading image</p>
+		</div>
 
 		<div class="z-10 absolute left-0 right-0 bottom-0 w-full h-sm bg-white rounded-b-sm" />
 	</div>

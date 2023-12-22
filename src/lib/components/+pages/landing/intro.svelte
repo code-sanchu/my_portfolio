@@ -41,7 +41,7 @@
 
 <p
 	class={`text-sm tracking-wide md:text-base pt-xl font-light transition-all ease-out duration-700 leading-[1.35rem] ${
-		animateIn ? '' : 'opacity-0 translate-y-md'
+		animateIn ? '' : 'opacity-0'
 	} ${topfadeOut ? 'text-gray-6' : 'text-gray-12'}`}
 	bind:this={containerNode}
 >

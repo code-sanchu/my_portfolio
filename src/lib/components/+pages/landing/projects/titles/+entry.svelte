@@ -143,8 +143,8 @@
 	transitionStatus === 'idle' ||
 	transitionStatus === 'idle-clicked' ||
 	transitionStatus === 'transitioning-in'
-		? `${fullHeight + 24}px`
-		: `${collapsedHeight + 24}px`}
+		? `${fullHeight + 16}px`
+		: `${collapsedHeight + 16}px`}
 	bind:this={containerNode}
 >
 	{#if transitionStatus === 'transitioned'}
