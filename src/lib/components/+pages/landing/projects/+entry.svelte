@@ -20,9 +20,7 @@
 	};
 
 	let sectionHeightInitial: number;
-	$: console.log('sectionHeightInitial:', sectionHeightInitial);
 	let projectCardsContainerHeight: number;
-	$: console.log('projectCardsContainerHeight:', projectCardsContainerHeight);
 
 	let containerNode: HTMLDivElement;
 	let headingNode: HTMLDivElement;

@@ -73,7 +73,7 @@
 		/>
 	{/if}
 
-	<div class={`flex flex-col gap-sm md:flex-row items-start md:gap-xl justify-between`}>
+	<div class={`flex flex-col md:flex-row items-start md:gap-x-xl md:justify-between`}>
 		<h2
 			class={`text-xl uppercase tracking-[0.075em] mb-xl transition-colors ease-out duration-700 ${
 				!animateIn1 || topFadeOut ? 'text-gray-6' : 'text-gray-12'
@@ -84,13 +84,13 @@
 		</h2>
 
 		<div
-			class={`flex flex-col gap-xl transition-opacity ease-in duration-300 ${
+			class={`flex flex-col gap-lg transition-opacity ease-in duration-300 ${
 				animateIn2 ? '' : 'opacity-0'
 			}`}
 			bind:this={sectionsNode}
 		>
 			<div
-				class={`flex flex-col sm:flex-row gap-sm md:gap-xl justify-between transition-transform ease-out duration-500${
+				class={`flex flex-col sm:flex-row gap-sm md:gap-xl justify-between transition-transform ease-out duration-500 ${
 					animateIn2 ? '' : 'translate-y-sm'
 				}`}
 			>

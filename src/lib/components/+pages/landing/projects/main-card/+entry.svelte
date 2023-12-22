@@ -49,11 +49,11 @@
 	</div>
 
 	<div
-		class={`relative mt-md inline-flex gap-y-[2.5px] flex-wrap leading-6 font-light items-baseline transition-all duration-[300ms] ease-linear  ${
+		class={`relative mt-md leading-6 font-light items-baseline transition-all duration-[300ms] ease-linear  ${
 			animateIn2 ? '' : 'opacity-0 translate-y-xs'
 		}`}
 	>
-		<span class="inline-flex uppercase text-sm tracking-[0.06em]">
+		<span class="text-sm tracking-[0.06em]">
 			{#each titleArr as letter (letter.key)}
 				<span
 					class={`transition-colors ease-out duration-700 ${
@@ -63,37 +63,37 @@
 			{/each}
 		</span>
 
-		<span class="flex flex-wrap">
-			<span class="text-sm tracking-[0.06em]">, {@html data.year}</span>
+		<span class="">
+			<span class="text-sm tracking-[0.06em] text-gray-10">, {@html data.year}</span>
 
-			<span class="text-sm float-left">&nbsp;·&nbsp;{@html data.descriptionShort}</span>
+			<span class="text-sm text-gray-10">&nbsp;·&nbsp;{@html data.descriptionShort}</span>
 		</span>
 
-		<span class="text-sm flex items-baseline"
+		<span class="text-sm items-baseline"
 			>&nbsp;·&nbsp;
-			<button class="flex items-baseline group/link" on:click={onClickInfo} type="button">
+			<button class="inline-flex items-baseline group/link" on:click={onClickInfo} type="button">
 				<span
 					class={`self-center -translate-y-[1px] ${
 						topFadeOut ? 'text-gray-6' : 'text-my-light-blue'
 					}`}><ArrowLineRight /></span
 				>
 				<span
-					class="text-xxs ml-[3px] uppercase tracking-[0.06em] group-hover/link:text-my-light-blue transition-all ease-linear duration-200"
+					class="text-xxs ml-[3px] text-gray-11 uppercase tracking-[0.06em] group-hover/link:text-my-light-blue transition-all ease-linear duration-200"
 					>info</span
 				>
 			</button>
 		</span>
 
-		<span class="flex items-baseline text-sm">
+		<span class="items-baseline text-sm">
 			&nbsp;
-			<a class="flex items-baseline group/link" href={data.siteUrl} target="_blank">
+			<a class="inline-flex items-baseline group/link" href={data.siteUrl} target="_blank">
 				<span
 					class={`self-center -translate-y-[1px] ${
 						topFadeOut ? 'text-gray-6' : 'text-my-light-blue'
 					}`}><ArrowLineUpRight /></span
 				>
 				<span
-					class="text-xxs ml-[3px] tracking-[0.06em] uppercase group-hover/link:text-my-light-blue transition-all ease-linear duration-200"
+					class="text-xxs ml-[3px] tracking-[0.06em] text-gray-11 uppercase group-hover/link:text-my-light-blue transition-all ease-linear duration-200"
 					>visit
 				</span>
 			</a>

@@ -12,8 +12,6 @@
 </script>
 
 <script lang="ts">
-	import { Info } from 'phosphor-svelte';
-
 	export let data: MyPick<
 		Project,
 		'title' | 'descriptionLong' | 'siteUrl' | 'performanceUrl' | 'features' | 'year'
@@ -40,29 +38,29 @@
 		{/each}
 	</h2>
 
-	<div class="mt-sm flex font-mono text-[0.8rem]">
+	<div class="mt-[0.75rem] flex font-mono text-[0.8rem]">
 		<p class="">Date&nbsp;—&nbsp;</p>
 		<p class="">{@html data.year}.</p>
 	</div>
 
-	<div class="mt-xs flex font-mono text-[0.8rem]">
+	<div class="mt-xxs flex font-mono text-[0.8rem]">
 		<p class="">Work&nbsp;—&nbsp;</p>
 		<p class="">Design, build & maintenance.</p>
 	</div>
 
-	<div class="mt-md flex flex-col gap-xs text-sm">
+	<div class="mt-sm flex flex-col gap-xs text-sm leading-[1.3rem]">
 		{#each data.descriptionLong as sentence}
 			<p>{sentence}</p>
 		{/each}
 	</div>
 
 	{#if data.features?.length}
-		<div class="mt-md">
+		<div class="mt-[1.25rem]">
 			<Features bind:topFadeOut features={data.features} {componentKey} />
 		</div>
 	{/if}
 
-	<div class="flex items-center gap-sm mt-md">
+	<div class="flex items-center gap-sm mt-[1.25rem]">
 		<h4 class="text-sm">
 			<ArrowLineUpRight />
 		</h4>

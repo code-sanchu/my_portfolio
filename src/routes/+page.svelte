@@ -15,6 +15,7 @@
 	// todo: font light site icon
 	// todo: on mobile, can't scroll on projects section for some reason (can on others)
 	// todo: project titles animate in could be nicer - e.g. animate line in and opacity seperately. Also could do for contact too.
+	// todo: check if thin scrollbar applied across browsers - wasn't on firefox windows
 
 	// NEED TO DO
 	// (2) responsive.
@@ -32,7 +33,7 @@
 		<Nav />
 	</div>
 
-	<div class="fixed top-[22%] sm:top-[30%] -left-lg">
+	<div class="fixed top-[22%] sm:top-[30%] -left-lg transition-transform ease-linear duration-150">
 		<Circles />
 	</div>
 
