@@ -93,7 +93,7 @@
 			/>
 
 			<div
-				class={`relative transition-all ease-linear duration-500 scrollbar-none`}
+				class={`relative mt-xs transition-all ease-linear duration-500 scrollbar-none`}
 				style:height={projectCardsContainerHeight ? `${projectCardsContainerHeight}px` : `${0}px`}
 			>
 				<Cards

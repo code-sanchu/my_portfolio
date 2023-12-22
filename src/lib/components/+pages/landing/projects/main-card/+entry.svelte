@@ -1,10 +1,11 @@
 <script lang="ts" context="module">
+	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
 	import { ArrowLineRight, ArrowLineUpRight, SpinnerGap } from 'phosphor-svelte';
 
 	import type { MyPick, Project } from '^types';
 
 	import { Picture } from '^components';
-	import { onMount } from 'svelte';
 	import { strToTextColoursArr } from '../_helpers';
 </script>
 
@@ -39,22 +40,27 @@
 	}`}
 >
 	<div
-		class={`relative aspect-[4/3] overflow-hidden p-xs sm:p-sm bg-white shadow-lg border border-gray-3 rounded-sm transition-all ease-out duration-700 ${
+		class={`relative aspect-[4/3] overflow-hidden bg-white shadow-lg border border-gray-3 rounded-sm transition-all ease-out duration-700 ${
 			!animateIn1 ? 'opacity-0' : topFadeOut ? 'grayscale opacity-20' : ''
 		}`}
 	>
-		<Picture data={data.mainPicture} imageClass="object-cover" />
-
-		<div
-			class="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 text-lg text-gray-8 flex gap-xs items-center"
-		>
-			<span>
-				<SpinnerGap />
-			</span>
-			<p class="text-xxs tracking-wide text-gray-5 uppercase">loading image</p>
+		<div class="z-10 absolute inset-xs overflow-hidden">
+			<Picture data={data.mainPicture} imageClass="object-cover" />
 		</div>
 
-		<div class="z-10 absolute left-0 right-0 bottom-0 w-full h-sm bg-white rounded-b-sm" />
+		{#if animateIn2}
+			<div
+				class="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 text-lg text-gray-8 flex gap-xs items-center"
+				transition:fade
+			>
+				<span>
+					<SpinnerGap />
+				</span>
+				<p class="text-xxs tracking-wide text-gray-5 uppercase">loading image</p>
+			</div>
+		{/if}
+
+		<!-- <div class="z-20 absolute left-0 right-0 bottom-0 w-full h-xs sm:h-sm bg-white rounded-b-sm" /> -->
 	</div>
 
 	<div
