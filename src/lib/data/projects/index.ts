@@ -139,13 +139,13 @@ const blackheath_yoga: Project = {
 };
 
 export const projects: { [k in ProjectId]: Project } = {
-	birch,
 	raie,
 	alesh,
 	amy,
+	murat,
+	birch,
 	piros,
 	asatic,
-	murat,
 	kindred_yoga,
 	blackheath_yoga
 };

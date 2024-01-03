@@ -1,14 +1,14 @@
 import type { Picture } from '^types';
 
-import raie_landing from '^^assets/images/raie.jpg?w=1024&format=avif;webp;jpg&as=picture&imagetools';
-import birch_cms_programmes from '^^assets/images/birch-cms-programmes.jpg?w=1024&format=avif;webp;jpg&as=picture&imagetools';
-import alesh_site from '^^assets/images/Alesh Compton.jpg?w=1024&format=avif;webp;jpg&as=picture&imagetools';
-import piros_cms from '^^assets/images/piros-cms.jpg?w=1024&format=avif;webp;jpg&as=picture&imagetools';
-import asatic_cms from '^^assets/images/asatic-cms.jpg?w=1024&format=avif;webp;jpg&as=picture&imagetools';
-import amy_cms from '^^assets/images/Amy CMS.jpg?w=1024&format=avif;webp;jpg&as=picture&imagetools';
-import murat from '^^assets/images/MURAT GÖKMEN.jpg?w=1024&format=avif;webp;jpg&as=picture&imagetools';
-import kindred_yoga from '^^assets/images/Kindred Yoga.jpg?w=1024&format=avif;webp;jpg&as=picture&imagetools';
-import blackheath_yoga from '^^assets/images/Blackheath Yoga.jpg?w=1024&format=avif;webp;jpg&as=picture&imagetools';
+import raie_landing from '^^assets/images/raie.png?w=1024&format=avif;webp;jpg&as=picture&imagetools';
+import birch_cms_programmes from '^^assets/images/birch.png?w=1024&format=avif;webp;jpg&as=picture&imagetools';
+import alesh_site from '^^assets/images/alesh.jpg?w=1024&format=avif;webp;jpg&as=picture&imagetools';
+import piros_cms from '^^assets/images/piros.png?w=1024&format=avif;webp;jpg&as=picture&imagetools';
+import asatic_cms from '^^assets/images/asatic.png?w=1024&format=avif;webp;jpg&as=picture&imagetools';
+import amy_cms from '^^assets/images/amy.png?w=1024&format=avif;webp;jpg&as=picture&imagetools';
+import murat from '^^assets/images/murat.jpg?w=1024&format=avif;webp;jpg&as=picture&imagetools';
+import kindred_yoga from '^^assets/images/kindred_yoga.png?w=1024&format=avif;webp;jpg&as=picture&imagetools';
+import blackheath_yoga from '^^assets/images/blackheath_yoga.png?w=1024&format=avif;webp;jpg&as=picture&imagetools';
 
 export const project = {
 	raie: {

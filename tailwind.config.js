@@ -15,7 +15,9 @@ export default {
 				sans: ['Helvetica', 'sans-serif'],
 				mono: ['Skyhook', 'monospace'],
 				mono2: ['KlartextMono', 'monospace'],
-				mono3: ['Telegrama', 'monospace']
+				mono3: ['Telegrama', 'monospace'],
+				'3d': ['Foldstruct', 'sans-serif'],
+				'3d2': ['STF', 'sans-serif'],
 			},
 
 			colors: {
