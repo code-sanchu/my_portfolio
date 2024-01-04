@@ -40,9 +40,7 @@
 <svelte:window bind:innerHeight={windowHeight} />
 
 <p
-	class={`text-sm tracking-wide md:text-base pt-xl font-light transition-all ease-out duration-700 leading-[1.35rem] ${
-		animateIn ? '' : 'opacity-0'
-	} ${topfadeOut ? 'text-gray-6' : 'text-gray-12'}`}
+	class={`text-sm tracking-wide md:text-base transition-all ease-out duration-700 leading-[1.35rem] text-black`}
 	bind:this={containerNode}
 >
 	I'm a design-focused web engineer who provides consultancy and tech services with a focus on
