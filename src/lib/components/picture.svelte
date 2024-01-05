@@ -53,7 +53,7 @@
 		src={fallback.src}
 		{alt}
 		{loading}
-		class={`${imageClass} object-cover transition-opacity ease-in-out select-none  ${
+		class={`${imageClass} transition-opacity ease-in-out select-none ${
 			loadingComplete ? 'opacity-100' : 'opacity-0'
 		} ${duration}`}
 		draggable={false}

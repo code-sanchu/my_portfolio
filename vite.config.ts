@@ -2,7 +2,7 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 import { imagetools } from 'vite-imagetools';
 
-const supportedExtensions = ['png', 'jpg', 'jpeg'];
+const supportedExtensions = ['png', 'jpg', 'jpeg', 'gif'];
 
 export default defineConfig({
 	plugins: [

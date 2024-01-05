@@ -1,6 +1,10 @@
 import type { Picture } from '^types';
 
-import raie_landing from '^^assets/images/raie.png?w=1024&format=avif;webp;jpg&as=picture&imagetools';
+// import raie_landing from '^^assets/images/raie.png?w=1024&format=avif;webp;jpg&as=picture&imagetools';
+import raie_landing from '^^assets/images/projects/raie.png?w=1024&format=avif;webp;jpg&as=picture&imagetools';
+import amy from '^^assets/images/projects/amy.webp?w=1024&format=avif;webp;jpg&as=picture&imagetools';
+import piros from '^^assets/images/projects/piros.webp?w=1024&format=avif;webp;jpg&as=picture&imagetools';
+
 import birch_cms_programmes from '^^assets/images/birch.png?w=1024&format=avif;webp;jpg&as=picture&imagetools';
 import alesh_site from '^^assets/images/alesh.jpg?w=1024&format=avif;webp;jpg&as=picture&imagetools';
 import piros_cms from '^^assets/images/piros.png?w=1024&format=avif;webp;jpg&as=picture&imagetools';
@@ -21,13 +25,15 @@ export const project = {
 		site: alesh_site as Picture
 	},
 	piros: {
-		cms: piros_cms as Picture
+		cms: piros_cms as Picture,
+		piros: piros as Picture,
 	},
 	asatic: {
 		cms: asatic_cms as Picture
 	},
 	amy: {
-		cms: amy_cms as Picture
+		cms: amy_cms as Picture,
+		site: amy as Picture,
 	},
 	murat: { site: murat as Picture },
 	kindred_yoga: { site: kindred_yoga as Picture },

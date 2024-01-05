@@ -1,66 +1,72 @@
+<script context="module" lang="ts">
+</script>
+
 <script lang="ts">
-	let interactiveNode: HTMLDivElement;
-
-	let curX = 0;
-	let curY = 0;
-	let tgX = 0;
-	let tgY = 0;
-
-	function move() {
-		curX += (tgX - curX) / 20;
-		curY += (tgY - curY) / 20;
-
-		interactiveNode.style.transform = `translate(${Math.round(curX)}px, ${Math.round(curY)}px)`;
-
-		requestAnimationFrame(() => {
-			move();
-		});
-	}
+	// check works in safari
+	/* 	let interactiveNode: HTMLDivElement;
 
 	$: {
 		if (interactiveNode) {
 			window.addEventListener('mousemove', (event) => {
+				console.log('moving..');
+
+				let curX = 0;
+				let curY = 0;
+				let tgX = 0;
+				let tgY = 0;
+
+				function move() {
+					curX += (tgX - curX) / 20;
+					curY += (tgY - curY) / 20;
+
+					interactiveNode.style.transform = `translate(${Math.round(curX)}px, ${Math.round(
+						curY
+					)}px)`;
+
+					requestAnimationFrame(() => {
+						move();
+					});
+				}
+
 				tgX = event.clientX;
 				tgY = event.clientY;
-			});
 
-			move();
+				move();
+			});
 		}
-	}
+	} */
 </script>
 
 <div class="fixed inset-0">
-	<div class="gradient-bg absolute w-full h-full">
-		<svg xmlns="http://www.w3.org/2000/svg">
-			<defs>
-				<filter id="goo">
-					<feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-					<feColorMatrix
-						in="blur"
-						mode="matrix"
-						values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
-						result="goo"
-					/>
-					<feBlend in="SourceGraphic" in2="goo" />
-				</filter>
-			</defs>
-		</svg>
+	<svg xmlns="http://www.w3.org/2000/svg">
+		<defs>
+			<filter id="goo">
+				<feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+				<feColorMatrix
+					in="blur"
+					mode="matrix"
+					values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
+					result="goo"
+				/>
+				<feBlend in="SourceGraphic" in2="goo" />
+			</filter>
+		</defs>
+	</svg>
 
-		<div class="gradients-container">
-			<div class="g1" />
-			<div class="g2" />
-			<div class="g3" />
-			<div class="g4" />
-			<div class="g5" />
-			<div class="interactive" />
-		</div>
+	<div class="gradients-container">
+		<div class="g1" />
+		<div class="g2" />
+		<div class="g3" />
+		<div class="g4" />
+		<div class="g5" />
+		<!-- <div class="interactive" bind:this={interactiveNode} /> -->
 	</div>
 </div>
 
 <style>
 	:root {
-		--color-bg1: rgb(108, 0, 162);
-		--color-bg2: rgb(0, 17, 82);
+		--color-bg1: rgba(108, 0, 162, 1);
+		--color-bg2: rgba(0, 17, 82, 1);
 		--color1: 18, 113, 255;
 		--color2: 221, 74, 255;
 		--color3: 100, 220, 255;
@@ -82,6 +88,18 @@
 			transform: rotate(360deg);
 		}
 	}
+
+	/* 	@-webkit-keyframes moveInCircle {
+		0% {
+			-webkit-transform: rotate(0deg);
+		}
+		50% {
+			-webkit-transform: rotate(180deg);
+		}
+		100% {
+			-webkit-transform: rotate(360deg);
+		}
+	} */
 
 	@keyframes moveVertical {
 		0% {
@@ -107,8 +125,13 @@
 		}
 	}
 
+	svg {
+		display: none;
+	}
+
 	.gradients-container {
 		filter: url(#goo) blur(40px);
+		/* --webkit-filter: url(#goo) blur(40px); */
 		width: 100%;
 		height: 100%;
 	}
@@ -126,6 +149,7 @@
 		width: var(--circle-size);
 		height: var(--circle-size);
 		top: calc(50% - var(--circle-size) / 2);
+		/* top: calc(50% - var(--circle-size) / 2); */
 		left: calc(50% - var(--circle-size) / 2);
 
 		transform-origin: center center;
@@ -151,6 +175,7 @@
 
 		transform-origin: calc(50% - 400px);
 		animation: moveInCircle 20s reverse infinite;
+		/* -webkit-animation: moveInCircle 20s reverse infinite; */
 
 		opacity: 1;
 	}
@@ -218,7 +243,7 @@
 		opacity: 1;
 	}
 
-	.interactive {
+	/* 	.interactive {
 		position: absolute;
 		background: radial-gradient(
 				circle at center,
@@ -227,6 +252,7 @@
 			)
 			no-repeat;
 		mix-blend-mode: var(--blending);
+		transition: transfom 5s ease;
 
 		width: 100%;
 		height: 100%;
@@ -234,5 +260,5 @@
 		left: -50%;
 
 		opacity: 0.7;
-	}
+	} */
 </style>
