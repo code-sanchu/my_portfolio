@@ -38,11 +38,11 @@
 		Tech-poiesis
 	</h1>
 
-	<p class="leading-none tracking-widest mt-xxs flex font-thin text-[15px]">
-		Bespoke website creation
-	</p>
-
 	<!-- <p class="leading-none tracking-widest mt-xxs flex font-thin text-[15px]">
+		Bespoke website creation
+	</p> -->
+
+	<p class="tracking-widest mt-xs flex font-thin text-[15px] max-w-[300px]">
 		<span
 			class={`transition-colors ease-out duration-500 ${
 				topfadeOut ? 'text-gray-6' : 'text-my-olive'
@@ -155,5 +155,6 @@
 				topfadeOut ? 'text-gray-6' : 'text-my-golden-rod '
 			}`}>n</span
 		>
-	</p> -->
+		<span class="ml-xs"> for individuals and small companies, hobbyists and professionals, </span>
+	</p>
 </div>

@@ -5,6 +5,13 @@
 	import { Heading } from '^pages/landing-new';
 </script>
 
+<script lang="ts">
+	// 3d steps at top right with text for nav links
+	// try nova font
+
+	import { ArrowLineRight } from 'phosphor-svelte';
+</script>
+
 <div
 	class="fixed top-[22%] -left-0 -translate-x-[250px] transition-transform ease-linear duration-150"
 >
@@ -40,8 +47,13 @@
 					/>
 				</div>
 
-				<div class="mt-xxs">
-					<p class="text-sm">Raie Music</p>
+				<div class="mt-xxs flex items-baseline justify-between">
+					<p class="text-sm mr-md">Raie Music</p>
+
+					<div class="flex pr-xxs">
+						<p class="mr-sm uppercase text-xxs tracking-wider text-gray-9">more info</p>
+						<p class="uppercase text-xxs tracking-wider text-gray-9">visit</p>
+					</div>
 				</div>
 			</div>
 
@@ -53,8 +65,13 @@
 					/>
 				</div>
 
-				<div class="mt-xxs">
-					<p class="text-sm">Amy Rodriguez Jewellery</p>
+				<div class="mt-xxs flex items-baseline justify-between">
+					<p class="text-sm mr-md">Amy Rodriguez Jewellery</p>
+
+					<div class="flex pr-xxs">
+						<p class="mr-sm uppercase text-xxs tracking-wider text-gray-9">more info</p>
+						<p class="uppercase text-xxs tracking-wider text-gray-9">visit</p>
+					</div>
 				</div>
 			</div>
 
@@ -70,6 +87,17 @@
 					<p class="text-sm">Piros Photography</p>
 				</div>
 			</div>
+		</div>
+
+		<div class="mt-md">
+			<p class="inline-flex gap-xs items-center border py-xxs px-xs rounded-lg border-gray-8">
+				<span class="text-sm">
+					<ArrowLineRight weight="thin" />
+				</span>
+				<span class="translate-y-[1px] text-xs uppercase tracking-wider text-gray-11 font-light"
+					>Next</span
+				>
+			</p>
 		</div>
 	</div>
 </div>

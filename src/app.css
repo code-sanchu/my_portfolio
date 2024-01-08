@@ -58,6 +58,22 @@
 	font-display: swap;
 }
 
+@font-face {
+	font-family: 'Squint';
+	font-style: normal;
+	font-weight: 400;
+	src: url('/fonts/squint.otf');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Overlap';
+	font-style: normal;
+	font-weight: 400;
+	src: url('/fonts/overlap.otf');
+	font-display: swap;
+}
+
 html {
 	@apply outline-none active:outline-none focus:outline-none text-gray-12 overflow-x-hidden md:scrollbar-thin md:scrollbar-track-gray-50/50 md:scrollbar-thumb-gray-100 md:hover:scrollbar-thumb-gray-200 bg-white;
 }

@@ -18,6 +18,8 @@ export default {
 				mono3: ['Telegrama', 'monospace'],
 				'3d': ['Foldstruct', 'sans-serif'],
 				'3d2': ['STF', 'sans-serif'],
+				'3d3': ['Squint', 'sans-serif'],
+				'display': ['Overlap', 'sans-serif'],
 			},
 
 			colors: {
