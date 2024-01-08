@@ -9,14 +9,22 @@
 	// 3d steps at top right with text for nav links
 	// try nova font
 
+	import Circles from '^components/+pages/landing/circles.svelte';
 	import { ArrowLineRight } from 'phosphor-svelte';
 </script>
 
 <div
-	class="fixed top-[22%] -left-0 -translate-x-[250px] transition-transform ease-linear duration-150"
+	class="fixed top-[19%] -left-0 -translate-x-[410px] transition-transform ease-linear duration-150"
 >
-	<div class="w-[400px] overflow-hidden opacity-50">
-		<Picture data={image.line_art[1]} />
+	<div class="w-[600px] overflow-hidden opacity-50">
+		<Picture data={image.line_art[2]} />
+	</div>
+</div>
+<div
+	class="fixed top-[25%] right-0 translate-x-[480px] transition-transform ease-linear duration-150"
+>
+	<div class="w-[600px] overflow-hidden opacity-50">
+		<Picture data={image.line_art[2]} />
 	</div>
 </div>
 

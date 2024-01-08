@@ -1,35 +1,11 @@
 <script context="module" lang="ts">
-	import { onMount } from 'svelte';
 </script>
 
 <script lang="ts">
-	let containerNode: HTMLDivElement;
-
-	let windowHeight: number;
-
-	let topfadeOut = false;
-
-	onMount(() => {
-		const containerRect = containerNode.getBoundingClientRect();
-
-		const topPos = 200;
-
-		topfadeOut = containerRect.bottom < topPos;
-	});
+	let topfadeOut = true;
 </script>
 
-<svelte:document
-	on:scroll={() => {
-		const containerRect = containerNode.getBoundingClientRect();
-
-		const topPos = 200;
-
-		topfadeOut = containerRect.bottom < topPos;
-	}}
-/>
-<svelte:window bind:innerHeight={windowHeight} />
-
-<div bind:this={containerNode}>
+<div>
 	<h1
 		class={`text-[2.5rem] font-light uppercase tracking-wide leading-none transition-colors ease-out duration-700 ${
 			topfadeOut ? 'text-gray-6' : 'text-gray-12'
@@ -46,7 +22,7 @@
 		<span
 			class={`transition-colors ease-out duration-500 ${
 				topfadeOut ? 'text-gray-6' : 'text-my-olive'
-			}`}>B</span
+			} `}>B</span
 		>
 		<span
 			class={`transition-colors ease-out duration-500 ${
