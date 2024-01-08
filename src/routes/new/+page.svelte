@@ -1,13 +1,9 @@
 <script context="module" lang="ts">
 	import { image } from '^assets/images';
 
-	import { Picture } from '^components';
-	import { Intro } from '^pages/landing-new';
+	import { Nav, Picture } from '^components';
+	import { Heading } from '^pages/landing-new';
 </script>
-
-<!-- <div class="fixed right-sm top-md">
-	<Nav />
-</div> -->
 
 <div
 	class="fixed top-[22%] -left-0 -translate-x-[250px] transition-transform ease-linear duration-150"
@@ -17,23 +13,22 @@
 	</div>
 </div>
 
-<div class="fixed left-sm top-md flex">
+<div class="fixed left-sm right-sm top-md flex justify-between">
 	<h1 class="font-3d2 text-[2.5rem] tracking-widest">TPS</h1>
+	<Nav />
 </div>
 
 <div class="relative min-h-screen flex justify-center">
 	<div class="mt-[42vh] max-w-[768px] pb-3xl">
-		<!-- <h2 class="uppercase tracking-wider font-light text-xl">Bespoke website creation</h2> -->
 		<div class="flex justify-center">
-			<div class="w-[560px] max-w-full pr-xl">
-				<Intro />
-			</div>
+			<Heading />
 		</div>
 
 		<div class="mt-[27vh] flex flex-col items-end">
-			<h3 class="tracking-wider">01</h3>
+			<!-- <span class="tracking-wider w-[12px] aspect-square rounded-full border-2 border-[#DBDBD7]" /> -->
+			<!-- <p class="tracking-wider">01</p> -->
 			<h2 class="mt-md uppercase text-lg tracking-widest">Projects</h2>
-			<div class="mt-lg w-[64px] h-[5px] bg-black" />
+			<div class="mt-lg w-[64px] h-[5px] bg-[#DBDBD7]" />
 		</div>
 
 		<div class="relative mt-2xl flex gap-md overflow-x-hidden">

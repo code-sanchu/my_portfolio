@@ -1,31 +1,31 @@
-<div class="flex flex-col items-end gap-xs">
+<div class="flex items-center gap-sm">
 	<button
-		class={`text-xs tracking-wider text-gray-9 hover:text-gray-12 hover:decoration-gray-12 ease-linear duration-200 transition-colors`}
+		class={`text-xs uppercase text-[#ACB7C4] tracking-wider ease-linear duration-200 transition-colors`}
 		type="button"
 		id="about-link"
 	>
-		about
+		About
 	</button>
 	<button
-		class={`text-xs tracking-wider text-gray-9 hover:text-gray-12 hover:decoration-gray-12 ease-linear duration-200 transition-colors`}
+		class={`text-xs uppercase text-[#ACB7C4] tracking-wider ease-linear duration-200 transition-colors`}
 		type="button"
 		id="projects-link"
 	>
-		projects
+		Projects
 	</button>
 	<button
-		class={`text-xs tracking-wider text-gray-9 hover:text-gray-12 hover:decoration-gray-12 ease-linear duration-200 transition-colors`}
+		class={`text-xs uppercase text-[#ACB7C4] tracking-wider ease-linear duration-200 transition-colors`}
 		type="button"
 		id="services-link"
 	>
-		services
+		Services
 	</button>
 
 	<button
-		class="text-xs tracking-wider text-gray-9 hover:text-gray-12 ease-linear duration-200"
+		class={`text-xs uppercase text-[#A094A0] tracking-wider ease-linear duration-200 transition-colors`}
 		type="button"
 		id="contact-link"
 	>
-		say hi
+		Say Hi
 	</button>
 </div>
