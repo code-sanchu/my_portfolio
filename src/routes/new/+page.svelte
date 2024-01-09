@@ -1,4 +1,5 @@
 <script context="module" lang="ts">
+	import { ArrowLineRight } from 'phosphor-svelte';
 	import { image } from '^assets/images';
 
 	import { Nav, Picture } from '^components';
@@ -8,40 +9,54 @@
 <script lang="ts">
 	// 3d steps at top right with text for nav links
 	// try nova font
-
-	import Circles from '^components/+pages/landing/circles.svelte';
-	import { ArrowLineRight } from 'phosphor-svelte';
+	// nav bar links with coloured dots from image
+	// match colours to image
 </script>
 
 <div
-	class="fixed top-[19%] -left-0 -translate-x-[410px] transition-transform ease-linear duration-150"
+	class="fixed top-[19%] -left-0 -translate-x-[250px] transition-transform ease-linear duration-150"
 >
-	<div class="w-[600px] overflow-hidden opacity-50">
+	<!-- <div class="w-[400px] overflow-hidden opacity-40">
+		<Picture data={image.line_art[1]} />
+	</div> -->
+	<!-- <div class="w-[600px] overflow-hidden">
 		<Picture data={image.line_art[2]} />
-	</div>
+	</div> -->
+	<!-- <div class="w-[600px] overflow-hidden rotate-90">
+		<Picture data={image.line_art[3]} />
+	</div> -->
+	<!-- <div class="w-[600px] overflow-hidden rotate-90">
+		<Picture data={image.line_art[4]} />
+	</div> -->
 </div>
-<div
+
+<!-- <div
 	class="fixed top-[25%] right-0 translate-x-[480px] transition-transform ease-linear duration-150"
 >
 	<div class="w-[600px] overflow-hidden opacity-50">
 		<Picture data={image.line_art[2]} />
 	</div>
-</div>
+</div> -->
 
-<div class="fixed left-sm right-sm top-md flex justify-between">
+<div class="fixed z-20 left-sm right-sm top-md flex justify-between">
+	<!-- <h1 class="absolute left-0 -translate-y-[70px] font-display2 text-[140px]">TPS</h1> -->
+	<!-- <h1 class="font-display3 text-3xl tracking-widest">TPS</h1> -->
 	<h1 class="font-3d2 text-[2.5rem] tracking-widest">TPS</h1>
+	<!-- <h1 class="text-[2.5rem] tracking-widest">TPS</h1> -->
 	<Nav />
 </div>
 
 <div class="relative min-h-screen flex justify-center">
+	<div class="absolute z-10 left-0 top-[7%] w-[400px] origin-bottom-left rotate-90">
+		<Picture data={image.art[7]} />
+	</div>
+
 	<div class="mt-[42vh] max-w-[768px] pb-3xl">
 		<div class="flex justify-center">
 			<Heading />
 		</div>
 
 		<div class="mt-[27vh] flex flex-col items-end">
-			<!-- <span class="tracking-wider w-[12px] aspect-square rounded-full border-2 border-[#DBDBD7]" /> -->
-			<!-- <p class="tracking-wider">01</p> -->
 			<h2 class="mt-md uppercase text-lg tracking-widest">Projects</h2>
 			<div class="mt-lg w-[64px] h-[5px] bg-[#DBDBD7]" />
 		</div>
@@ -106,6 +121,35 @@
 					>Next</span
 				>
 			</p>
+		</div>
+
+		<div class="mt-[18vh] flex flex-col">
+			<h2 class="mt-md uppercase text-lg tracking-widest">Services</h2>
+			<div class="mt-lg w-[64px] h-[5px] bg-[#DBDBD7]" />
+		</div>
+
+		<div class="mt-[4.5rem] font-light">
+			<p class="max-w-[620px] leading-relaxed">
+				I'm a design-focused web engineer who provides personalised and high-quality tech services.
+				I work with individuals and small companies, hobbyists and professionals and find the
+				right-sized approach for each.
+			</p>
+
+			<p class="max-w-[620px] mt-sm leading-relaxed">
+				Services include: website and cms creation, cms platform (e.g. Squarespace, Wordpress) work,
+				other platform (such as Shopify) work.
+			</p>
+
+			<p class="max-w-[620px] mt-sm leading-relaxed">
+				Feel free to get in touch for a discussion to see what your options are and whether we're a
+				good match. I've comprehensive knowledge of the website ecosystem. Budget options and
+				concessions are available based on income.
+			</p>
+		</div>
+
+		<div class="mt-[18vh] flex flex-col items-end">
+			<h2 class="mt-md uppercase text-lg tracking-widest">Contact</h2>
+			<div class="mt-lg w-[64px] h-[5px] bg-[#DBDBD7]" />
 		</div>
 	</div>
 </div>
