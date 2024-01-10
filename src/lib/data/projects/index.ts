@@ -5,7 +5,7 @@ const raie: Project = {
 	id: 'raie',
 	title: 'Raie Music',
 	siteUrl: 'https://www.raiemusic.com/',
-	mainPicture: image.project.raie.landing,
+	mainPicture: image.project.raie.landing_main_pic,
 	descriptionLong: [
 		"Raie is a singer/songwriter with years of experience in the music world. She's worked with industry heavyweights in the production of her 3 albums and recently launched a new one — Red Brick Angel.",
 		'Raie wanted a website to showcase her music and document her journey through images, film and text.'
@@ -52,7 +52,7 @@ const piros: Project = {
 	id: 'piros',
 	title: 'Piros Photography',
 	siteUrl: 'https://www.piros.photography/',
-	mainPicture: image.project.piros.cms,
+	mainPicture: image.project.piros.landing_main_pic,
 	descriptionLong: [
 		'Piroska Markus is a socially and politically active photographer who tries to capture the vicissitudes of human life, as well as nature from her global travels.',
 		'The site is her photographic portfolio, and includes a custom cms for ease of updates.'
@@ -82,7 +82,7 @@ const amy: Project = {
 	id: 'amy',
 	title: 'Amy Jewellery',
 	siteUrl: 'https://www.amyrodriguez.art/portfolio/1',
-	mainPicture: image.project.amy.cms,
+	mainPicture: image.project.amy.kevin_el_toro,
 	descriptionLong: [
 		'Amy Rodriguez is an unorthodox jewellery artist specialising in metals.',
 		'Her work is presented on this site via a custom cms, which is also integrated with a shop.'

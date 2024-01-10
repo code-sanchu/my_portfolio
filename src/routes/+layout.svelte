@@ -3,6 +3,8 @@
 
 	import { onMount } from 'svelte';
 
+	const buttonIds = ['home-link', 'projects-link', 'services-link', 'contact-link'];
+
 	const speed = 120;
 	const smooth = 15;
 </script>
@@ -12,7 +14,6 @@
 	let scrollToPos = 0;
 
 	onMount(() => {
-		// new SmoothScroll(document, 120, 12);
 		if (document) {
 			const target = document.scrollingElement || document.body.parentNode || document.body;
 			// @ts-ignore
@@ -37,20 +38,29 @@
 
 			document.addEventListener('click', (e) => {
 				//@ts-ignore
-				const buttonId = e.target.id;
+				const clickedNodeId = e.target.id;
+				//@ts-ignore
+				const clickedNodeParentId = e.target?.parentNode?.id;
 
-				if (
-					buttonId !== 'about-link' &&
-					buttonId !== 'projects-link' &&
-					buttonId !== 'services-link' &&
-					buttonId !== 'contact-link'
-				) {
+				let clickedNode;
+
+				if (buttonIds.includes(clickedNodeId)) {
+					clickedNode = 'button';
+				} else if (buttonIds.includes(clickedNodeParentId)) {
+					clickedNode = 'child';
+				} else {
 					return;
 				}
+
+				let buttonId = clickedNode === 'button' ? clickedNodeId : clickedNodeParentId;
 
 				const sectionId = buttonId.split('-')[0] + '-section';
 
 				const node = document.getElementById(sectionId);
+
+				if (!node) {
+					return;
+				}
 
 				const scrollMiddlePos =
 					// @ts-ignore

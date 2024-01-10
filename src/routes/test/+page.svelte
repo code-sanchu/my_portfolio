@@ -1,264 +1,79 @@
 <script context="module" lang="ts">
+	import { Picture } from '^components';
+	import { image } from '^assets/images';
 </script>
 
 <script lang="ts">
-	// check works in safari
-	/* 	let interactiveNode: HTMLDivElement;
-
-	$: {
-		if (interactiveNode) {
-			window.addEventListener('mousemove', (event) => {
-				console.log('moving..');
-
-				let curX = 0;
-				let curY = 0;
-				let tgX = 0;
-				let tgY = 0;
-
-				function move() {
-					curX += (tgX - curX) / 20;
-					curY += (tgY - curY) / 20;
-
-					interactiveNode.style.transform = `translate(${Math.round(curX)}px, ${Math.round(
-						curY
-					)}px)`;
-
-					requestAnimationFrame(() => {
-						move();
-					});
-				}
-
-				tgX = event.clientX;
-				tgY = event.clientY;
-
-				move();
-			});
-		}
-	} */
+	let state = false;
 </script>
 
-<div class="fixed inset-0">
-	<svg xmlns="http://www.w3.org/2000/svg">
-		<defs>
-			<filter id="goo">
-				<feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-				<feColorMatrix
-					in="blur"
-					mode="matrix"
-					values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
-					result="goo"
-				/>
-				<feBlend in="SourceGraphic" in2="goo" />
-			</filter>
-		</defs>
-	</svg>
-
-	<div class="gradients-container">
-		<div class="g1" />
-		<div class="g2" />
-		<div class="g3" />
-		<div class="g4" />
-		<div class="g5" />
-		<!-- <div class="interactive" bind:this={interactiveNode} /> -->
+<div class="h-screen grid place-items-center">
+	<div class="flip-card">
+		<div class={`flip-card-inner ${state ? 'my-flip' : ''}`}>
+			<div class="flip-card-front">
+				<div class="w-[300px]">
+					<Picture data={image.project.raie.landing_main_pic} />
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 
+<button class="fixed right-md bottom-md" on:click={() => (state = !state)}>CLICK ME</button>
+
 <style>
-	:root {
-		--color-bg1: rgba(108, 0, 162, 1);
-		--color-bg2: rgba(0, 17, 82, 1);
-		--color1: 18, 113, 255;
-		--color2: 221, 74, 255;
-		--color3: 100, 220, 255;
-		--color4: 200, 50, 50;
-		--color5: 180, 180, 50;
-		--color-interactive: 140, 100, 255;
-		--circle-size: 80%;
-		--blending: hard-light;
-	}
-
-	@keyframes moveInCircle {
+	@keyframes my-flip {
 		0% {
-			transform: rotate(0deg);
+			transform: rotateY(0deg);
 		}
+
 		50% {
-			transform: rotate(180deg);
+			transform: translateY(-150px) rotateY(45deg);
 		}
+
 		100% {
-			transform: rotate(360deg);
+			transform: rotateY(0deg) translateY(-450px) scale(1.5);
 		}
 	}
 
-	/* 	@-webkit-keyframes moveInCircle {
-		0% {
-			-webkit-transform: rotate(0deg);
-		}
-		50% {
-			-webkit-transform: rotate(180deg);
-		}
-		100% {
-			-webkit-transform: rotate(360deg);
-		}
-	} */
-
-	@keyframes moveVertical {
-		0% {
-			transform: translateY(-50%);
-		}
-		50% {
-			transform: translateY(50%);
-		}
-		100% {
-			transform: translateY(-50%);
-		}
+	.my-flip {
+		animation: my-flip 2s ease-in-out forwards;
 	}
 
-	@keyframes moveHorizontal {
-		0% {
-			transform: translateX(-50%) translateY(-10%);
-		}
-		50% {
-			transform: translateX(50%) translateY(10%);
-		}
-		100% {
-			transform: translateX(-50%) translateY(-10%);
-		}
+	.flip-card {
+		background-color: transparent;
+		width: 300px;
+		height: 200px;
+		perspective: 1000px;
 	}
 
-	svg {
-		display: none;
-	}
-
-	.gradients-container {
-		filter: url(#goo) blur(40px);
-		/* --webkit-filter: url(#goo) blur(40px); */
+	/* This container is needed to position the front and back side */
+	.flip-card-inner {
+		position: relative;
 		width: 100%;
 		height: 100%;
+		text-align: center;
+		transition: transform 0.8s;
+		transform-style: preserve-3d;
 	}
 
-	.g1 {
+	/* Do an horizontal flip when you move the mouse over the flip box container */
+	/* 	.flip-card:hover .flip-card-inner {
+		transform: rotateY(30deg);
+	} */
+
+	/* Position the front and back side */
+	.flip-card-front {
 		position: absolute;
-		background: radial-gradient(
-				circle at center,
-				rgba(var(--color-bg1)) 0,
-				rgba(var(--color-bg2)) 50%
-			)
-			no-repeat;
-		mix-blend-mode: var(--blending);
-
-		width: var(--circle-size);
-		height: var(--circle-size);
-		top: calc(50% - var(--circle-size) / 2);
-		/* top: calc(50% - var(--circle-size) / 2); */
-		left: calc(50% - var(--circle-size) / 2);
-
-		transform-origin: center center;
-		animation: moveVertical 30s ease infinite;
-
-		opacity: 1;
-	}
-
-	.g2 {
-		position: absolute;
-		background: radial-gradient(
-				circle at center,
-				rgba(var(--color2), 0.8) 0,
-				rgba(var(--color2), 0) 50%
-			)
-			no-repeat;
-		mix-blend-mode: var(--blending);
-
-		width: var(--circle-size);
-		height: var(--circle-size);
-		top: calc(50% - var(--circle-size) / 2);
-		left: calc(50% - var(--circle-size) / 2);
-
-		transform-origin: calc(50% - 400px);
-		animation: moveInCircle 20s reverse infinite;
-		/* -webkit-animation: moveInCircle 20s reverse infinite; */
-
-		opacity: 1;
-	}
-
-	.g3 {
-		position: absolute;
-		background: radial-gradient(
-				circle at center,
-				rgba(var(--color3), 0.8) 0,
-				rgba(var(--color3), 0) 50%
-			)
-			no-repeat;
-		mix-blend-mode: var(--blending);
-
-		width: var(--circle-size);
-		height: var(--circle-size);
-		top: calc(50% - var(--circle-size) / 2 + 200px);
-		left: calc(50% - var(--circle-size) / 2 - 500px);
-
-		transform-origin: calc(50% + 400px);
-		animation: moveInCircle 40s linear infinite;
-
-		opacity: 1;
-	}
-
-	.g4 {
-		position: absolute;
-		background: radial-gradient(
-				circle at center,
-				rgba(var(--color4), 0.8) 0,
-				rgba(var(--color4), 0) 50%
-			)
-			no-repeat;
-		mix-blend-mode: var(--blending);
-
-		width: var(--circle-size);
-		height: var(--circle-size);
-		top: calc(50% - var(--circle-size) / 2);
-		left: calc(50% - var(--circle-size) / 2);
-
-		transform-origin: calc(50% - 200px);
-		animation: moveHorizontal 40s ease infinite;
-
-		opacity: 0.7;
-	}
-
-	.g5 {
-		position: absolute;
-		background: radial-gradient(
-				circle at center,
-				rgba(var(--color5), 0.8) 0,
-				rgba(var(--color5), 0) 50%
-			)
-			no-repeat;
-		mix-blend-mode: var(--blending);
-
-		width: calc(var(--circle-size) * 2);
-		height: calc(var(--circle-size) * 2);
-		top: calc(50% - var(--circle-size));
-		left: calc(50% - var(--circle-size));
-
-		transform-origin: calc(50% - 800px) calc(50% + 200px);
-		animation: moveInCircle 20s ease infinite;
-
-		opacity: 1;
-	}
-
-	/* 	.interactive {
-		position: absolute;
-		background: radial-gradient(
-				circle at center,
-				rgba(var(--color-interactive), 0.8) 0,
-				rgba(var(--color-interactive), 0) 50%
-			)
-			no-repeat;
-		mix-blend-mode: var(--blending);
-		transition: transfom 5s ease;
-
 		width: 100%;
 		height: 100%;
-		top: -50%;
-		left: -50%;
+		-webkit-backface-visibility: hidden; /* Safari */
+		backface-visibility: hidden;
+	}
 
-		opacity: 0.7;
-	} */
+	/* Style the front side (fallback if image is missing) */
+	.flip-card-front {
+		background-color: #bbb;
+		color: black;
+	}
 </style>

@@ -1,70 +1,99 @@
 <script context="module" lang="ts">
-	import { onMount } from 'svelte';
-	import { fade } from 'svelte/transition';
+	import { image } from '^assets/images';
 
-	import { Circles, Contact, Heading, Intro, Projects, Services } from '^pages/landing';
-	import { Nav } from '^components';
+	import { Header, Picture } from '^components';
+	import { Heading, Projects } from '^components/+pages/landing';
 </script>
 
 <script lang="ts">
-	// check: on mobile, can't scroll on projects section for some reason (can on others) - fixed?
-	// check: check if thin scrollbar applied across browsers - wasn't on firefox windows
-
-	import Picture from '^components/picture.svelte';
-	import { image } from '^assets/images';
-
-	// END
-	// - optimise images
-
-	// NICE TO HAVE
-	// - more decoration on landing for big screens?
-	// - better project titles animate in?
-
-	// NEED TO DO
-	// - main card text update since no longer flexed.
-	// - responsive.
-
-	let mounted = false;
-
-	onMount(() => {
-		mounted = true;
-	});
+	// 3d steps at top right with text for nav links
+	// try nova font
+	// nav bar links with coloured dots from image
+	// match colours to image
+	// animate to more info
+	// using dots, could actually do something akin to:https://www.pola.co.jp/special/o/wecaremore/mothersday/
 </script>
 
-{#if mounted}
-	<div class="fixed z-20 left-0 top-0 w-full" transition:fade>
-		<Nav />
+<Header />
+
+<div class="relative min-h-screen pb-2xl">
+	<div class="pt-[7.5rem] w-1/2 lg:w-[400px] origin-bottom-left">
+		<Picture data={image.art[7]} />
 	</div>
 
-	<div
-		class="fixed top-[22%] -left-0 -translate-x-[250px] transition-transform ease-linear duration-150"
-	>
-		<!-- <div class="fixed top-[22%] sm:top-[30%] -left-lg transition-transform ease-linear duration-150"> -->
-		<!-- <Circles /> -->
-		<div class="w-[400px] opacity-50">
-			<Picture data={image.line_art[1]} />
-		</div>
-	</div>
-
-	<div class="relative min-h-screen grid place-items-center" transition:fade>
+	<div class="mt-2xl flex justify-center">
 		<Heading />
 	</div>
 
-	<div class="mx-sm mb-2xl flex flex-col gap-3xl" transition:fade>
-		<div class="w-[580px] max-w-full pr-xl" id="about-section">
-			<Intro />
+	<div class=" mt-[20vh] flex flex-col items-end px-lg">
+		<h2 class="uppercase lg:text-lg tracking-widest text-gray-11">Projects</h2>
+		<div class="mt-md lg:mt-lg w-[64px] h-[5px] bg-[#DBDBD7]" />
+	</div>
+
+	<div class="relative mt-xl lg:mt-2xl overflow-x-hidden pl-lg" id="projects-section">
+		<Projects />
+	</div>
+</div>
+
+<!-- <div class="relative min-h-screen flex justify-center">
+	<div class="absolute z-10 left-0 top-[7%] w-[400px] origin-bottom-left rotate-90">
+		<Picture data={image.art[7]} />
+	</div>
+
+	<div class="mt-[42vh] max-w-[768px] pb-3xl" id="home-section">
+		<div class="flex justify-center">
+			<Heading />
 		</div>
 
-		<div id="projects-section">
+		<div class="mt-[27vh] flex flex-col items-end" id="projects-section">
+			<h2 class="mt-md uppercase text-lg tracking-widest">Projects</h2>
+			<div class="mt-lg w-[64px] h-[5px] bg-[#DBDBD7]" />
+		</div>
+
+		<div class="relative mt-2xl overflow-x-hidden">
 			<Projects />
 		</div>
 
-		<div id="services-section">
-			<Services />
+		<div class="mt-md">
+			<p class="inline-flex gap-xs items-center border py-xxs px-xs rounded-lg border-gray-8">
+				<span class="text-sm">
+					<ArrowLineRight weight="thin" />
+				</span>
+				<span class="translate-y-[1px] text-xs uppercase tracking-wider text-gray-11 font-light"
+					>Next</span
+				>
+			</p>
 		</div>
 
-		<div id="contact-section">
-			<Contact />
+		<div class="mt-[18vh] flex flex-col" id="services-section">
+			<h2 class="mt-md uppercase text-lg tracking-widest">Services</h2>
+			<div class="mt-lg w-[64px] h-[5px] bg-[#DBDBD7]" />
 		</div>
+
+		<div class="mt-[4.5rem] font-light">
+			<p class="max-w-[620px] leading-relaxed">
+				I'm a design-focused web engineer who provides personalised and high-quality tech services.
+				I work with individuals and small companies, hobbyists and professionals and find the
+				right-sized approach for each.
+			</p>
+
+			<p class="max-w-[620px] mt-sm leading-relaxed">
+				Services include: website and cms creation, cms platform (e.g. Squarespace, Wordpress) work,
+				other platform (such as Shopify) work.
+			</p>
+
+			<p class="max-w-[620px] mt-sm leading-relaxed">
+				Feel free to get in touch for a discussion to see what your options are and whether we're a
+				good match. I've comprehensive knowledge of the website ecosystem. Budget options and
+				concessions are available based on income.
+			</p>
+		</div>
+
+		<div class="mt-[18vh] flex flex-col items-end" id="contact-section">
+			<h2 class="mt-md uppercase text-lg tracking-widest">Contact</h2>
+			<div class="mt-lg w-[64px] h-[5px] bg-[#DBDBD7]" />
+		</div>
+
+		<Contact />
 	</div>
-{/if}
+</div> -->
