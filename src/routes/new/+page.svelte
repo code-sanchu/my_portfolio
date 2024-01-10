@@ -3,7 +3,7 @@
 	import { image } from '^assets/images';
 
 	import { Nav, Picture } from '^components';
-	import { Heading } from '^pages/landing-new';
+	import { Heading, Contact } from '^pages/landing-new';
 </script>
 
 <script lang="ts">
@@ -11,6 +11,7 @@
 	// try nova font
 	// nav bar links with coloured dots from image
 	// match colours to image
+	// using dots, could actually do something akin to:https://www.pola.co.jp/special/o/wecaremore/mothersday/
 </script>
 
 <div
@@ -38,7 +39,7 @@
 	</div>
 </div> -->
 
-<div class="fixed z-20 left-sm right-sm top-md flex justify-between">
+<div class="fixed z-20 left-sm right-sm top-md flex justify-between items-center">
 	<!-- <h1 class="absolute left-0 -translate-y-[70px] font-display2 text-[140px]">TPS</h1> -->
 	<!-- <h1 class="font-display3 text-3xl tracking-widest">TPS</h1> -->
 	<h1 class="font-3d2 text-[2.5rem] tracking-widest">TPS</h1>
@@ -56,7 +57,7 @@
 			<Heading />
 		</div>
 
-		<div class="mt-[27vh] flex flex-col items-end">
+		<div class="mt-[27vh] flex flex-col items-end" id="projects-section">
 			<h2 class="mt-md uppercase text-lg tracking-widest">Projects</h2>
 			<div class="mt-lg w-[64px] h-[5px] bg-[#DBDBD7]" />
 		</div>
@@ -123,7 +124,7 @@
 			</p>
 		</div>
 
-		<div class="mt-[18vh] flex flex-col">
+		<div class="mt-[18vh] flex flex-col" id="services-section">
 			<h2 class="mt-md uppercase text-lg tracking-widest">Services</h2>
 			<div class="mt-lg w-[64px] h-[5px] bg-[#DBDBD7]" />
 		</div>
@@ -151,5 +152,7 @@
 			<h2 class="mt-md uppercase text-lg tracking-widest">Contact</h2>
 			<div class="mt-lg w-[64px] h-[5px] bg-[#DBDBD7]" />
 		</div>
+
+		<Contact />
 	</div>
 </div>
