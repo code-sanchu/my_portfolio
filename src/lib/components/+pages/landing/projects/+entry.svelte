@@ -9,7 +9,7 @@
 <script lang="ts">
 </script>
 
-<div class="flex gap-md">
+<div class="flex gap-[1.25rem]">
 	<MainCard data={projects.raie} />
 	<MainCard data={projects.amy} />
 	<MainCard data={projects.piros} />
