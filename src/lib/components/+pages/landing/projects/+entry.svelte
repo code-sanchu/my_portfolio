@@ -9,7 +9,7 @@
 <script lang="ts">
 </script>
 
-<div class="flex gap-[1.25rem]">
+<div class="flex gap-[1.25rem] overflow-hidden">
 	<MainCard data={projects.raie} />
 	<MainCard data={projects.amy} />
 	<MainCard data={projects.piros} />

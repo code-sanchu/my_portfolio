@@ -2,7 +2,7 @@
 	import { image } from '^assets/images';
 
 	import { Header, Picture } from '^components';
-	import { Heading, Projects } from '^components/+pages/landing';
+	import { Contact, Heading, Projects, Section, Services } from '^pages/landing';
 </script>
 
 <script lang="ts">
@@ -14,6 +14,8 @@
 	// don't use absolute for contact in nav
 	// title animate in as with plastic.desgin
 	// using dots, could actually do something akin to:https://www.pola.co.jp/special/o/wecaremore/mothersday/
+
+	import LeftSpacing from '^components/+pages/landing/section/left-spacing.svelte';
 
 	let windowHeight: number;
 
@@ -41,17 +43,18 @@
 
 {#if headerHeight && windowHeight}
 	<div
-		class="relative pb-2xl"
+		class="relative pb-xl"
 		style:margin-top="{headerHeight}px"
 		style:min-height="{windowHeight - headerHeight}px"
 	>
 		<div class="absolute top-sm h-[20vh] aspect-[7/5]">
-			<Picture data={image.art[7]} imageClass="absolute inset-0 w-full h-full object-cover" />
+			<Picture data={image.art[1]} imageClass="absolute inset-0 w-full h-full object-cover" />
 		</div>
 
 		<div
 			class="absolute left-1/2 top-[26vh] z-20 flex justify-center -translate-x-1/2"
 			bind:this={headingNode}
+			id="home-section"
 		>
 			<Heading />
 		</div>
@@ -59,13 +62,34 @@
 		{#if headingBottom}
 			<div style:height="{headingBottom - headerHeight}px" />
 
-			<div class="mt-2xl flex flex-col items-end px-lg">
-				<h2 class="uppercase font-light lg:text-lg tracking-widest text-gray-10">Projects</h2>
-				<div class="mt-sm lg:mt-lg w-[64px] h-[5px] bg-gray-4" />
+			<div class="mt-2xl">
+				<Section.Heading align="right" text="Projects" />
 			</div>
 
-			<div class="relative mt-lg lg:mt-2xl overflow-x-hidden pl-lg" id="projects-section">
-				<Projects />
+			<div class="mt-lg lg:mt-2xl" id="projects-section">
+				<Section.LeftSpacing>
+					<Projects />
+				</Section.LeftSpacing>
+			</div>
+
+			<div class="mt-2xl">
+				<Section.Heading align="left" text="Services" />
+			</div>
+
+			<div class="mt-xl" id="services-section">
+				<Section.HorizontalSpacing>
+					<Services />
+				</Section.HorizontalSpacing>
+			</div>
+
+			<div class="mt-2xl">
+				<Section.Heading align="right" text="Contact" />
+			</div>
+
+			<div class="mt-xl" id="contact-section">
+				<Section.HorizontalSpacing>
+					<Contact />
+				</Section.HorizontalSpacing>
 			</div>
 		{/if}
 	</div>

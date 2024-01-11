@@ -2,9 +2,11 @@
 	import Nav from './nav.svelte';
 </script>
 
-<div class="fixed z-20 left-0 top-0 w-full lg:top-md flex justify-between items-center p-sm">
+<div class="fixed z-30 left-0 top-0 w-full lg:top-md flex justify-between items-center p-sm">
 	<div class="flex items-center gap-sm">
-		<h1 class="font-light text-xl lg:text-[2.5rem] tracking-widest" id="home-link">TPS</h1>
+		<h1 class="font-light text-xl lg:text-[2.5rem] tracking-widest cursor-pointer" id="home-link">
+			TPS
+		</h1>
 	</div>
 
 	<Nav />

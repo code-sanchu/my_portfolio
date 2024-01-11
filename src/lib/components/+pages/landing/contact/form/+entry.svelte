@@ -14,7 +14,7 @@
 	$: formIsComplete = email.length && message.length;
 </script>
 
-<div class="mt-lg inline-flex flex-col w-[400px] max-w-full">
+<div class="flex flex-col w-[400px] max-w-full">
 	<div class="border-t border-t-my-olive/60 border-b border-b-my-light-blue/60">
 		<Input bind:value={name} label="Name" />
 	</div>
