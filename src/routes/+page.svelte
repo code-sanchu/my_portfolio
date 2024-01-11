@@ -11,28 +11,53 @@
 	// nav bar links with coloured dots from image
 	// match colours to image
 	// animate to more info
+	// title animate in as with plastic.desgin
 	// using dots, could actually do something akin to:https://www.pola.co.jp/special/o/wecaremore/mothersday/
+
+	// let headerHeight: number = 60;
+
+	let headingNode: HTMLDivElement;
+
+	let headingBottom: number;
+
+	$: {
+		if (headingNode) {
+			const rect = headingNode.getBoundingClientRect();
+			const bottom = rect.top + rect.height;
+
+			headingBottom = bottom;
+		}
+	}
+
+	// let headingNodeBottom
 </script>
 
 <Header />
 
 <div class="relative min-h-screen pb-2xl">
-	<div class="pt-[7.5rem] w-1/2 lg:w-[400px] origin-bottom-left">
+	<div class="fixed top-[16vh] w-[230px]">
 		<Picture data={image.art[7]} />
 	</div>
 
-	<div class="mt-2xl flex justify-center">
+	<div
+		class="fixed left-1/2 top-1/2 z-20 flex justify-center -translate-x-1/2 -translate-y-1/2 bg-white p-sm"
+		bind:this={headingNode}
+	>
 		<Heading />
 	</div>
 
-	<div class=" mt-[20vh] flex flex-col items-end px-lg">
-		<h2 class="uppercase lg:text-lg tracking-widest text-gray-11">Projects</h2>
-		<div class="mt-md lg:mt-lg w-[64px] h-[5px] bg-[#DBDBD7]" />
-	</div>
+	{#if headingBottom}
+		<div style:height="{headingBottom}px" />
 
-	<div class="relative mt-xl lg:mt-2xl overflow-x-hidden pl-lg" id="projects-section">
-		<Projects />
-	</div>
+		<div class="mt-2xl flex flex-col items-end px-lg">
+			<h2 class="uppercase lg:text-lg tracking-widest">Projects</h2>
+			<div class="mt-md lg:mt-lg w-[64px] h-[5px] bg-[#DBDBD7]" />
+		</div>
+
+		<div class="relative mt-xl lg:mt-2xl overflow-x-hidden pl-lg" id="projects-section">
+			<Projects />
+		</div>
+	{/if}
 </div>
 
 <!-- <div class="relative min-h-screen flex justify-center">

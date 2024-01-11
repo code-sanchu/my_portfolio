@@ -7,7 +7,7 @@
 	export let data: Project;
 </script>
 
-<div class="w-[260px] lg:w-[300px] shrink-0">
+<div class="w-[180px] lg:w-[300px] shrink-0">
 	<div class="relative aspect-[3/4] overflow-hidden">
 		<Picture data={data.mainPicture} imageClass="absolute inset-0 object-cover w-full h-full" />
 	</div>

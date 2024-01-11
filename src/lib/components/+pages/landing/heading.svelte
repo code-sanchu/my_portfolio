@@ -3,9 +3,15 @@
 </script>
 
 <div>
-	<h1 class={`text-[2.4rem] font-light uppercase tracking-widest leading-none `}>Tech-poiesis</h1>
+	<h1
+		class={`text-[33.4px] sm:text-[2.4rem] font-light uppercase tracking-widest leading-none whitespace-nowrap`}
+	>
+		Tech-poiesis
+	</h1>
 
-	<p class="tracking-widest mt-xs flex font-thin text-sm lg:text-[15px] max-w-[300px]">
+	<p
+		class="tracking-widest mt-xs flex font-thin text-xs sm:text-sm lg:text-[15px] max-w-[254px] sm:max-w-[300px]"
+	>
 		<span class={`transition-colors ease-out duration-500 ${topfadeOut ? '' : 'text-my-olive'}`}
 			>B</span
 		>
@@ -91,7 +97,7 @@
 			>n</span
 		>
 		<span class="ml-xs text-gray-12">
-			for individuals and small companies, hobbyists and professionals,
+			for individuals and small companies, hobbyists and professionals.
 		</span>
 	</p>
 </div>
