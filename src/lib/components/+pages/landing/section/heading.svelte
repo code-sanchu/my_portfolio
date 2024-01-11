@@ -12,5 +12,7 @@
 		<h2 class="uppercase font-light lg:text-lg tracking-widest text-gray-10">{text}</h2>
 
 		<div class="mt-sm lg:mt-lg w-[64px] h-[5px] bg-gray-4" />
+
+		<!-- <h3 class="bg-my-orange-1 inline-block self-start text-transparent bg-clip-text">Hello</h3> -->
 	</div>
 </HorizontalSpacing>

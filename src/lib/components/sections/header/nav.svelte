@@ -10,7 +10,7 @@
 			class="tracking-wider text-gray-9 hover:text-gray-12 ease-linear duration-200 transition-colors"
 			>Projects</span
 		>
-		<span class="w-[6px] opacity-70">
+		<span class="w-[5px] opacity-70">
 			<Picture data={image.dot.green} />
 		</span>
 	</button>
@@ -20,7 +20,7 @@
 			class="tracking-wider text-gray-9 hover:text-gray-12 ease-linear duration-200 transition-colors"
 			>Services</span
 		>
-		<span class="w-[6px] opacity-70">
+		<span class="w-[5px] opacity-70">
 			<Picture data={image.dot.orange} />
 		</span>
 	</button>
@@ -34,7 +34,7 @@
 			class="tracking-wider text-gray-9 hover:text-gray-12 ease-linear duration-200 transition-colors"
 			>Contact</span
 		>
-		<span class="w-[6px] opacity-70">
+		<span class="w-[5px] opacity-70">
 			<Picture data={image.dot.blue} />
 		</span>
 	</button>

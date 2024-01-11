@@ -43,7 +43,21 @@ export default {
 				'my-tomato': 'rgb(255, 99, 71)',
 				'my-rosy-brown': 'rgb(188, 143, 143)',
 				'my-black': 'rgb(26, 26, 26)',
-				'my-light-gray': '#aeaeae'
+				'my-light-gray': '#aeaeae',
+
+				'my-green-1': 'rgb(9.8, 59.2, 40.8)',
+				'my-lime-1': '#bcbe39',
+				'my-blue-1': '#2980c2',
+				'my-blue-2': '#4da6d0',
+				'my-blue-light-1': '#8ddae3',
+				'my-orange-1': '#f3c681',
+				'my-orange-red-1': '#fa937f',
+				'my-purple-1': '#a49ccc',
+				'my-purple-light-1': '#d8b3c5',
+				'my-yellow-1': '#e8d489',
+				'my-brown-1': '#9d776b',
+				'my-cyan-1': '#39c3c5',
+				'my-red-dark-1': '#f47a88',
 			},
 
 			screens: {

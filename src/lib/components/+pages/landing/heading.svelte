@@ -4,7 +4,7 @@
 
 <div class="bg-white p-sm">
 	<h1
-		class={`te text-[33.4px] sm:text-[2.4rem] font-light uppercase tracking-widest leading-none whitespace-nowrap`}
+		class={`text-[33.4px] sm:text-[2.4rem] font-light uppercase tracking-widest leading-none whitespace-nowrap`}
 	>
 		Tech-poiesis
 	</h1>

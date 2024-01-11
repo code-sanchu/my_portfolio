@@ -20,8 +20,7 @@
 			<div class="flex gap-xs">
 				<p class="text-gray-9 text-xs uppercase tracking-[0.06em]">or email</p>
 				<a class="flex items-center gap-xs" href=".">
-					<span class="text-xs uppercase text-my-light-blue tracking-wide"
-						>hello@tech-poiesis.net</span
+					<span class="text-xs uppercase text-my-blue-1 tracking-wide">hello@tech-poiesis.net</span
 					></a
 				>
 			</div>
