@@ -21,7 +21,7 @@ const birch: Project = {
 	id: 'birch',
 	title: 'Birch Collective',
 	siteUrl: 'https://www.thebirchcollective.co.uk/',
-	mainPicture: image.project.birch.cms_programmes,
+	mainPicture: image.project.birch.donate_page,
 	descriptionLong: [
 		'The Birch Collective is an innovative social enterprise aiming to tackle loneliness and mental health issues in young people by connecting them to nature.',
 		"The site is a showcase of the charity and its programmes. It's editable via a highly customisable and easy to use custom cms."
@@ -36,7 +36,7 @@ const alesh: Project = {
 	id: 'alesh',
 	title: 'Alesh Compton',
 	siteUrl: 'https://aleshcompton.com/',
-	mainPicture: image.project.alesh.site,
+	mainPicture: image.project.alesh.painting,
 	descriptionLong: [
 		'Alesh Compton is a creative, multi-disciplinary artist.',
 		'The site has a shop for his self-made clothes and portfolio for his art.'
@@ -67,7 +67,7 @@ const asatic: Project = {
 	id: 'asatic',
 	title: 'Asatic',
 	siteUrl: 'https://www.asatic.org/',
-	mainPicture: image.project.asatic.cms,
+	mainPicture: image.project.asatic.landing,
 	descriptionLong: [
 		"Asatic is a journal run by parts of the English Sri Lankan diaspora. It's global in scope but focuses on Sri Lankan issues.",
 		'The site presents news and video articles in a minimal way that reflects the seriousness of the subject matter. The cms has been built to allow for considerable customisation of the layout, articles and collections.'
@@ -97,7 +97,7 @@ const murat: Project = {
 	id: 'murat',
 	title: 'Murat Gökmen',
 	siteUrl: 'https://www.muratgokmen.com/',
-	mainPicture: image.project.murat.site,
+	mainPicture: image.project.murat.landing,
 	descriptionLong: [
 		'Murat wanted his Squarespace site to be a design not included in the provided layouts.',
 		'I did some custom styling and scripting to make this happen, and provided instructions for him to easily update the site himself.'
@@ -112,7 +112,7 @@ const kindred_yoga: Project = {
 	id: 'kindred_yoga',
 	title: 'Kindred Yoga',
 	siteUrl: 'https://www.kindredyogalife.com/',
-	mainPicture: image.project.kindred_yoga.site,
+	mainPicture: image.project.kindred_yoga.landing,
 	descriptionLong: [
 		'Kindred Yoga is a successful yoga studio.',
 		'My role involved custom styling and updates.'

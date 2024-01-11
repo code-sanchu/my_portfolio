@@ -11,6 +11,9 @@
 	// nav bar links with coloured dots from image
 	// match colours to image
 	// animate to more info
+	// better opacity animation for maincard
+	// take new picture of kindred yoga without the line
+	// optimise images
 	// don't use absolute for contact in nav
 	// title animate in as with plastic.desgin
 	// using dots, could actually do something akin to:https://www.pola.co.jp/special/o/wecaremore/mothersday/

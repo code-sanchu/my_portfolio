@@ -38,7 +38,7 @@
 	style:transition-duration={skipWidthAnimation ? '0ms' : '1000ms'}
 >
 	<div
-		class={`z-10 absolute left-0 top-0 transition-all ease-in duration-[800ms] h-[3px] max-w-full bg-my-light-blue/20 ${
+		class={`z-10 absolute left-0 top-0 transition-all ease-in duration-[800ms] h-[3px] max-w-full bg-gray-4 ${
 			hideLine ? 'opacity-0' : ''
 		}`}
 		style:width={showLine ? `${containerWidth - 24}px` : '0px'}
