@@ -40,10 +40,15 @@
 	</div>
 
 	<div
-		class="fixed left-1/2 top-1/2 z-20 flex justify-center -translate-x-1/2 -translate-y-1/2 bg-white p-sm"
+		class="fixed left-1/2 top-1/2 z-20 flex justify-center -translate-x-1/2 -translate-y-1/2"
 		bind:this={headingNode}
 	>
 		<Heading />
+
+		<div class="absolute bottom-0 right-0 translate-x-[68px] translate-y-[95px] w-[230px] -z-10">
+			<Picture data={image.art[7]} />
+			<div class="absolute w-full h-1/2 bg-white bottom-0 left-0" />
+		</div>
 	</div>
 
 	{#if headingBottom}
