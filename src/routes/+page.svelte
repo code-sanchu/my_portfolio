@@ -11,10 +11,13 @@
 	// nav bar links with coloured dots from image
 	// match colours to image
 	// animate to more info
+	// don't use absolute for contact in nav
 	// title animate in as with plastic.desgin
 	// using dots, could actually do something akin to:https://www.pola.co.jp/special/o/wecaremore/mothersday/
 
-	// let headerHeight: number = 60;
+	let windowHeight: number;
+
+	let headerHeight: number = 76;
 
 	let headingNode: HTMLDivElement;
 
@@ -32,38 +35,41 @@
 	// let headingNodeBottom
 </script>
 
+<svelte:window bind:innerHeight={windowHeight} />
+
 <Header />
 
-<div class="relative min-h-screen pb-2xl">
-	<div class="fixed top-[16vh] w-[230px]">
-		<Picture data={image.art[7]} />
-	</div>
-
+{#if headerHeight && windowHeight}
 	<div
-		class="fixed left-1/2 top-1/2 z-20 flex justify-center -translate-x-1/2 -translate-y-1/2"
-		bind:this={headingNode}
+		class="relative pb-2xl"
+		style:margin-top="{headerHeight}px"
+		style:min-height="{windowHeight - headerHeight}px"
 	>
-		<Heading />
-
-		<div class="absolute bottom-0 right-0 translate-x-[68px] translate-y-[95px] w-[230px] -z-10">
-			<Picture data={image.art[7]} />
-			<div class="absolute w-full h-1/2 bg-white bottom-0 left-0" />
+		<div class="absolute top-sm h-[20vh] aspect-[7/5]">
+			<Picture data={image.art[7]} imageClass="absolute inset-0 w-full h-full object-cover" />
 		</div>
+
+		<div
+			class="absolute left-1/2 top-[26vh] z-20 flex justify-center -translate-x-1/2"
+			bind:this={headingNode}
+		>
+			<Heading />
+		</div>
+
+		{#if headingBottom}
+			<div style:height="{headingBottom - headerHeight}px" />
+
+			<div class="mt-2xl flex flex-col items-end px-lg">
+				<h2 class="uppercase font-light lg:text-lg tracking-widest text-gray-10">Projects</h2>
+				<div class="mt-sm lg:mt-lg w-[64px] h-[5px] bg-gray-4" />
+			</div>
+
+			<div class="relative mt-lg lg:mt-2xl overflow-x-hidden pl-lg" id="projects-section">
+				<Projects />
+			</div>
+		{/if}
 	</div>
-
-	{#if headingBottom}
-		<div style:height="{headingBottom}px" />
-
-		<div class="mt-2xl flex flex-col items-end px-lg">
-			<h2 class="uppercase lg:text-lg tracking-widest">Projects</h2>
-			<div class="mt-md lg:mt-lg w-[64px] h-[5px] bg-[#DBDBD7]" />
-		</div>
-
-		<div class="relative mt-xl lg:mt-2xl overflow-x-hidden pl-lg" id="projects-section">
-			<Projects />
-		</div>
-	{/if}
-</div>
+{/if}
 
 <!-- <div class="relative min-h-screen flex justify-center">
 	<div class="absolute z-10 left-0 top-[7%] w-[400px] origin-bottom-left rotate-90">

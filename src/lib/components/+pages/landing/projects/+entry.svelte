@@ -15,7 +15,7 @@
 	<MainCard data={projects.piros} />
 </div>
 
-<div class="mt-md">
+<div class="mt-sm md:mt-md">
 	<p class="inline-flex gap-xs items-center border py-xxs px-xs rounded-lg border-gray-8">
 		<span class="text-xs lg:text-sm">
 			<ArrowLineRight weight="thin" />
