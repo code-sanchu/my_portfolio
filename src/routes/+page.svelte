@@ -15,6 +15,7 @@
 	// take new picture of kindred yoga without the line
 	// optimise images
 	// swipe for projects
+	// pattern on the projcets transition overlay
 	// main header and in about project neot visible on mobile when address bar is down
 	// change transition to use transform rather than left, top, etc.
 	// some issue with the about project transition on first go. Seems fine after.

@@ -41,6 +41,7 @@
 		style:background-color={!hideLine ? '#F9F9F9' : 'white'}
 		style:left="{!hideLine ? '0' : containerWidth}px"
 	/>
-
-	<slot />
+	{#if hideLine}
+		<slot />
+	{/if}
 </div>
