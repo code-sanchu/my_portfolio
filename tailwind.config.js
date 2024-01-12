@@ -23,6 +23,7 @@ export default {
 				'display2': ['Dotwork', 'sans-serif'],
 				'display3': ['rasterman', 'sans-serif'],
 				'display4': ['hommage', 'sans-serif'],
+				// 'serif': ['fs-fermat', 'serif'],
 			},
 
 			colors: {

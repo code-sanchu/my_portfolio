@@ -10,7 +10,7 @@ const raie: Project = {
 		"Raie is a singer/songwriter with years of experience in the music world. She's worked with industry heavyweights in the production of her 3 albums and recently launched a new one — Red Brick Angel.",
 		'Raie wanted a website to showcase her music and document her journey through images, film and text.'
 	],
-	descriptionShort: 'website &#8212; design and build',
+	workDescription: 'Site design, build and maintenance.',
 	year: '2023',
 	performanceUrl:
 		'https://pagespeed.web.dev/analysis/https-www-raiemusic-com/uvai5c049i?form_factor=mobile',
@@ -26,7 +26,7 @@ const birch: Project = {
 		'The Birch Collective is an innovative social enterprise aiming to tackle loneliness and mental health issues in young people by connecting them to nature.',
 		"The site is a showcase of the charity and its programmes. It's editable via a highly customisable and easy to use custom cms."
 	],
-	descriptionShort: 'website and cms &#8212; design and build',
+	workDescription: 'Site and cms design, build and maintenance.',
 	year: '2021 &#8212; 2023',
 	features: ['custom-cms', 'donation', 'image-gallery', 'sign-up-form', 'google-spreadsheet'],
 	performanceUrl: null
@@ -41,7 +41,7 @@ const alesh: Project = {
 		'Alesh Compton is a creative, multi-disciplinary artist.',
 		'The site has a shop for his self-made clothes and portfolio for his art.'
 	],
-	descriptionShort: 'website with shop &#8212; design and build',
+	workDescription: 'Site design, build and maintenance.',
 	year: '2022&ndash;2023',
 	performanceUrl:
 		'https://pagespeed.web.dev/analysis/https-aleshcompton-com-squatumentary/zuf3i9gg4c?form_factor=mobile',
@@ -57,8 +57,8 @@ const piros: Project = {
 		'Piroska Markus is a socially and politically active photographer who tries to capture the vicissitudes of human life, as well as nature from her global travels.',
 		'The site is her photographic portfolio, and includes a custom cms for ease of updates.'
 	],
-	descriptionShort: 'website and cms &#8212; design and build',
-	year: '2022 - 2023',
+	workDescription: 'Site and cms design, build and maintenance.',
+	year: '2022&ndash;2023',
 	features: ['custom-cms', 'comment-system', 'image-gallery', 'youtube'],
 	performanceUrl: null
 };
@@ -72,7 +72,7 @@ const asatic: Project = {
 		"Asatic is a journal run by parts of the English Sri Lankan diaspora. It's global in scope but focuses on Sri Lankan issues.",
 		'The site presents news and video articles in a minimal way that reflects the seriousness of the subject matter. The cms has been built to allow for considerable customisation of the layout, articles and collections.'
 	],
-	descriptionShort: 'website and cms &#8212; design and build',
+	workDescription: 'Site and cms design, build and maintenance.',
 	year: '2022 - 2023',
 	features: ['custom-cms', 'text-editor', 'multi-language', 'youtube'],
 	performanceUrl: null
@@ -87,7 +87,7 @@ const amy: Project = {
 		'Amy Rodriguez is an unorthodox jewellery artist specialising in metals.',
 		'Her work is presented on this site via a custom cms, which is also integrated with a shop.'
 	],
-	descriptionShort: 'website and cms, with shop &#8212; design and build',
+	workDescription: 'Site and cms design, build and maintenance.',
 	year: '2020 - 2023',
 	features: ['custom-cms', 'shop', 'image-gallery'],
 	performanceUrl: null
@@ -102,7 +102,7 @@ const murat: Project = {
 		'Murat wanted his Squarespace site to be a design not included in the provided layouts.',
 		'I did some custom styling and scripting to make this happen, and provided instructions for him to easily update the site himself.'
 	],
-	descriptionShort: 'squarespace updates &#8212; styling and scripting',
+	workDescription: 'squarespace updates &#8212; styling and scripting',
 	year: '2021',
 	features: null,
 	performanceUrl: null
@@ -117,7 +117,7 @@ const kindred_yoga: Project = {
 		'Kindred Yoga is a successful yoga studio.',
 		'My role involved custom styling and updates.'
 	],
-	descriptionShort: 'squarespace updates &#8212; styling and scripting',
+	workDescription: 'squarespace updates &#8212; styling and scripting',
 	year: '2021 - 2023',
 	features: null,
 	performanceUrl: null
@@ -132,7 +132,7 @@ const blackheath_yoga: Project = {
 		'Blackheath yoga needed considerable custom scripting to get the site working as intended. This involved integrating a payment and booking platform.',
 		'I also designed and created re-usable pop-ups for promotions.'
 	],
-	descriptionShort: 'wix updates &#8212; styling and scripting',
+	workDescription: 'wix updates &#8212; styling and scripting',
 	year: '2023',
 	features: null,
 	performanceUrl: null

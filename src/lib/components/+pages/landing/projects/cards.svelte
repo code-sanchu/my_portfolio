@@ -28,7 +28,7 @@
 						title: projectData.title,
 						mainPicture: projectData.mainPicture,
 						siteUrl: projectData.siteUrl,
-						descriptionShort: projectData.descriptionShort,
+						workDescription: projectData.workDescription,
 						year: projectData.year
 					}}
 					onClickInfo={() => onClickInfo(shownProject.id)}

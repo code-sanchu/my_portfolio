@@ -16,6 +16,8 @@
 	// optimise images
 	// swipe for projects
 	// main header and in about project neot visible on mobile when address bar is down
+	// change transition to use transform rather than left, top, etc.
+	// some issue with the about project transition on first go. Seems fine after.
 
 	// don't use absolute for contact in nav
 	// title animate in as with plastic.desgin
@@ -28,25 +30,25 @@
 
 <svelte:window bind:innerHeight={windowHeight} />
 
-<!-- <Header /> -->
+<Header />
 
 {#if headerHeight && windowHeight}
 	<div style:height="{headerHeight}px" />
 
 	<div class="mt-md pb-xl" style:min-height="{windowHeight - headerHeight}px">
-		<!-- <div class="h-[20vh] aspect-[7/5] overflow-hidden">
+		<div class="h-[20vh] aspect-[7/5] overflow-hidden">
 			<div class="relative w-[240px] aspect-[7/5]">
 				<Picture data={image.art[1]} imageClass="absolute inset-0 object-cover" />
 			</div>
-		</div> -->
+		</div>
 
-		<!-- <div class="mt-lg flex justify-center" id="home-section">
+		<div class="mt-lg flex justify-center" id="home-section">
 			<Heading />
-		</div> -->
+		</div>
 
-		<!-- <div class="mt-2xl">
+		<div class="mt-2xl">
 			<Section.Heading align="right" text="Projects" />
-		</div> -->
+		</div>
 
 		<div class="mt-lg lg:mt-2xl" id="projects-section">
 			<Section.LeftSpacing>
@@ -54,7 +56,7 @@
 			</Section.LeftSpacing>
 		</div>
 
-		<!-- 		<div class="mt-2xl">
+		<div class="mt-2xl">
 			<Section.Heading align="left" text="Services" />
 		</div>
 
@@ -72,6 +74,6 @@
 			<Section.HorizontalSpacing>
 				<Contact />
 			</Section.HorizontalSpacing>
-		</div> -->
+		</div>
 	</div>
 {/if}

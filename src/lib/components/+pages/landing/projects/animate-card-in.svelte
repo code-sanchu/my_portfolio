@@ -4,25 +4,25 @@
 
 <script lang="ts">
 	export let containerWidth: number;
-	export let skipWidthAnimation = false;
 
 	let show = false;
-	let showLine = false;
+	// let showLine = false;
 	let hideLine = false;
-	let showContent = false;
+	$: console.log('hideLine:', hideLine);
+	// let showContent = false;
 
 	const handleTransition = () => {
 		show = true;
 
-		showLine = true;
+		// showLine = true;
 
 		setTimeout(() => {
 			hideLine = true;
 
-			setTimeout(() => {
+			/* 			setTimeout(() => {
 				showContent = true;
-			}, 200);
-		}, 500);
+			}, 200); */
+		}, 350);
 	};
 
 	onMount(() => {
@@ -33,18 +33,14 @@
 </script>
 
 <div
-	class={`relative max-w-full shrink-0 transition-all ease-in-out`}
+	class={`relative max-w-full shrink-0 transition-all ease-out duration-[700ms]`}
 	style:width={show ? `${containerWidth}px` : '0px'}
-	style:transition-duration={skipWidthAnimation ? '0ms' : '1000ms'}
 >
 	<div
-		class={`z-10 absolute left-0 top-0 transition-all ease-in duration-[800ms] h-[3px] max-w-full bg-gray-4 ${
-			hideLine ? 'opacity-0' : ''
-		}`}
-		style:width={showLine ? `${containerWidth - 24}px` : '0px'}
+		class={`z-10 absolute left-0 top-0 bottom-0 right-0 transition-all ease-out duration-[700ms]`}
+		style:background-color={!hideLine ? '#F9F9F9' : 'white'}
+		style:left="{!hideLine ? '0' : containerWidth}px"
 	/>
 
-	{#if showContent}
-		<slot />
-	{/if}
+	<slot />
 </div>

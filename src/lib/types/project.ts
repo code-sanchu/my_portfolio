@@ -30,7 +30,7 @@ export type Project = {
 	siteUrl: string;
 	mainPicture: Picture;
 	descriptionLong: string[];
-	descriptionShort: string;
+	workDescription: string;
 	year: string;
 	performanceUrl: string | null;
 	features: Feature[] | null;

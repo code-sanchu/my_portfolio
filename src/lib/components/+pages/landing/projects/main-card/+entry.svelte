@@ -11,41 +11,57 @@
 </script>
 
 <script lang="ts">
+	import { ArrowLineUpRight } from 'phosphor-svelte';
+
 	export let data: Project;
 
 	let expand:
 		| 'idle'
 		| 'expanding-init'
-		| 'expanding'
+		| 'expanding-1'
+		| 'expanding-2'
 		| 'expanded'
 		| 'contracting-init'
-		| 'contracting' = 'idle';
+		| 'contracting-1'
+		| 'contracting-2' = 'idle';
 
 	let pictureNodeInit: HTMLDivElement;
-	let pictureNodeInitRect: DOMRect;
-	// let pictureNodeExpanded: HTMLDivElement;
-	// let pictureNodeExpandedRect: DOMRect;
+	$: pictureNodeInitRect = pictureNodeInit?.getBoundingClientRect();
+	let pictureNodeExpanded: HTMLDivElement;
+	$: pictureNodeExpandedRect = pictureNodeExpanded?.getBoundingClientRect();
 
-	$: {
-		if (expand === 'expanding-init' || expand === 'contracting-init') {
+	/* 	$: {
+		if (expand === 'expanded') {
+			document.body.style.maxHeight = '100vh';
+			document.body.style.overflow = 'hidden';
 		}
 	}
 
-	/* 	$: {
-		if (expand === 'expanding-init') {
-			document.body.style.overflow = 'hidden';
+	$: {
+		if (expand === 'idle') {
+			document.body.style.maxHeight = '';
+			document.body.style.overflow = 'auto';
 		}
-	} */
+	}
+
+	onDestroy(() => {
+		document.body.style.maxHeight = '';
+		document.body.style.overflow = 'auto';
+	}); */
 
 	const handleExpand = () => {
-		pictureNodeInitRect = pictureNodeInit.getBoundingClientRect();
-		// pictureNodeExpandedRect = pictureNodeExpanded.getBoundingClientRect();
-
 		expand = 'expanding-init';
 
+		pictureNodeInitRect = pictureNodeInit.getBoundingClientRect();
+		pictureNodeExpandedRect = pictureNodeExpanded.getBoundingClientRect();
+
 		setTimeout(() => {
-			expand = 'expanding';
+			expand = 'expanding-1';
 		}, 50);
+
+		setTimeout(() => {
+			expand = 'expanding-2';
+		}, 250);
 
 		setTimeout(() => {
 			expand = 'expanded';
@@ -54,13 +70,17 @@
 
 	const handleContract = () => {
 		pictureNodeInitRect = pictureNodeInit.getBoundingClientRect();
-		// pictureNodeExpandedRect = pictureNodeExpanded.getBoundingClientRect();
+		pictureNodeExpandedRect = pictureNodeExpanded.getBoundingClientRect();
 
 		expand = 'contracting-init';
 
 		setTimeout(() => {
-			expand = 'contracting';
+			expand = 'contracting-1';
 		}, 50);
+
+		setTimeout(() => {
+			expand = 'contracting-2';
+		}, 250);
 
 		setTimeout(() => {
 			expand = 'idle';
@@ -68,9 +88,32 @@
 	};
 </script>
 
-<!-- <div
-	class={`fixed left-0 top-0 w-screen min-h-screen bg-white z-40 transition-opacity ease-in duration-[500ms] overflow-hidden ${
-		expand === 'idle' ? 'invisible pointer-events-none opacity-0' : ''
+{#if pictureNodeInitRect}
+	{@const useInitRect =
+		expand === 'idle' ||
+		expand === 'expanding-init' ||
+		expand === 'contracting-1' ||
+		expand === 'contracting-2'}
+	<div
+		class={`fixed z-50 transforming-container ${
+			expand === 'idle' || expand === 'expanded' ? 'pointer-events-none -z-10 opacity-0' : ''
+		}`}
+		style:left="{useInitRect ? pictureNodeInitRect.left : pictureNodeExpandedRect.left}px"
+		style:top="{useInitRect ? pictureNodeInitRect.top : pictureNodeExpandedRect.top}px"
+		style:width="{useInitRect ? pictureNodeInitRect.width : pictureNodeExpandedRect.width}px"
+		style:height="{useInitRect ? pictureNodeInitRect.height : pictureNodeExpandedRect.height}px"
+	>
+		<Picture data={data.mainPicture} imageClass="absolute inset-0 object-cover w-full h-full" />
+	</div>
+{/if}
+
+<div
+	class={`fixed left-0 top-0 w-screen h-screen overflow-auto pb-xl bg-white z-40 transition-opacity ease-in duration-[450ms] ${
+		expand === 'idle'
+			? '-z-10 pointer-events-none opacity-0'
+			: expand === 'contracting-1' || expand === 'contracting-2'
+			? 'opacity-0'
+			: 'opacity-100'
 	}`}
 >
 	<div class="flex justify-end p-sm">
@@ -79,70 +122,66 @@
 		</button>
 	</div>
 
-	 <div class="flex justify-center">
-		<div class="px-lg pt-lg w-full flex justify-center">
-			<div
-				class={`relative h-[60vh] max-w-[800px] aspect-[3/4] overflow-hidden ${
-					expand === 'expanded' ? '' : 'pointer-events-none invisible'
-				}`}
-				bind:this={pictureNodeExpanded}
-			>
-				<Picture data={data.mainPicture} imageClass="absolute inset-0 object-cover w-full h-full" />
+	<div class="px-lg pt-lg flex justify-center">
+		<div class="w-[80vw] max-w-[800px]">
+			<div class="w-full flex justify-center">
+				<div
+					class={`relative aspect-[3/4] w-full overflow-hidden ${
+						expand === 'expanded' ? '' : 'pointer-events-none invisible'
+					}`}
+					bind:this={pictureNodeExpanded}
+				>
+					<Picture
+						data={data.mainPicture}
+						imageClass="absolute inset-0 object-cover w-full h-full"
+					/>
+				</div>
+			</div>
+
+			<div class="mt-sm flex justify-between items-baseline">
+				<div><h1 class="uppercase text-sm tracking-widest">{data.title}</h1></div>
+				<div>
+					<a
+						class="text-[0.6rem] text-gray-9 uppercase tracking-widest flex items-baseline gap-xxs"
+						href={data.siteUrl}
+						target="_blank"
+					>
+						<span>visit</span>
+						<span class="translate-y-[1px]">
+							<ArrowLineUpRight weight="thin" />
+						</span>
+					</a>
+				</div>
+			</div>
+
+			<div class="mt-md">
+				<p class="tracking-wide text-sm">{@html data.year}</p>
+			</div>
+
+			<p class="mt-md font-serif">{@html data.workDescription}</p>
+
+			<div class="mt-md font-serif">
+				{#each data.descriptionLong as paragraph}
+					<p>{paragraph}</p>
+				{/each}
+			</div>
+
+			<div class="mt-md flex justify-end">
+				<button
+					class="uppercase text-xxs tracking-widest text-gray-10"
+					on:click={handleContract}
+					type="button">close</button
+				>
 			</div>
 		</div>
-	</div> 
-</div> -->
-
-{#if pictureNodeInitRect}
-	<div
-		class={`fixed z-50 transforming-container ${
-			expand === 'idle' || expand === 'expanded' ? 'pointer-events-none invisible' : ''
-		}`}
-		style:left="{pictureNodeInitRect.left}px"
-		style:top="{pictureNodeInitRect.top}px"
-		style:width="{pictureNodeInitRect.width}px"
-		style:height="{pictureNodeInitRect.height}px"
-	>
-		<Picture data={data.mainPicture} imageClass="absolute inset-0 object-cover w-full h-full" />
 	</div>
-	<!-- <div
-		class={`fixed z-50 transforming-container ${
-			expand === 'idle' || expand === 'expanded' ? 'pointer-events-none invisible opacity-0' : ''
-		}`}
-		style:left="{expand === 'idle' ||
-		expand === 'expanding-init' ||
-		expand === 'contracting-init' ||
-		expand === 'contracting'
-			? pictureNodeInitRect.left
-			: pictureNodeExpandedRect.left}px"
-		style:top="{expand === 'idle' ||
-		expand === 'expanding-init' ||
-		expand === 'contracting-init' ||
-		expand === 'contracting'
-			? pictureNodeInitRect.top
-			: pictureNodeExpandedRect.top}px"
-		style:width="{expand === 'idle' ||
-		expand === 'expanding-init' ||
-		expand === 'contracting-init' ||
-		expand === 'contracting'
-			? pictureNodeInitRect.width
-			: pictureNodeExpandedRect.width}px"
-		style:height="{expand === 'idle' ||
-		expand === 'expanding-init' ||
-		expand === 'contracting-init' ||
-		expand === 'contracting'
-			? pictureNodeInitRect.height
-			: pictureNodeExpandedRect.height}px"
-	>
-		<Picture data={data.mainPicture} imageClass="absolute inset-0 object-cover w-full h-full" />
-	</div> -->
-{/if}
+</div>
 
 <AnimateCardIn containerWidth={240}>
 	<div class="w-[220px] lg:w-[300px] shrink-0 mr-[1.25rem]">
 		<div
 			class={`relative aspect-[3/4] overflow-hidden ${
-				expand === 'idle' || expand === 'expanding-init' ? '' : 'invisible pointer-events-none'
+				expand === 'idle' || expand === 'expanding-init' ? '' : '-z-10 pointer-events-none'
 			}`}
 			bind:this={pictureNodeInit}
 		>
@@ -155,11 +194,11 @@
 			<div
 				class="flex pr-xxxs md:pr-xxs text-[0.5rem] md:text-xxs uppercase tracking-wider text-gray-9"
 			>
-				<button
+				<!-- 				<button
 					class="mr-sm text-[0.5rem] md:text-xxs uppercase tracking-wider text-gray-9"
-					on:click={expand === 'idle' ? handleExpand : handleContract}
-					type="button">more info</button
-				>
+					on:click={handleExpand}
+					type="button">about</button
+				> -->
 
 				<a href={data.siteUrl} target="_blank">visit</a>
 			</div>
