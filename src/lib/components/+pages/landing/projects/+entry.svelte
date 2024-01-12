@@ -24,8 +24,8 @@
 
 <script lang="ts">
 	let projectCards: ProjectCard[] = [
-		{ key: uid(), id: 'raie' },
-		{ key: uid(), id: 'piros' }
+		{ key: uid(), id: 'raie' }
+		// { key: uid(), id: 'piros' }
 	];
 
 	const showNextProject = () => {
