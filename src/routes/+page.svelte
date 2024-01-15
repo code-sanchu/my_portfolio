@@ -19,6 +19,7 @@
 	// main header and in about project neot visible on mobile when address bar is down
 	// change transition to use transform rather than left, top, etc.
 	// some issue with the about project transition on first go. Seems fine after.
+	// text reveal animations: https://freefrontend.com/css-reveal-animations/
 
 	// don't use absolute for contact in nav
 	// title animate in as with plastic.desgin

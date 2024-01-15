@@ -107,11 +107,11 @@
 }
 
 html {
-	@apply outline-none active:outline-none focus:outline-none text-gray-12 overflow-x-hidden md:scrollbar-thin md:scrollbar-track-gray-50/50 md:scrollbar-thumb-gray-100 md:hover:scrollbar-thumb-gray-200 bg-white;
+	@apply scrollbar-none outline-none active:outline-none focus:outline-none text-gray-12 overflow-x-hidden md:scrollbar-thin md:scrollbar-track-gray-50/50 md:scrollbar-thumb-gray-100 md:hover:scrollbar-thumb-gray-200 ;
 }
 
 body {
-	@apply bg-white
+	@apply bg-white; 
 }
 
 * {
@@ -125,5 +125,5 @@ body {
 }
 
 div {
-	@apply md:scrollbar-thin md:scrollbar-track-gray-50/50 md:scrollbar-thumb-gray-100 md:hover:scrollbar-thumb-gray-200;
+	/* @apply md:scrollbar-thin md:scrollbar-track-gray-50/50 md:scrollbar-thumb-gray-100 md:hover:scrollbar-thumb-gray-200; */
 }

@@ -8,7 +8,6 @@
 	let show = false;
 	// let showLine = false;
 	let hideLine = false;
-	$: console.log('hideLine:', hideLine);
 	// let showContent = false;
 
 	const handleTransition = () => {
@@ -37,11 +36,13 @@
 	style:width={show ? `${containerWidth}px` : '0px'}
 >
 	<div
-		class={`z-10 absolute left-0 top-0 bottom-0 right-0 transition-all ease-out duration-[700ms]`}
-		style:background-color={!hideLine ? '#F9F9F9' : 'white'}
-		style:left="{!hideLine ? '0' : containerWidth}px"
+		class={`z-10 absolute left-0 top-0 bottom-0 right-0 transition-all ease-out duration-[1000ms] bg-white`}
+		style:opacity={!hideLine ? 1 : 0}
 	/>
 	{#if hideLine}
 		<slot />
 	{/if}
 </div>
+
+<!-- style:background-color={!hideLine ? '#F9F9F9' : 'white'} -->
+<!-- style:left="{!hideLine ? '0' : containerWidth}px" -->

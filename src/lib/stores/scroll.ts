@@ -2,10 +2,11 @@ import { writable } from 'svelte/store';
 
 type ScrollValues = {
 	pos: number;
+	disable: boolean
 };
 
 const initData: ScrollValues = {
-	pos: 0
+	pos: 0, disable: false
 };
 
 const scrollStore = writable(initData);
@@ -23,7 +24,8 @@ function updateHelper<TField extends keyof ScrollValues>(
 }
 
 const updateScroll = {
-	pos: (value: number) => updateHelper('pos', value)
+	pos: (value: number) => updateHelper('pos', value),
+	disable: (value: boolean) => updateHelper('disable', value)
 };
 
 export { type ScrollValues, scrollStore, updateScroll };

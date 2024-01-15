@@ -24,8 +24,8 @@
 
 <script lang="ts">
 	let projectCards: ProjectCard[] = [
-		{ key: uid(), id: 'raie' },
-		{ key: uid(), id: 'piros' }
+		{ key: uid(), id: 'raie' }
+		// { key: uid(), id: 'piros' }
 	];
 
 	let showPrev = 0;
@@ -58,17 +58,21 @@
 </script>
 
 <div class="flex overflow-hidden">
-	<div
+	{#each projectCards as project (project.key)}
+		<MainCard data={projects[project.id]} />
+	{/each}
+
+	<!-- <div
 		class="flex transition-transform duration-[750ms] ease-out"
 		style:transform={`translateX(${showPrev * -240}px)`}
 	>
 		{#each projectCards as project (project.key)}
 			<MainCard data={projects[project.id]} />
 		{/each}
-	</div>
+	</div> -->
 </div>
 
-<div class="mt-sm md:mt-md flex items-center gap-sm">
+<!-- <div class="mt-sm md:mt-md flex items-center gap-sm">
 	<button
 		class="relative inline-flex gap-xs items-center border py-xxs px-xs rounded-lg"
 		on:click={() => showPrevProject()}
@@ -97,4 +101,4 @@
 			>Next</span
 		>
 	</button>
-</div>
+</div> -->

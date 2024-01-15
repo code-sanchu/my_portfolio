@@ -3,28 +3,44 @@
 
 	import { onMount } from 'svelte';
 
+	import { scrollStore, type ScrollValues } from '^stores';
+
 	const buttonIds = ['home-link', 'projects-link', 'services-link', 'contact-link'];
 
 	const speed = 120;
 	const smooth = 15;
 </script>
 
-<script>
+<script lang="ts">
+	let scrollStoreState: ScrollValues;
+
+	scrollStore.subscribe((state) => {
+		scrollStoreState = state;
+	});
+
+	let scrollNode: HTMLDivElement;
+
 	let moving = false;
 	let scrollToPos = 0;
 
 	onMount(() => {
-		if (document) {
-			const target = document.scrollingElement || document.body.parentNode || document.body;
+		if (scrollNode) {
+			const target = scrollNode;
 			// @ts-ignore
 			scrollToPos = target.scrollTop;
-			let frame =
-				target === document.body && document.documentElement ? document.documentElement : target; // safari is the new IE
 
-			document.addEventListener('wheel', scrolled, { passive: false });
-			document.addEventListener('DOMMouseScroll', scrolled, { passive: false });
-			document.addEventListener('scrollend', () => {
-				// account for scroll position change from scrollIntoView or scrollbar; smooth scroll function properly after.
+			let frame = scrollNode;
+
+			scrollNode.addEventListener('wheel', scrolled, { passive: false });
+			scrollNode.addEventListener('DOMMouseScroll', scrolled, { passive: false });
+			// below: account for scroll position change from scrollIntoView or scrollbar; smooth scroll function properly after.
+			scrollNode.addEventListener('scrollend', (e) => {
+				// @ts-ignore
+				const disableScroll = e?.currentTarget?.dataset?.disablescroll === 'true';
+
+				if (disableScroll) {
+					return;
+				}
 
 				const wheeling = moving;
 
@@ -36,7 +52,7 @@
 				scrollToPos = target.scrollTop - 11;
 			});
 
-			document.addEventListener('click', (e) => {
+			scrollNode.addEventListener('click', (e) => {
 				//@ts-ignore
 				const clickedNodeId = e.target.id;
 				//@ts-ignore
@@ -84,6 +100,15 @@
 			// @ts-ignore
 			function scrolled(e) {
 				e.preventDefault(); // disable default scrolling
+
+				// @ts-ignore
+				const disableScroll = e?.currentTarget?.dataset?.disablescroll === 'true';
+
+				if (disableScroll) {
+					return;
+				}
+
+				console.log('scrolled');
 
 				let delta = normalizeWheelDelta(e);
 
@@ -142,4 +167,12 @@
 	<meta name="description" content="Technopoeisis" />
 </svelte:head>
 
-<slot />
+<div
+	class={`h-screen overflow-x-hidden overflow-y-auto ${
+		scrollStoreState.disable ? 'scrollbar-none' : ''
+	}`}
+	data-disablescroll={scrollStoreState.disable ? 'true' : 'false'}
+	bind:this={scrollNode}
+>
+	<slot />
+</div>

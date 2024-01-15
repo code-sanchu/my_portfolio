@@ -1,117 +1,134 @@
 <script lang="ts" context="module">
-	import { X } from 'phosphor-svelte';
+	import { ArrowLineUpRight, X } from 'phosphor-svelte';
+
+	import { updateScroll } from '^stores';
 
 	import { Picture } from '^components';
 
 	import type { Project } from '^types';
 
-	import AnimateCardIn from '../animate-card-in.svelte';
-
 	// second img that translates maybe has to load in seperately? Should/can use js to load img in ? May not be possible due to Picture
 </script>
 
 <script lang="ts">
-	import { ArrowLineUpRight } from 'phosphor-svelte';
-
 	export let data: Project;
 
 	let expand:
 		| 'idle'
 		| 'expanding-init'
-		| 'expanding-1'
-		| 'expanding-2'
+		| 'expanding'
+		| 'expanded-prep'
 		| 'expanded'
 		| 'contracting-init'
-		| 'contracting-1'
-		| 'contracting-2' = 'idle';
+		| 'contracting' = 'idle';
 
-	let pictureNodeInit: HTMLDivElement;
-	$: pictureNodeInitRect = pictureNodeInit?.getBoundingClientRect();
+	let pictureNodeIdle: HTMLDivElement;
+	$: pictureNodeIdleRect = pictureNodeIdle?.getBoundingClientRect();
 	let pictureNodeExpanded: HTMLDivElement;
 	$: pictureNodeExpandedRect = pictureNodeExpanded?.getBoundingClientRect();
 
-	/* 	$: {
-		if (expand === 'expanded') {
-			document.body.style.maxHeight = '100vh';
-			document.body.style.overflow = 'hidden';
-		}
-	}
-
-	$: {
-		if (expand === 'idle') {
-			document.body.style.maxHeight = '';
-			document.body.style.overflow = 'auto';
-		}
-	}
-
-	onDestroy(() => {
-		document.body.style.maxHeight = '';
-		document.body.style.overflow = 'auto';
-	}); */
-
 	const handleExpand = () => {
-		expand = 'expanding-init';
-
-		pictureNodeInitRect = pictureNodeInit.getBoundingClientRect();
+		pictureNodeIdleRect = pictureNodeIdle.getBoundingClientRect();
 		pictureNodeExpandedRect = pictureNodeExpanded.getBoundingClientRect();
 
+		updateScroll.disable(true);
+
 		setTimeout(() => {
-			expand = 'expanding-1';
+			expand = 'expanding-init';
+
+			setTimeout(() => {
+				expand = 'expanding';
+
+				setTimeout(() => {
+					expand = 'expanded-prep';
+
+					setTimeout(() => {
+						expand = 'expanded';
+					}, 50);
+				}, 500);
+			}, 50);
 		}, 50);
-
-		setTimeout(() => {
-			expand = 'expanding-2';
-		}, 250);
-
-		setTimeout(() => {
-			expand = 'expanded';
-		}, 500);
 	};
 
 	const handleContract = () => {
-		pictureNodeInitRect = pictureNodeInit.getBoundingClientRect();
+		pictureNodeIdleRect = pictureNodeIdle.getBoundingClientRect();
 		pictureNodeExpandedRect = pictureNodeExpanded.getBoundingClientRect();
 
-		expand = 'contracting-init';
+		updateScroll.disable(false);
 
 		setTimeout(() => {
-			expand = 'contracting-1';
+			expand = 'contracting-init';
+
+			setTimeout(() => {
+				expand = 'contracting';
+
+				setTimeout(() => {
+					expand = 'idle';
+				}, 500);
+			}, 50);
 		}, 50);
-
-		setTimeout(() => {
-			expand = 'contracting-2';
-		}, 250);
-
-		setTimeout(() => {
-			expand = 'idle';
-		}, 500);
 	};
 </script>
 
-{#if pictureNodeInitRect}
-	{@const useInitRect =
-		expand === 'idle' ||
-		expand === 'expanding-init' ||
-		expand === 'contracting-1' ||
-		expand === 'contracting-2'}
-	<div
-		class={`fixed z-50 transforming-container ${
-			expand === 'idle' || expand === 'expanded' ? 'pointer-events-none -z-10 opacity-0' : ''
-		}`}
-		style:left="{useInitRect ? pictureNodeInitRect.left : pictureNodeExpandedRect.left}px"
-		style:top="{useInitRect ? pictureNodeInitRect.top : pictureNodeExpandedRect.top}px"
-		style:width="{useInitRect ? pictureNodeInitRect.width : pictureNodeExpandedRect.width}px"
-		style:height="{useInitRect ? pictureNodeInitRect.height : pictureNodeExpandedRect.height}px"
-	>
-		<Picture data={data.mainPicture} imageClass="absolute inset-0 object-cover w-full h-full" />
+<!-- <AnimateCardIn containerWidth={240}> -->
+<div class="w-[220px] lg:w-[300px] shrink-0 mr-[1.25rem]">
+	<div class={`relative aspect-[3/4] overflow-hidden`} bind:this={pictureNodeIdle}>
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
+		<div
+			class={`z-40 ${
+				expand === 'expanding' || expand === 'contracting' ? 'container-transitions' : ''
+			} ${expand === 'expanded' ? 'pointer-events-none invisible' : ''}`}
+			style:position={expand === 'idle' ? 'absolute' : 'fixed'}
+			style:left="{expand === 'idle'
+				? 0
+				: expand === 'expanding-init' || expand === 'contracting'
+				? pictureNodeIdleRect.left
+				: pictureNodeExpandedRect.left}px"
+			style:top="{expand === 'idle'
+				? 0
+				: expand === 'expanding-init' || expand === 'contracting'
+				? pictureNodeIdleRect.top
+				: pictureNodeExpandedRect.top}px"
+			style:width={expand === 'idle'
+				? '100%'
+				: expand === 'expanding-init' || expand === 'contracting'
+				? `${pictureNodeIdleRect.width}px`
+				: `${pictureNodeExpandedRect.width}px`}
+			style:height={expand === 'idle'
+				? '100%'
+				: expand === 'expanding-init' || expand === 'contracting'
+				? `${pictureNodeIdleRect.height}px`
+				: `${pictureNodeExpandedRect.height}px`}
+		>
+			<Picture data={data.mainPicture} imageClass="absolute inset-0 object-cover w-full h-full" />
+		</div>
 	</div>
-{/if}
+
+	<div class="mt-xxs flex items-baseline justify-between">
+		<p class="text-xs tracking-wide lg:text-sm mr-md">{data.title}</p>
+
+		<div
+			class="flex pr-xxxs md:pr-xxs text-[0.5rem] md:text-xxs uppercase tracking-wider text-gray-9"
+		>
+			<button
+				class="mr-sm text-[0.5rem] md:text-xxs uppercase tracking-wider text-gray-9"
+				on:click={handleExpand}
+				type="button">about</button
+			>
+
+			<a href={data.siteUrl} target="_blank">visit</a>
+		</div>
+	</div>
+</div>
+
+<!-- </AnimateCardIn> -->
 
 <div
-	class={`fixed left-0 top-0 w-screen h-screen overflow-auto pb-xl bg-white z-40 transition-opacity ease-in duration-[450ms] ${
+	class={`fixed left-0 top-0 w-screen h-screen overflow-scroll pb-xl bg-white z-30 transition-opacity ease-in duration-[450ms] ${
 		expand === 'idle'
 			? '-z-10 pointer-events-none opacity-0'
-			: expand === 'contracting-1' || expand === 'contracting-2'
+			: expand === 'contracting'
 			? 'opacity-0'
 			: 'opacity-100'
 	}`}
@@ -177,37 +194,8 @@
 	</div>
 </div>
 
-<AnimateCardIn containerWidth={240}>
-	<div class="w-[220px] lg:w-[300px] shrink-0 mr-[1.25rem]">
-		<div
-			class={`relative aspect-[3/4] overflow-hidden ${
-				expand === 'idle' || expand === 'expanding-init' ? '' : '-z-10 pointer-events-none'
-			}`}
-			bind:this={pictureNodeInit}
-		>
-			<Picture data={data.mainPicture} imageClass="absolute inset-0 object-cover w-full h-full" />
-		</div>
-
-		<div class="mt-xxs flex items-baseline justify-between">
-			<p class="text-xs tracking-wide lg:text-sm mr-md">{data.title}</p>
-
-			<div
-				class="flex pr-xxxs md:pr-xxs text-[0.5rem] md:text-xxs uppercase tracking-wider text-gray-9"
-			>
-				<!-- 				<button
-					class="mr-sm text-[0.5rem] md:text-xxs uppercase tracking-wider text-gray-9"
-					on:click={handleExpand}
-					type="button">about</button
-				> -->
-
-				<a href={data.siteUrl} target="_blank">visit</a>
-			</div>
-		</div>
-	</div>
-</AnimateCardIn>
-
 <style>
-	.transforming-container {
-		transition: top 450ms ease-in, left 450ms ease-in, width 450ms ease-in, height 450ms ease-in;
+	.container-transitions {
+		transition: top 500ms ease-in, left 500ms ease-in, width 500ms ease-in, height 500ms ease-in;
 	}
 </style>
