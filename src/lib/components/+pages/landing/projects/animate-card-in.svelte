@@ -43,7 +43,7 @@
 	style:width={show ? `${containerWidth}px` : '0px'}
 >
 	<div
-		class={`z-10 absolute left-0 top-0 bottom-[16px] right-0 transition-all ease-out duration-[1000ms] bg-white`}
+		class={`z-10 absolute left-0 top-0 bottom-0 right-0 pointer-events-none transition-all ease-out duration-[1000ms] bg-white`}
 		style:opacity={!hideCover ? 1 : 0}
 	/>
 	{#if hideCover}

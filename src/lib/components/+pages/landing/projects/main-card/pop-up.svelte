@@ -175,7 +175,7 @@
 
 				<p class="mt-md font-serif">{@html data.workDescription}</p>
 
-				<div class="mt-md font-serif">
+				<div class="mt-md font-serif flex flex-col gap-xs">
 					{#each data.descriptionLong as paragraph}
 						<p>{paragraph}</p>
 					{/each}
