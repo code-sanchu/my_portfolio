@@ -23,6 +23,8 @@
 	let moving = false;
 	let scrollToPos = 0;
 
+	let windowHeight: number;
+
 	onMount(() => {
 		if (scrollNode) {
 			const target = scrollNode;
@@ -81,14 +83,17 @@
 				const scrollMiddlePos =
 					// @ts-ignore
 					node.offsetTop -
-					window.innerHeight / 2 +
+					windowHeight / 2 +
 					// @ts-ignore
 					node.getBoundingClientRect().height / 2;
 
-				// const maxBottomScrollPos = target.scrollHeight - window.innerHeight;
+				console.log('scrollMiddlePos:', scrollMiddlePos);
 
-				scrollToPos = scrollMiddlePos;
-				// scrollToPos = scrollMiddlePos < maxBottomScrollPos ? scrollMiddlePos : maxBottomScrollPos;
+				const maxBottomScrollPos = target.scrollHeight - windowHeight;
+				console.log('target.scrollHeight :', target.scrollHeight);
+				console.log('maxBottomScrollPos:', maxBottomScrollPos);
+
+				scrollToPos = scrollMiddlePos < maxBottomScrollPos ? scrollMiddlePos : maxBottomScrollPos;
 
 				if (moving) {
 					return;
@@ -164,6 +169,8 @@
 	<title>Tech-poiesis</title>
 	<meta name="description" content="Technopoeisis" />
 </svelte:head>
+
+<svelte:window bind:innerHeight={windowHeight} />
 
 <div
 	class={`h-screen overflow-x-hidden overflow-y-auto sm:scrollbar-thin sm:scrollbar-track-gray-50/50 sm:scrollbar-thumb-gray-100 sm:hover:scrollbar-thumb-gray-200 ${

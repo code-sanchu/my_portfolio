@@ -1,12 +1,12 @@
 <script lang="ts" context="module">
-	import { ArrowLineUpRight, X } from 'phosphor-svelte';
-
 	import { updateScroll } from '^stores';
 
 	import { Picture } from '^components';
+	import PopUp from './pop-up.svelte';
 
 	import type { Project } from '^types';
 
+	// transition out - just transiton opacity - don't translate image.
 	// second img that translates maybe has to load in seperately? Should/can use js to load img in ? May not be possible due to Picture
 </script>
 
@@ -124,75 +124,7 @@
 
 <!-- </AnimateCardIn> -->
 
-<div
-	class={`fixed left-0 top-0 w-screen h-screen overflow-scroll pb-xl bg-white z-30 transition-opacity ease-in duration-[450ms] ${
-		expand === 'idle'
-			? '-z-10 pointer-events-none opacity-0'
-			: expand === 'contracting'
-			? 'opacity-0'
-			: 'opacity-100'
-	}`}
->
-	<div class="flex justify-end p-sm">
-		<button class="text-lg" on:click={handleContract} type="button">
-			<X />
-		</button>
-	</div>
-
-	<div class="px-lg pt-lg flex justify-center">
-		<div class="w-[80vw] max-w-[800px]">
-			<div class="w-full flex justify-center">
-				<div
-					class={`relative aspect-[3/4] w-full overflow-hidden ${
-						expand === 'expanded' ? '' : 'pointer-events-none invisible'
-					}`}
-					bind:this={pictureNodeExpanded}
-				>
-					<Picture
-						data={data.mainPicture}
-						imageClass="absolute inset-0 object-cover w-full h-full"
-					/>
-				</div>
-			</div>
-
-			<div class="mt-sm flex justify-between items-baseline">
-				<div><h1 class="uppercase text-sm tracking-widest">{data.title}</h1></div>
-				<div>
-					<a
-						class="text-[0.6rem] text-gray-9 uppercase tracking-widest flex items-baseline gap-xxs"
-						href={data.siteUrl}
-						target="_blank"
-					>
-						<span>visit</span>
-						<span class="translate-y-[1px]">
-							<ArrowLineUpRight weight="thin" />
-						</span>
-					</a>
-				</div>
-			</div>
-
-			<div class="mt-md">
-				<p class="tracking-wide text-sm">{@html data.year}</p>
-			</div>
-
-			<p class="mt-md font-serif">{@html data.workDescription}</p>
-
-			<div class="mt-md font-serif">
-				{#each data.descriptionLong as paragraph}
-					<p>{paragraph}</p>
-				{/each}
-			</div>
-
-			<div class="mt-md flex justify-end">
-				<button
-					class="uppercase text-xxs tracking-widest text-gray-10"
-					on:click={handleContract}
-					type="button">close</button
-				>
-			</div>
-		</div>
-	</div>
-</div>
+<PopUp bind:expand onClose={handleContract} {data} bind:expandedImgNode={pictureNodeExpanded} />
 
 <style>
 	.container-transitions {
