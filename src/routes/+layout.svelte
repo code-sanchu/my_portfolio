@@ -85,10 +85,10 @@
 					// @ts-ignore
 					node.getBoundingClientRect().height / 2;
 
-				// @ts-ignore
-				const maxBottomScrollPos = target.scrollHeight - window.innerHeight;
+				// const maxBottomScrollPos = target.scrollHeight - window.innerHeight;
 
-				scrollToPos = scrollMiddlePos < maxBottomScrollPos ? scrollMiddlePos : maxBottomScrollPos;
+				scrollToPos = scrollMiddlePos;
+				// scrollToPos = scrollMiddlePos < maxBottomScrollPos ? scrollMiddlePos : maxBottomScrollPos;
 
 				if (moving) {
 					return;
@@ -107,8 +107,6 @@
 				if (disableScroll) {
 					return;
 				}
-
-				console.log('scrolled');
 
 				let delta = normalizeWheelDelta(e);
 
@@ -168,7 +166,7 @@
 </svelte:head>
 
 <div
-	class={`h-screen overflow-x-hidden overflow-y-auto ${
+	class={`h-screen overflow-x-hidden overflow-y-auto sm:scrollbar-thin sm:scrollbar-track-gray-50/50 sm:scrollbar-thumb-gray-100 sm:hover:scrollbar-thumb-gray-200 ${
 		scrollStoreState.disable ? 'scrollbar-none' : ''
 	}`}
 	data-disablescroll={scrollStoreState.disable ? 'true' : 'false'}
