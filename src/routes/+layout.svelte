@@ -23,15 +23,10 @@
 	let moving = false;
 	let scrollToPos = 0;
 
-	let windowHeight: number;
-
 	onMount(() => {
 		if (scrollNode) {
-			const target = scrollNode;
 			// @ts-ignore
-			scrollToPos = target.scrollTop;
-
-			let frame = scrollNode;
+			scrollToPos = scrollNode.scrollTop;
 
 			scrollNode.addEventListener('wheel', scrolled, { passive: false });
 			scrollNode.addEventListener('DOMMouseScroll', scrolled, { passive: false });
@@ -40,18 +35,12 @@
 				// @ts-ignore
 				const disableScroll = e?.currentTarget?.dataset?.disablescroll === 'true';
 
-				if (disableScroll) {
-					return;
-				}
-
-				const wheeling = moving;
-
-				if (wheeling) {
+				if (disableScroll || moving) {
 					return;
 				}
 
 				// @ts-ignore
-				scrollToPos = target.scrollTop - 11;
+				scrollToPos = scrollNode.scrollTop;
 			});
 
 			scrollNode.addEventListener('click', (e) => {
@@ -83,15 +72,11 @@
 				const scrollMiddlePos =
 					// @ts-ignore
 					node.offsetTop -
-					windowHeight / 2 +
+					scrollNode.clientHeight / 2 +
 					// @ts-ignore
 					node.getBoundingClientRect().height / 2;
 
-				console.log('scrollMiddlePos:', scrollMiddlePos);
-
-				const maxBottomScrollPos = target.scrollHeight - windowHeight;
-				console.log('target.scrollHeight :', target.scrollHeight);
-				console.log('maxBottomScrollPos:', maxBottomScrollPos);
+				const maxBottomScrollPos = scrollNode.scrollHeight - scrollNode.clientHeight;
 
 				scrollToPos = scrollMiddlePos < maxBottomScrollPos ? scrollMiddlePos : maxBottomScrollPos;
 
@@ -117,7 +102,10 @@
 
 				scrollToPos += -delta * speed;
 				// @ts-ignore
-				scrollToPos = Math.max(0, Math.min(scrollToPos, target.scrollHeight - frame.clientHeight)); // limit scrolling
+				scrollToPos = Math.max(
+					0,
+					Math.min(scrollToPos, scrollNode.scrollHeight - scrollNode.clientHeight)
+				); // limit scrolling
 
 				if (!moving) update();
 			}
@@ -135,10 +123,10 @@
 				moving = true;
 
 				// @ts-ignore
-				let delta = (scrollToPos - target.scrollTop) / smooth;
+				let delta = (scrollToPos - scrollNode.scrollTop) / smooth;
 
 				// @ts-ignore
-				target.scrollTop += delta;
+				scrollNode.scrollTop += delta;
 
 				if (Math.abs(delta) > 1) requestFrame(update);
 				else moving = false;
@@ -169,8 +157,6 @@
 	<title>Tech-poiesis</title>
 	<meta name="description" content="Technopoeisis" />
 </svelte:head>
-
-<svelte:window bind:innerHeight={windowHeight} />
 
 <div
 	class={`h-screen overflow-x-hidden overflow-y-auto sm:scrollbar-thin sm:scrollbar-track-gray-50/50 sm:scrollbar-thumb-gray-100 sm:hover:scrollbar-thumb-gray-200 ${
