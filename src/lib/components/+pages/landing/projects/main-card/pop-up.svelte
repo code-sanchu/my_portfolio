@@ -31,26 +31,22 @@
 
 	onMount(() => {
 		if (scrollNode) {
-			const target = scrollNode;
 			// @ts-ignore
-			scrollToPos = target.scrollTop;
-
-			let frame = scrollNode;
+			scrollToPos = scrollNode.scrollTop;
 
 			scrollNode.addEventListener('wheel', scrolled, { passive: false });
 			scrollNode.addEventListener('DOMMouseScroll', scrolled, { passive: false });
 			// below: account for scroll position change from scrollIntoView or scrollbar; smooth scroll function properly after.
-			scrollNode.addEventListener('scrollend', () => {
+			scrollNode.addEventListener('scrollend', (e) => {
 				// @ts-ignore
+				const disableScroll = e?.currentTarget?.dataset?.disablescroll === 'true';
 
-				const wheeling = moving;
-
-				if (wheeling) {
+				if (disableScroll || moving) {
 					return;
 				}
 
 				// @ts-ignore
-				scrollToPos = target.scrollTop - 11;
+				scrollToPos = scrollNode.scrollTop;
 			});
 
 			// @ts-ignore
@@ -58,12 +54,20 @@
 				e.preventDefault(); // disable default scrolling
 
 				// @ts-ignore
+				const disableScroll = e?.currentTarget?.dataset?.disablescroll === 'true';
+
+				if (disableScroll) {
+					return;
+				}
 
 				let delta = normalizeWheelDelta(e);
 
 				scrollToPos += -delta * speed;
 				// @ts-ignore
-				scrollToPos = Math.max(0, Math.min(scrollToPos, target.scrollHeight - frame.clientHeight)); // limit scrolling
+				scrollToPos = Math.max(
+					0,
+					Math.min(scrollToPos, scrollNode.scrollHeight - scrollNode.clientHeight)
+				); // limit scrolling
 
 				if (!moving) update();
 			}
@@ -81,10 +85,10 @@
 				moving = true;
 
 				// @ts-ignore
-				let delta = (scrollToPos - target.scrollTop) / smooth;
+				let delta = (scrollToPos - scrollNode.scrollTop) / smooth;
 
 				// @ts-ignore
-				target.scrollTop += delta;
+				scrollNode.scrollTop += delta;
 
 				if (Math.abs(delta) > 1) requestFrame(update);
 				else moving = false;
@@ -112,7 +116,7 @@
 </script>
 
 <div
-	class={`fixed left-0 top-0 w-screen overflow-y-auto h-screen pb-xl bg-white z-30 transition-opacity ease-in duration-[450ms] ${
+	class={`fixed left-0 top-0 w-screen overflow-y-auto h-screen pb-xl bg-white z-30 transition-opacity ease-linear duration-[500ms] ${
 		expand === 'idle'
 			? '-z-10 pointer-events-none opacity-0'
 			: expand === 'contracting'
@@ -132,7 +136,9 @@
 			<div class="w-full flex justify-center">
 				<div
 					class={`relative aspect-[3/4] w-full overflow-hidden ${
-						expand === 'expanded' ? '' : 'pointer-events-none invisible'
+						expand === 'expanded' || expand === 'contracting-init' || expand === 'contracting'
+							? ''
+							: 'pointer-events-none invisible'
 					}`}
 					bind:this={expandedImgNode}
 				>
@@ -143,40 +149,45 @@
 				</div>
 			</div>
 
-			<div class="mt-sm flex justify-between items-baseline">
-				<div><h1 class="uppercase text-sm tracking-widest">{data.title}</h1></div>
-				<div>
-					<a
-						class="text-[0.6rem] text-gray-9 uppercase tracking-widest flex items-baseline gap-xxs"
-						href={data.siteUrl}
-						target="_blank"
-					>
-						<span>visit</span>
-						<span class="translate-y-[1px]">
-							<ArrowLineUpRight weight="thin" />
-						</span>
-					</a>
+			<div
+				class="mt-sm transition-opacity duration-300 ease-linear"
+				style:opacity={expand === 'expanded' ? 1 : 0}
+			>
+				<div class="flex justify-between items-baseline">
+					<div><h1 class="uppercase text-sm tracking-widest">{data.title}</h1></div>
+					<div>
+						<a
+							class="text-[0.6rem] font-serif uppercase tracking-widest flex items-baseline gap-xxs"
+							href={data.siteUrl}
+							target="_blank"
+						>
+							<span>visit</span>
+							<span class="translate-y-[1px]">
+								<ArrowLineUpRight weight="thin" />
+							</span>
+						</a>
+					</div>
 				</div>
-			</div>
 
-			<div class="mt-md">
-				<p class="tracking-wide text-sm">{@html data.year}</p>
-			</div>
+				<div class="mt-md">
+					<p class="tracking-wide text-sm">{@html data.year}</p>
+				</div>
 
-			<p class="mt-md font-serif">{@html data.workDescription}</p>
+				<p class="mt-md font-serif">{@html data.workDescription}</p>
 
-			<div class="mt-md font-serif">
-				{#each data.descriptionLong as paragraph}
-					<p>{paragraph}</p>
-				{/each}
-			</div>
+				<div class="mt-md font-serif">
+					{#each data.descriptionLong as paragraph}
+						<p>{paragraph}</p>
+					{/each}
+				</div>
 
-			<div class="mt-md flex justify-end">
-				<button
-					class="uppercase text-xxs tracking-widest text-gray-10"
-					on:click={onClose}
-					type="button">close</button
-				>
+				<div class="mt-md flex justify-end">
+					<button
+						class="uppercase text-xxs tracking-widest text-gray-10"
+						on:click={onClose}
+						type="button">close</button
+					>
+				</div>
 			</div>
 		</div>
 	</div>

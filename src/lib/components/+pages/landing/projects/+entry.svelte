@@ -1,4 +1,5 @@
 <script context="module" lang="ts">
+	import { produce } from 'immer';
 	import { ArrowLineLeft, ArrowLineRight } from 'phosphor-svelte';
 
 	import { projects } from '^data';
@@ -7,7 +8,7 @@
 	import type { ProjectId } from '^types';
 	import { uid } from 'uid/single';
 
-	type ProjectCard = { key: string; id: ProjectId };
+	type ProjectCard = { key: string; id: ProjectId; animateOut: boolean };
 
 	const projectsArr: ProjectId[] = [
 		'raie',
@@ -24,57 +25,64 @@
 
 <script lang="ts">
 	let projectCards: ProjectCard[] = [
-		{ key: uid(), id: 'raie' }
-		// { key: uid(), id: 'piros' }
+		{ key: uid(), id: 'raie', animateOut: false },
+		{ key: uid(), id: 'piros', animateOut: false }
 	];
 
-	let showPrev = 0;
-
 	const showNextProject = () => {
-		if (showPrev !== 0) {
-			showPrev -= 1;
+		let nextProjectIndex: number;
 
-			return;
+		if (projectCards.length === 1) {
+			nextProjectIndex = 0;
+		} else {
+			nextProjectIndex =
+				projectCards.length -
+				Math.floor(projectCards.length / projectsArr.length) * projectsArr.length;
 		}
 
-		const nextProjectIndex =
-			projectCards.length -
-			Math.floor(projectCards.length / projectsArr.length) * projectsArr.length;
-
-		const nextProject = { key: uid(), id: projectsArr[nextProjectIndex] };
+		const nextProject: ProjectCard = {
+			key: uid(),
+			id: projectsArr[nextProjectIndex],
+			animateOut: false
+		};
 
 		projectCards = [nextProject, ...projectCards];
 	};
 
 	const showPrevProject = () => {
-		const atLastCard = showPrev === projectCards.length - 1;
+		const atLastCard = projectCards.length === 1;
 
 		if (atLastCard) {
 			return;
 		}
 
-		showPrev += 1;
+		const updated = produce(projectCards, (draft) => {
+			draft[0].animateOut = true;
+		});
+
+		projectCards = updated;
+
+		setTimeout(() => {
+			const updated2 = produce(projectCards, (draft) => {
+				draft.splice(0, 1);
+			});
+
+			projectCards = updated2;
+		}, 700);
 	};
 </script>
 
 <div class="flex overflow-hidden">
 	{#each projectCards as project (project.key)}
-		<MainCard data={projects[project.id]} />
+		<MainCard data={projects[project.id]} bind:animateOut={project.animateOut} />
 	{/each}
-
-	<!-- <div
-		class="flex transition-transform duration-[750ms] ease-out"
-		style:transform={`translateX(${showPrev * -240}px)`}
-	>
-		{#each projectCards as project (project.key)}
-			<MainCard data={projects[project.id]} />
-		{/each}
-	</div> -->
 </div>
 
-<!-- <div class="mt-sm md:mt-md flex items-center gap-sm">
+<div class="mt-sm md:mt-md flex items-center gap-sm">
 	<button
-		class="relative inline-flex gap-xs items-center border py-xxs px-xs rounded-lg"
+		class={`relative inline-flex gap-xs items-center border py-xxs px-xs rounded-lg transition-opacity ease-linear duration-200 ${
+			projectCards.length === 1 ? 'opacity-70' : ''
+		}`}
 		on:click={() => showPrevProject()}
 		type="button"
 	>
@@ -83,7 +91,7 @@
 		</span>
 
 		<span
-			class="translate-y-[1px] text-xxs lg:text-xs uppercase tracking-wider text-gray-11 font-light"
+			class={`translate-y-[1px] text-xxs lg:text-xs uppercase tracking-wider text-gray-11 font-light`}
 			>Prev</span
 		>
 	</button>
@@ -101,4 +109,4 @@
 			>Next</span
 		>
 	</button>
-</div> -->
+</div>

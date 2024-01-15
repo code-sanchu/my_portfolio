@@ -42,6 +42,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"immer": "^10.0.3",
 		"uid": "^2.0.2"
 	}
 }

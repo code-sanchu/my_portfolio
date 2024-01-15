@@ -1,6 +1,9 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  immer:
+    specifier: ^10.0.3
+    version: 10.0.3
   uid:
     specifier: ^2.0.2
     version: 2.0.2
@@ -1507,6 +1510,10 @@ packages:
     dependencies:
       sharp: 0.32.6
     dev: true
+
+  /immer@10.0.3:
+    resolution: {integrity: sha512-pwupu3eWfouuaowscykeckFmVTpqbzW+rXFCX8rQLkZzM9ftBmU/++Ra+o+L27mz03zJTlyV4UUr+fdKNffo4A==}
+    dev: false
 
   /import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
