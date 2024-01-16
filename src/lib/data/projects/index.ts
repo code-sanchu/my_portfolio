@@ -70,7 +70,7 @@ const asatic: Project = {
 	mainPicture: image.project.asatic.landing,
 	descriptionLong: [
 		"Asatic is a journal run by parts of the English Sri Lankan diaspora. It's global in scope but focuses on Sri Lankan issues.",
-		'The site presents news and video articles in a minimal way that reflects the seriousness of the subject matter. The cms has been built to allow for considerable customisation of the layout, articles and collections.'
+		'The site presents news and video articles. The cms has been built to allow for considerable customisation of the layout, articles and collections.'
 	],
 	workDescription: 'Site and cms design, build and maintenance.',
 	year: '2022 - 2023',
@@ -100,7 +100,7 @@ const murat: Project = {
 	mainPicture: image.project.murat.landing,
 	descriptionLong: [
 		'Murat wanted his Squarespace site to be a design not included in the provided layouts.',
-		'I did some custom styling and scripting to make this happen, and provided instructions for him to easily update the site himself.'
+		'I used custom styling and scripting to achieve this, and provided instructions for him to easily update the site himself.'
 	],
 	workDescription: 'squarespace updates &#8212; styling and scripting',
 	year: '2021',
@@ -115,7 +115,7 @@ const kindred_yoga: Project = {
 	mainPicture: image.project.kindred_yoga.landing,
 	descriptionLong: [
 		'Kindred Yoga is a successful yoga studio.',
-		'My role involved custom styling and updates.'
+		'My role involves custom styling and updates.'
 	],
 	workDescription: 'squarespace updates &#8212; styling and scripting',
 	year: '2021 - 2023',

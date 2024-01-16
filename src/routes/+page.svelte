@@ -9,7 +9,6 @@
 	// go over projects about text
 	// loading screen
 	// optimise images
-	// message form with formsubmit
 	// if image hasn't loaded by time loading screen gone, fade in.
 
 	// try nova font
