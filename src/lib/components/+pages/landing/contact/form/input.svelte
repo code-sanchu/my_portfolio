@@ -26,6 +26,7 @@
 		bind:value
 		on:focus={() => (isFocused = true)}
 		on:blur={() => (isFocused = false)}
+		name={label}
 		type="text"
 		id={label}
 	/>

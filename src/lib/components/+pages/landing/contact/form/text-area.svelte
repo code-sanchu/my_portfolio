@@ -27,5 +27,6 @@
 		on:focus={() => (isFocused = true)}
 		on:blur={() => (isFocused = false)}
 		id={label}
+		name={label}
 	/>
 </div>

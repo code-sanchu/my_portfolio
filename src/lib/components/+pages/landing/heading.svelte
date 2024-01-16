@@ -1,5 +1,4 @@
 <script lang="ts">
-	let topfadeOut = false;
 </script>
 
 <div class="bg-white p-sm">
@@ -9,9 +8,7 @@
 		Tech-poiesis
 	</h1>
 
-	<p
-		class="tracking-widest mt-xs flex font-thin text-xs sm:text-sm lg:text-[15px] max-w-[254px] sm:max-w-[300px]"
-	>
+	<p class="tracking-widest mt-xs flex font-thin text-xs sm:text-sm lg:text-[15px]">
 		<span class="text-my-lime-1">B</span>
 		<span class="text-my-lime-1">e</span>
 		<span class="text-my-blue-1">s</span>
@@ -37,8 +34,15 @@
 		<span class="text-my-red-dark-1">o</span>
 		<span class="text-my-brown-1">n</span>
 
-		<span class="ml-xs text-gray-12">
-			for individuals and small companies, hobbyists and professionals.
+		<span class="ml-xs text-gray-12 flex flex-col">
+			<span>for individuals</span>
+			<span>and small</span>
+			<span>companies,</span>
+			<span>hobbyists and</span>
+			<span>professionals</span>
 		</span>
+		<!-- <span class="ml-xs text-gray-12">
+			for individuals and small companies, hobbyists and professionals.
+		</span> -->
 	</p>
 </div>

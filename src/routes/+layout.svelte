@@ -5,6 +5,8 @@
 
 	import { scrollStore, type ScrollValues } from '^stores';
 
+	import { Header } from '^components';
+
 	const buttonIds = ['home-link', 'projects-link', 'services-link', 'contact-link'];
 
 	const speed = 120;
@@ -23,6 +25,8 @@
 	let moving = false;
 	let scrollToPos = 0;
 
+	let scrollDirection: 'down' | 'up';
+
 	onMount(() => {
 		if (scrollNode) {
 			// @ts-ignore
@@ -39,11 +43,10 @@
 					return;
 				}
 
-				// @ts-ignore
 				scrollToPos = scrollNode.scrollTop;
 			});
 
-			scrollNode.addEventListener('click', (e) => {
+			document.addEventListener('click', (e) => {
 				//@ts-ignore
 				const clickedNodeId = e.target.id;
 				//@ts-ignore
@@ -100,6 +103,8 @@
 
 				let delta = normalizeWheelDelta(e);
 
+				scrollDirection = delta === -1 ? 'down' : 'up';
+
 				scrollToPos += -delta * speed;
 				// @ts-ignore
 				scrollToPos = Math.max(
@@ -151,6 +156,12 @@
 			})();
 		}
 	});
+
+	let windowWidth: number;
+	let windowHeight: number;
+	let headerHeight = 0;
+
+	$: hideHeader = windowWidth && windowWidth < 768 && scrollDirection === 'down';
 </script>
 
 <svelte:head>
@@ -158,10 +169,21 @@
 	<meta name="description" content="Technopoeisis" />
 </svelte:head>
 
+<svelte:window bind:innerWidth={windowWidth} bind:innerHeight={windowHeight} />
+
+<div
+	class="fixed z-30 left-0 top-0 w-full transition-transform ease-in-out duration-500"
+	style:transform={hideHeader && headerHeight ? `translateY(-${headerHeight}px)` : ''}
+	bind:clientHeight={headerHeight}
+>
+	<Header />
+</div>
+
 <div
 	class={`h-screen overflow-x-hidden overflow-y-auto sm:scrollbar-thin sm:scrollbar-track-gray-50/50 sm:scrollbar-thumb-gray-100 sm:hover:scrollbar-thumb-gray-200 ${
 		scrollStoreState.disable ? 'scrollbar-none' : ''
 	}`}
+	style:padding-top="{headerHeight}px"
 	data-disablescroll={scrollStoreState.disable ? 'true' : 'false'}
 	bind:this={scrollNode}
 >
