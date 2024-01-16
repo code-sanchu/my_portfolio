@@ -5,16 +5,16 @@
 	import PopUp from './pop-up.svelte';
 
 	import type { Project } from '^types';
-	import AnimateCardIn from '../animate-card-in.svelte';
+	import AnimateInOut from './animate-in-out.svelte';
 
-	// transition out - just transiton opacity - don't translate image.
-	// second img that translates maybe has to load in seperately? Should/can use js to load img in ? May not be possible due to Picture
 	// reset scroll position on close
 </script>
 
 <script lang="ts">
 	export let data: Project;
 	export let animateOut: boolean;
+	export let onPopupOpen: () => void;
+	export let onPopupClose: () => void;
 
 	let expand:
 		| 'idle'
@@ -35,6 +35,8 @@
 		pictureNodeExpandedRect = pictureNodeExpanded.getBoundingClientRect();
 
 		updateScroll.disable(true);
+
+		onPopupOpen();
 
 		setTimeout(() => {
 			expand = 'expanding-init';
@@ -67,13 +69,15 @@
 
 				setTimeout(() => {
 					expand = 'idle';
+
+					onPopupClose();
 				}, 500);
 			}, 50);
 		}, 50);
 	};
 </script>
 
-<AnimateCardIn containerWidth={240} bind:animateOut>
+<AnimateInOut containerWidth={240} bind:animateOut>
 	<div class="w-[220px] lg:w-[300px] shrink-0 mr-[1.25rem]">
 		<div class={`relative aspect-[3/4] overflow-hidden`} bind:this={pictureNodeIdle}>
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -81,7 +85,7 @@
 			<div
 				class={`${
 					expand === 'expanding' || expand === 'contracting' ? 'container-transitions' : ''
-				} ${expand === 'expanded' ? 'pointer-events-none invisible' : ''}`}
+				} ${expand === 'contracting-init' ? 'pointer-events-none invisible' : ''}`}
 				style:z-index={expand === 'expanding-init' || expand === 'expanding' ? 40 : 0}
 				style:position={expand === 'idle' ||
 				expand === 'expanded' ||
@@ -142,7 +146,7 @@
 			</div>
 		</div>
 	</div>
-</AnimateCardIn>
+</AnimateInOut>
 
 <PopUp bind:expand onClose={handleContract} {data} bind:expandedImgNode={pictureNodeExpanded} />
 

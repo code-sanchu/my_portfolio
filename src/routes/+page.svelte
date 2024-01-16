@@ -6,24 +6,17 @@
 </script>
 
 <script lang="ts">
-	// 3d steps at top right with text for nav links
 	// try nova font
-	// nav bar links with coloured dots from image
 	// match colours to image
-	// animate to more info
-	// better opacity animation for maincard
 	// take new picture of kindred yoga without the line
 	// optimise images
-	// swipe for projects
-	// pattern on the projcets transition overlay
 	// main header and in about project neot visible on mobile when address bar is down
 	// change transition to use transform rather than left, top, etc.
-	// some issue with the about project transition on first go. Seems fine after.
-	// is a judder on projects animation width
+	// heading sub-text is a bit too small on mobile?
 	// text reveal animations: https://freefrontend.com/css-reveal-animations/
-
-	// don't use absolute for contact in nav
 	// title animate in as with plastic.desgin
+	// loading screen
+	// don't use absolute for contact in nav
 	// using dots, could actually do something akin to:https://www.pola.co.jp/special/o/wecaremore/mothersday/
 
 	let windowHeight: number;

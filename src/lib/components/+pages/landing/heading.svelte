@@ -12,90 +12,31 @@
 	<p
 		class="tracking-widest mt-xs flex font-thin text-xs sm:text-sm lg:text-[15px] max-w-[254px] sm:max-w-[300px]"
 	>
-		<span class={`transition-colors ease-out duration-500 ${topfadeOut ? '' : 'text-my-olive'}`}
-			>B</span
-		>
-		<span class={`transition-colors ease-out duration-500 ${topfadeOut ? '' : 'text-my-olive'}`}
-			>e</span
-		>
-		<span
-			class={`transition-colors ease-out duration-500 ${topfadeOut ? '' : 'text-my-light-blue'}`}
-			>s</span
-		>
-		<span class={`transition-colors ease-out duration-500 ${topfadeOut ? '' : 'text-my-dark-red'}`}
-			>p</span
-		>
-		<span class={`transition-colors ease-out duration-500 ${topfadeOut ? '' : 'text-my-sea-green'}`}
-			>o</span
-		>
-		<span
-			class={`transition-colors ease-out duration-500 ${topfadeOut ? '' : 'text-my-dark-olive'}`}
-			>k</span
-		>
-		<span
-			class={`mr-xxs transition-colors ease-out duration-500 ${topfadeOut ? '' : 'text-my-orange'}`}
-			>e</span
-		>
+		<span class="text-my-lime-1">B</span>
+		<span class="text-my-lime-1">e</span>
+		<span class="text-my-blue-1">s</span>
+		<span class="text-my-red-dark-1">p</span>
+		<span class="text-my-cyan-1">o</span>
+		<span class="text-my-green-1">k</span>
+		<span class="mr-xxs text-my-orange-1">e</span>
 
-		<span
-			class={`transition-colors ease-out duration-500 ${topfadeOut ? '' : 'text-my-rosy-brown '}`}
-			>w</span
-		>
-		<span
-			class={`transition-colors ease-out duration-500 ${
-				topfadeOut ? '' : 'text-my-dark-slate-gray '
-			}`}>e</span
-		>
-		<span class={`transition-colors ease-out duration-500 ${topfadeOut ? '' : 'text-my-plum '}`}
-			>b</span
-		>
-		<span
-			class={`transition-colors ease-out duration-500 ${topfadeOut ? '' : 'text-my-dark-olive '}`}
-			>s</span
-		>
-		<span
-			class={`transition-colors ease-out duration-500 ${topfadeOut ? '' : 'text-my-dark-olive '}`}
-			>i</span
-		>
-		<span
-			class={`transition-colors ease-out duration-500 ${topfadeOut ? '' : 'text-my-steel-blue '}`}
-			>t</span
-		>
-		<span
-			class={`mr-xxs transition-colors ease-out duration-500 ${
-				topfadeOut ? '' : 'text-my-royal-blue '
-			}`}>e</span
-		>
+		<span class="text-my-purple-1">w</span>
+		<span class="text-my-blue-light-1">e</span>
+		<span class="text-my-purple-light-1">b</span>
+		<span class="text-my-brown-1">s</span>
+		<span class="text-my-lime-1">i</span>
+		<span class="text-my-blue-2">t</span>
+		<span class="mr-xxs text-my-blue-1">e</span>
 
-		<span
-			class={`transition-colors ease-out duration-500 ${topfadeOut ? '' : 'text-my-golden-rod '}`}
-			>c</span
-		>
-		<span
-			class={`transition-colors ease-out duration-500 ${topfadeOut ? '' : 'text-my-dark-olive '}`}
-			>r</span
-		>
-		<span
-			class={`transition-colors ease-out duration-500 ${topfadeOut ? '' : 'text-my-navy-blue '}`}
-			>e</span
-		>
-		<span
-			class={`transition-colors ease-out duration-500 ${topfadeOut ? '' : 'text-my-navy-blue '}`}
-			>a</span
-		>
-		<span class={`transition-colors ease-out duration-500 ${topfadeOut ? '' : 'text-my-plum '}`}
-			>t</span
-		>
-		<span class={`transition-colors ease-out duration-500 ${topfadeOut ? '' : 'text-my-plum '}`}
-			>i</span
-		>
-		<span class={`transition-colors ease-out duration-500 ${topfadeOut ? '' : 'text-my-dark-red '}`}
-			>o</span
-		>
-		<span
-			class={`transition-colors ease-out duration-500 ${topfadeOut ? '' : 'text-my-golden-rod '}`}
-			>n</span
-		>
+		<span class="text-my-yellow-1">c</span>
+		<span class="text-my-orange-red-1">r</span>
+		<span class="text-my-blue-1">e</span>
+		<span class="text-my-blue-light-1">a</span>
+		<span class="text-my-purple-1">t</span>
+		<span class="text-my-purple-light-1">i</span>
+		<span class="text-my-red-dark-1">o</span>
+		<span class="text-my-brown-1">n</span>
+
 		<span class="ml-xs text-gray-12">
 			for individuals and small companies, hobbyists and professionals.
 		</span>

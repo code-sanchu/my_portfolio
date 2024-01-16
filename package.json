@@ -43,6 +43,7 @@
 	"type": "module",
 	"dependencies": {
 		"immer": "^10.0.3",
+		"svelte-gestures": "^1.5.2",
 		"uid": "^2.0.2"
 	}
 }

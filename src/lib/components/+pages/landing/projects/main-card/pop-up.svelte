@@ -118,7 +118,7 @@
 <div
 	class={`fixed left-0 top-0 w-screen overflow-y-auto h-screen pb-xl bg-white z-30 transition-opacity ease-linear duration-[500ms] ${
 		expand === 'idle'
-			? '-z-10 pointer-events-none opacity-0'
+			? 'invisible pointer-events-none'
 			: expand === 'contracting'
 			? 'opacity-0'
 			: 'opacity-100'
@@ -132,11 +132,13 @@
 	</div>
 
 	<div class="px-lg pt-lg flex justify-center">
-		<div class="w-[80vw] max-w-[800px]">
+		<div class="w-[90vw] max-w-[800px]">
 			<div class="w-full flex justify-center">
 				<div
 					class={`relative aspect-[3/4] w-full overflow-hidden ${
-						expand === 'expanded' || expand === 'contracting-init' || expand === 'contracting'
+						expand === 'expanded-prep'
+							? 'opacity-0 transition-opacity duration-[500ms]'
+							: expand === 'expanded' || expand === 'contracting-init' || expand === 'contracting'
 							? ''
 							: 'pointer-events-none invisible'
 					}`}
@@ -173,9 +175,9 @@
 					<p class="tracking-wide text-sm">{@html data.year}</p>
 				</div>
 
-				<p class="mt-md font-serif">{@html data.workDescription}</p>
+				<div class="mt-md font-serif flex flex-col gap-sm text-[15px]">
+					<p>{@html data.workDescription}</p>
 
-				<div class="mt-md font-serif flex flex-col gap-xs">
 					{#each data.descriptionLong as paragraph}
 						<p>{paragraph}</p>
 					{/each}

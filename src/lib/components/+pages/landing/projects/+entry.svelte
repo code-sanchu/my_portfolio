@@ -1,12 +1,18 @@
 <script context="module" lang="ts">
 	import { produce } from 'immer';
+	import { uid } from 'uid/single';
 	import { ArrowLineLeft, ArrowLineRight } from 'phosphor-svelte';
+	import {
+		swipe as untypedSwipe,
+		type ParametersSwitch,
+		type SwipeParameters
+	} from 'svelte-gestures';
+	import type { Action } from 'svelte/action';
 
+	import type { ProjectId } from '^types';
 	import { projects } from '^data';
 
 	import MainCard from './main-card';
-	import type { ProjectId } from '^types';
-	import { uid } from 'uid/single';
 
 	type ProjectCard = { key: string; id: ProjectId; animateOut: boolean };
 
@@ -21,6 +27,18 @@
 		'asatic',
 		'blackheath_yoga'
 	];
+
+	const swipe: Action<
+		HTMLElement,
+		ParametersSwitch<SwipeParameters>,
+		{
+			'on:swipe': (
+				e: CustomEvent<{
+					[x: string]: string;
+				}>
+			) => void;
+		}
+	> = untypedSwipe as any;
 </script>
 
 <script lang="ts">
@@ -70,11 +88,27 @@
 			projectCards = updated2;
 		}, 700);
 	};
+
+	let disableSwipe = false;
 </script>
 
-<div class="flex overflow-hidden">
+<div
+	class="flex overflow-hidden"
+	use:swipe={{ timeframe: 300, minSwipeDistance: 60, touchAction: 'pan-y' }}
+	on:swipe={(e) => {
+		if (disableSwipe) {
+			return;
+		}
+		e.detail.direction === 'left' ? showPrevProject() : showNextProject();
+	}}
+>
 	{#each projectCards as project (project.key)}
-		<MainCard data={projects[project.id]} bind:animateOut={project.animateOut} />
+		<MainCard
+			data={projects[project.id]}
+			bind:animateOut={project.animateOut}
+			onPopupClose={() => (disableSwipe = false)}
+			onPopupOpen={() => (disableSwipe = true)}
+		/>
 	{/each}
 </div>
 
