@@ -4,7 +4,7 @@
 	<p>
 		I'm a design-focused web engineer who provides personalised and high-quality tech services. With
 		years of experience, I've comprehensive knowledge of the web ecosystem. From hobbyists to
-		professional orginasitons, I find the right-sized approach for each client.
+		professional organisations, I find the right-sized approach for each client.
 	</p>
 
 	<p>

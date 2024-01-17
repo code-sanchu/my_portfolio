@@ -74,12 +74,12 @@
 	{#if formIsComplete}
 		<div class="mt-lg flex items-end justify-end" transition:fade>
 			<button
-				class="group/button py-xxs px-sm flex items-center gap-xs hover:gap-sm rounded-sm border text-xs text-my-blue-2 border-my-blue-2 hover:text-green-8 hover:border-green-8 transition-all ease-in-out duration-500"
+				class="group/button py-xxs px-sm flex items-center gap-xs hover:gap-sm rounded-sm border text-xs lg:text-sm 3xl:text-base text-my-blue-2 border-my-blue-2 hover:text-green-8 hover:border-green-8 transition-all ease-in-out duration-500"
 				on:click={submitForm}
 				type="button"
 			>
 				<span
-					class="-translate-y-[1px] group-hover/button:rotate-45 transition-transform ease-in-out duration-500"
+					class="-translate-y-[1px] lg:-translate-y-[2px] group-hover/button:rotate-45 transition-transform ease-in-out duration-500"
 				>
 					{#if messageSent === 'sent'}
 						<Check weight="light" />

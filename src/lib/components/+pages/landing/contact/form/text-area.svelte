@@ -21,7 +21,7 @@
 		for={label}>{label}</label
 	>
 	<textarea
-		class="absolute left-0 cursor-text top-0 w-full h-full resize-none bg-transparent transition-transform ease-in-out duration-150"
+		class="absolute left-0 cursor-text top-0 w-full h-full resize-none bg-transparent text-base text-gray-11 transition-transform ease-in-out duration-150"
 		style:padding-top={!isFocused && !value.length ? 0 : '22px'}
 		bind:value
 		on:focus={() => (isFocused = true)}

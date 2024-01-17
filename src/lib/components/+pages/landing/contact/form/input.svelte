@@ -21,7 +21,7 @@
 		for={label}>{label}</label
 	>
 	<input
-		class="absolute left-0 w-full h-full cursor-text bg-transparent transition-transform ease-in-out duration-150 tracking-wide 2xl:text-base text-gray-11"
+		class="absolute left-0 w-full h-full cursor-text bg-transparent transition-transform ease-in-out duration-150 tracking-wide text-base text-gray-11"
 		style:top={!isFocused && !value.length ? 0 : '7px'}
 		bind:value
 		on:focus={() => (isFocused = true)}
