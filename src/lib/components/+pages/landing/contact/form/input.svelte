@@ -15,13 +15,13 @@
 	<label
 		class={`absolute tracking-[0.01em] z-10 right-0 cursor-text transition-all ease-in-out duration-150 ${
 			!isFocused && !value.length
-				? 'top-1/2 -translate-y-1/2 text-[0.82rem] text-gray-11'
-				: 'top-xxs text-xs text-gray-9'
+				? 'top-1/2 -translate-y-1/2 text-[0.82rem] xl:text-[0.9rem] 3xl:text-[1rem] text-gray-11'
+				: 'top-xxs text-xs xl:text-sm 3xl:text-base text-gray-9'
 		}`}
 		for={label}>{label}</label
 	>
 	<input
-		class="absolute left-0 w-full h-full cursor-text bg-transparent transition-transform ease-in-out duration-150"
+		class="absolute left-0 w-full h-full cursor-text bg-transparent transition-transform ease-in-out duration-150 tracking-wide 2xl:text-base text-gray-11"
 		style:top={!isFocused && !value.length ? 0 : '7px'}
 		bind:value
 		on:focus={() => (isFocused = true)}

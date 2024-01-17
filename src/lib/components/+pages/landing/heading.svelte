@@ -1,14 +1,13 @@
-<script lang="ts">
-</script>
-
 <div class="bg-white p-sm">
 	<h1
-		class={`text-[33.4px] sm:text-[2.4rem] font-light uppercase tracking-widest leading-none whitespace-nowrap`}
+		class={`text-[33.4px] sm:text-[2.4rem] md:text-[2.55rem] lg:text-[2.73rem] xl:text-[3.07rem] 2xl:text-[3.35rem] font-light uppercase tracking-widest leading-none whitespace-nowrap`}
 	>
 		Tech-poiesis
 	</h1>
 
-	<p class="tracking-widest mt-xs flex font-thin text-xs sm:text-sm lg:text-[15px]">
+	<p
+		class="tracking-widest mt-xs lg:mt-[0.75rem] flex font-thin text-xs sm:text-sm md:text-[15px] lg:text-base xl:text-lg 2xl:text-xl"
+	>
 		<span class="text-my-lime-1">B</span>
 		<span class="text-my-lime-1">e</span>
 		<span class="text-my-blue-1">s</span>
@@ -41,8 +40,5 @@
 			<span>hobbyists and</span>
 			<span>professionals</span>
 		</span>
-		<!-- <span class="ml-xs text-gray-12">
-			for individuals and small companies, hobbyists and professionals.
-		</span> -->
 	</p>
 </div>

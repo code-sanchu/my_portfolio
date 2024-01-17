@@ -60,7 +60,7 @@
 	};
 </script>
 
-<div class="flex flex-col w-[400px] max-w-full">
+<div class="flex flex-col w-[400px] xl:w-[500px] max-w-full xl:text-lg">
 	<div class="border-t border-t-my-lime-1/60 border-b border-b-my-blue-light-1/60">
 		<Input bind:value={name} label="Name" />
 	</div>
@@ -99,7 +99,7 @@
 
 {#if showMessageReceived}
 	<div
-		class="fixed bottom-xs right-xs bg-gray-10 text-white py-xxs px-sm rounded-md text-sm"
+		class="fixed bottom-xs right-xs bg-gray-10 text-white py-xxs px-sm rounded-md text-sm xl:text-base"
 		transition:fly={{ duration: 600, y: 100 }}
 	>
 		Message recieved. Thanks! I'll be in touch shortly.

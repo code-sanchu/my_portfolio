@@ -4,34 +4,34 @@
 	import { Picture } from '^components';
 </script>
 
-<div class="relative flex gap-sm font-light text-xs">
-	<button class="flex items-baseline gap-xxs" type="button" id="projects-link">
+<div class="relative flex gap-sm 2xl:gap-md font-light text-xs md:text-sm xl:text-base 2xl:text-xl">
+	<button class="flex items-baseline gap-xxs md:gap-xs" type="button" id="projects-link">
 		<span
 			class="tracking-wider text-gray-9 hover:text-gray-12 ease-linear duration-200 transition-colors"
 			>Projects</span
 		>
-		<span class="w-[5px] opacity-70">
+		<span class="w-[5px] md:w-[7px] opacity-70">
 			<Picture data={image.dot.green} />
 		</span>
 	</button>
 
-	<div class="flex flex-col items-end gap-xs">
-		<button class="flex items-baseline gap-xxs" type="button" id="services-link">
+	<div class="flex flex-col items-end gap-y-xs md:flex-row md:gap-x-sm 2xl:gap-x-md">
+		<button class="flex items-baseline gap-xxs md:gap-xs" type="button" id="services-link">
 			<span
 				class="tracking-wider text-gray-9 hover:text-gray-12 ease-linear duration-200 transition-colors"
 				>Services</span
 			>
-			<span class="w-[5px] opacity-70">
+			<span class="w-[5px] md:w-[7px] opacity-70">
 				<Picture data={image.dot.orange} />
 			</span>
 		</button>
 
-		<button class="flex items-baseline gap-xxs" type="button" id="contact-link">
+		<button class="flex items-baseline gap-xxs md:gap-xs" type="button" id="contact-link">
 			<span
 				class="tracking-wider text-gray-9 hover:text-gray-12 ease-linear duration-200 transition-colors"
 				>Contact</span
 			>
-			<span class="w-[5px] opacity-70">
+			<span class="w-[5px] md:w-[7px] opacity-70">
 				<Picture data={image.dot.blue} />
 			</span>
 		</button>

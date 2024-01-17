@@ -1,6 +1,5 @@
 <script context="module" lang="ts">
 	import { produce } from 'immer';
-	import { uid } from 'uid/single';
 	import { ArrowLineLeft, ArrowLineRight } from 'phosphor-svelte';
 	import {
 		swipe as untypedSwipe,
@@ -8,17 +7,20 @@
 		type SwipeParameters
 	} from 'svelte-gestures';
 	import type { Action } from 'svelte/action';
+	import { uid } from 'uid/single';
 
-	import type { ProjectId } from '^types';
 	import { projects } from '^data';
+	import type { ProjectId } from '^types';
+
+	import { Section } from '^pages/landing';
 
 	import MainCard from './main-card';
 
 	type ProjectCard = { key: string; id: ProjectId; animateOut: boolean };
 
 	const projectsArr: ProjectId[] = [
-		'raie',
 		'piros',
+		'raie',
 		'amy',
 		'murat',
 		'kindred_yoga',
@@ -42,21 +44,33 @@
 </script>
 
 <script lang="ts">
-	let projectCards: ProjectCard[] = [
-		{ key: uid(), id: 'raie', animateOut: false },
-		{ key: uid(), id: 'piros', animateOut: false }
-	];
+	let windowWidth: number;
+
+	let projectCards: ProjectCard[];
+
+	$: {
+		if (windowWidth) {
+			const arr: ProjectCard[] = [
+				{ key: uid(), id: 'raie', animateOut: false },
+				{ key: uid(), id: 'piros', animateOut: false }
+			];
+
+			let numCards = windowWidth > 510 ? 3 : 2;
+
+			if (numCards === 3) {
+				arr.unshift({ key: uid(), id: 'amy', animateOut: false });
+			}
+
+			projectCards = arr;
+		}
+	}
 
 	const showNextProject = () => {
 		let nextProjectIndex: number;
 
-		if (projectCards.length === 1) {
-			nextProjectIndex = 0;
-		} else {
-			nextProjectIndex =
-				projectCards.length -
-				Math.floor(projectCards.length / projectsArr.length) * projectsArr.length;
-		}
+		nextProjectIndex =
+			projectCards.length -
+			Math.floor(projectCards.length / projectsArr.length) * projectsArr.length;
 
 		const nextProject: ProjectCard = {
 			key: uid(),
@@ -65,12 +79,32 @@
 		};
 
 		projectCards = [nextProject, ...projectCards];
+
+		setTimeout(() => {
+			const atLastCard = projectCards.filter((card) => card.animateOut === false).length === 1;
+
+			const isOverflow = containerNode.scrollWidth > containerNode.clientWidth;
+
+			disableShowPrev = atLastCard || !isOverflow;
+		}, 700);
 	};
 
-	const showPrevProject = () => {
-		const atLastCard = projectCards.length === 1;
+	let containerNode: HTMLDivElement;
 
-		if (atLastCard) {
+	let disableShowPrev: boolean;
+
+	$: {
+		if (containerNode && projectCards) {
+			const atLastCard = projectCards.filter((card) => card.animateOut === false).length === 1;
+
+			const isOverflow = containerNode.scrollWidth > containerNode.clientWidth;
+
+			disableShowPrev = atLastCard || !isOverflow;
+		}
+	}
+
+	const showPrevProject = () => {
+		if (disableShowPrev) {
 			return;
 		}
 
@@ -92,55 +126,66 @@
 	let disableSwipe = false;
 </script>
 
-<div
-	class="flex overflow-hidden"
-	use:swipe={{ timeframe: 300, minSwipeDistance: 60, touchAction: 'pan-y' }}
-	on:swipe={(e) => {
-		if (disableSwipe) {
-			return;
-		}
-		e.detail.direction === 'left' ? showPrevProject() : showNextProject();
-	}}
->
-	{#each projectCards as project (project.key)}
-		<MainCard
-			data={projects[project.id]}
-			bind:animateOut={project.animateOut}
-			onPopupClose={() => (disableSwipe = false)}
-			onPopupOpen={() => (disableSwipe = true)}
-		/>
-	{/each}
-</div>
+<svelte:window bind:innerWidth={windowWidth} />
 
-<div class="mt-sm md:mt-md flex items-center gap-sm">
-	<button
-		class={`relative inline-flex gap-xs items-center border py-xxs px-xs rounded-lg transition-opacity ease-linear duration-200 ${
-			projectCards.length === 1 ? 'opacity-70' : ''
-		}`}
-		on:click={() => showPrevProject()}
-		type="button"
-	>
-		<span class="text-xs lg:text-sm">
-			<ArrowLineLeft weight="thin" />
-		</span>
-
-		<span
-			class={`translate-y-[1px] text-xxs lg:text-xs uppercase tracking-wider text-gray-11 font-light`}
-			>Prev</span
+{#if projectCards}
+	<div class="flex justify-end">
+		<div
+			class="inline-flex lg:max-w-[85vw] 3xl:max-w-[75vw] overflow-hidden"
+			use:swipe={{ timeframe: 300, minSwipeDistance: 60, touchAction: 'pan-y' }}
+			on:swipe={(e) => {
+				if (disableSwipe) {
+					return;
+				}
+				e.detail.direction === 'left' ? showPrevProject() : showNextProject();
+			}}
+			bind:this={containerNode}
 		>
-	</button>
-	<button
-		class="relative inline-flex gap-xs items-center border py-xxs px-xs rounded-lg"
-		on:click={() => showNextProject()}
-		type="button"
-	>
-		<span class="text-xs lg:text-sm">
-			<ArrowLineRight weight="thin" />
-		</span>
+			{#each projectCards as project (project.key)}
+				<MainCard
+					data={projects[project.id]}
+					bind:animateOut={project.animateOut}
+					onPopupClose={() => (disableSwipe = false)}
+					onPopupOpen={() => (disableSwipe = true)}
+				/>
+			{/each}
+		</div>
+	</div>
 
-		<span
-			class="translate-y-[1px] text-xxs lg:text-xs uppercase tracking-wider text-gray-11 font-light"
-			>Next</span
+	<Section.HorizontalSpacing>
+		<div
+			class="mt-sm md:mt-md lg:mt-lg xl:mt-xl 2xl:mt-[4rem] flex items-center gap-sm justify-end"
 		>
-	</button>
-</div>
+			<button
+				class={`relative inline-flex gap-xs items-center border py-xxs px-xs 2xl:py-xs 2xl:px-sm rounded-lg 2xl:rounded-xl transition-opacity ease-linear duration-200 ${
+					disableShowPrev ? 'opacity-60' : ''
+				}`}
+				on:click={showPrevProject}
+				type="button"
+			>
+				<span class="text-xs lg:text-sm 2xl:text-base">
+					<ArrowLineLeft weight="thin" />
+				</span>
+
+				<span
+					class="translate-y-[1px] text-xxs lg:text-xs xl:text-sm 2xl:text-base uppercase tracking-wider text-gray-11 font-light"
+					>Prev</span
+				>
+			</button>
+			<button
+				class="relative inline-flex gap-xs items-center border py-xxs px-xs 2xl:py-xs 2xl:px-sm rounded-lg 2xl:rounded-xl"
+				on:click={showNextProject}
+				type="button"
+			>
+				<span class="text-xs lg:text-sm 2xl:text-base">
+					<ArrowLineRight weight="thin" />
+				</span>
+
+				<span
+					class="translate-y-[1px] text-xxs lg:text-xs xl:text-sm 2xl:text-base uppercase tracking-wider text-gray-11 font-light"
+					>Next</span
+				>
+			</button>
+		</div>
+	</Section.HorizontalSpacing>
+{/if}

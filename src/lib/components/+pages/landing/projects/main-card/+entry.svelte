@@ -6,8 +6,6 @@
 
 	import type { Project } from '^types';
 	import AnimateInOut from './animate-in-out.svelte';
-
-	// reset scroll position on close
 </script>
 
 <script lang="ts">
@@ -75,80 +73,110 @@
 			}, 50);
 		}, 50);
 	};
+
+	let windowWidth: number;
+
+	let containerWidth: number;
+
+	let gap: number;
+
+	$: {
+		if (windowWidth) {
+			containerWidth =
+				windowWidth < 640
+					? 240
+					: windowWidth < 960
+					? 300
+					: windowWidth < 1200
+					? 340
+					: windowWidth < 1600
+					? 400
+					: 600;
+
+			gap = windowWidth < 1800 ? 20 : 40;
+		}
+	}
 </script>
 
-<AnimateInOut containerWidth={240} bind:animateOut>
-	<div class="w-[220px] lg:w-[300px] shrink-0 mr-[1.25rem]">
-		<div class={`relative aspect-[3/4] overflow-hidden`} bind:this={pictureNodeIdle}>
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<!-- svelte-ignore a11y-no-static-element-interactions -->
-			<div
-				class={`${
-					expand === 'expanding' || expand === 'contracting' ? 'container-transitions' : ''
-				} ${expand === 'contracting-init' ? 'pointer-events-none invisible' : ''}`}
-				style:z-index={expand === 'expanding-init' || expand === 'expanding' ? 40 : 0}
-				style:position={expand === 'idle' ||
-				expand === 'expanded' ||
-				expand === 'contracting' ||
-				expand === 'contracting-init'
-					? 'absolute'
-					: 'fixed'}
-				style:left="{expand === 'idle' ||
-				expand === 'expanded' ||
-				expand === 'contracting' ||
-				expand === 'contracting-init'
-					? 0
-					: expand === 'expanding-init'
-					? pictureNodeIdleRect.left
-					: pictureNodeExpandedRect.left}px"
-				style:top="{expand === 'idle' ||
-				expand === 'expanded' ||
-				expand === 'contracting' ||
-				expand === 'contracting-init'
-					? 0
-					: expand === 'expanding-init'
-					? pictureNodeIdleRect.top
-					: pictureNodeExpandedRect.top}px"
-				style:width={expand === 'idle' ||
-				expand === 'expanded' ||
-				expand === 'contracting' ||
-				expand === 'contracting-init'
-					? '100%'
-					: expand === 'expanding-init'
-					? `${pictureNodeIdleRect.width}px`
-					: `${pictureNodeExpandedRect.width}px`}
-				style:height={expand === 'idle' ||
-				expand === 'expanded' ||
-				expand === 'contracting' ||
-				expand === 'contracting-init'
-					? '100%'
-					: expand === 'expanding-init'
-					? `${pictureNodeIdleRect.height}px`
-					: `${pictureNodeExpandedRect.height}px`}
-			>
-				<Picture data={data.mainPicture} imageClass="absolute inset-0 object-cover w-full h-full" />
-			</div>
-		</div>
+<svelte:window bind:innerWidth={windowWidth} />
 
-		<div class="mt-xxs flex items-baseline justify-between">
-			<p class="text-xs tracking-wide lg:text-sm mr-md">{data.title}</p>
-
-			<div
-				class="flex pr-xxxs md:pr-xxs text-[0.5rem] md:text-xxs uppercase tracking-wider text-gray-9"
-			>
-				<button
-					class="mr-sm text-[0.5rem] md:text-xxs uppercase tracking-wider text-gray-9"
-					on:click={handleExpand}
-					type="button">about</button
+{#if containerWidth && gap}
+	<AnimateInOut bind:containerWidth bind:animateOut>
+		<div class="shrink-0" style:width="{containerWidth - gap}px" style:margin-right="{gap}px">
+			<div class={`relative aspect-[3/4] overflow-hidden`} bind:this={pictureNodeIdle}>
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<!-- svelte-ignore a11y-no-static-element-interactions -->
+				<div
+					class={`${
+						expand === 'expanding' || expand === 'contracting' ? 'container-transitions' : ''
+					} ${expand === 'contracting-init' ? 'pointer-events-none invisible' : ''}`}
+					style:z-index={expand === 'expanding-init' || expand === 'expanding' ? 40 : 0}
+					style:position={expand === 'idle' ||
+					expand === 'expanded' ||
+					expand === 'contracting' ||
+					expand === 'contracting-init'
+						? 'absolute'
+						: 'fixed'}
+					style:left="{expand === 'idle' ||
+					expand === 'expanded' ||
+					expand === 'contracting' ||
+					expand === 'contracting-init'
+						? 0
+						: expand === 'expanding-init'
+						? pictureNodeIdleRect.left
+						: pictureNodeExpandedRect.left}px"
+					style:top="{expand === 'idle' ||
+					expand === 'expanded' ||
+					expand === 'contracting' ||
+					expand === 'contracting-init'
+						? 0
+						: expand === 'expanding-init'
+						? pictureNodeIdleRect.top
+						: pictureNodeExpandedRect.top}px"
+					style:width={expand === 'idle' ||
+					expand === 'expanded' ||
+					expand === 'contracting' ||
+					expand === 'contracting-init'
+						? '100%'
+						: expand === 'expanding-init'
+						? `${pictureNodeIdleRect.width}px`
+						: `${pictureNodeExpandedRect.width}px`}
+					style:height={expand === 'idle' ||
+					expand === 'expanded' ||
+					expand === 'contracting' ||
+					expand === 'contracting-init'
+						? '100%'
+						: expand === 'expanding-init'
+						? `${pictureNodeIdleRect.height}px`
+						: `${pictureNodeExpandedRect.height}px`}
 				>
+					<Picture
+						data={data.mainPicture}
+						imageClass="absolute inset-0 object-cover w-full h-full"
+					/>
+				</div>
+			</div>
 
-				<a href={data.siteUrl} target="_blank">visit</a>
+			<div class="mt-xxs md:mt-xs 2xl:mt-sm flex items-baseline justify-between">
+				<p class="text-xs tracking-wide lg:text-sm xl:text-base 2xl:text-[18px] mr-md">
+					{data.title}
+				</p>
+
+				<div
+					class="flex pr-xxxs md:pr-xxs text-[0.5rem] md:text-xxs xl:text-[0.68rem] 2xl:text-[0.8rem] uppercase tracking-wider text-gray-9"
+				>
+					<button class="mr-sm uppercase tracking-wider" on:click={handleExpand} type="button"
+						>about</button
+					>
+
+					<a href={data.siteUrl} target="_blank">visit</a>
+				</div>
 			</div>
 		</div>
-	</div>
-</AnimateInOut>
+	</AnimateInOut>
 
-<PopUp bind:expand onClose={handleContract} {data} bind:expandedImgNode={pictureNodeExpanded} />
+	<PopUp bind:expand onClose={handleContract} {data} bind:expandedImgNode={pictureNodeExpanded} />
+{/if}
 
 <style>
 	.container-transitions {
