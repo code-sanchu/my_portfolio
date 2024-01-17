@@ -13,17 +13,6 @@ export default {
 		extend: {
 			fontFamily: {
 				sans: ['Helvetica', 'sans-serif'],
-				mono: ['Skyhook', 'monospace'],
-				mono2: ['KlartextMono', 'monospace'],
-				mono3: ['Telegrama', 'monospace'],
-				'3d': ['Foldstruct', 'sans-serif'],
-				'3d2': ['STF', 'sans-serif'],
-				'3d3': ['Squint', 'sans-serif'],
-				'display': ['Overlap', 'sans-serif'],
-				'display2': ['Dotwork', 'sans-serif'],
-				'display3': ['rasterman', 'sans-serif'],
-				'display4': ['hommage', 'sans-serif'],
-				// 'serif': ['fs-fermat', 'serif'],
 			},
 
 			colors: {

@@ -34,84 +34,9 @@
 	font-display: swap;
 }
 
-@font-face {
-	font-family: 'Skyhook';
-	font-style: normal;
-	font-weight: 400;
-	src: url('/fonts/SkyhookMono.ttf');
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'Foldstruct';
-	font-style: normal;
-	font-weight: 400;
-	src: url('/fonts/foldstruct.otf');
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'STF';
-	font-style: normal;
-	font-weight: 400;
-	src: url('/fonts/stf-3-d-twist.otf');
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'Squint';
-	font-style: normal;
-	font-weight: 400;
-	src: url('/fonts/squint.otf');
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'Overlap';
-	font-style: normal;
-	font-weight: 400;
-	src: url('/fonts/overlap.otf');
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'Dotwork';
-	font-style: normal;
-	font-weight: 400;
-	src: url('/fonts/dotwork.otf');
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'rasterman';
-	font-style: normal;
-	font-weight: 400;
-	src: url('/fonts/rasterman.otf');
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'hommage';
-	font-style: normal;
-	font-weight: 400;
-	src: url('/fonts/hommage-a-escher.ttf');
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'fs-fermat';
-	font-style: normal;
-	font-weight: 400;
-	src: url('/fonts/fs-fermat.otf');
-	font-display: swap;
-}
 
 html {
-	@apply scrollbar-none outline-none active:outline-none focus:outline-none text-gray-12 overflow-x-hidden md:scrollbar-thin md:scrollbar-track-gray-50/50 md:scrollbar-thumb-gray-100 md:hover:scrollbar-thumb-gray-200 ;
-}
-
-body {
-	@apply bg-white; 
+	@apply scrollbar-none outline-none active:outline-none focus:outline-none text-gray-12 overflow-x-hidden md:scrollbar-thin md:scrollbar-track-gray-50/50 md:scrollbar-thumb-gray-100 md:hover:scrollbar-thumb-gray-200;
 }
 
 * {
@@ -125,5 +50,5 @@ body {
 }
 
 div {
-	/* @apply md:scrollbar-thin md:scrollbar-track-gray-50/50 md:scrollbar-thumb-gray-100 md:hover:scrollbar-thumb-gray-200; */
+	@apply md:scrollbar-thin md:scrollbar-track-gray-50/50 md:scrollbar-thumb-gray-100 md:hover:scrollbar-thumb-gray-200;
 }

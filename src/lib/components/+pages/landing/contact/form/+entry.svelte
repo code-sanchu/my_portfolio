@@ -39,7 +39,7 @@
 
 		axios.defaults.headers.post['Content-Type'] = 'application/json';
 
-		await axios.post('https://formsubmit.co/ajax/2568eb7f310ea6fd88e42b3f9c5829e6', {
+		axios.post('https://formsubmit.co/ajax/2568eb7f310ea6fd88e42b3f9c5829e6', {
 			_subject: 'Website enquiry',
 			name,
 			email,
@@ -73,11 +73,6 @@
 
 	{#if formIsComplete}
 		<div class="mt-lg flex items-end justify-end" transition:fade>
-			{#if messageSent === 'sending'}
-				<p class="font-mono text-gray-8 text-[0.65rem] mr-sm tracking-wide" transition:fade>
-					sending...
-				</p>
-			{/if}
 			<button
 				class="group/button py-xxs px-sm flex items-center gap-xs hover:gap-sm rounded-sm border text-xs text-my-blue-2 border-my-blue-2 hover:text-green-8 hover:border-green-8 transition-all ease-in-out duration-500"
 				on:click={submitForm}

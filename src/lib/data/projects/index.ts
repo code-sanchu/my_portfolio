@@ -39,7 +39,7 @@ const alesh: Project = {
 	mainPicture: image.project.alesh.painting,
 	descriptionLong: [
 		'Alesh Compton is a creative, multi-disciplinary artist.',
-		'The site has a shop for his self-made clothes and portfolio for his art.'
+		'The site has a shop for his uniquely created clothes and a portfolio of his multi-disciplinary art.'
 	],
 	workDescription: 'Site design, build and maintenance.',
 	year: '2022&ndash;2023',
@@ -54,8 +54,8 @@ const piros: Project = {
 	siteUrl: 'https://www.piros.photography/',
 	mainPicture: image.project.piros.landing_main_pic,
 	descriptionLong: [
-		'Piroska Markus is a socially and politically active photographer who tries to capture the vicissitudes of human life, as well as nature from her global travels.',
-		'The site is her photographic portfolio, and includes a custom cms for ease of updates.'
+		'Piroska Markus is a socially and politically active photographer.',
+		'The site is a showcase of here photographp, and includes an easy to use custom cms.'
 	],
 	workDescription: 'Site and cms design, build and maintenance.',
 	year: '2022&ndash;2023',
@@ -100,9 +100,9 @@ const murat: Project = {
 	mainPicture: image.project.murat.landing,
 	descriptionLong: [
 		'Murat wanted his Squarespace site to be a design not included in the provided layouts.',
-		'I used custom styling and scripting to achieve this, and provided instructions for him to easily update the site himself.'
+		'As well as the coding work done, I provided instructions for him to easily update the site himself.'
 	],
-	workDescription: 'squarespace updates &#8212; styling and scripting',
+	workDescription: 'Squarespace updates &#8212; styling and scripting.',
 	year: '2021',
 	features: null,
 	performanceUrl: null
@@ -115,9 +115,9 @@ const kindred_yoga: Project = {
 	mainPicture: image.project.kindred_yoga.landing,
 	descriptionLong: [
 		'Kindred Yoga is a successful yoga studio.',
-		'My role involves custom styling and updates.'
+		'My role in this is ongoing.'
 	],
-	workDescription: 'squarespace updates &#8212; styling and scripting',
+	workDescription: 'Squarespace updates &#8212; styling and scripting.',
 	year: '2021 - 2023',
 	features: null,
 	performanceUrl: null
@@ -129,10 +129,10 @@ const blackheath_yoga: Project = {
 	siteUrl: 'https://www.blackheathyoga.co.uk/',
 	mainPicture: image.project.blackheath_yoga.site,
 	descriptionLong: [
-		'Blackheath yoga needed considerable custom scripting to get the site working as intended. This involved integrating a payment and booking platform.',
-		'I also designed and created re-usable pop-ups for promotions.'
+		'Blackheath yoga is a successful yoga studio in South London. This involved integrating a payment and booking platform.',
+		'Work included: integrating a payment and booking platform; creating re-usable pop-ups for promotions.'
 	],
-	workDescription: 'wix updates &#8212; styling and scripting',
+	workDescription: 'Wix updates &#8212; styling and scripting.',
 	year: '2023',
 	features: null,
 	performanceUrl: null

@@ -105,7 +105,14 @@
 
 				scrollDirection = delta === -1 ? 'down' : 'up';
 
+				if (delta === -1) {
+					window.scrollTo(0, 1);
+				} else {
+					window.scrollTo(0, 0);
+				}
+
 				scrollToPos += -delta * speed;
+
 				// @ts-ignore
 				scrollToPos = Math.max(
 					0,
