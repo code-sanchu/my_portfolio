@@ -89,8 +89,10 @@
 					? 300
 					: windowWidth < 1200
 					? 340
-					: windowWidth < 1600
+					: windowWidth < 1800
 					? 400
+					: windowWidth < 2400
+					? 500
 					: 600;
 
 			gap = windowWidth < 1800 ? 20 : 40;
