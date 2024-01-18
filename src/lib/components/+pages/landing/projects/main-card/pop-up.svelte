@@ -116,7 +116,7 @@
 </script>
 
 <div
-	class={`fixed left-0 top-0 w-screen overflow-y-auto h-screen pb-xl bg-white z-30 transition-opacity ease-linear duration-[500ms] ${
+	class={`fixed left-0 top-0 w-screen overflow-y-auto h-screen pb-xl bg-white z-30 transition-opacity ease-linear duration-[500ms] cursor-auto ${
 		expand === 'idle'
 			? 'invisible pointer-events-none'
 			: expand === 'contracting'

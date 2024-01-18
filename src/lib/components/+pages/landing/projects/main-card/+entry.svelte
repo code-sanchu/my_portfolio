@@ -161,7 +161,7 @@
 				</div>
 			</div>
 
-			<div class="mt-xxs md:mt-xs 2xl:mt-sm flex items-baseline justify-between">
+			<div class="mt-xxs md:mt-xs 2xl:mt-sm flex items-baseline justify-between cursor-auto">
 				<p class="text-xs tracking-wide lg:text-sm xl:text-base 2xl:text-[18px] mr-md">
 					{data.title}
 				</p>
