@@ -125,7 +125,7 @@
 	}`}
 	bind:this={scrollNode}
 >
-	<div class="flex justify-end p-sm lg:p-md">
+	<div class="flex justify-end p-sm md:p-md">
 		<button class="text-lg md:text-xl xl:text-2xl" on:click={onClose} type="button">
 			<X />
 		</button>
@@ -152,22 +152,22 @@
 			</div>
 
 			<div
-				class="mt-sm lg:mt-md transition-opacity duration-300 ease-linear"
+				class="mt-sm md:mt-md transition-opacity duration-300 ease-linear"
 				style:opacity={expand === 'expanded' ? 1 : 0}
 			>
 				<div class="flex justify-between items-baseline">
 					<div>
-						<h1 class="uppercase text-sm lg:text-base 3xl:text-lg tracking-widest">{data.title}</h1>
+						<h1 class="uppercase text-sm md:text-base 3xl:text-lg tracking-widest">{data.title}</h1>
 					</div>
 
 					<div>
 						<a
-							class="text-[0.6rem] lg:text-[0.75rem] 3xl:text-[0.9rem] font-serif uppercase tracking-widest flex items-baseline gap-xxs"
+							class="text-[0.6rem] md:text-[0.75rem] 3xl:text-[0.9rem] font-serif uppercase tracking-widest flex items-baseline gap-xxs"
 							href={data.siteUrl}
 							target="_blank"
 						>
 							<span>visit</span>
-							<span class="translate-y-[1px] lg:translate-y-[2px]">
+							<span class="translate-y-[1px] md:translate-y-[2px]">
 								<ArrowLineUpRight weight="thin" />
 							</span>
 						</a>
@@ -175,11 +175,11 @@
 				</div>
 
 				<div class="mt-md">
-					<p class="tracking-wide text-sm lg:text-base 3xl:text-lg">{@html data.year}</p>
+					<p class="tracking-wide text-sm md:text-base 3xl:text-lg">{@html data.year}</p>
 				</div>
 
 				<div
-					class="mt-md font-serif flex flex-col gap-sm 3xl:gap-md text-[15px] lg:text-[17px] 3xl:text-[19px]"
+					class="mt-md font-serif flex flex-col gap-sm 3xl:gap-md text-[15px] md:text-[17px] 3xl:text-[19px]"
 				>
 					<p>{@html data.workDescription}</p>
 
@@ -188,9 +188,9 @@
 					{/each}
 				</div>
 
-				<div class="mt-md 3xl:mt-xl flex justify-end">
+				<div class="mt-md md:mt-xl 3xl:mt-xl flex justify-end">
 					<button
-						class="uppercase text-xxs lg:text-xs 3xl:text-sm tracking-widest text-gray-10"
+						class="uppercase text-xxs md:text-xs 3xl:text-sm tracking-widest text-gray-10"
 						on:click={onClose}
 						type="button">close</button
 					>

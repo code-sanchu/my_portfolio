@@ -9,10 +9,10 @@
 </script>
 
 <script lang="ts">
-	// optimise images
-	// cards follow swipe gesture up to a point and then trigger next/prev
 	// refactor
+	// optimise images. picture strign create multiple? picture sizes
 
+	// cards follow swipe gesture up to a point and then trigger next/prev
 	// mobile navbar doesn't go away when scrolling is not on document/body
 	// change transition to use transform rather than left, top, etc.
 	// cut out each dot and create own picture
@@ -38,7 +38,7 @@
 		class="mt-md md:mt-[4.5rem] xl:mt-[6rem] 2xl:mt-[8rem] w-[46vw] sm:w-[36vw] xl:w-[38vw] max-w-[800px] min-h-[120px] aspect-[7/5] 2xl:aspect-[7/4] overflow-hidden"
 	>
 		<div class="relative w-full min-w-[240px] xs:min-w-[300px] xs/sm:min-w-[320px]">
-			<div class="absolute inset-0" style:opacity={sectionReady?.main ? 1 : 0}>
+			<div class="absolute inset-0" style:opacity={!sectionReady?.main ? 0 : 1}>
 				<Picture
 					data={image.art[1]}
 					imageClass="absolute inset-0 object-cover"
@@ -49,23 +49,23 @@
 	</div>
 
 	<div
-		class="mt-lg md:mt-[4.5rem] xl:mt-[7rem] flex justify-center transition-opacity duration-[400ms] ease-in"
-		style:opacity={sectionReady?.main ? 1 : 0}
+		class="mt-lg md:mt-[4.5rem] xl:mt-[7rem] flex justify-center opacity-0 transition-opacity duration-[400ms] ease-in"
+		style:opacity={!sectionReady?.main ? 0 : 1}
 		id="home-section"
 	>
 		<Heading />
 	</div>
 
 	<div
-		class="mt-2xl md:mt-[7.5rem] xl:mt-[12rem] 2xl:mt-[15rem] transition-opacity duration-[400ms] ease-in"
-		style:opacity={sectionReady?.main ? 1 : 0}
+		class="mt-2xl md:mt-[7.5rem] xl:mt-[12rem] 2xl:mt-[15rem] opacity-0 transition-opacity duration-[400ms] ease-in"
+		style:opacity={!sectionReady?.main ? 0 : 1}
 	>
 		<Section.Heading align="right" text="Projects" />
 	</div>
 
 	<div
 		class="mt-lg md:mt-xl lg:mt-[3.75rem] transition-opacity duration-[400ms] ease-in"
-		style:opacity={sectionReady?.main ? 1 : 0}
+		style:opacity={!sectionReady?.main ? 0 : 1}
 		id="projects-section"
 	>
 		<Section.LeftSpacing>

@@ -15,8 +15,8 @@
 </script>
 
 <div
-	class="relative flex gap-sm 2xl:gap-md font-light text-xs md:text-sm xl:text-base 2xl:text-xl transition-opacity duration-[400ms] ease-in"
-	style:opacity={sectionReady?.main ? 1 : 0}
+	class="relative flex gap-sm 2xl:gap-md font-light text-xs md:text-sm xl:text-base 2xl:text-xl transition-opacity duration-[400ms] ease-in opacity-0"
+	style:opacity={!sectionReady?.main ? 0 : 1}
 >
 	<button class="flex items-baseline gap-xxs md:gap-xs" type="button" id="projects-link">
 		<span

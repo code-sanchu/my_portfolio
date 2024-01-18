@@ -1,23 +1,16 @@
 <script lang="ts" context="module">
 	import { onMount } from 'svelte';
-	import { fade } from 'svelte/transition';
 
 	import { updateSectionReady } from '^stores';
 
 	const start = 0;
 	const end = 100;
-	const duration = 1000;
+	const duration = 600;
 </script>
 
 <script lang="ts">
-	let mounted = true;
-
 	onMount(() => {
-		mounted = true;
-
-		setTimeout(() => {
-			animateValue();
-		}, 300);
+		animateValue();
 	});
 
 	let number = start;
@@ -62,21 +55,18 @@
 	}
 </script>
 
-{#if mounted}
-	<div
-		class="relative flex font-light text-xl md:text-2xl lg:text-3xl 2xl:text-[2.6rem] tracking-widest"
-		bind:clientWidth={width}
-		transition:fade
-	>
-		<p style:opacity={transitionOut2 ? 0 : 1}>{numberStr}</p>
+<div
+	class="relative flex font-light text-xl md:text-2xl lg:text-3xl 2xl:text-[2.6rem] tracking-widest"
+	bind:clientWidth={width}
+>
+	<p style:opacity={transitionOut2 ? 0 : 1}>{numberStr}</p>
 
-		<div
-			class="absolute z-10 h-full left-0 bg-white cover"
-			style:right="{transitionOut1 ? 0 : width}px"
-			style:left="{transitionOut2 ? width : 0}px"
-		/>
-	</div>
-{/if}
+	<div
+		class="absolute z-10 h-full left-0 bg-white cover"
+		style:right="{transitionOut1 ? 0 : width}px"
+		style:left="{transitionOut2 ? width : 0}px"
+	/>
+</div>
 
 <style>
 	.cover {

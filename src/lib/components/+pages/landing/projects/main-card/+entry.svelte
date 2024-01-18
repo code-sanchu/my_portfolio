@@ -6,6 +6,7 @@
 
 	import type { Project } from '^types';
 	import AnimateInOut from './animate-in-out.svelte';
+	import { onMount } from 'svelte';
 </script>
 
 <script lang="ts">
@@ -104,6 +105,7 @@
 
 {#if containerWidth && gap}
 	<AnimateInOut bind:containerWidth bind:animateOut>
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div class="shrink-0" style:width="{containerWidth - gap}px" style:margin-right="{gap}px">
 			<div class={`relative aspect-[3/4] overflow-hidden`} bind:this={pictureNodeIdle}>
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
