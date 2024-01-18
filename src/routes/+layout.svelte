@@ -5,7 +5,7 @@
 
 	import { scrollStore, type ScrollValues } from '^stores';
 
-	import { Header } from '^components';
+	import { Header, LoadInCounter } from '^components';
 
 	const buttonIds = ['home-link', 'projects-link', 'services-link', 'contact-link'];
 
@@ -171,6 +171,10 @@
 </svelte:head>
 
 <svelte:window bind:innerWidth={windowWidth} bind:innerHeight={windowHeight} />
+
+<div class="fixed z-40 left-0 top-0 p-sm md:p-[1.25rem] lg:p-md 2xl:p-xl">
+	<LoadInCounter />
+</div>
 
 <div
 	class="fixed z-30 left-0 top-0 w-full transition-transform ease-in-out duration-500"

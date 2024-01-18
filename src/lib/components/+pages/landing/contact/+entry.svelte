@@ -1,4 +1,6 @@
 <script context="module" lang="ts">
+	import { my_links_and_contacts } from '^data';
+
 	import Form from './form';
 </script>
 
@@ -9,14 +11,14 @@
 		It'd be great to hear from you if just for an informal chat or you're ready to get building.
 	</p>
 
-	<div class="mt-xl flex flex-col items-end">
+	<div class="mt-xl flex flex-col items-end max-w-full">
 		<div class="flex gap-sm items-center">
 			<h4 class="text-gray-9 uppercase text-xs tracking-[0.06em] xl:text-sm 3xl:text-base">
 				Message Me
 			</h4>
 		</div>
 
-		<div class="mt-lg w-full">
+		<div class="mt-lg max-w-full">
 			<Form />
 		</div>
 
@@ -25,9 +27,9 @@
 				<p class="text-gray-9 text-xs xl:text-sm 3xl:text-base uppercase tracking-[0.06em]">
 					or email
 				</p>
-				<a class="flex items-center gap-xs" href=".">
+				<a class="flex items-center gap-xs" href={`mailto:${my_links_and_contacts.email}`}>
 					<span class="text-xs xl:text-sm 3xl:text-base uppercase text-my-blue-1 tracking-wide"
-						>hello@tech-poiesis.net</span
+						>{my_links_and_contacts.email}</span
 					></a
 				>
 			</div>

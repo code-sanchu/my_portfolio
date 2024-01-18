@@ -1,10 +1,23 @@
-<script>
+<script context="module" lang="ts">
+	import { sectionReadyStore, type SectionReadyValues } from '^stores';
+
 	import { image } from '^assets/images';
 
 	import { Picture } from '^components';
 </script>
 
-<div class="relative flex gap-sm 2xl:gap-md font-light text-xs md:text-sm xl:text-base 2xl:text-xl">
+<script lang="ts">
+	let sectionReady: SectionReadyValues;
+
+	sectionReadyStore.subscribe((state) => {
+		sectionReady = state;
+	});
+</script>
+
+<div
+	class="relative flex gap-sm 2xl:gap-md font-light text-xs md:text-sm xl:text-base 2xl:text-xl transition-opacity duration-[400ms] ease-in"
+	style:opacity={sectionReady?.main ? 1 : 0}
+>
 	<button class="flex items-baseline gap-xxs md:gap-xs" type="button" id="projects-link">
 		<span
 			class="tracking-wider text-gray-9 hover:text-gray-12 ease-linear duration-200 transition-colors"
