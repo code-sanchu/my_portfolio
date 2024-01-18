@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	import { sectionReadyStore, updateSectionReady, type SectionReadyValues } from '^stores';
+	import { sectionReadyStore, type SectionReadyValues } from '^stores';
 
 	import { image } from '^assets/images';
 
@@ -11,6 +11,9 @@
 <script lang="ts">
 	// refactor
 	// optimise images. picture strign create multiple? picture sizes
+	// heading bg?
+
+	// need radix-ui colours?
 
 	// cards follow swipe gesture up to a point and then trigger next/prev
 	// mobile navbar doesn't go away when scrolling is not on document/body

@@ -5,12 +5,7 @@ const colors = createPlugin();
 
 /** @type {import('tailwindcss').Config} */
 export default {
-	content: [
-		'./src/**/*.{html,js,svelte,ts}',
-		'./node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}'
-	],
-	purge: ['./src/**/*.svelte', './src/**/*.css'],
-	darkMode: false,
+	content: ['./src/**/*.{html,js,svelte,ts}', './src/**/*.css'],
 	theme: {
 		extend: {
 			fontFamily: {
