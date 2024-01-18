@@ -39,11 +39,7 @@
 	>
 		<div class="relative w-full min-w-[240px] xs:min-w-[300px] xs/sm:min-w-[320px]">
 			<div class="absolute inset-0" style:opacity={!sectionReady?.main ? 0 : 1}>
-				<Picture
-					data={image.art[1]}
-					imageClass="absolute inset-0 object-cover"
-					onLoad={updateSectionReady?.artImage}
-				/>
+				<Picture data={image.art[1]} imageClass="absolute inset-0 object-cover" loading="eager" />
 			</div>
 		</div>
 	</div>

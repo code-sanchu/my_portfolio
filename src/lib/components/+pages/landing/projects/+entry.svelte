@@ -124,21 +124,28 @@
 	};
 
 	let disableSwipe = false;
+
+	let mouseDown = false;
 </script>
 
 <svelte:window bind:innerWidth={windowWidth} />
 
 {#if projectCards}
 	<div class="flex justify-end">
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div
-			class="inline-flex lg:max-w-[85vw] 3xl:max-w-[75vw] overflow-hidden"
-			use:swipe={{ timeframe: 300, minSwipeDistance: 60, touchAction: 'pan-y' }}
+			class={`inline-flex lg:max-w-[85vw] 3xl:max-w-[75vw] overflow-hidden ${
+				mouseDown ? 'cursor-grabbing' : 'cursor-grab'
+			}`}
+			use:swipe={{ timeframe: 700, minSwipeDistance: 30, touchAction: 'pan-y' }}
 			on:swipe={(e) => {
 				if (disableSwipe) {
 					return;
 				}
 				e.detail.direction === 'left' ? showPrevProject() : showNextProject();
 			}}
+			on:mousedown={() => (mouseDown = true)}
+			on:mouseup={() => (mouseDown = false)}
 			bind:this={containerNode}
 		>
 			{#each projectCards as project (project.key)}

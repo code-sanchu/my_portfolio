@@ -26,17 +26,8 @@
 	font-display: swap;
 }
 
-@font-face {
-	font-family: 'Helvetica';
-	font-style: normal;
-	font-weight: 500;
-	src: url('/fonts/Swiss721BT-Medium.otf');
-	font-display: swap;
-}
-
-
 html {
-	@apply scrollbar-none outline-none active:outline-none focus:outline-none text-gray-12 overflow-x-hidden md:scrollbar-thin md:scrollbar-track-gray-50/50 md:scrollbar-thumb-gray-100 md:hover:scrollbar-thumb-gray-200;
+	@apply scrollbar-none text-gray-12;
 }
 
 * {
@@ -46,9 +37,5 @@ html {
 }
 
 ::selection {
-	@apply bg-gray-10 text-white;
-}
-
-div {
-	@apply md:scrollbar-thin md:scrollbar-track-gray-50/50 md:scrollbar-thumb-gray-100 md:hover:scrollbar-thumb-gray-200;
+	@apply bg-my-blue-1 text-white;
 }

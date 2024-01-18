@@ -9,10 +9,12 @@ export default {
 		'./src/**/*.{html,js,svelte,ts}',
 		'./node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}'
 	],
+	purge: ['./src/**/*.svelte', './src/**/*.css'],
+	darkMode: false,
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ['Helvetica', 'sans-serif'],
+				sans: ['Helvetica', 'sans-serif']
 			},
 
 			colors: {
@@ -28,7 +30,7 @@ export default {
 				'my-yellow-1': '#e8d489',
 				'my-brown-1': '#9d776b',
 				'my-cyan-1': '#39c3c5',
-				'my-red-dark-1': '#f47a88',
+				'my-red-dark-1': '#f47a88'
 			},
 
 			screens: {
