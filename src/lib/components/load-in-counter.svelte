@@ -47,7 +47,7 @@
 
 				setTimeout(() => {
 					updateSectionReady.main();
-				}, 400);
+				}, 300);
 			}, 500);
 		}
 	}
