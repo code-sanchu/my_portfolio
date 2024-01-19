@@ -41,9 +41,9 @@
 			transitionOut1 = true;
 
 			setTimeout(() => {
-				updateSectionReady.logo();
-
 				transitionOut2 = true;
+
+				updateSectionReady.logo();
 
 				setTimeout(() => {
 					updateSectionReady.main();

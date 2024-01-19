@@ -12,7 +12,7 @@
 	// refactor
 
 	// optimise images. picture strign create multiple? picture sizes
-	// heading bg. longer to transparent gradient?
+	// corner of text visible on page-counter transition
 	// cards follow swipe gesture up to a point and then trigger next/prev
 	// mobile navbar doesn't go away when scrolling is not on document/body
 	// change transition to use transform rather than left, top, etc.
