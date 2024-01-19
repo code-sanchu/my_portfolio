@@ -28,9 +28,6 @@
 	let scrollToPos = 0;
 
 	let scrollDirection: 'down' | 'up';
-	let touchDirection: 'down' | 'up';
-
-	$: console.log('touchDirection:', touchDirection);
 
 	let touchStartData: Touch;
 
@@ -52,7 +49,7 @@
 				console.log('e:', e);
 				const touchEndData = e.changedTouches[0];
 
-				touchDirection = touchEndData.clientY > touchStartData.clientY ? 'up' : 'down';
+				scrollDirection = touchEndData.clientY > touchStartData.clientY ? 'up' : 'down';
 			});
 
 			// below: account for scroll position change from scrollIntoView or scrollbar; smooth scroll function properly after.
@@ -182,7 +179,7 @@
 		}
 	});
 
-	$: hideHeader = scrollDirection === 'down' || touchDirection === 'down';
+	$: hideHeader = scrollDirection === 'down';
 </script>
 
 <svelte:head>
