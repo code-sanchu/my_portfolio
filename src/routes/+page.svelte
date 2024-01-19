@@ -12,7 +12,6 @@
 	// refactor
 
 	// optimise images. picture strign create multiple? picture sizes
-	// use transform for initial counter animation
 	// heading bg. longer to transparent gradient?
 	// cards follow swipe gesture up to a point and then trigger next/prev
 	// mobile navbar doesn't go away when scrolling is not on document/body

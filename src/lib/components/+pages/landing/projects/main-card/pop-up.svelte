@@ -36,7 +36,7 @@
 
 			scrollNode.addEventListener('wheel', scrolled, { passive: false });
 			scrollNode.addEventListener('DOMMouseScroll', scrolled, { passive: false });
-			// below: account for scroll position change from scrollIntoView or scrollbar; smooth scroll function properly after.
+			scrollNode.addEventListener('touchmove', scrolled, { passive: false });
 			scrollNode.addEventListener('scrollend', (e) => {
 				// @ts-ignore
 				const disableScroll = e?.currentTarget?.dataset?.disablescroll === 'true';

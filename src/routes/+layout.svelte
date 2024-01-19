@@ -20,8 +20,6 @@
 		scrollStoreState = state;
 	});
 
-	// let document: HTMLDivElement;
-	let windowWidth: number;
 	let windowHeight: number;
 	let headerHeight = 0;
 
@@ -33,7 +31,6 @@
 	onMount(() => {
 		if (document) {
 			// @ts-ignore
-			// scrollToPos = document.scrollTop;
 			const target = document.scrollingElement || document.body.parentNode || document.body;
 			// @ts-ignore
 			scrollToPos = target.scrollTop;
@@ -42,11 +39,11 @@
 
 			document.addEventListener('wheel', scrolled, { passive: false });
 			document.addEventListener('DOMMouseScroll', scrolled, { passive: false });
+			document.addEventListener('touchmove', scrolled, { passive: false });
 			// below: account for scroll position change from scrollIntoView or scrollbar; smooth scroll function properly after.
 			document.addEventListener('scrollend', (e) => {
 				// @ts-ignore
 				const disableScroll = scrollStoreState?.disable;
-				// const disableScroll = e?.currentTarget?.dataset?.disablescroll === 'true';
 
 				if (disableScroll || moving) {
 					return;
@@ -105,12 +102,8 @@
 			function scrolled(e) {
 				e.preventDefault(); // disable default scrolling
 
-				console.log('SCROLLED');
-
 				// @ts-ignore
 				const disableScroll = scrollStoreState?.disable;
-				console.log('disableScroll:', disableScroll);
-				// const disableScroll = e?.currentTarget?.dataset?.disablescroll === 'true';
 
 				if (disableScroll) {
 					return;
@@ -173,8 +166,7 @@
 		}
 	});
 
-	// $: hideHeader = false;
-	$: hideHeader = windowWidth && windowWidth < 768 && scrollDirection === 'down';
+	$: hideHeader = scrollDirection === 'down';
 </script>
 
 <svelte:head>
@@ -182,7 +174,7 @@
 	<meta name="description" content="Technopoeisis" />
 </svelte:head>
 
-<svelte:window bind:innerWidth={windowWidth} bind:innerHeight={windowHeight} />
+<svelte:window bind:innerHeight={windowHeight} />
 
 <div class="fixed z-40 left-0 top-0 p-sm md:p-[1.25rem] lg:p-md 2xl:p-xl">
 	<LoadInCounter />
@@ -199,9 +191,3 @@
 <div style:padding-top="{headerHeight}px">
 	<slot />
 </div>
-
-<!-- data-disablescroll={scrollStoreState.disable ? 'true' : 'false'} -->
-<!-- bind:this={document} -->
-<!-- 	class={`h-screen overflow-x-hidden overflow-y-auto sm:scrollbar-thin sm:scrollbar-track-gray-50/50 sm:scrollbar-thumb-gray-100 sm:hover:scrollbar-thumb-gray-200 ${
-		scrollStoreState.disable ? 'scrollbar-none' : ''
-	}`} -->
