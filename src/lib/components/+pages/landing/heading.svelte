@@ -1,4 +1,4 @@
-<div class="bg-white p-sm">
+<div class="p-sm">
 	<h1
 		class={`text-[33.4px] sm:text-[2.4rem] md:text-[2.55rem] lg:text-[2.73rem] xl:text-[3.07rem] 2xl:text-[3.35rem] font-light uppercase tracking-widest leading-none whitespace-nowrap`}
 	>
@@ -38,7 +38,7 @@
 			<span>and small</span>
 			<span>companies,</span>
 			<span>hobbyists and</span>
-			<span>professionals</span>
+			<span>professionals.</span>
 		</span>
 	</p>
 </div>

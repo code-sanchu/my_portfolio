@@ -160,9 +160,7 @@
 	</div>
 
 	<Section.HorizontalSpacing>
-		<div
-			class="mt-sm md:mt-md lg:mt-lg xl:mt-xl 2xl:mt-[4rem] flex items-center gap-sm justify-end"
-		>
+		<div class="mt-md lg:mt-lg xl:mt-xl 2xl:mt-[4rem] flex items-center gap-sm justify-end">
 			<button
 				class={`relative inline-flex gap-xs items-center border border-gray-6 py-xxs px-xs 2xl:py-xs 2xl:px-sm rounded-lg 2xl:rounded-xl transition-opacity ease-linear duration-200 ${
 					disableShowPrev ? 'opacity-60' : ''

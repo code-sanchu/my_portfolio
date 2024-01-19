@@ -11,7 +11,9 @@
 <script lang="ts">
 	// refactor
 	// optimise images. picture strign create multiple? picture sizes
-	// heading bg?
+	// heading bg. squiggly white bg?
+	// make the moving cover on the counter a colour
+	// use transform for initial counter animation
 
 	// need radix-ui colours?
 

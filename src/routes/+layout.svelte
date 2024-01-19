@@ -162,6 +162,7 @@
 	let windowHeight: number;
 	let headerHeight = 0;
 
+	// $: hideHeader = false;
 	$: hideHeader = windowWidth && windowWidth < 768 && scrollDirection === 'down';
 </script>
 

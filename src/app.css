@@ -26,8 +26,9 @@
 	font-display: swap;
 }
 
-html {
-	@apply scrollbar-none text-gray-12;
+html,
+body {
+	@apply scrollbar-none text-gray-12 h-screen overflow-hidden;
 }
 
 * {

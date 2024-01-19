@@ -13,7 +13,7 @@
 	style:height={!isFocused ? '56px' : '86px'}
 >
 	<label
-		class={`absolute z-10 right-0 cursor-text bg-white transition-all ease-in-out duration-150 ${
+		class={`absolute z-10 right-0 cursor-text transition-all ease-in-out duration-150 ${
 			!isFocused && !value.length
 				? 'top-1/2 -translate-y-1/2 text-[0.82rem] xl:text-[0.9rem] 3xl:text-[1rem] text-gray-11'
 				: 'top-xxs text-xs xl:text-sm 3xl:text-base text-gray-9'
