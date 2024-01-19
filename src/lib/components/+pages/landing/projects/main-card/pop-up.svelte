@@ -36,7 +36,6 @@
 
 			scrollNode.addEventListener('wheel', scrolled, { passive: false });
 			scrollNode.addEventListener('DOMMouseScroll', scrolled, { passive: false });
-			scrollNode.addEventListener('touchmove', scrolled, { passive: false });
 			scrollNode.addEventListener('scrollend', (e) => {
 				// @ts-ignore
 				const disableScroll = e?.currentTarget?.dataset?.disablescroll === 'true';

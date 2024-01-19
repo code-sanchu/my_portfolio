@@ -6,6 +6,7 @@
 	import { scrollStore, type ScrollValues } from '^stores';
 
 	import { Header, LoadInCounter } from '^components';
+	import { uid } from 'uid';
 
 	const buttonIds = ['home-link', 'projects-link', 'services-link', 'contact-link'];
 
@@ -39,9 +40,9 @@
 
 			document.addEventListener('wheel', scrolled, { passive: false });
 			document.addEventListener('DOMMouseScroll', scrolled, { passive: false });
-			document.addEventListener('touchmove', scrolled, { passive: false });
+
 			// below: account for scroll position change from scrollIntoView or scrollbar; smooth scroll function properly after.
-			document.addEventListener('scrollend', (e) => {
+			document.addEventListener('scrollend', () => {
 				// @ts-ignore
 				const disableScroll = scrollStoreState?.disable;
 
@@ -100,6 +101,7 @@
 
 			// @ts-ignore
 			function scrolled(e) {
+				// console.log('scrolled:', e);
 				e.preventDefault(); // disable default scrolling
 
 				// @ts-ignore
