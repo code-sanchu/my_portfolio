@@ -62,14 +62,14 @@
 	<p class="pointer-events-none" style:opacity={transitionOut2 ? 0 : 1}>{numberStr}</p>
 
 	<div
-		class="absolute z-10 h-full left-0 bg-white cover pointer-events-none"
+		class="absolute z-10 h-full left-0 bg-white my-cover pointer-events-none"
 		style:right="{transitionOut1 ? 0 : width}px"
 		style:left="{transitionOut2 ? width : 0}px"
 	/>
 </div>
 
 <style>
-	.cover {
+	.my-cover {
 		transition: left 500ms linear, right 500ms ease-out;
 	}
 </style>

@@ -20,7 +20,10 @@
 		scrollStoreState = state;
 	});
 
-	let scrollNode: HTMLDivElement;
+	// let document: HTMLDivElement;
+	let windowWidth: number;
+	let windowHeight: number;
+	let headerHeight = 0;
 
 	let moving = false;
 	let scrollToPos = 0;
@@ -28,22 +31,29 @@
 	let scrollDirection: 'down' | 'up';
 
 	onMount(() => {
-		if (scrollNode) {
+		if (document) {
 			// @ts-ignore
-			scrollToPos = scrollNode.scrollTop;
+			// scrollToPos = document.scrollTop;
+			const target = document.scrollingElement || document.body.parentNode || document.body;
+			// @ts-ignore
+			scrollToPos = target.scrollTop;
+			let frame =
+				target === document.body && document.documentElement ? document.documentElement : target; // safari
 
-			scrollNode.addEventListener('wheel', scrolled, { passive: false });
-			scrollNode.addEventListener('DOMMouseScroll', scrolled, { passive: false });
+			document.addEventListener('wheel', scrolled, { passive: false });
+			document.addEventListener('DOMMouseScroll', scrolled, { passive: false });
 			// below: account for scroll position change from scrollIntoView or scrollbar; smooth scroll function properly after.
-			scrollNode.addEventListener('scrollend', (e) => {
+			document.addEventListener('scrollend', (e) => {
 				// @ts-ignore
-				const disableScroll = e?.currentTarget?.dataset?.disablescroll === 'true';
+				const disableScroll = scrollStoreState?.disable;
+				// const disableScroll = e?.currentTarget?.dataset?.disablescroll === 'true';
 
 				if (disableScroll || moving) {
 					return;
 				}
 
-				scrollToPos = scrollNode.scrollTop;
+				// @ts-ignore
+				scrollToPos = target.scrollTop;
 			});
 
 			document.addEventListener('click', (e) => {
@@ -66,20 +76,21 @@
 
 				const sectionId = buttonId.split('-')[0] + '-section';
 
-				const node = document.getElementById(sectionId);
+				const sectionNode = document.getElementById(sectionId);
 
-				if (!node) {
+				if (!sectionNode) {
 					return;
 				}
 
 				const scrollMiddlePos =
 					// @ts-ignore
-					node.offsetTop -
-					scrollNode.clientHeight / 2 +
+					sectionNode.offsetTop -
+					windowHeight / 2 +
 					// @ts-ignore
-					node.getBoundingClientRect().height / 2;
+					sectionNode.getBoundingClientRect().height / 2;
 
-				const maxBottomScrollPos = scrollNode.scrollHeight - scrollNode.clientHeight;
+				// @ts-ignore
+				const maxBottomScrollPos = target.scrollHeight - windowHeight;
 
 				scrollToPos = scrollMiddlePos < maxBottomScrollPos ? scrollMiddlePos : maxBottomScrollPos;
 
@@ -94,8 +105,12 @@
 			function scrolled(e) {
 				e.preventDefault(); // disable default scrolling
 
+				console.log('SCROLLED');
+
 				// @ts-ignore
-				const disableScroll = e?.currentTarget?.dataset?.disablescroll === 'true';
+				const disableScroll = scrollStoreState?.disable;
+				console.log('disableScroll:', disableScroll);
+				// const disableScroll = e?.currentTarget?.dataset?.disablescroll === 'true';
 
 				if (disableScroll) {
 					return;
@@ -107,10 +122,10 @@
 
 				scrollToPos += -delta * speed;
 
-				// @ts-ignore
 				scrollToPos = Math.max(
 					0,
-					Math.min(scrollToPos, scrollNode.scrollHeight - scrollNode.clientHeight)
+					// @ts-ignore
+					Math.min(scrollToPos, target.scrollHeight - frame.clientHeight)
 				); // limit scrolling
 
 				if (!moving) update();
@@ -129,10 +144,10 @@
 				moving = true;
 
 				// @ts-ignore
-				let delta = (scrollToPos - scrollNode.scrollTop) / smooth;
+				let delta = (scrollToPos - target.scrollTop) / smooth;
 
 				// @ts-ignore
-				scrollNode.scrollTop += delta;
+				target.scrollTop += delta;
 
 				if (Math.abs(delta) > 1) requestFrame(update);
 				else moving = false;
@@ -158,10 +173,6 @@
 		}
 	});
 
-	let windowWidth: number;
-	let windowHeight: number;
-	let headerHeight = 0;
-
 	// $: hideHeader = false;
 	$: hideHeader = windowWidth && windowWidth < 768 && scrollDirection === 'down';
 </script>
@@ -185,13 +196,12 @@
 	<Header />
 </div>
 
-<div
-	class={`h-screen overflow-x-hidden overflow-y-auto sm:scrollbar-thin sm:scrollbar-track-gray-50/50 sm:scrollbar-thumb-gray-100 sm:hover:scrollbar-thumb-gray-200 ${
-		scrollStoreState.disable ? 'scrollbar-none' : ''
-	}`}
-	style:padding-top="{headerHeight}px"
-	data-disablescroll={scrollStoreState.disable ? 'true' : 'false'}
-	bind:this={scrollNode}
->
+<div style:padding-top="{headerHeight}px">
 	<slot />
 </div>
+
+<!-- data-disablescroll={scrollStoreState.disable ? 'true' : 'false'} -->
+<!-- bind:this={document} -->
+<!-- 	class={`h-screen overflow-x-hidden overflow-y-auto sm:scrollbar-thin sm:scrollbar-track-gray-50/50 sm:scrollbar-thumb-gray-100 sm:hover:scrollbar-thumb-gray-200 ${
+		scrollStoreState.disable ? 'scrollbar-none' : ''
+	}`} -->

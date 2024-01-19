@@ -10,13 +10,10 @@
 
 <script lang="ts">
 	// refactor
+
 	// optimise images. picture strign create multiple? picture sizes
-	// heading bg. squiggly white bg?
-	// make the moving cover on the counter a colour
 	// use transform for initial counter animation
-
-	// need radix-ui colours?
-
+	// heading bg. longer to transparent gradient?
 	// cards follow swipe gesture up to a point and then trigger next/prev
 	// mobile navbar doesn't go away when scrolling is not on document/body
 	// change transition to use transform rather than left, top, etc.
