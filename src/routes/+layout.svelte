@@ -204,7 +204,7 @@
 </div>
 
 <div
-	class={`transition-opacity duration-300 ease-in ${!headerHeight ? 'opacity-0' : ''}`}
+	class={`transition-opacity duration-200 ease-in-out ${!headerHeight ? 'opacity-0' : ''}`}
 	style:padding-top="{headerHeight}px"
 >
 	<slot />

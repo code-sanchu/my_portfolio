@@ -23,7 +23,7 @@
 	</h1>
 
 	<div
-		class={`transition-opacity duration-300 ease-in ${
+		class={`transition-opacity duration-200 ease-in-out ${
 			!sectionReady.initialLayout ? 'opacity-0' : ''
 		}`}
 	>

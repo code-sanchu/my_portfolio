@@ -12,10 +12,12 @@
 
 <script lang="ts">
 	// cut out each dot and create own picture
+	// users might not know to scroll up for header on non-touch/large devices.
+	// scrollbar triggers header up/down as well.
 	// refactor
+	// .works; .to; .ing; .is; .ink; .site; .global; .world; .black; .green;
 
 	// optimise images. picture strign create multiple? picture sizes
-	// corner of text visible on page-counter transition
 	// change projects transition to use transform rather than left, top, etc.
 	// using dots, could actually do something akin to:https://www.pola.co.jp/special/o/wecaremore/mothersday/
 	// text reveal animations: https://freefrontend.com/css-reveal-animations/
