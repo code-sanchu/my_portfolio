@@ -13,15 +13,20 @@
 </script>
 
 <div
-	class="flex justify-between items-start md:items-center p-sm md:p-[1.25rem] lg:p-md 2xl:p-xl bg-gradient-to-b from-white to-transparent"
+	class="flex justify-between items-start md:items-center p-sm md:p-[1.25rem] lg:p-md 2xl:p-xl bg-white"
 >
 	<h1
-		class="font-light text-xl md:text-2xl lg:text-3xl 2xl:text-[2.6rem] tracking-widest cursor-pointer opacity-0"
-		style:opacity={!sectionReady?.logo ? 0 : 1}
+		class="font-light text-xl md:text-2xl lg:text-3xl 2xl:text-[2.6rem] tracking-widest cursor-pointer"
 		id="home-link"
 	>
 		TPS
 	</h1>
 
-	<Nav />
+	<div
+		class={`transition-opacity duration-300 ease-in ${
+			!sectionReady.initialLayout ? 'opacity-0' : ''
+		}`}
+	>
+		<Nav />
+	</div>
 </div>

@@ -4,9 +4,9 @@
 	import { Picture } from '^components';
 	import PopUp from './pop-up.svelte';
 
+	import { sectionReadyStore, type SectionReadyValues } from '^stores';
 	import type { Project } from '^types';
 	import AnimateInOut from './animate-in-out.svelte';
-	import { onMount } from 'svelte';
 </script>
 
 <script lang="ts">
@@ -99,6 +99,12 @@
 			gap = windowWidth < 1800 ? 20 : 40;
 		}
 	}
+
+	let sectionReady: SectionReadyValues;
+
+	sectionReadyStore.subscribe((state) => {
+		sectionReady = state;
+	});
 </script>
 
 <svelte:window bind:innerWidth={windowWidth} />
@@ -111,7 +117,7 @@
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<!-- svelte-ignore a11y-no-static-element-interactions -->
 				<div
-					class={`${
+					class={`bg-gray-2 ${
 						expand === 'expanding' || expand === 'contracting' ? 'container-transitions' : ''
 					} ${expand === 'contracting-init' ? 'pointer-events-none invisible' : ''}`}
 					style:z-index={expand === 'expanding-init' || expand === 'expanding' ? 40 : 0}
@@ -154,10 +160,12 @@
 						? `${pictureNodeIdleRect.height}px`
 						: `${pictureNodeExpandedRect.height}px`}
 				>
-					<Picture
-						data={data.mainPicture}
-						imageClass="absolute inset-0 object-cover w-full h-full"
-					/>
+					{#if sectionReady?.artImage}
+						<Picture
+							data={data.mainPicture}
+							imageClass="absolute inset-0 object-cover w-full h-full"
+						/>
+					{/if}
 				</div>
 			</div>
 

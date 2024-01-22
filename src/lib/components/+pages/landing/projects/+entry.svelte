@@ -12,9 +12,12 @@
 	import { projects } from '^data';
 	import type { ProjectId } from '^types';
 
+	import { updateSectionReady } from '^stores';
+
 	import { Section } from '^pages/landing';
 
 	import MainCard from './main-card';
+	import { onMount } from 'svelte';
 
 	type ProjectCard = { key: string; id: ProjectId; animateOut: boolean };
 
@@ -94,7 +97,7 @@
 	let disableShowPrev: boolean;
 
 	$: {
-		if (containerNode && projectCards) {
+		if (containerNode?.scrollWidth && containerNode?.clientWidth && projectCards) {
 			const atLastCard = projectCards.filter((card) => card.animateOut === false).length === 1;
 
 			const isOverflow = containerNode.scrollWidth > containerNode.clientWidth;
@@ -126,6 +129,12 @@
 	let disableSwipe = false;
 
 	let mouseDown = false;
+
+	onMount(() => {
+		setTimeout(() => {
+			updateSectionReady.projects();
+		}, 400);
+	});
 </script>
 
 <svelte:window bind:innerWidth={windowWidth} />

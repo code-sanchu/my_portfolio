@@ -3,10 +3,9 @@
 
 	import { onMount } from 'svelte';
 
-	import { scrollStore, type ScrollValues } from '^stores';
+	import { scrollStore, updateSectionReady, type ScrollValues } from '^stores';
 
-	import { Header, LoadInCounter } from '^components';
-	import { uid } from 'uid';
+	import { Header } from '^components';
 
 	const buttonIds = ['home-link', 'projects-link', 'services-link', 'contact-link'];
 
@@ -23,6 +22,14 @@
 
 	let windowHeight: number;
 	let headerHeight = 0;
+
+	let xx = false;
+
+	$: {
+		if (headerHeight) {
+			updateSectionReady.initialLayout();
+		}
+	}
 
 	let moving = false;
 	let scrollToPos = 0;
@@ -112,7 +119,6 @@
 
 			// @ts-ignore
 			function scrolled(e) {
-				// console.log('scrolled:', e);
 				e.preventDefault(); // disable default scrolling
 
 				// @ts-ignore
@@ -189,10 +195,6 @@
 
 <svelte:window bind:innerHeight={windowHeight} />
 
-<div class="fixed z-40 left-0 top-0 p-sm md:p-[1.25rem] lg:p-md 2xl:p-xl">
-	<LoadInCounter />
-</div>
-
 <div
 	class="fixed z-30 left-0 top-0 w-full transition-transform ease-in-out duration-500"
 	style:transform={hideHeader && headerHeight ? `translateY(-${headerHeight}px)` : ''}
@@ -201,6 +203,9 @@
 	<Header />
 </div>
 
-<div style:padding-top="{headerHeight}px">
+<div
+	class={`transition-opacity duration-300 ease-in ${!headerHeight ? 'opacity-0' : ''}`}
+	style:padding-top="{headerHeight}px"
+>
 	<slot />
 </div>

@@ -5,13 +5,15 @@ type SectionReadyValues = {
 	projects: boolean
 	logo: boolean
 	main: boolean
+	initialLayout: boolean
 };
 
 const initData: SectionReadyValues = {
 	artImage: false,
 	projects: false,
 	logo: false,
-	main: false
+	main: false,
+	initialLayout: false
 };
 
 const sectionReadyStore = writable(initData);
@@ -29,6 +31,7 @@ function updateHelper<TField extends keyof SectionReadyValues>(
 }
 
 const updateSectionReady = {
+	initialLayout: () => updateHelper('initialLayout', true),
 	artImage: () => updateHelper('artImage', true),
 	projects: () => updateHelper('projects', true),
 	logo: () => updateHelper('logo', true),
