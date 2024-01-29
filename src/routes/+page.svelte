@@ -22,8 +22,6 @@
 	// users might not know to scroll up for header on non-touch/large devices.
 
 	// DEPLOY CHECKLIST
-	// check using new email in form.
-	// update formsubmit from deployed site and with new email.
 	// img onLoad function works on all browsers? project imgs tied to onload func of art image
 
 	let sectionReady: SectionReadyValues;

@@ -1,15 +1,15 @@
 <script context="module" lang="ts">
-	import { fade, fly } from 'svelte/transition';
-	import { CircleNotch, PaperPlaneTilt } from 'phosphor-svelte';
 	import axios from 'axios';
+	import { fade, fly } from 'svelte/transition';
+	import { CircleNotch, PaperPlaneTilt, Check } from 'phosphor-svelte';
+
+	import { my_links_and_contacts } from '^data';
 
 	import Input from './input.svelte';
 	import TextArea from './text-area.svelte';
 </script>
 
 <script lang="ts">
-	import { Check } from 'phosphor-svelte';
-
 	let name = '';
 	let email = '';
 	let message = '';
@@ -39,7 +39,7 @@
 
 		axios.defaults.headers.post['Content-Type'] = 'application/json';
 
-		axios.post('https://formsubmit.co/ajax/2568eb7f310ea6fd88e42b3f9c5829e6', {
+		axios.post(`https://formsubmit.co/ajax/${my_links_and_contacts.email}`, {
 			_subject: 'Website enquiry',
 			name,
 			email,
