@@ -1,5 +1,4 @@
-import art from "^^assets/images/art.webp?w=600&format=avif;webp;jpg&as=picture&imagetools";
-
+import art from "^^assets/images/dot-art.jpg?w=600&format=avif;webp;jpg&as=picture&imagetools";
 
 import dot_blue from '^^assets/images/dot-blue.png?w=10&format=avif;webp;jpg&as=picture&imagetools';
 import dot_green from '^^assets/images/dot-green.png?w=10&format=avif;webp;jpg&as=picture&imagetools';

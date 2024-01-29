@@ -11,9 +11,8 @@
 </script>
 
 <script lang="ts">
-	// cut out each dot and create own picture
 	// users might not know to scroll up for header on non-touch/large devices.
-	// scrollbar triggers header up/down as well.
+	// scrollbar should triggers header up/down as well.
 	// refactor
 	// .works; .to; .ing; .is; .ink; .site; .global; .world; .black; .green;
 
@@ -43,7 +42,7 @@
 			class="relative w-full min-w-[240px] xs:min-w-[300px] xs/sm:min-w-[320px] aspect-[7/5] 2xl:aspect-[7/4]"
 		>
 			<div
-				class={`absolute inset-0 translate-x-0 ease-in-out duration-300 ${
+				class={`absolute inset-0 translate-x-0 ease-in-out duration-300 opacity-90 ${
 					!sectionReady?.artImage ? 'bg-gray-2' : ''
 				}`}
 			>

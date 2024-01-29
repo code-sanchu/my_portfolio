@@ -61,11 +61,13 @@
 </script>
 
 <div class="flex flex-col w-[400px] xl:w-[500px] max-w-full xl:text-lg">
-	<div class="border-t border-t-my-lime-1/60 border-b border-b-my-blue-light-1/60">
+	<div class="border-t border-t-my-lime-1/60">
 		<Input bind:value={name} label="Name" />
 	</div>
 
-	<Input bind:value={email} label="Email" />
+	<div class="border-t border-t-my-blue-light-1/60">
+		<Input bind:value={email} label="Email" />
+	</div>
 
 	<div class="border-t border-t-my-orange-red-1/60 border-b border-b-my-cyan-1/60">
 		<TextArea bind:value={message} label="About your project" />

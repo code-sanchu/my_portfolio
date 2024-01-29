@@ -1,6 +1,3 @@
-<script context="module" lang="ts">
-</script>
-
 <script lang="ts">
 	export let label: string;
 	export let value: string;
@@ -9,7 +6,7 @@
 </script>
 
 <div
-	class="relative py-sm w-full transition-all ease-in-out duration-150"
+	class="relative py-sm 2xl:py-lg w-full transition-all ease-in-out duration-150"
 	style:height={!isFocused ? '56px' : '66px'}
 >
 	<label
