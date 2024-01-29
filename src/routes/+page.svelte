@@ -11,16 +11,15 @@
 </script>
 
 <script lang="ts">
-	// users might not know to scroll up for header on non-touch/large devices.
-	// scrollbar should triggers header up/down as well.
 	// refactor
-	// .works; .to; .ing; .is; .ink; .site; .global; .world; .black; .green;
 
 	// optimise images. picture strign create multiple? picture sizes
 	// change projects transition to use transform rather than left, top, etc.
 	// using dots, could actually do something akin to:https://www.pola.co.jp/special/o/wecaremore/mothersday/
 	// text reveal animations: https://freefrontend.com/css-reveal-animations/
 	// title animate in as with plastic.desgin
+	// scrollbar should triggers header up/down as well?
+	// users might not know to scroll up for header on non-touch/large devices.
 
 	// DEPLOY CHECKLIST
 	// check using new email in form.

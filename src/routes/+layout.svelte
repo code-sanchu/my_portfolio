@@ -23,8 +23,6 @@
 	let windowHeight: number;
 	let headerHeight = 0;
 
-	let xx = false;
-
 	$: {
 		if (headerHeight) {
 			updateSectionReady.initialLayout();
@@ -53,7 +51,6 @@
 				touchStartData = e.targetTouches[0];
 			});
 			document.addEventListener('touchend', (e) => {
-				console.log('e:', e);
 				const touchEndData = e.changedTouches[0];
 
 				scrollDirection = touchEndData.clientY > touchStartData.clientY ? 'up' : 'down';
