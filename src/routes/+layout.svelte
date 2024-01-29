@@ -187,7 +187,10 @@
 
 <svelte:head>
 	<title>Tech-poiesis</title>
-	<meta name="description" content="Technopoeisis" />
+	<meta
+		name="description"
+		content="Bespoke website creation for individuals, small companies, hobbyists and professionals."
+	/>
 </svelte:head>
 
 <svelte:window bind:innerHeight={windowHeight} />
