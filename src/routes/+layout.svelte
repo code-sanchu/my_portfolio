@@ -37,7 +37,7 @@
 	let scrollDirection: 'down' | 'up';
 
 	let touchStartData: Touch;
-	let prevTouchData: Touch;
+	// let prevTouchData: Touch;
 
 	onMount(() => {
 		if (document) {
@@ -55,7 +55,7 @@
 				const touchData = e.targetTouches[0];
 
 				touchStartData = touchData;
-				prevTouchData = touchData;
+				// prevTouchData = touchData;
 			});
 
 			document.addEventListener('touchend', (e) => {
@@ -179,7 +179,6 @@
 					// @ts-ignore
 					Math.min(scrollToPos, target.scrollHeight - frame.clientHeight)
 				); // limit scrolling
-				console.log('SCROLLED scrollToPos:', scrollToPos);
 
 				if (!moving) update();
 			}

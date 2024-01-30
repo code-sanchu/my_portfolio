@@ -29,7 +29,7 @@
 	let moving = false;
 	let scrollToPos = 0;
 
-	let touchStartData: Touch;
+	// let touchStartData: Touch;
 	let prevTouchData: Touch;
 
 	onMount(() => {
@@ -43,7 +43,7 @@
 			scrollNode.addEventListener('touchstart', (e) => {
 				const touchData = e.targetTouches[0];
 
-				touchStartData = touchData;
+				// touchStartData = touchData;
 				prevTouchData = touchData;
 			});
 
@@ -58,11 +58,11 @@
 
 					scrollToPos += -touchDistance * 4;
 
-					scrollToPos = Math.max(
+					/* 					scrollToPos = Math.max(
 						0,
 						// @ts-ignore
 						Math.min(scrollToPos, scrollNode.scrollHeight - scrollNode.clientHeight)
-					);
+					); */
 
 					prevTouchData = touchMoveData;
 
@@ -142,7 +142,7 @@
 </script>
 
 <div
-	class={`fixed left-0 top-0 w-screen overflow-y-auto h-screen pb-xl bg-white z-30 transition-opacity ease-linear duration-[500ms] cursor-auto ${
+	class={`fixed left-0 top-0 w-screen overflow-y-auto h-screen pb-2xl bg-white z-30 transition-opacity ease-linear duration-[500ms] cursor-auto ${
 		expand === 'idle'
 			? 'invisible pointer-events-none'
 			: expand === 'contracting'
