@@ -1,12 +1,11 @@
 <script lang="ts" context="module">
 	import type { Project } from '^types';
 
-	import { updateScroll } from '^stores';
-	import { sectionReadyStore, type SectionReadyValues } from '^stores';
+	import { sectionReadyStore, updateScroll, type SectionReadyValues } from '^stores';
 
 	import { Picture } from '^components';
-	import PopUp from './pop-up.svelte';
 	import AnimateInOut from './animate-in-out.svelte';
+	import PopUp from './pop-up.svelte';
 </script>
 
 <script lang="ts">

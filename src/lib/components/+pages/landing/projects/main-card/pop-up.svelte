@@ -56,13 +56,25 @@
 
 					const touchDistance = touchMoveData.clientY - prevTouchData.clientY;
 
+					const scrollDirection = touchDistance < 0 ? 'down' : 'up';
+
+					if (scrollToPos === 0 && scrollDirection === 'up') {
+						return;
+					}
+
+					const maxScrollToPos = scrollNode.scrollHeight - scrollNode.clientHeight;
+
+					if (scrollToPos === maxScrollToPos && scrollDirection === 'down') {
+						return;
+					}
+
 					scrollToPos += -touchDistance * 4;
 
-					/* 					scrollToPos = Math.max(
+					scrollToPos = Math.max(
 						0,
 						// @ts-ignore
 						Math.min(scrollToPos, scrollNode.scrollHeight - scrollNode.clientHeight)
-					); */
+					);
 
 					prevTouchData = touchMoveData;
 
