@@ -57,11 +57,9 @@
 
 				const distance = Math.abs(touchEndData.clientY - touchStartData.clientY);
 
-				if (distance < headerTriggerMinScrollDistance) {
-					return;
+				if (distance >= headerTriggerMinScrollDistance) {
+					scrollDirection = touchEndData.clientY > touchStartData.clientY ? 'up' : 'down';
 				}
-
-				scrollDirection = touchEndData.clientY > touchStartData.clientY ? 'up' : 'down';
 			});
 
 			// below: account for scroll position change from scrollIntoView or scrollbar; smooth scroll function properly after.
@@ -75,6 +73,14 @@
 
 				// @ts-ignore
 				scrollToPos = target.scrollTop;
+			});
+
+			document.addEventListener('touchmove', (e) => {
+				const disableScroll = scrollStoreState?.disable;
+
+				if (disableScroll) {
+					e.preventDefault();
+				}
 			});
 
 			document.addEventListener('click', (e) => {

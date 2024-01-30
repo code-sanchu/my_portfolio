@@ -13,7 +13,6 @@
 <script lang="ts">
 	// refactor: main-card;
 	// stop scroll on pop-up earlier; ensure can't scroll on body when pop-up open.
-	// go through projects text.
 
 	// optimise images. picture strign create multiple? picture sizes
 	// change projects transition to use transform rather than left, top, etc.
