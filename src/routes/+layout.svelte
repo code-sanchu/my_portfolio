@@ -37,6 +37,7 @@
 	let scrollDirection: 'down' | 'up';
 
 	let touchStartData: Touch;
+	let prevTouchData: Touch;
 
 	onMount(() => {
 		if (document) {
@@ -44,14 +45,19 @@
 			const target = document.scrollingElement || document.body.parentNode || document.body;
 			// @ts-ignore
 			scrollToPos = target.scrollTop;
+
 			let frame =
 				target === document.body && document.documentElement ? document.documentElement : target; // safari
 
 			document.addEventListener('wheel', scrolled, { passive: false });
 			document.addEventListener('DOMMouseScroll', scrolled, { passive: false });
 			document.addEventListener('touchstart', (e) => {
-				touchStartData = e.targetTouches[0];
+				const touchData = e.targetTouches[0];
+
+				touchStartData = touchData;
+				prevTouchData = touchData;
 			});
+
 			document.addEventListener('touchend', (e) => {
 				const touchEndData = e.changedTouches[0];
 
@@ -61,6 +67,37 @@
 					scrollDirection = touchEndData.clientY > touchStartData.clientY ? 'up' : 'down';
 				}
 			});
+
+			document.addEventListener(
+				'touchmove',
+				(e) => {
+					e.preventDefault();
+
+					// @ts-ignore
+					const disableScroll = scrollStoreState?.disable;
+
+					if (disableScroll) {
+						return;
+					}
+
+					const touchMoveData = e.changedTouches[0];
+
+					const touchDistance = touchMoveData.clientY - prevTouchData.clientY;
+
+					scrollToPos += -touchDistance * 4;
+
+					scrollToPos = Math.max(
+						0,
+						// @ts-ignore
+						Math.min(scrollToPos, target.scrollHeight - frame.clientHeight)
+					);
+
+					prevTouchData = touchMoveData;
+
+					if (!moving) update();
+				},
+				{ passive: false }
+			);
 
 			// below: account for scroll position change from scrollIntoView or scrollbar; smooth scroll function properly after.
 			document.addEventListener('scrollend', () => {
@@ -73,14 +110,6 @@
 
 				// @ts-ignore
 				scrollToPos = target.scrollTop;
-			});
-
-			document.addEventListener('touchmove', (e) => {
-				const disableScroll = scrollStoreState?.disable;
-
-				if (disableScroll) {
-					e.preventDefault();
-				}
 			});
 
 			document.addEventListener('click', (e) => {
@@ -150,6 +179,7 @@
 					// @ts-ignore
 					Math.min(scrollToPos, target.scrollHeight - frame.clientHeight)
 				); // limit scrolling
+				console.log('SCROLLED scrollToPos:', scrollToPos);
 
 				if (!moving) update();
 			}

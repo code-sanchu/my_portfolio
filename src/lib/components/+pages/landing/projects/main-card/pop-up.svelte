@@ -29,6 +29,9 @@
 	let moving = false;
 	let scrollToPos = 0;
 
+	let touchStartData: Touch;
+	let prevTouchData: Touch;
+
 	onMount(() => {
 		if (scrollNode) {
 			// @ts-ignore
@@ -36,11 +39,42 @@
 
 			scrollNode.addEventListener('wheel', scrolled, { passive: false });
 			scrollNode.addEventListener('DOMMouseScroll', scrolled, { passive: false });
-			scrollNode.addEventListener('scrollend', (e) => {
-				// @ts-ignore
-				const disableScroll = e?.currentTarget?.dataset?.disablescroll === 'true';
 
-				if (disableScroll || moving) {
+			scrollNode.addEventListener('touchstart', (e) => {
+				const touchData = e.targetTouches[0];
+
+				touchStartData = touchData;
+				prevTouchData = touchData;
+			});
+
+			scrollNode.addEventListener(
+				'touchmove',
+				(e) => {
+					e.preventDefault();
+
+					const touchMoveData = e.changedTouches[0];
+
+					const touchDistance = touchMoveData.clientY - prevTouchData.clientY;
+
+					scrollToPos += -touchDistance * 4;
+
+					scrollToPos = Math.max(
+						0,
+						// @ts-ignore
+						Math.min(scrollToPos, scrollNode.scrollHeight - scrollNode.clientHeight)
+					);
+
+					prevTouchData = touchMoveData;
+
+					if (!moving) update();
+				},
+				{ passive: false }
+			);
+
+			scrollNode.addEventListener('scrollend', () => {
+				// @ts-ignore
+
+				if (moving) {
 					return;
 				}
 
@@ -50,14 +84,7 @@
 
 			// @ts-ignore
 			function scrolled(e) {
-				e.preventDefault(); // disable default scrolling
-
-				// @ts-ignore
-				const disableScroll = e?.currentTarget?.dataset?.disablescroll === 'true';
-
-				if (disableScroll) {
-					return;
-				}
+				e.preventDefault();
 
 				let delta = normalizeWheelDelta(e);
 
