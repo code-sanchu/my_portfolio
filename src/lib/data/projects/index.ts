@@ -54,8 +54,8 @@ const piros: Project = {
 	siteUrl: 'https://www.piros.photography/',
 	mainPicture: image.project.piros.landing_main_pic,
 	descriptionLong: [
-		'Piroska Markus is a socially and politically active photographer.',
-		'The site is a showcase of here photographp, and includes an easy to use custom cms.'
+		'Piroska Markus is a budding amateur photographer.',
+		'The site consists of photographic essays on parts of the world and a variety of other topics. It also has a user and comment system, along with a custom cms for Piroska to edit the site.'
 	],
 	workDescription: 'Site and cms design, build and maintenance.',
 	year: '2022&ndash;2023',
@@ -115,7 +115,7 @@ const kindred_yoga: Project = {
 	mainPicture: image.project.kindred_yoga.landing,
 	descriptionLong: [
 		'Kindred Yoga is a successful yoga studio.',
-		'My role in this is ongoing.'
+		'My role consists of updating the site when aspects such as teachers and classes change, as well as quality control of the styling across devices.'
 	],
 	workDescription: 'Squarespace updates &#8212; styling and scripting.',
 	year: '2021 - 2023',
@@ -129,7 +129,7 @@ const blackheath_yoga: Project = {
 	siteUrl: 'https://www.blackheathyoga.co.uk/',
 	mainPicture: image.project.blackheath_yoga.site,
 	descriptionLong: [
-		'Blackheath yoga is a successful yoga studio in South London. This involved integrating a payment and booking platform.',
+		'Blackheath yoga is a successful yoga studio in South London.',
 		'Work included: integrating a payment and booking platform; creating re-usable pop-ups for promotions.'
 	],
 	workDescription: 'Wix updates &#8212; styling and scripting.',

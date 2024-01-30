@@ -11,7 +11,9 @@
 </script>
 
 <script lang="ts">
-	// refactor
+	// refactor: main-card;
+	// stop scroll on pop-up earlier; ensure can't scroll on body when pop-up open.
+	// go through projects text.
 
 	// optimise images. picture strign create multiple? picture sizes
 	// change projects transition to use transform rather than left, top, etc.
@@ -22,7 +24,8 @@
 	// users might not know to scroll up for header on non-touch/large devices.
 
 	// DEPLOY CHECKLIST
-	// img onLoad function works on all browsers? project imgs tied to onload func of art image
+	// ask murat for permission.
+	// img onLoad function works on all browsers? project imgs tied to onload func of art image.
 
 	let sectionReady: SectionReadyValues;
 

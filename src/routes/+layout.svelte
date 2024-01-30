@@ -11,6 +11,8 @@
 
 	const speed = 120;
 	const smooth = 15;
+
+	const headerTriggerMinScrollDistance = 50;
 </script>
 
 <script lang="ts">
@@ -52,6 +54,12 @@
 			});
 			document.addEventListener('touchend', (e) => {
 				const touchEndData = e.changedTouches[0];
+
+				const distance = Math.abs(touchEndData.clientY - touchStartData.clientY);
+
+				if (distance < headerTriggerMinScrollDistance) {
+					return;
+				}
 
 				scrollDirection = touchEndData.clientY > touchStartData.clientY ? 'up' : 'down';
 			});
