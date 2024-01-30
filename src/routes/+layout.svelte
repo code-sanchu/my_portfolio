@@ -71,16 +71,16 @@
 			document.addEventListener(
 				'touchmove',
 				(e) => {
-					e.preventDefault();
+					// e.preventDefault();
 
 					// @ts-ignore
 					const disableScroll = scrollStoreState?.disable;
 
 					if (disableScroll) {
-						return;
+						e.preventDefault();
 					}
 
-					const touchMoveData = e.changedTouches[0];
+					/* 					const touchMoveData = e.changedTouches[0];
 
 					const touchDistance = touchMoveData.clientY - prevTouchData.clientY;
 
@@ -94,7 +94,7 @@
 
 					prevTouchData = touchMoveData;
 
-					if (!moving) update();
+					if (!moving) update(); */
 				},
 				{ passive: false }
 			);
