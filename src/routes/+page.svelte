@@ -70,25 +70,27 @@
 	</div>
 
 	{#if sectionReady?.projects}
-		<div transition:fade={{ duration: 300, easing: sineInOut }}>
-			<div class="mt-2xl md:mt-3xl">
-				<Section.Heading align="left" text="Services" />
-			</div>
+		<div class="flex justify-center" transition:fade={{ duration: 300, easing: sineInOut }}>
+			<div class="w-full max-w-[2600px]">
+				<div class="mt-2xl md:mt-3xl">
+					<Section.Heading align="left" text="Services" />
+				</div>
 
-			<div class="mt-xl" id="services-section">
-				<Section.HorizontalSpacing>
-					<Services />
-				</Section.HorizontalSpacing>
-			</div>
+				<div class="mt-xl" id="services-section">
+					<Section.HorizontalSpacing>
+						<Services />
+					</Section.HorizontalSpacing>
+				</div>
 
-			<div class="mt-2xl md:mt-3xl">
-				<Section.Heading align="right" text="Contact" />
-			</div>
+				<div class="mt-2xl md:mt-3xl">
+					<Section.Heading align="right" text="Contact" />
+				</div>
 
-			<div class="mt-xl" id="contact-section">
-				<Section.HorizontalSpacing>
-					<Contact />
-				</Section.HorizontalSpacing>
+				<div class="mt-xl" id="contact-section">
+					<Section.HorizontalSpacing>
+						<Contact />
+					</Section.HorizontalSpacing>
+				</div>
 			</div>
 		</div>
 	{/if}

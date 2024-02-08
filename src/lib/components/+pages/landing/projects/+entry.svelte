@@ -1,4 +1,5 @@
 <script context="module" lang="ts">
+	import { onMount } from 'svelte';
 	import { produce } from 'immer';
 	import { ArrowLineLeft, ArrowLineRight } from 'phosphor-svelte';
 	import {
@@ -17,7 +18,6 @@
 	import { Section } from '^pages/landing';
 
 	import MainCard from './main-card';
-	import { onMount } from 'svelte';
 
 	type ProjectCard = { key: string; id: ProjectId; animateOut: boolean };
 
@@ -94,13 +94,16 @@
 
 	let containerNode: HTMLDivElement;
 
+	let containerRect: DOMRect;
+	$: clientWidth = containerRect?.width;
+
 	let disableShowPrev: boolean;
 
 	$: {
-		if (containerNode?.scrollWidth && containerNode?.clientWidth && projectCards) {
+		if (containerNode && clientWidth && projectCards) {
 			const atLastCard = projectCards.filter((card) => card.animateOut === false).length === 1;
 
-			const isOverflow = containerNode.scrollWidth > containerNode.clientWidth;
+			const isOverflow = containerNode.scrollWidth > clientWidth;
 
 			disableShowPrev = atLastCard || !isOverflow;
 		}
@@ -156,6 +159,7 @@
 			on:mousedown={() => (mouseDown = true)}
 			on:mouseup={() => (mouseDown = false)}
 			bind:this={containerNode}
+			bind:contentRect={containerRect}
 		>
 			{#each projectCards as project (project.key)}
 				<MainCard
