@@ -11,9 +11,8 @@
 </script>
 
 <script lang="ts">
+	// disable section link buttons hover on touch devices.
 	// refactor: main-card;
-	// stop scroll on pop-up earlier; ensure can't scroll on body when pop-up open.
-	// request full screen on pop-up?
 
 	// optimise images. picture strign create multiple? picture sizes
 	// change projects transition to use transform rather than left, top, etc.

@@ -37,7 +37,6 @@
 	let scrollDirection: 'down' | 'up';
 
 	let touchStartData: Touch;
-	// let prevTouchData: Touch;
 
 	onMount(() => {
 		if (document) {
@@ -55,7 +54,6 @@
 				const touchData = e.targetTouches[0];
 
 				touchStartData = touchData;
-				// prevTouchData = touchData;
 			});
 
 			document.addEventListener('touchend', (e) => {
@@ -71,30 +69,12 @@
 			document.addEventListener(
 				'touchmove',
 				(e) => {
-					// e.preventDefault();
-
 					// @ts-ignore
 					const disableScroll = scrollStoreState?.disable;
 
 					if (disableScroll) {
 						e.preventDefault();
 					}
-
-					/* 					const touchMoveData = e.changedTouches[0];
-
-					const touchDistance = touchMoveData.clientY - prevTouchData.clientY;
-
-					scrollToPos += -touchDistance * 4;
-
-					scrollToPos = Math.max(
-						0,
-						// @ts-ignore
-						Math.min(scrollToPos, target.scrollHeight - frame.clientHeight)
-					);
-
-					prevTouchData = touchMoveData;
-
-					if (!moving) update(); */
 				},
 				{ passive: false }
 			);

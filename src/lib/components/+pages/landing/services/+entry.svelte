@@ -11,6 +11,4 @@
 		Services include: website and cms creation; cms platforms (e.g. Squarespace, Wordpress); most
 		other web platforms and services (e.g. Shopify, third-party integrations).
 	</p>
-
-	<p>Concessions are available based on income.</p>
 </div>
