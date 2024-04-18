@@ -114,8 +114,8 @@ const kindred_yoga: Project = {
 	siteUrl: 'https://www.kindredyogalife.com/',
 	mainPicture: image.project.kindred_yoga.landing,
 	descriptionLong: [
-		'Kindred Yoga is a successful yoga studio.',
-		'My role consists of updating the site when aspects such as teachers and classes change, as well as quality control of the styling across devices.'
+		'Kindred Yoga is an established yoga studio in South London.',
+		'My role consists of editing dynamic pages, styling, connecting to third-party platforms to integrate features and researching approaches for new features.'
 	],
 	workDescription: 'Squarespace updates &#8212; styling and scripting.',
 	year: '2021 - 2023',

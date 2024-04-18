@@ -7,6 +7,7 @@ const supportedExtensions = ['png', 'jpg', 'jpeg', 'gif'];
 export default defineConfig({
 	plugins: [
 		sveltekit(),
+
 		imagetools({
 			defaultDirectives(url) {
 				const extension = url.pathname.substring(url.pathname.lastIndexOf('.') + 1);
